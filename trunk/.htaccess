@@ -1,0 +1,5 @@
+RewriteEngine on
+RewriteBase /iptips/trunk/
+
+RewriteCond $1 !^(index\.php|images|robots\.txt|css|js|fonts|eof|ttf)
+RewriteRule ^(.*)$ /iptips/trunk/index.php/$1 [L]
