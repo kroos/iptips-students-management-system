@@ -13,16 +13,6 @@
 </head>
 
 <body>
-	<script type="text/javascript" src="<?=base_url()?>js/jquery.js"></script>
-	<script type="text/javascript" src="<?=base_url()?>js/jquery.easing-sooper.js"></script>
-	<script type="text/javascript" src="<?=base_url()?>js/jquery.sooperfish.js"></script>
-	<script type="text/javascript">
-	$(document).ready(function() {
-		$('ul.sf-menu').sooperfish();
-		$('.top').click(function() {$('html, body').animate({scrollTop:0}, 'fast'); return false;});
-	});
-	</script>
-
 	<div id="main">
 	<header>
 		<div id="logo">
@@ -85,7 +75,21 @@
 		<p>Copyright &copy; Ayus Trading | <?=anchor(base_url(), 'Make Way With Us..', array('title' => 'Make Way With Us..'))?></p>
 	</footer>
 	</div>
+
 	<!-- javascript at the bottom for fast page loading -->
+	<script type="text/javascript" src="<?=base_url()?>js/jquery.js"></script>
+	<script type="text/javascript" src="<?=base_url()?>js/jquery.easing-sooper.js"></script>
+	<script type="text/javascript" src="<?=base_url()?>js/jquery.sooperfish.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$('ul.sf-menu').sooperfish();
+		$('.top').click(function() {$('html, body').animate({scrollTop:0}, 'fast'); return false;});
+	});
+	</script>
 	
+<? start_block_marker('jscript') ?>
+
+<? end_block_marker() ?>
+
 </body>
 </html>
