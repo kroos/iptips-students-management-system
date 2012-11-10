@@ -8,6 +8,7 @@
 <? end_block_marker() ?>
 
 	<link rel="stylesheet" type="text/css" href="<?=base_url()?>css/CSS3_four.css" />
+	<link rel="stylesheet" type="text/css" href="<?=base_url()?>css/jquery/jquery-ui-1.9.1.custom.css" />
 	<!-- modernizr enables HTML5 elements and feature detects -->
 	<script type="text/javascript" src="<?=base_url()?>js/modernizr-1.5.min.js"></script>
 </head>
@@ -18,7 +19,7 @@
 		<div id="logo">
 		<div id="logo_text">
 			<!-- class="logo_colour", allows you to change the colour of the text -->
-			<h1><a href="index.html">Students<span class="logo_colour"> Management System</span></a></h1>
+			<h1><a href="">Students<span class="logo_colour"> Management System</span></a></h1>
 			<h2>Simple. Contemporary. Reliable.</h2>
 		</div>
 		</div>
@@ -86,7 +87,7 @@
 		$('.top').click(function() {$('html, body').animate({scrollTop:0}, 'fast'); return false;});
 	});
 	</script>
-	
+
 <? start_block_marker('jscript') ?>
 
 <? end_block_marker() ?>
