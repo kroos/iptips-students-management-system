@@ -1,26 +1,91 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Isms extends CI_Controller {
-
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -  
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in 
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see http://codeigniter.com/user_guide/general/urls.html
-	 */
-	public function index()
+class Isms extends CI_Controller
 	{
-		$this->load->view('login');
-	}
+		public function index()
+			{
+				if ($this->session->userdata('logged_in') == TRUE)
+					{
+						redirect('/isms/home', 'location');
+					}
+					else
+					{
+						$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+						if ($this->form_validation->run() == FALSE)
+							{
+								//form
+								$this->load->view('login');
+							}
+							else
+							{
+								//form process
+								if ($this->input->post('login', TRUE))
+									{
+										$username = $this->input->post('username', TRUE);
+										$password = $this->input->post('password', TRUE);
+										//sangkut -.-"
+									}
+							}
+					}
+			}
+
+		public function forgot_password()
+			{
+				if ($this->session->userdata('logged_in') == TRUE)
+					{
+						redirect('/isms/home', 'location');
+					}
+					else
+					{
+						$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+						if ($this->form_validation->run() == FALSE)
+							{
+								//form
+								$this->load->view('forgot_password');
+							}
+							else
+							{
+								//form process
+								if ($this->input->post('for_pass', TRUE))
+									{
+										$username = $this->input->post('username', TRUE);
+										$email = $this->input->post('email', TRUE);
+										//sangkut -.-"
+									}
+							}
+					}
+			}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #############################################################################################################################
 //error 404
@@ -36,7 +101,7 @@ class Isms extends CI_Controller {
 			{
 				if ($this->session->userdata('logged_in') == TRUE)
 					{
-						redirect('/user/myilmu/index', 'location');
+						redirect('/isms/home', 'location');
 					}
 					else
 					{
@@ -55,7 +120,7 @@ class Isms extends CI_Controller {
 			}
 */
 #############################################################################################################################
-}
+	}
 
 /* End of file isms.php */
 /* Location: ./application/controllers/isms.php */
