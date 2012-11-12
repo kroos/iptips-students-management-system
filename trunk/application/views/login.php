@@ -2,15 +2,17 @@
 
 	<? startblock('content') ?>
 		<h1>Welcome to IPTIPs Students Management System</h1>
+		<p>Please login with your username and your password</p>
+		<?=@$info?>
 		<div class="form_settings">
 		  <?=form_open()?>
-            <p><span><label for="user">Username</label></span>
-			<?=form_input(array('name' => 'username', 'value' => set_value('username'), 'maxlength' => '50', 'size' => '10', 'id' => 'user'))?>
+            <p><span><label for="user">Username : </label></span>
+			<?=form_input(array('name' => 'username', 'value' => set_value('username'), 'maxlength' => '12', 'size' => '12', 'id' => 'user'))?>
 			<br /><?=form_error('username')?>
 			</p>
 
-            <p><span><label for="pass">Password</label></span>
-			<?=form_password(array('name' => 'password', 'value' => set_value('password'), 'maxlength' => '20', 'size' => '10', 'id' => 'pass'))?>
+            <p><span><label for="pass">Password : </label></span>
+			<?=form_password(array('name' => 'password', 'value' => set_value('password'), 'maxlength' => '10', 'size' => '10', 'id' => 'pass'))?>
 			<br /><?=form_error('password')?>
 			</p>
             <p style="padding-top: 15px"><span>&nbsp;</span><?=form_submit('login', 'Login', 'class="submit"')?></p>
