@@ -1,26 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Hea extends CI_Controller {
-
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -  
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in 
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see http://codeigniter.com/user_guide/general/urls.html
-	 */
-	public function index()
+class Hea extends CI_Controller
 	{
-		$this->load->view('login');
-	}
+		public function index()
+			{
+				$this->load->view('login');
+			}
 
 #############################################################################################################################
 //error 404
@@ -36,10 +21,6 @@ class Hea extends CI_Controller {
 			{
 				if ($this->session->userdata('logged_in') == TRUE)
 					{
-						redirect('/user/myilmu/index', 'location');
-					}
-					else
-					{
 						$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
 						if ($this->form_validation->run() == FALSE)
 							{
@@ -52,10 +33,14 @@ class Hea extends CI_Controller {
 								
 							}
 					}
+					else
+					{
+						redirect('/isms/index', 'location');
+					}
 			}
 */
 #############################################################################################################################
-}
+	}
 
 /* End of file hea.php */
 /* Location: ./application/controllers/hea.php */
