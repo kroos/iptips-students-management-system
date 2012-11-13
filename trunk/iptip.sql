@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50522
 File Encoding         : 65001
 
-Date: 2012-11-13 03:38:57
+Date: 2012-11-13 19:54:00
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -157,6 +157,8 @@ CREATE TABLE `subjek_akademik` (
   `ID` bigint(20) NOT NULL DEFAULT '0',
   `akademik_id` bigint(20) DEFAULT NULL,
   `subjek` varchar(50) DEFAULT NULL,
+  `gred` varchar(10) DEFAULT NULL,
+  `nilai_gred` decimal(10,0) DEFAULT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -172,29 +174,26 @@ CREATE TABLE `user_data` (
   `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(20) NOT NULL,
   `password` varchar(20) CHARACTER SET latin1 NOT NULL,
-  `ic` varchar(20) DEFAULT NULL,
+  `ic` varchar(20) NOT NULL,
   `dept` varchar(20) DEFAULT NULL,
   `name` tinytext CHARACTER SET latin1 NOT NULL,
   `address` tinytext CHARACTER SET latin1,
-  `address2` tinytext CHARACTER SET latin1,
   `city` tinytext CHARACTER SET latin1,
   `state` tinytext CHARACTER SET latin1,
   `zip` tinytext CHARACTER SET latin1,
   `cellphone` tinytext CHARACTER SET latin1,
   `telephone` tinytext CHARACTER SET latin1,
-  `email` tinytext CHARACTER SET latin1,
-  `aim` tinytext CHARACTER SET latin1,
-  `yahoo` tinytext CHARACTER SET latin1,
-  `icq` tinytext CHARACTER SET latin1,
+  `email` tinytext CHARACTER SET latin1 NOT NULL,
   `other` tinytext CHARACTER SET latin1,
   `dateAdded` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
   KEY `Username` (`username`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user_data
 -- ----------------------------
+INSERT INTO `user_data` VALUES ('3', 'admin', 'qazwsx', '', null, '', null, null, null, null, null, null, '', null, '2012-11-13 09:16:19');
 
 -- ----------------------------
 -- Table structure for `user_group`
@@ -210,4 +209,24 @@ CREATE TABLE `user_group` (
 
 -- ----------------------------
 -- Records of user_group
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `waris`
+-- ----------------------------
+DROP TABLE IF EXISTS `waris`;
+CREATE TABLE `waris` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `pelajar_id` bigint(20) DEFAULT NULL,
+  `nama` varchar(50) DEFAULT NULL,
+  `hubungan` varchar(50) DEFAULT NULL,
+  `alamat1` longtext,
+  `alamat2` longtext,
+  `poskod` varchar(20) DEFAULT NULL,
+  `no_telefon` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of waris
 -- ----------------------------

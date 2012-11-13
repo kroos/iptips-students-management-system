@@ -1,5 +1,9 @@
 <? extend('base_template') ?>
 
+	<? startblock('top_nav') ?>
+		<li class="selected"><?=anchor(site_url(), 'Home', array('title' => 'Home'))?></li>
+	<? endblock() ?>
+
 	<? startblock('content') ?>
 		<h1>Welcome to IPTIPs Students Management System</h1>
 		<p>Please login with your username and your password</p>

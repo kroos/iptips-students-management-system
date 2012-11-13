@@ -1,5 +1,9 @@
 <? extend('base_template') ?>
 
+	<? startblock('top_nav') ?>
+		<li class="selected"><?=anchor(site_url(), 'Home', array('title' => 'Home'))?></li>
+	<? endblock() ?>
+
 	<? startblock('content') ?>
 		<h1>Forgot Password</h1>
 		<p>Insert your username and your email to retrieve back your password.</p>

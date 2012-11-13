@@ -11,41 +11,27 @@
 	<? endblock() ?>
 
 	<? startblock('top_nav') ?>
-				<li class="selected"><?=anchor(site_url(), 'Home', array('title' => 'Home'))?></li>
-				<li><a href="">Examples</a></li>
-				<li><a href="">A Page</a></li>
-				<li><a href="">Another Page</a></li>
-				<li><a href="">Example Drop Down</a>
-					<ul>
-						<li><a href="">Drop Down One</a></li>
-						<li><a href="">Drop Down Two</a>
-							<ul>
-								<li><a href="">Sub Drop Down One</a></li>
-								<li><a href="">Sub Drop Down Two</a></li>
-								<li><a href="">Sub Drop Down Three</a></li>
-								<li><a href="">Sub Drop Down Four</a></li>
-								<li><a href="">Sub Drop Down Five</a></li>
-							</ul>
-						</li>
-						<li><a href="">Drop Down Three</a></li>
-						<li><a href="">Drop Down Four</a></li>
-						<li><a href="">Drop Down Five</a></li>
-					</ul>
-				</li>
-				<li><a href="">Contact Us</a></li>
+		<li class="selected"><?=anchor(site_url(), 'Home', array('title' => 'Home'))?></li>
+		<li><?=anchor('hea', 'HEA', array('title' => 'HEA'))?></li>
+		<li><?=anchor('hep', 'HEP', array('title' => 'HEP'))?></li>
+		<li><?=anchor('kewangan', 'Kewangan', array('title' => 'Kewangan'))?></li>
+		<li><?=anchor('pendaftar', 'Pendaftar', array('title' => 'Pendaftar'))?></li>
+		<li><?=anchor('perpustakaan', 'Perpustakaan', array('title' => 'Perpustakaan'))?></li>
 	<? endblock() ?>
 
 	<? startblock('top_sidebar') ?>
-			<h3>Latest News</h3>
-			<h4>New Website Launched</h4>
-			<h5>March 1st, 2012</h5>
-			<p>2012 sees the redesign of our website. Let us know what you think..... <a href="#">read more</a></p>
+			<h3>Staff Section</h3>
+			<h4>No of Staff</h4>
+			<h5><?=date_view(now())?></h5>
+			<p>berapa org?</a></p>
 	<? endblock() ?>
 	
 	<? startblock('mid_sidebar') ?>
-		<h3>Special Offers</h3>
-		<h4>20% Discount</h4>
-		<p>For the month of March 2012, we are offering a 20% discount for all new customers.</p>
+		<h3>Student Section</h3>
+		<h4>No of Student</h4>
+		<h5><?=date_view(now())?></h5>
+		<p>berapa org student?</p>
+
 		<ul>
 			<li><a href="#">First Link</a></li>
 			<li><a href="#">Another Link</a></li>
@@ -57,7 +43,7 @@
 
 	<? startblock('bot_sidebar') ?>
 			<h3>Contact Us</h3>
-			<p>We'd love to hear from you. Call us, <a href="#">email us</a> or complete our <a href="contact.php">contact form</a>.</p>
+			<p>We'd love to hear from you. Call us or complete our <?=anchor('isms/contact_us', 'contact us', array('title' => 'contact us'))?>.</p>
 	<? endblock() ?>
 
 	<? startblock('content') ?>
@@ -72,6 +58,7 @@
 			<li>FireFox 10</li>
 			<li>Google Chrome 17</li>
 			<li>Safari 4</li>
+		</ul>
 	<? endblock() ?>
 
 	<? startblock('jscript') ?>

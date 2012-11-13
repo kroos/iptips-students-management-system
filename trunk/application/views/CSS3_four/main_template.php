@@ -19,7 +19,7 @@
 		<div id="logo">
 		<div id="logo_text">
 			<!-- class="logo_colour", allows you to change the colour of the text -->
-			<h1><a href="">Students<span class="logo_colour"> Management System</span></a></h1>
+			<h1><a href="<?=site_url()?>">Students<span class="logo_colour"> Management System</span></a></h1>
 			<h2>Simple. Contemporary. Reliable.</h2>
 		</div>
 		</div>
@@ -65,7 +65,6 @@
 
 <? end_block_marker() ?>
 
-		</ul>
 		</div>
 	</div>
 	<div id="scroll">
@@ -73,7 +72,7 @@
 	</div>
 	<footer>
 		<p>Page rendered in <strong>{elapsed_time}</strong> seconds using <strong>{memory_usage}</strong></p>
-		<p>Copyright &copy; Ayus Trading | <?=anchor(base_url(), 'Make Way With Us..', array('title' => 'Make Way With Us..'))?></p>
+		<p>Copyright &copy;<?=mdate("%Y", mysql_to_unix(now()))?> Ayus Trading | <?=anchor(base_url(), 'Make Way With Us..', array('title' => 'Make Way With Us..'))?></p>
 	</footer>
 	</div>
 
