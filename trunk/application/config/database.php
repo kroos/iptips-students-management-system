@@ -48,7 +48,7 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'a3ncabal.dyndns.info';
+$db['default']['hostname'] = '202.185.6.131';
 $db['default']['username'] = 'root';
 $db['default']['password'] = '0162172420';
 $db['default']['database'] = 'iptip';
