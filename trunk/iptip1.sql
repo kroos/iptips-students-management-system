@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50523
 File Encoding         : 65001
 
-Date: 2012-11-16 01:23:19
+Date: 2012-11-16 01:21:12
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -266,6 +266,7 @@ CREATE TABLE `user_data` (
   `username` varchar(20) NOT NULL,
   `password` varchar(20) CHARACTER SET latin1 NOT NULL,
   `ic` varchar(20) NOT NULL,
+  `dept` varchar(20) DEFAULT NULL,
   `name` tinytext CHARACTER SET latin1 NOT NULL,
   `address` tinytext CHARACTER SET latin1,
   `city` tinytext CHARACTER SET latin1,
@@ -282,7 +283,7 @@ CREATE TABLE `user_data` (
 -- ----------------------------
 -- Records of user_data
 -- ----------------------------
-INSERT INTO `user_data` VALUES ('1', 'admin', '123123', '123456789012', 'Admin', '1, Taman Mutiara', 'Sungai Petani', 'Kedah', '08000', '0162172420', null, 'dhiauddin@gmail.com', '2012-11-13 09:16:19');
+INSERT INTO `user_data` VALUES ('1', 'admin', '123123', '123456789012', 'ADMIN', 'Admin', '1, Taman Mutiara', 'Sungai Petani', 'Kedah', '08000', '0162172420', null, 'dhiauddin@gmail.com', '2012-11-13 09:16:19');
 
 -- ----------------------------
 -- Table structure for `user_department`
