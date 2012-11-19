@@ -23,13 +23,13 @@ $config = array	(
 						array
 							(
 								'field' => 'username',
-								'label' => 'Username',
-								'rules' => 'trim|required|min_length[6]|max_length[12]|xss_clean'
+								'label' => 'Nama Pengguna',
+								'rules' => 'trim|required|min_length[5]|max_length[12]|xss_clean'
 							),
 						array
 							(
 								'field' => 'password',
-								'label' => 'Password',
+								'label' => 'Kata Laluan',
 								'rules' => 'trim|required|min_length[6]|max_length[10]|xss_clean'
 							),
 					),
@@ -38,8 +38,8 @@ $config = array	(
 						array
 							(
 								'field' => 'username',
-								'label' => 'Username',
-								'rules' => 'trim|required|min_length[6]|max_length[12]|xss_clean'
+								'label' => 'Nama Pengguna',
+								'rules' => 'trim|required|min_length[5]|max_length[12]|xss_clean'
 							),
 						array
 							(

@@ -4,7 +4,31 @@ class Perpustakaan extends CI_Controller
 	{
 		public function index()
 			{
-				$this->load->view('login');
+				if ($this->session->userdata('logged_in') === TRUE)
+					{
+						if(user_role($this->session->userdata('user_role'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === TRUE)
+							{
+								$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+								if ($this->form_validation->run() == FALSE)
+									{
+										//form
+										$this->load->view('perpustakaan/home');
+									}
+									else
+									{
+										//form process
+										
+									}
+							}
+							else
+							{
+								redirect('/isms/unauthorised', 'location');
+							}
+					}
+					else
+					{
+						redirect('/isms/index', 'location');
+					}
 			}
 
 #############################################################################################################################
@@ -19,18 +43,25 @@ class Perpustakaan extends CI_Controller
 /*
 		public function home()
 			{
-				if ($this->session->userdata('logged_in') == TRUE)
+				if ($this->session->userdata('logged_in') === TRUE)
 					{
-						$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
-						if ($this->form_validation->run() == FALSE)
+						if(user_role($this->session->userdata('user_role'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === TRUE)
 							{
-								//form
-								
+								$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+								if ($this->form_validation->run() == FALSE)
+									{
+										//form
+										
+									}
+									else
+									{
+										//form process
+										
+									}
 							}
 							else
 							{
-								//form process
-								
+								redirect('/isms/unauthorised', 'location');
 							}
 					}
 					else

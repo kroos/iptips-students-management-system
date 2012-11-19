@@ -11,21 +11,28 @@
 	<? endblock() ?>
 
 	<? startblock('top_nav') ?>
-		<li class="selected"><?=anchor(site_url(), 'Home', array('title' => 'Home'))?></li>
+		<li class="selected"><?=anchor('isms/index', 'Home', array('title' => 'Home'))?></li>
+		<li><?=anchor('hea/index', 'HEA', array('title' => 'HEA'))?></li>
+		<li><?=anchor('hep/index', 'HEP', array('title' => 'HEP'))?></li>
+		<li><?=anchor('kewangan/index', 'Kewangan', array('title' => 'Kewangan'))?></li>
+		<li><?=anchor('pendaftar/index', 'Pendaftar', array('title' => 'Pendaftar'))?></li>
+		<li><?=anchor('perpustakaan/index', 'Perpustakaan', array('title' => 'Perpustakaan'))?></li>
+		<li><?=anchor('isms/logout', 'Log Keluar', array('title' => 'Log Keluar'))?></li>
 	<? endblock() ?>
 
 	<? startblock('top_sidebar') ?>
-			<h3>Staff Section</h3>
-			<h4>Staff</h4>
+			<h3>Staff</h3>
+		<?$r = $this->user_data->id($this->session->userdata('id_user'))?>
+			<h4>Hello <?=$r->row()->name?></h4>
 			<h5><?=date_view(now())?></h5>
 			<p><?=$this->user_data->GetAll()->num_rows()?> Staff</p>
 	<? endblock() ?>
 	
 	<? startblock('mid_sidebar') ?>
-		<h3>Student Section</h3>
-		<h4>No of Student</h4>
-		<h5><?=date_view(now())?></h5>
-		<p>berapa org student?</p>
+		<h3>Jabatan Staff</h3>
+		<h4>Jabatan : </h4>
+
+		<?//$g = $this->?>
 
 		<ul>
 			<li><a href="#">First Link</a></li>
