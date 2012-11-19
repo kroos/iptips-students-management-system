@@ -1,7 +1,7 @@
 <?php
 require('Fpdf.php');
 
-class Pdf_rotate extends Fpdf
+class Fpdfr extends Fpdf
 {
 var $angle=0;
 
