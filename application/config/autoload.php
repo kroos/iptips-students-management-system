@@ -52,7 +52,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('database', 'session', 'form_validation', 'tcpdf/Tcpdf', 'phpmailer/Phpmailer', 'ckeditor/Ckeditor5', 'fpdf/Pdf_rotate');
+$autoload['libraries'] = array('database', 'session', 'form_validation', 'tcpdf/Tcpdf', 'phpmailer/Phpmailer', 'ckeditor/Ckeditor5', 'fpdf/Fpdf');
 
 
 /*
@@ -64,7 +64,7 @@ $autoload['libraries'] = array('database', 'session', 'form_validation', 'tcpdf/
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('form', 'url', 'template_inheritance', 'date', 'password' );
+$autoload['helper'] = array('form', 'url', 'template_inheritance', 'date', 'password', 'user');
 
 
 /*
@@ -109,7 +109,7 @@ $autoload['language'] = array();
 |
 */
 
-$autoload['model'] = array();
+$autoload['model'] = array('user_data', 'view');
 
 
 /* End of file autoload.php */
