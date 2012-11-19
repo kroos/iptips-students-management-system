@@ -31,15 +31,12 @@
 	<? startblock('mid_sidebar') ?>
 		<h3>Jabatan Staff</h3>
 		<h4>Jabatan : </h4>
-
-		<?//$g = $this->?>
-
+		<?$g = $this->user_dept->id_user_data($this->session->userdata('id_user'))?>
 		<ul>
-			<li><a href="#">First Link</a></li>
-			<li><a href="#">Another Link</a></li>
-			<li><a href="#">And Another</a></li>
-			<li><a href="#">One More</a></li>
-			<li><a href="#">Last One</a></li>
+			<?foreach($g->result() as $l):?>
+				<?$u = $this->user_department->id($l->id_user_department)?>
+				<li><?=$u->row()->dept?></li>
+			<?endforeach?>
 		</ul>
 	<? endblock() ?>
 
