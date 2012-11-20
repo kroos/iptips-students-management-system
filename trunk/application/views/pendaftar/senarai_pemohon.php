@@ -1,4 +1,4 @@
-<? extend('base_template.php') ?>
+<? extend('base_template_user') ?>
 <? startblock('head') ?>
 <title><?=$title?></title>
 <? endblock()?>
@@ -6,12 +6,12 @@
     <h1><?=$title?></h1>
     <?=@$info?>
     <div class="form_settings">
-	    <?php echo form_open('pendaftar/senarai_pemohon')?>
+	    <?=form_open('pendaftar/senarai_pemohon')?>
 	    <table>
-	    	<tr><td><?php echo form_input(array('name' => 'nama', 'value' => set_value('nama'), 'maxlength' => '50', 'size' =>30))?>
-	    	<?php echo form_submit(array('name'=>'cari', 'value'=>'Cari', 'class'=>'submit'))?></td></tr>
+	    	<tr><td><?=form_input(array('name' => 'nama', 'value' => set_value('nama'), 'maxlength' => '50', 'size' =>30))?>
+	    	<?=form_submit(array('name'=>'cari', 'value'=>'Cari', 'class'=>'submit'))?></td></tr>
 	    </table>
-	    <?php echo form_close()?>
+	    <?=form_close()?>
     </div>
 	<table>
         <thead>
@@ -27,13 +27,15 @@
         	<?php 
         	$i=1;
         	foreach($pemohon as $pemohons) {
-        		echo '<tr><td>'.$i++.
+        		echo '<tr><td>'.anchor('pendaftar/detail_pemohon/'.$pemohons['id'], $i++, array('title' => 'Keterangan Pemohon')).
         			'</td><td>'.$pemohons['nama'].
         			'</td><td>'.$pemohons['ic'].
         			'</td><td>'.$pemohons['warganegara'].
+        			'</td><td>'.anchor('pendaftar/detail_pemohon/'.$pemohons['id'], 'Kemaskini', array('title' => 'Kemaskini Pemohon')).
         			'</td></tr>';
         	}
         	?>
         </tbody>
     </table>
 <? endblock() ?>
+<? end_extend()?>
