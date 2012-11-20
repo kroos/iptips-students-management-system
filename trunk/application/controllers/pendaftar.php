@@ -11,7 +11,7 @@ class Pendaftar extends CI_Controller
 		{
 			if ($this->session->userdata('logged_in') === TRUE)
 				{
-					if(user_role($this->session->userdata('user_role'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === TRUE)
+					if(user_role($this->session->userdata('id_user'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === TRUE)
 						{
 							$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
 							if ($this->form_validation->run() == FALSE)
@@ -103,13 +103,21 @@ class Pendaftar extends CI_Controller
 			$this->load->view('pendaftar/permohonan_baru',$data);
 		}
 	}
+#############################################################################################################################
+//error 404
+		public function page_missing()
+			{
+				$this->load->view('errors/error_custom_404');
+			}
+
+#############################################################################################################################
 //template
 /*
 		public function home()
 			{
 				if ($this->session->userdata('logged_in') === TRUE)
 					{
-						if(user_role($this->session->userdata('user_role'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === TRUE)
+						if(user_role($this->session->userdata('id_user'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === TRUE)
 							{
 								$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
 								if ($this->form_validation->run() == FALSE)

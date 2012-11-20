@@ -28,17 +28,19 @@ class Isms extends CI_Controller
 										if ($r->num_rows() == 1)
 											{
 												$id_user = $r->row()->id;
-												$t = $this->view->view_user_access_level($id_user);
+												/*t = $this->view->view_user_access_level($id_user);
 												foreach ($t->result() as $f)
 													{
-														$role[$f->dept_ctrlr] = $f->function;
+														//$role[$f->dept_ctrlr] = $f->function;
+														echo $f->dept_ctrlr.'&nbsp;',$f->function.'<br />';
 													}
+												//*/
+
 												$session = array
 																(
 																	'id_user' => $id_user,
 																	'username' => $username,
 																	'password' => $password,
-																	'user_role' => $role,
 																	'logged_in' => TRUE,
 																);
 												/*
@@ -93,7 +95,7 @@ class Isms extends CI_Controller
 			{
 				if ($this->session->userdata('logged_in') === TRUE)
 					{
-						if(user_role($this->session->userdata('user_role'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === TRUE)
+						if(user_role($this->session->userdata('id_user'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === TRUE)
 							{
 								$this->load->view('home');
 							}
@@ -112,7 +114,7 @@ class Isms extends CI_Controller
 			{
 				if ($this->session->userdata('logged_in') === TRUE)
 					{
-						if(user_role($this->session->userdata('user_role'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === TRUE)
+						if(user_role($this->session->userdata('id_user'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === TRUE)
 							{
 								$this->load->view('home');
 							}

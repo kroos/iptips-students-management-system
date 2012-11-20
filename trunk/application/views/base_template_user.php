@@ -11,12 +11,16 @@
 	<? endblock() ?>
 
 	<? startblock('top_nav') ?>
-		<li <?$this->uri->segment(1, 0) == 'isms' ? 'class="selected"' : ''?>><?=anchor('isms/index', 'Home', array('title' => 'Home'))?></li>
-		<li <?$this->uri->segment(1, 0) == 'hea' ? 'class="selected"' : ''?>><?=anchor('hea/index', 'HEA', array('title' => 'HEA'))?></li>
-		<li <?$this->uri->segment(1, 0) == 'hep' ? 'class="selected"' : ''?>><?=anchor('hep/index', 'HEP', array('title' => 'HEP'))?></li>
-		<li <?$this->uri->segment(1, 0) == 'kewangan' ? 'class="selected"' : ''?>><?=anchor('kewangan/index', 'Kewangan', array('title' => 'Kewangan'))?></li>
-		<li <?$this->uri->segment(1, 0) == 'pendaftar' ? 'class="selected"' : ''?>><?=anchor('pendaftar/index', 'Pendaftar', array('title' => 'Pendaftar'))?></li>
-		<li <?$this->uri->segment(1, 0) == 'perpustakaan' ? 'class="selected"' : ''?>><?=anchor('perpustakaan/index', 'Perpustakaan', array('title' => 'Perpustakaan'))?></li>
+		<li <?=($this->uri->segment(1, 0) == 'isms' ? 'class="selected"' : '')?>><?=anchor('isms/home', 'Home', array('title' => 'Home'))?>
+			<ul>
+				<li><?=anchor('isms/add_user', 'Add User', array('title' => 'Add User'))?></li>
+			</ul>
+		</li>
+		<li <?=($this->uri->segment(1, 0) == 'hea' ? 'class="selected"' : '')?>><?=anchor('hea/index', 'HEA', array('title' => 'HEA'))?></li>
+		<li <?=($this->uri->segment(1, 0) == 'hep' ? 'class="selected"' : '')?>><?=anchor('hep/index', 'HEP', array('title' => 'HEP'))?></li>
+		<li <?=($this->uri->segment(1, 0) == 'kewangan' ? 'class="selected"' : '')?>><?=anchor('kewangan/index', 'Kewangan', array('title' => 'Kewangan'))?></li>
+		<li <?=($this->uri->segment(1, 0) == 'pendaftar' ? 'class="selected"' : '')?>><?=anchor('pendaftar/index', 'Pendaftar', array('title' => 'Pendaftar'))?></li>
+		<li <?=($this->uri->segment(1, 0) == 'perpustakaan' ? 'class="selected"' : '')?>><?=anchor('perpustakaan/index', 'Perpustakaan', array('title' => 'Perpustakaan'))?></li>
 		<li><?=anchor('isms/logout', 'Log Keluar', array('title' => 'Log Keluar'))?></li>
 	<? endblock() ?>
 

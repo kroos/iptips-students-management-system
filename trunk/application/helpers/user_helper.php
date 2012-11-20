@@ -1,25 +1,19 @@
 <?php
 #############################################################################################################################
-///*
-function user_role($user_role, $controller, $function)
+
+function user_role($id, $controller, $function)
 	{
-		//checking utk $user_role mesti array
-		if (!is_array($user_role))
+		$CI =& get_instance();
+		$t = $CI->view->view_user_access_level($id);
+		foreach ($t->result() as $f)
 			{
-				return FALSE;
-			}
-			else
-			{
-				foreach ($user_role as $r => $s)
+				if ($f->dept_ctrlr.$f->function == $controller.$function)
 					{
-						if ($r.$s == $controller.$function)
-							{
-								return TRUE;
-							}
+						return TRUE;
 					}
 			}
 	};
-//*/
+
 #############################################################################################################################
 
 ?>
