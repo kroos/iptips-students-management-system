@@ -116,7 +116,7 @@ class Isms extends CI_Controller
 					{
 						if(user_role($this->session->userdata('id_user'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === TRUE)
 							{
-								$this->load->view('home');
+								$this->load->view('add_user');
 							}
 							else
 							{
