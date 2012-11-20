@@ -1,4 +1,4 @@
-<? extend('base_template.php') ?>
+<? extend('base_template_user') ?>
 <? startblock('head') ?>
 <title><?=$title?></title>
 <? endblock()?>
@@ -15,9 +15,9 @@
 	        <tr><td>Nombor Kad Pengenalan/Pasport</td>
 	            <td><?php echo form_input(array('name' => 'ic', 'value' => set_value('ic')))?></td></tr>
 	        <tr><td>Tarikh Lahir</td>
-	        	<td><?php echo form_input(array('name' => 'dt_lahir', 'value' => set_value('dt_lahir'), 'id' => 'dt_lahir', 'size' => '12' ))?></td></tr>
-	    	<tr><td></td><td><?php echo form_submit()?></td></tr>
+	        	<td><?=form_input(array('name' => 'dt_lahir', 'value' => set_value('dt_lahir'), 'id' => 'dt_lahir', 'size' => '12' ))?></td></tr>
+	    	<tr><td></td><td><?=form_submit('','Simpan','')?></td></tr>
         </tbody>
     </table>
     <?=form_close()?>
-<? endblock() ?>
+<? end_extend() ?>
