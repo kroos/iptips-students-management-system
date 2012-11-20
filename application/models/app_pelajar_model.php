@@ -18,15 +18,15 @@ class App_pelajar_model extends CI_Model{
             return $query->result_array();
         }
         $query = $this->db->get_where('app_pelajar', array('id'=>$id));
-        return $query->result_array();        
+        return $query->row_array();        
     }
     
     public function seacrh_app($nama = NULL, $ic = NULL){
     	if($nama == NULL && $ic == NULL){
     		return $this->get_app_pelajar();
     	}
-    	$sql = "select nama, ic, passport, warganegara from app_pelajar where nama like %?% or ic = ? or passport = ?";
-    	$query = $this->db->query($sql,array($nama, $ic, $ic));
+    	$sql = "select * from app_pelajar where nama like %?% or ic = ? or passport = ?";
+    	$query = $this->db->query($sql,array($nama, $nama, $nama));
     	return $query->result_array();
     }
     
