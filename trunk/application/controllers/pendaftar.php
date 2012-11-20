@@ -7,34 +7,34 @@ class Pendaftar extends CI_Controller
 		parent::__construct();
 		$this->load->model('app_pelajar_model');
 	}
-		public function index()
-			{
-				if ($this->session->userdata('logged_in') === TRUE)
-					{
-						if(user_role($this->session->userdata('user_role'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === TRUE)
-							{
-								$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
-								if ($this->form_validation->run() == FALSE)
-									{
-										//form
-										$this->load->view('pendaftar/home');
-									}
-									else
-									{
-										//form process
-										
-									}
-							}
-							else
-							{
-								redirect('/isms/unauthorised', 'location');
-							}
-					}
-					else
-					{
-						redirect('/isms/index', 'location');
-					}
-			}
+	public function index()
+		{
+			if ($this->session->userdata('logged_in') === TRUE)
+				{
+					if(user_role($this->session->userdata('user_role'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === TRUE)
+						{
+							$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+							if ($this->form_validation->run() == FALSE)
+								{
+									//form
+									$this->load->view('pendaftar/home');
+								}
+								else
+								{
+									//form process
+									
+								}
+						}
+						else
+						{
+							redirect('/isms/unauthorised', 'location');
+						}
+				}
+				else
+				{
+					redirect('/isms/index', 'location');
+				}
+		}
 
 #############################################################################################################################
 //error 404
@@ -68,8 +68,23 @@ class Pendaftar extends CI_Controller
 		$this->load->view('pendaftar/senarai_pemohon', $data);
 	}
 	
+	//maklumat pemohon individual
+	public function detail_pemohon($id){
+		$data['title'] = 'Keterangan Pemohon';
+		$data['pemohon'] = $this->app_pelajar_model->get_app_pelajar($id);
+		$data['field'] = $this->db->list_fields('app_pelajar');
+		foreach($data['field'] as $fields){
+			$data[$fields] = $data['pemohon'][$fields];
+		}
+
+//		$data['nama'] = $data['pemohon']['nama'];
+//		$data['ic'] = $data['pemohon']['ic'];
+//		$data['passport'] = $data['pemohon']['passport'];
+		$this->load->view('pendaftar/detail_pemohon', $data);
+	}
+	
 	//insert pemohon
-	public function insert_pemohon(){
+	public function permohonan_baru(){
 		$data['title'] = 'Permohonan Baru';
 		
 		$this->form_validation->set_rules('nama', 'Namae', 'required');
