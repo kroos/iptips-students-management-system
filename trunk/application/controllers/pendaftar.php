@@ -36,14 +36,6 @@ class Pendaftar extends CI_Controller
 				}
 		}
 
-#############################################################################################################################
-//error 404
-		public function page_missing()
-			{
-				$this->load->view('errors/error_custom_404');
-			}
-
-#############################################################################################################################
 
 	//senarai pemohon
 	public function senarai_pemohon(){
