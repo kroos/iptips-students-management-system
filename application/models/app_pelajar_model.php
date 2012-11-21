@@ -26,9 +26,14 @@ class App_pelajar_model extends CI_Model{
     	if($nama == NULL && $ic == NULL){
     		return $this->get_app_pelajar();
     	}
-    	$sql = "select * from app_pelajar where nama like %?% or ic = ? or passport = ?";
+    	$sql = "select * from app_pelajar where nama like '%$nama%' or ic = ? or passport = ?";
     	$query = $this->db->query($sql,array($nama, $nama, $nama));
     	return $query->result_array();
+    }
+    
+    public function get_where($where = array()){
+    	$query = $this->db->get_where('app_pelajar', $where);
+        return $query->row_array();
     }
     
     //insert
@@ -70,6 +75,7 @@ class App_pelajar_model extends CI_Model{
     //update
     public function edit_app_pelajar(){
     	$data = array(
+	            'id' => $this->input->post('id'),
 	            'matrik' => $this->input->post('matrik'),
 	            'nama' => $this->input->post('nama'),
 	            'ic' => $this->input->post('ic'),
@@ -96,7 +102,7 @@ class App_pelajar_model extends CI_Model{
 	            'dt_transfer' => $this->input->post('dt_transfer')
 		);
 		
-		return $this->db->update('app_pelajar', $data, $data['matrik']);
+		return $this->db->update('app_pelajar', $data, $data['id']);
     }
 }
 ?>
