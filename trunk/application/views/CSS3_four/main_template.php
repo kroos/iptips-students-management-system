@@ -68,7 +68,7 @@
 		</div>
 	</div>
 	<div id="scroll">
-		<a title="Scroll to the top" class="top" href="#"><img src="images/top.png" alt="top" /></a>
+		<a title="Scroll to the top" class="top" href="#"><img src="<?=base_url()?>images/top.png" alt="top" /></a>
 	</div>
 	<footer>
 		<p>Page rendered in <strong>{elapsed_time}</strong> seconds using <strong>{memory_usage}</strong></p>

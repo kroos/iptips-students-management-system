@@ -14,6 +14,7 @@
 		<li <?=($this->uri->segment(1, 0) == 'isms' ? 'class="selected"' : '')?>><?=anchor('isms/home', 'Home', array('title' => 'Home'))?>
 			<ul>
 				<li><?=anchor('isms/add_user', 'Add User', array('title' => 'Add User'))?></li>
+				<li><?=anchor('isms/devel', 'Developer', array('title' => 'Developer'))?></li>
 			</ul>
 		</li>
 		<li <?=($this->uri->segment(1, 0) == 'hea' ? 'class="selected"' : '')?>><?=anchor('hea/index', 'HEA', array('title' => 'HEA'))?></li>

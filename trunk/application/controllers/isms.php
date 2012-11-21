@@ -185,6 +185,36 @@ class Isms extends CI_Controller
 					}
 			}
 
+		public function devel()
+			{
+				if ($this->session->userdata('logged_in') === TRUE)
+					{
+						if(user_role($this->session->userdata('id_user'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === TRUE)
+							{
+								$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+								if ($this->form_validation->run() == FALSE)
+									{
+										//form
+										$data['i'] = $this->user_department->GetAll();
+										$this->load->view('devel', $data);
+									}
+									else
+									{
+										//form process
+										
+									}
+							}
+							else
+							{
+								redirect('/isms/unauthorised', 'location');
+							}
+					}
+					else
+					{
+						redirect('/isms/index', 'location');
+					}
+			}
+
 
 
 
