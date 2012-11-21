@@ -8,7 +8,8 @@
 		<?php foreach ($field as $fields) {
 			echo $fields.': '.$pemohon[$fields].'<br>';
 		}?>
-		<p><?php //echo $pemohon['nama']?><font color="#FF0000"><?=@$info?></font></p>
+		<p><?php //echo $pemohon['nama']?></p>
+		<div class="info"><?=@$info?></div>
 
 
 
