@@ -11,7 +11,7 @@ class Pendaftar extends CI_Controller
 		{
 			if ($this->session->userdata('logged_in') === TRUE)
 				{
-					if(user_role($this->session->userdata('id_user'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === TRUE)
+					if(user_role($this->session->userdata('user_role'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === TRUE)
 						{
 							$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
 							if ($this->form_validation->run() == FALSE)
@@ -36,6 +36,14 @@ class Pendaftar extends CI_Controller
 				}
 		}
 
+#############################################################################################################################
+//error 404
+		public function page_missing()
+			{
+				$this->load->view('errors/error_custom_404');
+			}
+
+#############################################################################################################################
 
 	//senarai pemohon
 	public function senarai_pemohon(){
@@ -78,16 +86,14 @@ class Pendaftar extends CI_Controller
 	public function permohonan_baru(){
 		$data['title'] = 'Permohonan Baru';
 		
-		$this->form_validation->set_rules('nama', 'Nama', 'required');
-		$this->form_validation->set_rules('ic', 'Nombor Kad Pengenalan', 'required');
-		$this->form_validation->set_rules('dt_lahir', 'Tarikh Lahir', 'required');
-		$data['field'] = $this->db->list_fields('app_pelajar');
+//		$data['field'] = $this->db->list_fields('app_pelajar');
+//		
+//		foreach($data['field'] as $fields){
+//			$this->form_validation->set_rules($fields, $fields, 'required');
+//		}
 		
-		foreach($data['field'] as $fields){
-			$this->form_validation->set_rules($fields, $fields, 'required');
-		}
-		
-		if ($this->form_validation->run() === FALSE)
+		$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+		if ($this->form_validation->run() == FALSE)
 		{	
 			$this->load->view('pendaftar/permohonan_baru',$data);
 		}
@@ -98,21 +104,13 @@ class Pendaftar extends CI_Controller
 			$this->load->view('pendaftar/permohonan_baru',$data);
 		}
 	}
-#############################################################################################################################
-//error 404
-		public function page_missing()
-			{
-				$this->load->view('errors/error_custom_404');
-			}
-
-#############################################################################################################################
 //template
 /*
 		public function home()
 			{
 				if ($this->session->userdata('logged_in') === TRUE)
 					{
-						if(user_role($this->session->userdata('id_user'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === TRUE)
+						if(user_role($this->session->userdata('user_role'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === TRUE)
 							{
 								$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
 								if ($this->form_validation->run() == FALSE)
