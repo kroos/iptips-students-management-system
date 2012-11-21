@@ -201,7 +201,32 @@ class Isms extends CI_Controller
 									else
 									{
 										//form process
-										
+										if($this->input->post('save', TRUE))
+											{
+												$ctrlr = $this->input->post('ctrlr', TRUE);
+												$func = $this->input->post('function', TRUE);
+												$remarks = $this->input->post('remarks', TRUE);
+
+												//masukkan dalam table function
+												$y = $this->user_function->insert_function($func, $remarks);
+
+												//masukkan dalam table dept_func utk func tadi, akan tetapi perlu dapatkan id untk function dulu
+												$id_func = $this->db->insert_id();
+												$n = $this->dept_func->insert_func($ctrlr, $id_func);
+												
+												//masukkan jugak dalam table user_dept_func khas utk admin dan enable sekali
+												$u = $this->user_dept_func->insert(1, $ctrlr, $id_func, 1);
+												
+												if($y && $n && $u)
+													{
+														$data['info'] = 'Kini user admin boleh mencapai modul/controller dan juga function yang akan dibina';
+													}
+													else
+													{
+														$data['info'] = 'Something teribly happen, Please try again later';
+													}
+												$this->load->view('devel', $data);
+											}
 									}
 							}
 							else

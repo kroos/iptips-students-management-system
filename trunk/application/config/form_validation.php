@@ -116,7 +116,27 @@ $config = array	(
 								'label' => 'Telefon Tetap',
 								'rules' => 'trim|min_length[9]|max_length[10]|xss_clean'
 							),
-
+					),
+					'isms/devel' => array
+					( 
+						array
+							(
+								'field' => 'ctrlr',
+								'label' => 'Jabatan//controller/modul',
+								'rules' => 'trim|required|is_natural_no_zero|max_length[12]|xss_clean'
+							),
+						array
+							(
+								'field' => 'function',
+								'label' => 'Nama Function',
+								'rules' => 'trim|required|alpha_dash|min_length[2]|max_length[50]|xss_clean'
+							),
+						array
+							(
+								'field' => 'remarks',
+								'label' => 'Catitan Function',
+								'rules' => 'trim|required|min_length[2]|max_length[50]|xss_clean'
+							),
 					),
 				);
 

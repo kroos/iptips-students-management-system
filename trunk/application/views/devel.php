@@ -3,11 +3,13 @@
 	<? startblock('content') ?>
 		<h1>Selamat Datang ke IPTIPs Students Management System</h1>
 		<h2>Developer</h2>
-		<p>
+		<p>Page ini digunakan untuk memasukkan function yang <b>akan</b> dibina supaya developer boleh mencapai page ini. Berikut adalah langkah yang diperlukan :
 			<ol>
+				<li>Bina function anda di "controller" dengan cara buat salinan template dan ubah nama function di function yang berkaitan.</li>
+				<li>Namakan function anda di controller tersebut mengikut template yang telah disediakan. Anda tak perlu untuk menyiapkan keseluruhan function kerana anda mungkin perlu untuk melihat progress pembinaan function anda.</li>
+				<li>Buka fail views/base_template_user.php, pergi ke block top_nav dan masukkan function anda tadi mengikut modul/controller. Ini adalah untuk anda mengakses function anda melalui web page.</li>
 				<li>Masukkan function yang baru dibuat kedalam input, function yang anda buat mestilah sama dengan kemasukkan input.</li>
-				<li>Klik Jabatan/controller/modul yang berkaitan.</li>
-				<li>Selesai.</li>
+				<li>Klik Jabatan/controller/modul yang berkaitan mengikut controller dimana anda membina function anda.</li>
 			</ol>
 		</p>
 		<p><font color="#FF0000"><?=@$info?></font></p>
@@ -16,10 +18,10 @@
 		<?=form_open()?>
 
 		<div id="radioset">
-			<p>Jabatan/controller/modul : </p>
+			<p>Jabatan/controller/modul : <br />
 			<?$p = 0?>
 			<?$b = 0?>
-			<p>
+
 			<?foreach($i->result() as $t):?>
 				<?=form_radio(array('name' => 'ctrlr', 'id' => 'radio'.$p++, 'value' => $t->id))?><label for="radio<?=$b++?>"><?=$t->dept?></label>
 			<?endforeach?>
@@ -32,6 +34,11 @@
 			<p><span><label for="name">Nama Function : </label></span>
 			<?=form_input(array('name' => 'function', 'value' => set_value('function'), 'maxlength' => '30', 'size' => '12', 'id' => 'name'))?>
 			<br /><?=form_error('function')?>
+			</p>
+
+			<p><span><label for="remarks">Catitan Function : </label></span>
+			<?=form_input(array('name' => 'remarks', 'value' => set_value('remarks'), 'maxlength' => '30', 'size' => '12', 'id' => 'remarks'))?>
+			<br /><?=form_error('remarks')?>
 			</p>
 
             <p style="padding-top: 15px"><span>&nbsp;</span><?=form_submit('save', 'Save', 'class="submit"')?></p>
