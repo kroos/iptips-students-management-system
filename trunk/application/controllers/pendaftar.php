@@ -44,16 +44,15 @@ class Pendaftar extends CI_Controller
         //$where = false;
 		$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
 		$this->form_validation->set_rules('nama', 'Nama', 'required');
-		$this->form_validation->set_rules('ic', 'Nombor Kad Pengenalan', 'required');
 		if ($this->form_validation->run() === TRUE)
 		{
 			//echo 'cari la';
 			$nama = $this->input->post('nama', TRUE);
 			$ic = $this->input->post('ic', TRUE);
 			$data['pemohon'] = $this->app_pelajar_model->seacrh_app($nama,$ic);
+			$data['info'] = count($data['pemohon']).' data dijumpai.';
 		}		
 		else{
-			//echo 'woi';
 			$data['pemohon'] = $this->app_pelajar_model->get_app_pelajar();	
 			//$this->load->view('pendaftar/senarai_pemohon', $data);		
 		}
@@ -79,14 +78,18 @@ class Pendaftar extends CI_Controller
 	public function permohonan_baru(){
 		$data['title'] = 'Permohonan Baru';
 		
-		$this->form_validation->set_rules('nama', 'Namae', 'required');
+		$this->form_validation->set_rules('nama', 'Nama', 'required');
 		$this->form_validation->set_rules('ic', 'Nombor Kad Pengenalan', 'required');
 		$this->form_validation->set_rules('dt_lahir', 'Tarikh Lahir', 'required');
+		$data['field'] = $this->db->list_fields('app_pelajar');
+		
+		foreach($data['field'] as $fields){
+			$this->form_validation->set_rules($fields, $fields, 'required');
+		}
 		
 		if ($this->form_validation->run() === FALSE)
 		{	
 			$this->load->view('pendaftar/permohonan_baru',$data);
-			
 		}
 		else
 		{
