@@ -4,7 +4,7 @@
 <? endblock()?>
 <? startblock('content') ?>
     <h1><?=$title?></h1>
-    <?=@$info?>
+    <div class="info"><?=@$info?></div>
     <div class="form_settings">
 	    <?=form_open('pendaftar/senarai_pemohon')?>
 	    <table>
