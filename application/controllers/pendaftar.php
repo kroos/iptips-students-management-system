@@ -6,6 +6,11 @@ class Pendaftar extends CI_Controller
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('app_pelajar_model');
+		$this->load->helper('template_inheritance');
+		if ($this->session->userdata('logged_in') === FALSE)
+		{
+			redirect('/isms/index', 'location');
+		}
 	}
 	public function index()
 		{
@@ -56,8 +61,7 @@ class Pendaftar extends CI_Controller
 		{
 			//echo 'cari la';
 			$nama = $this->input->post('nama', TRUE);
-			$ic = $this->input->post('ic', TRUE);
-			$data['pemohon'] = $this->app_pelajar_model->seacrh_app($nama,$ic);
+			$data['pemohon'] = $this->app_pelajar_model->seacrh_app($nama);
 			$data['info'] = count($data['pemohon']).' data dijumpai.';
 		}		
 		else{
@@ -86,22 +90,70 @@ class Pendaftar extends CI_Controller
 	public function permohonan_baru(){
 		$data['title'] = 'Permohonan Baru';
 		
-//		$data['field'] = $this->db->list_fields('app_pelajar');
-//		
-//		foreach($data['field'] as $fields){
-//			$this->form_validation->set_rules($fields, $fields, 'required');
-//		}
+		$data['field'] = $this->db->list_fields('app_pelajar');
+		
+		foreach($data['field'] as $fields){
+			$this->form_validation->set_rules($fields, $fields, 'required');
+		}
+		
+		$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+		if ($this->form_validation->run() === FALSE)
+		{	
+			$data['info'] = 'Data tidak berjaya disimpan';
+			$this->load->view('pendaftar/permohonan_baru',$data);
+		}
+		else
+		{		
+			if($this->input->post('simpan', TRUE)){	
+				$this->app_pelajar_model->set_app_pelajar();
+				$data['info'] = 'Data telah berjaya disimpan';
+				$this->load->view('pendaftar/permohonan_baru',$data);
+			}
+		}
+	}
+	
+	//akademik
+	public function akademik(){
+		
+		$data['title'] = 'Kelayakan Akademik';
+		if(user_role($this->session->userdata('user_role'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === FALSE)
+		{
+			redirect('/isms/unauthorised', 'location');
+		}
 		
 		$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
 		if ($this->form_validation->run() == FALSE)
 		{	
-			$this->load->view('pendaftar/permohonan_baru',$data);
+			$data['info'] = 'Data tidak berjaya disimpan';
+			$this->load->view('pendaftar/akademik',$data);
 		}
 		else
 		{
 			$this->app_pelajar_model->set_app_pelajar();
 			$data['info'] = 'Data telah berjaya disimpan';
-			$this->load->view('pendaftar/permohonan_baru',$data);
+			$this->load->view('pendaftar/waris',$data);
+		}
+	}
+	
+	//waris
+	public function waris(){
+		
+		$data['title'] = 'Maklumat Ibu Bapa/Penjaga';
+		if(user_role($this->session->userdata('user_role'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === FALSE)
+		{
+			redirect('/isms/unauthorised', 'location');
+		}
+		
+		$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+		if ($this->form_validation->run() == FALSE)
+		{	
+			$this->load->view('pendaftar/waris',$data);
+		}
+		else
+		{
+			$this->app_pelajar_model->set_app_pelajar();
+			$data['info'] = 'Data telah berjaya disimpan';
+			$this->load->view('pendaftar/detail_pemohon',$data);
 		}
 	}
 //template
