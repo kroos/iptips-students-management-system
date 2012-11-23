@@ -13,7 +13,17 @@
 	<? startblock('top_nav') ?>
 		<li <?=($this->uri->segment(1, 0) == 'isms' ? 'class="selected"' : '')?>><?=anchor('isms/home', 'Home', array('title' => 'Home'))?>
 			<ul>
-				<li><?=anchor('isms/add_user', 'Add User', array('title' => 'Add User'))?></li>
+				<li><?=anchor('#', 'User', array('title' => 'User'))?>
+					<ul>
+						<li><?=anchor('isms/profile', 'Profile', array('title' => 'Profile'))?></li>
+						<li><?=anchor('isms/change_pass', 'Change Password', array('title' => 'Change Password'))?></li>
+					</ul>
+				</li>
+				<li><?=anchor('#', 'Admin', array('title' => 'Admin'))?>
+					<ul>
+						<li><?=anchor('isms/add_user', 'Add User', array('title' => 'Add User'))?></li>
+					</ul>
+				</li>
 				<li><?=anchor('isms/devel', 'Developer', array('title' => 'Developer'))?></li>
 			</ul>
 		</li>

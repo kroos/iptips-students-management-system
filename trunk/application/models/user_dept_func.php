@@ -26,7 +26,15 @@ class User_dept_func extends CI_Model
 				return $this->db->get_where('user_dept_func', array('id' => $id));
 			}
 //UPDATE
+		function update($id_user_data, $id_user_department, $id_user_function, $active)
+			{
+				return $this->db->where(array('id_user_data' => $id_user_data, 'id_user_department' => $id_user_department, 'id_user_function' => $id_user_function))->update('user_dept_func', array('active' => $active));
+			}
 
+		function update_active($id, $active)
+			{
+				return $this->db->where(array('id' => $id))->update('user_dept_func', array('active' => $active));
+			}
 
 //INSERT
 		function insert($id_user_data, $id_user_department, $id_user_function, $active)

@@ -24,7 +24,10 @@ class User_dept extends CI_Model
 
 
 //INSERT
-
+		function insert_us_dept($id_user_data, $id_user_department)
+			{
+				return $this->db->insert('user_dept', array('id_user_data' => $id_user_data, 'id_user_department' => $id_user_department));
+			}
 
 //DELETE
 
