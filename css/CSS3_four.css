@@ -333,6 +333,10 @@ footer a:hover {
   background: none;
 }
 
+.info{
+	color:#FF0000;
+}
+
 .separator { 
   width: 100%;
   height: 0;
