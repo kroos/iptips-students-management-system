@@ -2,90 +2,13 @@
 
 class Pendaftar extends CI_Controller
 	{
-<<<<<<< .mine
-		public function index()
-			{
-				if ($this->session->userdata('logged_in') === TRUE)
-					{
-						if(user_role($this->session->userdata('id_user'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === TRUE)
-							{
-								$this->load->view('pendaftar/home');
-							}
-							else
-							{
-								redirect('/isms/unauthorised', 'location');
-							}
-					}
-					else
-					{
-						redirect('/isms/index', 'location');
-					}
-			}
-
-
-
-		//senarai pemohon
-		public function senarai_pemohon()
-			{
-				if ($this->session->userdata('logged_in') === TRUE)
-					{
-						if(user_role($this->session->userdata('id_user'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === TRUE)
-							{
-								$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
-								if ($this->form_validation->run() == FALSE)
-									{
-										//form
-										
-									}
-									else
-									{
-										//form process
-										
-									}
-							}
-							else
-							{
-								redirect('/isms/unauthorised', 'location');
-							}
-					}
-					else
-					{
-						redirect('/isms/index', 'location');
-					}
-				$data['title'] = 'Senarai Pemohon';
-				$data['pemohon'] = array();
-
-						//echo 'cari la';
-						$nama = $this->input->post('nama', TRUE);
-						$ic = $this->input->post('ic', TRUE);
-						$data['pemohon'] = $this->app_pelajar_model->seacrh_app($nama, $ic);
-						$data['info'] = count($data['pemohon']).' data dijumpai.';
-
-						$data['pemohon'] = $this->app_pelajar_model->get_app_pelajar();	
-						//$this->load->view('pendaftar/senarai_pemohon', $data);		
-
-						$this->load->view('pendaftar/senarai_pemohon', $data);
-			}
-		
-		//maklumat pemohon individual
-		public function detail_pemohon($id){
-			$data['title'] = 'Keterangan Pemohon';
-			$data['pemohon'] = $this->app_pelajar_model->get_app_pelajar($id);
-			$data['field'] = $this->db->list_fields('app_pelajar');
-			foreach($data['field'] as $fields){
-				$data[$fields] = $data['pemohon'][$fields];
-			}
-	
-//			$data['nama'] = $data['pemohon']['nama'];
-//			$data['ic'] = $data['pemohon']['ic'];
-//			$data['passport'] = $data['pemohon']['passport'];
-			$this->load->view('pendaftar/detail_pemohon', $data);
-=======
 		//contructor
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('app_pelajar_model');
-		$this->load->helper('template_inheritance');
+		//$this->load->helper('template_inheritance');
+		$this->load->view('CSS3_four/main_template');
+		$this->load->view('base_template_user');
 		if ($this->session->userdata('logged_in') === FALSE)
 		{
 			redirect('/isms/index', 'location');
@@ -118,41 +41,7 @@ class Pendaftar extends CI_Controller
 				{
 					redirect('/isms/index', 'location');
 				}
->>>>>>> .r43
 		}
-		
-		//insert pemohon
-		public function permohonan_baru(){
-			$data['title'] = 'Permohonan Baru';
-			
-//			$data['field'] = $this->db->list_fields('app_pelajar');
-//			
-//			foreach($data['field'] as $fields){
-//				$this->form_validation->set_rules($fields, $fields, 'required');
-//			}
-			
-			$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
-			if ($this->form_validation->run() == FALSE)
-			{	
-				$this->load->view('pendaftar/permohonan_baru',$data);
-			}
-			else
-			{
-				$this->app_pelajar_model->set_app_pelajar();
-				$data['info'] = 'Data telah berjaya disimpan';
-				$this->load->view('pendaftar/permohonan_baru',$data);
-			}
-		}
-#############################################################################################################################
-//error 404
-		public function page_missing()
-			{
-				$this->load->view('errors/error_custom_404');
-			}
-
-#############################################################################################################################
-<<<<<<< .mine
-=======
 
 	//senarai pemohon
 	public function senarai_pemohon(){
@@ -196,20 +85,22 @@ class Pendaftar extends CI_Controller
 		
 		$data['field'] = $this->db->list_fields('app_pelajar');
 		
-		foreach($data['field'] as $fields){
-			$this->form_validation->set_rules($fields, $fields, 'required');
-		}
+//		foreach($data['field'] as $fields){
+//			$this->form_validation->set_rules($fields, $fields, 'required');
+//		}
 		
 		$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
 		if ($this->form_validation->run() === FALSE)
 		{	
-			$data['info'] = 'Data tidak berjaya disimpan';
+			if($this->input->post('simpan', TRUE)){
+				$data['info'] = 'Data tidak berjaya disimpan';				
+			}
 			$this->load->view('pendaftar/permohonan_baru',$data);
 		}
 		else
 		{		
 			if($this->input->post('simpan', TRUE)){	
-				$this->app_pelajar_model->set_app_pelajar();
+				//$this->app_pelajar_model->set_app_pelajar();
 				$data['info'] = 'Data telah berjaya disimpan';
 				$this->load->view('pendaftar/permohonan_baru',$data);
 			}
@@ -217,7 +108,7 @@ class Pendaftar extends CI_Controller
 	}
 	
 	//akademik
-	public function akademik(){
+	public function akademik($id = NULL){
 		
 		$data['title'] = 'Kelayakan Akademik';
 		if(user_role($this->session->userdata('user_role'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === FALSE)
@@ -238,10 +129,9 @@ class Pendaftar extends CI_Controller
 			$this->load->view('pendaftar/waris',$data);
 		}
 	}
->>>>>>> .r43
-	
+
 	//waris
-	public function waris(){
+	public function waris($id = NULL){
 		
 		$data['title'] = 'Maklumat Ibu Bapa/Penjaga';
 		if(user_role($this->session->userdata('user_role'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === FALSE)
