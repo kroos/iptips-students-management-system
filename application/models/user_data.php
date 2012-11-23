@@ -21,13 +21,25 @@ class User_data extends CI_Model
 				return $this->db->get_where('user_data', array('username' => $user, 'password' => $pass));
 			}
 
+		function forgot_pass($user, $email)
+			{
+				return $this->db->get_where('user_data', array('username' => $user, 'email' => $email));
+			}
+
 		function id($id)
 			{
 				return $this->db->get_where('user_data', array('id' => $id));
 			}
 //UPDATE
+		function update_profile($id_user, $name, $ic, $email, $address, $city, $state, $zip, $cellphone, $telephone)
+			{
+				return $this->db->where(array('id' => $id_user))->update('user_data', array('name' => $name, 'ic' => $ic, 'email' => $email, 'address' => $address, 'city' => $city, 'state' => $state, 'zip' => $zip, 'cellphone' => $cellphone, 'telephone' => $telephone));
+			}
 
-
+		function update_pass($id_user, $password)
+			{
+				return $this->db->where(array('id' => $id_user))->update('user_data', array('password' => $password));
+			}
 //INSERT
 		function insert_user($username, $password, $ic, $name, $address, $city, $state, $zip, $cellphone, $telephone, $email, $dateAdded)
 			{

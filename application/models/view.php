@@ -35,5 +35,39 @@ class View extends CI_Model
 										");
 			}
 
+		function view_department_jawatan()
+			{
+				return $this->db-> query('
+											select `dept_jaw`.`id_user_department` AS `id_user_department`,
+											`user_department`.`dept_ctrlr` AS `dept_ctrlr`,
+											`user_department`.`dept` AS `dept`,
+											`dept_jaw`.`id_jawatan` AS `id_jawatan`,
+											`user_jawatan`.`jawatan` AS `jawatan`
+											from
+											((`dept_jaw`
+											inner join `user_jawatan` on((`dept_jaw`.`id_jawatan` = `user_jawatan`.`id`)))
+											inner join `user_department` on((`user_department`.`id` = `dept_jaw`.`id_user_department`)))
+											order by `dept_jaw`.`id_user_department`,
+											`dept_jaw`.`id_jawatan`
+										');
+			}
+			
+		function view_dept_jaw_search($id_user_department)
+			{
+				return $this->db->query("
+											select
+											`dept_jaw`.`id_user_department` AS `id_user_department`,
+											`user_department`.`dept_ctrlr` AS `dept_ctrlr`,
+											`user_department`.`dept` AS `dept`,
+											`dept_jaw`.`id_jawatan` AS `id_jawatan`,
+											`user_jawatan`.`jawatan` AS `jawatan`
+											from
+											((`dept_jaw` join `user_jawatan` on((`dept_jaw`.`id_jawatan` = `user_jawatan`.`id`)))
+											inner join `user_department` on((`user_department`.`id` = `dept_jaw`.`id_user_department`)))
+											WHERE
+											dept_jaw.id_user_department = $id_user_department
+											order by `dept_jaw`.`id_user_department`,`dept_jaw`.`id_jawatan`
+										");
+			}
 	}
 ?>

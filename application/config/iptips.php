@@ -23,7 +23,7 @@ $config['paypickupline'] = 'this should be your donation pick up line. just put 
 //Mailer Configurations
 //pop3 server and port
 $config['pop3_server'] = 'pop.gmail.com';
-$config['pop3_port'] = 995;
+$config['pop3_port'] = 110;
 
 //smtp server
 $config['SMTP_auth'] = TRUE;
@@ -34,10 +34,10 @@ $config['SMTP_Secure'] = 'ssl';
 //email account from sender associated to the pop3 n smtp server settings.
 $config['username'] = 'a3outlaw@gmail.com';				//gmail username
 $config['password'] = '0162172420';				//gmail password
-$config['addreplyto_email'] = 'admin@domain.com';					//this might probably differ from $config['username']. Example, admin@domain.com
-$config['addreplyto_name'] = '[GM]Cabal';					//example, [GM]Cabal
-$config['from'] = 'admin@domain.com';								//this might probably differ from $config['username']. Example, admin@domain.com
-$config['from_name'] = '[GM]Cabal';							//example [GM]Cabal
+$config['addreplyto_email'] = 'admin@isms.com';					//this might probably differ from $config['username']. Example, admin@domain.com
+$config['addreplyto_name'] = 'Admin';					//example, [GM]Cabal
+$config['from'] = 'admin@isms.com';								//this might probably differ from $config['username']. Example, admin@domain.com
+$config['from_name'] = 'Admin';							//example [GM]Cabal
 
 #############################################################################################
 #############################################################################################

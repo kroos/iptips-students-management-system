@@ -39,6 +39,7 @@
 */
 
 $route['default_controller'] = 'isms';
+//$route['isms/profile/(:num)'] = 'isms/profile/(:num)';
 $route['404_override'] = 'isms/page_missing';
 
 

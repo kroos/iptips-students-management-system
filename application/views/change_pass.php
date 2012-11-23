@@ -2,89 +2,29 @@
 
 	<? startblock('content') ?>
 		<h1>Selamat Datang ke IPTIPs Students Management System</h1>
-		<h2>Tambah Staf</h2>
-		<p>Sila masukkan data untuk penambahan staf. Staf yang akan dimasukkan ini boleh mencapai Sistem Pengurusan Pelajar.</p>
+		<h2>Penukaran Kata Laluan</h2>
+		<p>Masukkan kata laluan anda dan juga kata laluan yang baru</p>
 		<p><font color="#FF0000"><?=@$info?></font></p>
 
 		<div class="form_settings">
 		<?=form_open()?>
-			<p><span><label for="name">Nama Staf : </label></span>
-			<?=form_input(array('name' => 'name', 'value' => set_value('name'), 'maxlength' => '30', 'size' => '12', 'id' => 'name'))?>
-			<br /><?=form_error('name')?>
-			</p>
-			
-			<p><span><label for="ic">No. Kad Pengenalan : </label></span>
-			<?=form_input(array('name' => 'ic', 'value' => set_value('ic'), 'maxlength' => '12', 'size' => '12', 'id' => 'ic'))?>
-			<br /><?=form_error('ic')?>
+
+			<p><span><label for="opass">Kata Laluan Sekarang : </label></span>
+			<?=form_password(array('name' => 'opass', 'value' => set_value('opass'), 'maxlength' => '10', 'size' => '10', 'id' => 'opass'))?>
+			<br /><?=form_error('opass')?>
 			</p>
 
-			<p><span><label for="user">Nama Pengguna (Username) : </label></span>
-			<?=form_input(array('name' => 'username', 'value' => set_value('username'), 'maxlength' => '12', 'size' => '12', 'id' => 'user'))?>
-			<br /><?=form_error('username')?>
+			<p><span><label for="npass1">Kata Laluan Baru : </label></span>
+			<?=form_password(array('name' => 'npass1', 'value' => set_value('npass1'), 'maxlength' => '10', 'size' => '10', 'id' => 'npass1'))?>
+			<br /><?=form_error('npass1')?>
 			</p>
 
-			<p><span><label for="pass">Kata Laluan (Password) : </label></span>
-			<?=form_password(array('name' => 'password', 'value' => set_value('password'), 'maxlength' => '10', 'size' => '10', 'id' => 'pass'))?>
-			<br /><?=form_error('password')?>
+			<p><span><label for="npass2">Taip Semula Kata Laluan Baru : </label></span>
+			<?=form_password(array('name' => 'npass2', 'value' => set_value('npass2'), 'maxlength' => '10', 'size' => '10', 'id' => 'npass2'))?>
+			<br /><?=form_error('npass2')?>
 			</p>
 
-			<p><span><label for="email">Email : </label></span>
-			<?=form_input(array('name' => 'email', 'value' => set_value('email'), 'maxlength' => '50', 'size' => '12', 'id' => 'email'))?>
-			<br /><?=form_error('email')?>
-			</p>
-
-			<p><span><label for="address">Alamat : </label></span>
-			<?=form_textarea(array('name' => 'address', 'value' => set_value('address'), 'rows' => '5', 'cols' => '12', 'id' => 'address'))?>
-			<br /><?=form_error('address')?>
-			</p>
-
-			<div class="ui-widget">
-				<p><span><label for="city">Bandar : </label></span>
-				<?=form_input(array('name' => 'city', 'value' => set_value('city'), 'maxlength' => '20', 'size' => '12', 'id' => 'city'))?>
-				<br /><?=form_error('city')?>
-				</p>
-
-				<p><span><label for="state">Negeri : </label></span>
-				<?=form_input(array('name' => 'state', 'value' => set_value('state'), 'maxlength' => '20', 'size' => '12', 'id' => 'state'))?>
-				<br /><?=form_error('state')?>
-				</p>
-			</div>
-
-			<p><span><label for="zip">Poskod : </label></span>
-			<?=form_input(array('name' => 'zip', 'value' => set_value('zip'), 'maxlength' => '5', 'size' => '5', 'id' => 'zip'))?>
-			<br /><?=form_error('zip')?>
-			</p>
-
-			<p><span><label for="cellphone">Telefon Bimbit : </label></span>
-			<?=form_input(array('name' => 'cellphone', 'value' => set_value('cellphone'), 'maxlength' => '10', 'size' => '12', 'id' => 'cellphone'))?>
-			<br /><?=form_error('cellphone')?>
-			</p>
-
-			<p><span><label for="telephone">Telefon Tetap : </label></span>
-			<?=form_input(array('name' => 'telephone', 'value' => set_value('telephone'), 'maxlength' => '10', 'size' => '12', 'id' => 'telephone'))?>
-			<br /><?=form_error('telephone')?>
-			</p>
-
-			<div id="loading">Loading ...</div>
-
-			<?php
-				foreach($i->result() as $z)
-					{
-						$jabatan[$z->id] = $z->dept;
-					}
-			?>
-
-			<p><span><?=form_label('Jabatan', 'jabatan')?></span>
-			<?=form_dropdown('jabatan', $jabatan, set_select('jabatan'), 'id="jabatan"')?>
-			<br /><?=form_error('jabatan')?>
-			</p>
-
-			<p><span><?=form_label('Jawatan', 'jawatan')?></span>
-			<select name="jawatan" id="jawatan" style="display:none"></select>
-			<br /><?=form_error('jawatan')?>
-			</p>
-
-            <p style="padding-top: 15px"><span>&nbsp;</span><?=form_submit('save', 'Simpan', 'class="submit"')?></p>
+            <p style="padding-top: 15px"><span>&nbsp;</span><?=form_submit('change', 'Tukar', 'class="submit"')?></p>
 		<?=form_close()?>
 		</div>
 
