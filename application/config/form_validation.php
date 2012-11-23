@@ -135,103 +135,97 @@ $config = array	(
 							(
 								'field' => 'nama',
 								'label' => 'Nama Pemohon',
-								'rules' => 'trim|required|min_length[5]|max_length[30]|xss_clean'
+								'rules' => 'trim|required|min_length[1]|max_length[30]|xss_clean'
 							),
 						array
 							(
 								'field' => 'ic',
 								'label' => 'Nombor Kad Pengenalan',
-								'rules' => 'trim|required|min_length[5]|max_length[12]|numeric|is_unique[user_data.username]|xss_clean'
+								'rules' => 'trim|required|min_length[1]|max_length[12]|numeric|is_unique[user_data.username]|xss_clean'
 							),
 						array
 							(
 								'field' => 'passport',
 								'label' => 'Nombor Pasport',
-								'rules' => 'trim|required|min_length[5]|max_length[30]|is_unique[user_data.username]|xss_clean'
+								'rules' => 'trim|required|min_length[1]|max_length[30]|is_unique[user_data.username]|xss_clean'
 							),
 						array
 							(
 								'field' => 'dt_lahir',
 								'label' => 'Tarikh Lahir',
-								'rules' => 'trim|required|min_length[5]|max_length[30]|xss_clean'
+								'rules' => 'trim|required|min_length[1]|max_length[30]|xss_clean'
 							),
 						array
 							(
 								'field' => 'tempat_lahir',
 								'label' => 'Tempat Lahir',
-								'rules' => 'trim|required|min_length[5]|max_length[30]|xss_clean'
+								'rules' => 'trim|required|min_length[1]|max_length[30]|xss_clean'
 							),
 						array
 							(
 								'field' => 'status_warga',
-								'label' => 'Status Warganegara',
-								'rules' => 'trim|required|min_length[5]|max_length[30]|xss_clean'
+								'label' => 'Taraf Warganegara',
+								'rules' => 'trim|required|min_length[1]|max_length[30]|xss_clean'
 							),
 						array
 							(
 								'field' => 'warganegara',
 								'label' => 'Warganegara',
-								'rules' => 'trim|required|min_length[5]|max_length[30]|xss_clean'
+								'rules' => 'trim|required|min_length[1]|max_length[30]|xss_clean'
 							),
 						array
 							(
 								'field' => 'bangsa',
 								'label' => 'Bangsa',
-								'rules' => 'trim|required|min_length[5]|max_length[30]|xss_clean'
+								'rules' => 'trim|required|min_length[1]|max_length[30]|xss_clean'
 							),
 						array
 							(
 								'field' => 'jantina',
 								'label' => 'Jantina',
-								'rules' => 'trim|required|min_length[5]|max_length[30]|xss_clean'
+								'rules' => 'trim|required|min_length[1]|max_length[30]|xss_clean'
 							),
 						array
 							(
 								'field' => 'status_kahwin',
 								'label' => 'Taraf Perkahwinan',
-								'rules' => 'trim|required|min_length[5]|max_length[30]|xss_clean'
+								'rules' => 'trim|required|min_length[1]|max_length[30]|xss_clean'
 							),
 						array
 							(
 								'field' => 'alamat1',
 								'label' => 'Alamat',
-								'rules' => 'trim|required|min_length[5]|max_length[255]|xss_clean'
+								'rules' => 'trim|required|min_length[1]|max_length[255]|xss_clean'
 							),
 						array
 							(
 								'field' => 'alamat2',
 								'label' => 'Alamat',
-								'rules' => 'trim|required|min_length[5]|max_length[30]|xss_clean'
+								'rules' => 'min_length[1]|max_length[255]|xss_clean'
 							),
 						array
 							(
 								'field' => 'poskod',
 								'label' => 'Poskod',
-								'rules' => 'trim|required|min_length[5]|max_length[30]|xss_clean'
+								'rules' => 'trim|required|min_length[1]|max_length[30]|xss_clean'
 							),
 						array
 							(
 								'field' => 'bandar',
 								'label' => 'Bandar',
-								'rules' => 'trim|required|min_length[5]|max_length[30]|xss_clean'
+								'rules' => 'trim|required|min_length[1]|max_length[30]|xss_clean'
 							),
 						array
 							(
 								'field' => 'negeri',
 								'label' => 'Negeri',
-								'rules' => 'trim|required|min_length[5]|max_length[30]|xss_clean'
+								'rules' => 'trim|required|min_length[1]|max_length[30]|xss_clean'
 							),
 						array
 							(
 								'field' => 'negara',
 								'label' => 'Negara',
-								'rules' => 'trim|required|min_length[5]|max_length[30]|xss_clean'
-							),
-						array
-							(
-								'field' => 'layak',
-								'label' => 'Status Permohonan',
-								'rules' => 'trim|required|min_length[5]|max_length[30]|xss_clean'
+								'rules' => 'trim|required|min_length[1]|max_length[30]|xss_clean'
 							),
 							
 					),
