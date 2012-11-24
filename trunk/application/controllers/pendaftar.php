@@ -18,7 +18,7 @@ class Pendaftar extends CI_Controller
 		{
 			if ($this->session->userdata('logged_in') === TRUE)
 				{
-					if(user_role($this->session->userdata('user_role'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === TRUE)
+					if(user_role($this->session->userdata('id_user'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === TRUE)
 						{
 							$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
 							if ($this->form_validation->run() == FALSE)
@@ -111,7 +111,7 @@ class Pendaftar extends CI_Controller
 	public function akademik($id = NULL){
 		
 		$data['title'] = 'Kelayakan Akademik';
-		if(user_role($this->session->userdata('user_role'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === FALSE)
+		if(user_role($this->session->userdata('id_user'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === FALSE)
 		{
 			redirect('/isms/unauthorised', 'location');
 		}
@@ -134,7 +134,7 @@ class Pendaftar extends CI_Controller
 	public function waris($id = NULL){
 		
 		$data['title'] = 'Maklumat Ibu Bapa/Penjaga';
-		if(user_role($this->session->userdata('user_role'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === FALSE)
+		if(user_role($this->session->userdata('id_user'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === FALSE)
 		{
 			redirect('/isms/unauthorised', 'location');
 		}
