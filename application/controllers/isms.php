@@ -196,7 +196,9 @@ class Isms extends CI_Controller
 
 												if ($k && $c && $a && $v)
 													{
-														$data['info'] = 'Kemasukan pengguna berjaya. Sila semak pengguna ini untuk "ACCESS LEVEL"';
+														//$data['info'] = 'Kemasukan pengguna berjaya. Sila semak pengguna ini untuk "ACCESS LEVEL"';
+														//bw ke set privilleges...
+														redirect('/isms/set_privillege/'.$id_user, 'location');
 													}
 													else
 													{
@@ -228,7 +230,7 @@ class Isms extends CI_Controller
 						$rt = $this->user_department->GetAll();
 						foreach($rt->result() as $y)
 							{
-								if ( $_GET['_value'] == $y->id )//usa
+								if ( $_GET['_value'] == $y->id )
 									{
 										$th = $this->view->view_dept_jaw_search($y->id);
 										foreach($th->result() as $b)
@@ -281,6 +283,7 @@ class Isms extends CI_Controller
 													{
 														$data['info'] = 'Something teribly happen, Please try again later';
 													}
+												$data['i'] = $this->user_department->GetAll();
 												$this->load->view('devel', $data);
 											}
 									}
@@ -389,9 +392,110 @@ class Isms extends CI_Controller
 					}
 			}
 
+		public function set_privillege()
+			{
+				if ($this->session->userdata('logged_in') === TRUE)
+					{
+						if(user_role($this->session->userdata('id_user'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === TRUE)
+							{
+								$id_user = $this->uri->segment(3, 0);
+								if(is_numeric($id_user))
+									{
+										$data['u'] = $this->view->view_user_access($id_user);
+										$this->load->view('set_privillege', $data);
+									}
+							}
+							else
+							{
+								redirect('/isms/unauthorised', 'location');
+							}
+					}
+					else
+					{
+						redirect('/isms/index', 'location');
+					}
+			}
 
+		public function update_privillege()
+			{
+				if ($this->session->userdata('logged_in') === TRUE)
+					{
+						if(user_role($this->session->userdata('id_user'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === TRUE)
+							{
+								$id_user_dept_func = $this->uri->segment(3, 0);
+								$id_user = $this->uri->segment(4, 0);
+								$active = $this->uri->segment(5, 0);
+								if(is_numeric($id_user_dept_func) && is_numeric($id_user) && is_numeric($active))
+									{
+										$c = $this->user_dept_func->update_active($id_user_dept_func, $active);
+										if($c)
+											{
+												redirect('/isms/set_privillege/'.$id_user, 'location');
+											}
+									}
+							}
+							else
+							{
+								redirect('/isms/unauthorised', 'location');
+							}
+					}
+					else
+					{
+						redirect('/isms/index', 'location');
+					}
+			}
 
+		public function user_cat()
+			{
+				if ($this->session->userdata('logged_in') === TRUE)
+					{
+						if(user_role($this->session->userdata('id_user'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === TRUE)
+							{
+								//pagination process
+								$this->load->library('pagination');
+								$config['base_url'] = base_url().'isms/user_cat';
+								$config['total_rows'] = $this->view->view_user_dept_jaw()->num_rows();
+								$config['per_page'] = 5;
 
+								$this->pagination->initialize($config);
+
+								$data['ie'] = $this->view->view_user_dept_jaw_page($config['per_page'], $this->uri->segment(3, 0));
+
+								$data['paginate'] =$this->pagination->create_links();
+
+								//for jabatan n jawatan block
+								$data['i'] = $this->user_department->GetAll();
+
+								$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+								if ($this->form_validation->run() == FALSE)
+									{
+										//form
+										$this->load->view('user_cat', $data);
+									}
+									else
+									{
+										//form process
+										if($this->input->post('tambah', TRUE))
+											{
+												$id_user_data = $this->input->post('id_user_data', TRUE);
+												$jabatan = $this->input->post('jabatan', TRUE);
+												$jawatan = $this->input->post('jawatan', TRUE);
+
+												//x boleh masukkan staff dalam jabatan atau jawatan yang dah dia ada dah...
+												
+											}
+									}
+							}
+							else
+							{
+								redirect('/isms/unauthorised', 'location');
+							}
+					}
+					else
+					{
+						redirect('/isms/index', 'location');
+					}
+			}
 
 
 
@@ -437,7 +541,6 @@ class Isms extends CI_Controller
 									'id_user' => '',
 									'username' => '',
 									'password' => '',
-									'user_role' => '',
 									'logged_in' => FALSE
 								);
 						$this->session->unset_userdata($array);

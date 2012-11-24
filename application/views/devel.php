@@ -37,7 +37,7 @@
 			</p>
 
 			<p><span><label for="remarks">Catitan Function : </label></span>
-			<?=form_input(array('name' => 'remarks', 'value' => set_value('remarks'), 'maxlength' => '30', 'size' => '12', 'id' => 'remarks'))?>
+			<?=form_input(array('name' => 'remarks', 'value' => set_value('remarks'), 'maxlength' => '255', 'size' => '12', 'id' => 'remarks'))?>
 			<br /><?=form_error('remarks')?>
 			</p>
 

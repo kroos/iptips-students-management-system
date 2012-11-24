@@ -15,13 +15,14 @@
 			<ul>
 				<li><?=anchor('#', 'User', array('title' => 'User'))?>
 					<ul>
-						<li><?=anchor('isms/profile', 'Profile', array('title' => 'Profile'))?></li>
-						<li><?=anchor('isms/change_pass', 'Change Password', array('title' => 'Change Password'))?></li>
+						<li><?=anchor('isms/profile', 'Profail', array('title' => 'Profail'))?></li>
+						<li><?=anchor('isms/change_pass', 'Tukar Kata Laluan', array('title' => 'Tukar Kata Laluan'))?></li>
 					</ul>
 				</li>
 				<li><?=anchor('#', 'Admin', array('title' => 'Admin'))?>
 					<ul>
-						<li><?=anchor('isms/add_user', 'Add User', array('title' => 'Add User'))?></li>
+						<li><?=anchor('isms/add_user', 'Tambah Pengguna', array('title' => 'Tambah Pengguna'))?></li>
+						<li><?=anchor('isms/user_cat', 'Tambah Jabatan Kepada Pengguna', array('title' => 'Tambah Jabatan Kepada Pengguna'))?></li>
 					</ul>
 				</li>
 				<li><?=anchor('isms/devel', 'Developer', array('title' => 'Developer'))?></li>
