@@ -25,6 +25,11 @@ class User_dept_jaw extends CI_Model
 			{
 				return $this->db->get_where('user_dept_jaw', array('id' => $id));
 			}
+
+		function user_dept_jaw($id_user, $dept, $jaw)
+			{
+				return $this->db->get_where('user_dept_jaw', array('id_user_data' => $id_user, 'id_user_department' => $dept, 'id_user_jawatan' => $jaw));
+			}
 //UPDATE
 
 
