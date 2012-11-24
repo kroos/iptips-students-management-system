@@ -482,7 +482,46 @@ class Isms extends CI_Controller
 												$jawatan = $this->input->post('jawatan', TRUE);
 
 												//x boleh masukkan staff dalam jabatan atau jawatan yang dah dia ada dah...
-												
+												$y = $this->user_dept_jaw->user_dept_jaw($id_user_data, $jabatan, $jawatan);
+												if($y->num_rows() < 1)
+													{
+														//masukkan data ke dalam table user_dept
+														$c = $this->user_dept->insert_us_dept($id_user_data, $jabatan);
+
+														//kemudian masukkan user ini ke controller/modul/jabatan yang telah dipilih i.e table user_dept_jaw
+														$a = $this->user_dept_jaw->insert_jaw($id_user_data, $jabatan, $jawatan);
+
+														//masukkan function dari $jabatan ni shj untuk user ni kedalam table user_dept_func
+														$l = $this->dept_func->id_user_department($jabatan);
+														foreach ($l->result() as $j)
+															{
+																if($j->id_user_function == 1)
+																	{
+																		$v[] = $this->user_dept_func->insert($id_user_data, $j->id_user_department, $j->id_user_function, 1);
+																	}
+																	else
+																	{
+																		$v[] = $this->user_dept_func->insert($id_user_data, $j->id_user_department, $j->id_user_function, 0);
+																	}
+															}
+
+														if ($c && $a && $v)
+															{
+																//$data['info'] = 'Kemasukan pengguna berjaya. Sila semak pengguna ini untuk "ACCESS LEVEL"';
+																//bw ke set privilleges...
+																redirect('/isms/set_privillege/'.$id_user_data, 'location');
+															}
+															else
+															{
+																$data['info'] = 'Kemasukkan pengguna adalah tidak berjaya. Sila cuba sekali lagi';
+																$this->load->view('user_cat', $data);
+															}
+													}
+													else
+													{
+														$data['info'] = 'Pengguna ini sudah pun berada dalam jabatan dan jawatan yang dipilih';
+														$this->load->view('user_cat', $data);
+													}
 											}
 									}
 							}
