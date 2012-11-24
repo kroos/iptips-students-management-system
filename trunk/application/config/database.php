@@ -48,11 +48,11 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-//$db['default']['hostname'] = '202.185.6.131';
-$db['default']['hostname'] = 'localhost';
+$db['default']['hostname'] = '202.185.6.131';
+//$db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
-//$db['default']['password'] = '0162172420';
-$db['default']['password'] = 'root';
+$db['default']['password'] = '0162172420';
+//$db['default']['password'] = 'root';
 $db['default']['database'] = 'iptip';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
