@@ -31,7 +31,13 @@
 		<li <?=($this->uri->segment(1, 0) == 'hea' ? 'class="selected"' : '')?>><?=anchor('hea/index', 'HEA', array('title' => 'HEA'))?></li>
 		<li <?=($this->uri->segment(1, 0) == 'hep' ? 'class="selected"' : '')?>><?=anchor('hep/index', 'HEP', array('title' => 'HEP'))?></li>
 		<li <?=($this->uri->segment(1, 0) == 'kewangan' ? 'class="selected"' : '')?>><?=anchor('kewangan/index', 'Kewangan', array('title' => 'Kewangan'))?></li>
-		<li <?=($this->uri->segment(1, 0) == 'pendaftar' ? 'class="selected"' : '')?>><?=anchor('pendaftar/index', 'Pendaftar', array('title' => 'Pendaftar'))?></li>
+		<li <?=($this->uri->segment(1, 0) == 'pendaftar' ? 'class="selected"' : '')?>><?=anchor('pendaftar/index', 'Pendaftar', array('title' => 'Pendaftar'))?>
+			<ul>
+				<!-- 1. tambah menu utk user boleh access function yang baru kita buat
+					 2. buat link untuk controller dan function yang berkaitan -->
+				<li><?=anchor('pendaftar/senarai_pemohon', 'Senarai Pemohon', array('title' => 'Senarai Pemohon'))?></li>
+			</ul>
+		</li>
 		<li <?=($this->uri->segment(1, 0) == 'perpustakaan' ? 'class="selected"' : '')?>><?=anchor('perpustakaan/index', 'Perpustakaan', array('title' => 'Perpustakaan'))?></li>
 		<li><?=anchor('isms/logout', 'Log Keluar', array('title' => 'Log Keluar'))?></li>
 	<? endblock() ?>

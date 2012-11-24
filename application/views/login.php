@@ -6,7 +6,7 @@
 
 	<? startblock('content') ?>
 		<h1>Selamat Datang ke IPTIPs Students Management System</h1>
-		<h2>Log Masuk</h3>
+		<h2>Log Masuk</h2>
 		<p>Sila masukkan nama pengguna dan kata laluan.</p>
 		<p><font color="#FF0000"><?=@$info?></font></p>
 
