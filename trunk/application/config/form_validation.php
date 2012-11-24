@@ -247,7 +247,7 @@ $config = array	(
 							(
 								'field' => 'remarks',
 								'label' => 'Catitan Function',
-								'rules' => 'trim|required|min_length[2]|max_length[50]|is_unique[user_function.remarks]|xss_clean'
+								'rules' => 'trim|required|min_length[2]|max_length[255]|is_unique[user_function.remarks]|xss_clean'
 							),
 					),
 					'isms/profile' => array
@@ -326,6 +326,27 @@ $config = array	(
 								'field' => 'npass2',
 								'label' => 'Taip Semula Kata Laluan Baru',
 								'rules' => 'trim|required|min_length[6]|max_length[10]|xss_clean'
+							),
+					),
+					'isms/user_cat' => array
+					( 
+						array
+							(
+								'field' => 'id_user_data',
+								'label' => 'Nama Staff',
+								'rules' => 'trim|required|is_natural_no_zero|xss_clean'
+							),
+						array
+							(
+								'field' => 'jabatan',
+								'label' => 'Jabatan',
+								'rules' => 'trim|required|is_natural_no_zero|xss_clean'
+							),
+						array
+							(
+								'field' => 'jawatan',
+								'label' => 'Jawatan',
+								'rules' => 'trim|required|is_natural_no_zero|xss_clean'
 							),
 					),
 				);
