@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50523
 File Encoding         : 65001
 
-Date: 2012-11-21 20:29:20
+Date: 2012-11-25 02:44:26
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -119,12 +119,11 @@ CREATE TABLE `dept_func` (
   `id_user_department` int(11) NOT NULL,
   `id_user_function` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of dept_func
 -- ----------------------------
-INSERT INTO `dept_func` VALUES ('1', '1', '2');
 INSERT INTO `dept_func` VALUES ('2', '2', '1');
 INSERT INTO `dept_func` VALUES ('3', '3', '1');
 INSERT INTO `dept_func` VALUES ('4', '4', '1');
@@ -132,6 +131,10 @@ INSERT INTO `dept_func` VALUES ('5', '5', '1');
 INSERT INTO `dept_func` VALUES ('6', '6', '1');
 INSERT INTO `dept_func` VALUES ('7', '1', '4');
 INSERT INTO `dept_func` VALUES ('8', '1', '5');
+INSERT INTO `dept_func` VALUES ('9', '1', '6');
+INSERT INTO `dept_func` VALUES ('10', '1', '7');
+INSERT INTO `dept_func` VALUES ('11', '1', '8');
+INSERT INTO `dept_func` VALUES ('12', '5', '9');
 
 -- ----------------------------
 -- Table structure for `dept_jaw`
@@ -3577,8 +3580,8 @@ CREATE TABLE `user_data` (
 -- ----------------------------
 -- Records of user_data
 -- ----------------------------
-INSERT INTO `user_data` VALUES ('1', 'admin1', '123123', '123456789012', 'Admin', '1, Taman Mutiara', 'Sungai Petani', 'Kedah', '08000', '0162172420', null, 'dhiauddin@gmail.com', '2012-11-13 09:16:19');
-INSERT INTO `user_data` VALUES ('2', 'user1', '123123', '880808025888', 'user testing', 'b-3-2, taman abc', null, null, null, null, null, '', '2012-11-17 04:12:36');
+INSERT INTO `user_data` VALUES ('1', 'admin1', '123123', '760505026479', 'Admin', '1, Taman Mutiara', 'Sungai Petani', 'Kedah', '08000', '0162172420', '', 'dhiauddin@gmail.com', '2012-11-13 09:16:19');
+INSERT INTO `user_data` VALUES ('2', 'azaliha', '123123', '123456789012', 'Azaliha Abdullah', '1, Taman Mutiara', 'Sungai Petani', 'Kedah', '05400', '0162052420', '', 'azaliha@gmail.com', '2012-11-24 00:52:22');
 
 -- ----------------------------
 -- Table structure for `user_department`
@@ -3610,7 +3613,7 @@ CREATE TABLE `user_dept` (
   `id_user_data` int(11) NOT NULL,
   `id_user_department` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user_dept
@@ -3621,6 +3624,9 @@ INSERT INTO `user_dept` VALUES ('3', '1', '3');
 INSERT INTO `user_dept` VALUES ('4', '1', '4');
 INSERT INTO `user_dept` VALUES ('5', '1', '5');
 INSERT INTO `user_dept` VALUES ('6', '1', '6');
+INSERT INTO `user_dept` VALUES ('8', '2', '2');
+INSERT INTO `user_dept` VALUES ('9', '2', '3');
+INSERT INTO `user_dept` VALUES ('10', '2', '4');
 
 -- ----------------------------
 -- Table structure for `user_dept_func`
@@ -3632,13 +3638,13 @@ CREATE TABLE `user_dept_func` (
   `id_user_department` int(11) NOT NULL,
   `id_user_function` int(11) NOT NULL,
   `active` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'weather its active for the user or not',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`),
+  KEY `unique` (`id_user_function`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user_dept_func
 -- ----------------------------
-INSERT INTO `user_dept_func` VALUES ('1', '1', '1', '2', '1');
 INSERT INTO `user_dept_func` VALUES ('2', '1', '2', '1', '1');
 INSERT INTO `user_dept_func` VALUES ('3', '1', '3', '1', '1');
 INSERT INTO `user_dept_func` VALUES ('4', '1', '4', '1', '1');
@@ -3646,6 +3652,13 @@ INSERT INTO `user_dept_func` VALUES ('5', '1', '5', '1', '1');
 INSERT INTO `user_dept_func` VALUES ('6', '1', '6', '1', '1');
 INSERT INTO `user_dept_func` VALUES ('7', '1', '1', '4', '1');
 INSERT INTO `user_dept_func` VALUES ('8', '1', '1', '5', '1');
+INSERT INTO `user_dept_func` VALUES ('10', '1', '1', '6', '1');
+INSERT INTO `user_dept_func` VALUES ('11', '1', '1', '7', '1');
+INSERT INTO `user_dept_func` VALUES ('12', '1', '1', '8', '1');
+INSERT INTO `user_dept_func` VALUES ('13', '2', '2', '1', '1');
+INSERT INTO `user_dept_func` VALUES ('14', '2', '3', '1', '1');
+INSERT INTO `user_dept_func` VALUES ('15', '2', '4', '1', '1');
+INSERT INTO `user_dept_func` VALUES ('16', '1', '5', '9', '1');
 
 -- ----------------------------
 -- Table structure for `user_dept_jaw`
@@ -3653,14 +3666,18 @@ INSERT INTO `user_dept_func` VALUES ('8', '1', '1', '5', '1');
 DROP TABLE IF EXISTS `user_dept_jaw`;
 CREATE TABLE `user_dept_jaw` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_user_data` int(11) NOT NULL,
   `id_user_department` int(11) NOT NULL,
-  `id_jawatan` int(11) NOT NULL,
+  `id_user_jawatan` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user_dept_jaw
 -- ----------------------------
+INSERT INTO `user_dept_jaw` VALUES ('2', '2', '2', '2');
+INSERT INTO `user_dept_jaw` VALUES ('3', '2', '3', '1');
+INSERT INTO `user_dept_jaw` VALUES ('4', '2', '4', '8');
 
 -- ----------------------------
 -- Table structure for `user_function`
@@ -3672,15 +3689,18 @@ CREATE TABLE `user_function` (
   `remarks` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `Function` (`function`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user_function
 -- ----------------------------
 INSERT INTO `user_function` VALUES ('1', 'index', 'index page');
-INSERT INTO `user_function` VALUES ('2', 'home', 'home page');
 INSERT INTO `user_function` VALUES ('4', 'add_user', 'isms add user page');
 INSERT INTO `user_function` VALUES ('5', 'devel', 'isms developer add function page');
+INSERT INTO `user_function` VALUES ('6', 'set_privillege', 'isms set_privillege only display permission user to a function');
+INSERT INTO `user_function` VALUES ('7', 'update_privillege', 'isms update_privillege changing the permission of the function to a user');
+INSERT INTO `user_function` VALUES ('8', 'user_cat', 'isms user_cat tambah jabatan untuk user');
+INSERT INTO `user_function` VALUES ('9', 'senarai_pemohon', 'pendaftar senarai_pemohon memaparkan senarai pemohon kemasukan ke pusat pengajian');
 
 -- ----------------------------
 -- Table structure for `user_jawatan`
@@ -3716,28 +3736,34 @@ INSERT INTO `user_jawatan` VALUES ('15', 'Pustakawan', 'Pustakawan');
 -- View structure for `view_department_function`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_department_function`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_department_function` AS select `dept_func`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept`,`dept_func`.`id_user_function` AS `id_user_function`,`user_function`.`function` AS `function`,`user_function`.`remarks` AS `remarks` from ((`dept_func` join `user_department` on((`dept_func`.`id_user_department` = `user_department`.`id`))) join `user_function` on((`dept_func`.`id_user_function` = `user_function`.`id`))) group by `dept_func`.`id_user_department` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_department_function` AS select `dept_func`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept`,`dept_func`.`id_user_function` AS `id_user_function`,`user_function`.`function` AS `function`,`user_function`.`remarks` AS `remarks` from ((`dept_func` join `user_department` on((`dept_func`.`id_user_department` = `user_department`.`id`))) join `user_function` on((`dept_func`.`id_user_function` = `user_function`.`id`))) order by `dept_func`.`id_user_department`,`dept_func`.`id_user_function` ;
 
 -- ----------------------------
 -- View structure for `view_department_jawatan`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_department_jawatan`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_department_jawatan` AS select `dept_jaw`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept`,`dept_jaw`.`id_jawatan` AS `id_jawatan`,`user_jawatan`.`jawatan` AS `jawatan` from ((`dept_jaw` join `user_jawatan` on((`dept_jaw`.`id_jawatan` = `user_jawatan`.`id`))) join `user_department` on((`user_department`.`id` = `dept_jaw`.`id_user_department`))) order by `dept_jaw`.`id_user_department`,`dept_jaw`.`id_jawatan` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_department_jawatan` AS select `dept_jaw`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept`,`dept_jaw`.`id_jawatan` AS `id_jawatan`,`user_jawatan`.`jawatan` AS `jawatan` from ((`dept_jaw` join `user_jawatan` on((`dept_jaw`.`id_jawatan` = `user_jawatan`.`id`))) join `user_department` on((`user_department`.`id` = `dept_jaw`.`id_user_department`))) order by `dept_jaw`.`id_user_department`,`dept_jaw`.`id_jawatan` ;
 
 -- ----------------------------
 -- View structure for `view_taqwim`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_taqwim`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_taqwim` AS select `sesi_taqwim`.`kod_item` AS `kod_item`,`sesi_taqwim`.`tarikh_mula` AS `tarikh_mula`,`sesi_taqwim`.`tarikh_tamat` AS `tarikh_tamat`,`sesi_akademik`.`namasesi_MY` AS `namasesi_MY`,`item_taqwim`.`item_MY` AS `item_MY`,((to_days(`sesi_taqwim`.`tarikh_tamat`) - to_days(`sesi_taqwim`.`tarikh_mula`)) + 1) AS `tempoh`,`sesi_akademik`.`kodsesi` AS `kodsesi` from ((`sesi_akademik` join `sesi_taqwim` on((`sesi_taqwim`.`sesi` = `sesi_akademik`.`kodsesi`))) join `item_taqwim` on((`sesi_taqwim`.`kod_item` = `item_taqwim`.`kod_item`))) order by `sesi_taqwim`.`tarikh_mula`,`item_taqwim`.`posisi` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_taqwim` AS select `sesi_taqwim`.`kod_item` AS `kod_item`,`sesi_taqwim`.`tarikh_mula` AS `tarikh_mula`,`sesi_taqwim`.`tarikh_tamat` AS `tarikh_tamat`,`sesi_akademik`.`namasesi_MY` AS `namasesi_MY`,`item_taqwim`.`item_MY` AS `item_MY`,((to_days(`sesi_taqwim`.`tarikh_tamat`) - to_days(`sesi_taqwim`.`tarikh_mula`)) + 1) AS `tempoh`,`sesi_akademik`.`kodsesi` AS `kodsesi` from ((`sesi_akademik` join `sesi_taqwim` on((`sesi_taqwim`.`sesi` = `sesi_akademik`.`kodsesi`))) join `item_taqwim` on((`sesi_taqwim`.`kod_item` = `item_taqwim`.`kod_item`))) order by `sesi_taqwim`.`tarikh_mula`,`item_taqwim`.`posisi` ;
 
 -- ----------------------------
 -- View structure for `view_user_access_level`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_user_access_level`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_user_access_level` AS select `user_dept_func`.`id_user_data` AS `id_user_data`,`user_data`.`username` AS `username`,`user_dept_func`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept`,`user_dept_func`.`id_user_function` AS `id_user_function`,`user_function`.`function` AS `function`,`user_function`.`remarks` AS `remarks`,`user_dept_func`.`active` AS `active` from (((`user_data` join `user_department`) join `user_dept_func` on(((`user_dept_func`.`id_user_data` = `user_data`.`id`) and (`user_dept_func`.`id_user_department` = `user_department`.`id`)))) join `user_function` on((`user_dept_func`.`id_user_function` = `user_function`.`id`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_user_access_level` AS select `user_dept_func`.`id` AS `id`,`user_dept_func`.`id_user_data` AS `id_user_data`,`user_data`.`name` AS `name`,`user_dept_func`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept`,`user_dept_func`.`id_user_function` AS `id_user_function`,`user_function`.`function` AS `function`,`user_function`.`remarks` AS `remarks`,`user_dept_func`.`active` AS `active` from (((`user_data` join `user_department`) join `user_dept_func` on(((`user_dept_func`.`id_user_data` = `user_data`.`id`) and (`user_dept_func`.`id_user_department` = `user_department`.`id`)))) join `user_function` on((`user_dept_func`.`id_user_function` = `user_function`.`id`))) ;
 
 -- ----------------------------
 -- View structure for `view_user_department`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_user_department`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_user_department` AS select `user_dept`.`id_user_data` AS `id_user_data`,`user_data`.`username` AS `username`,`user_data`.`password` AS `password`,`user_data`.`name` AS `name`,`user_dept`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept` from ((`user_data` join `user_dept` on((`user_dept`.`id_user_data` = `user_data`.`id`))) join `user_department` on((`user_dept`.`id_user_department` = `user_department`.`id`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_user_department` AS select `user_dept`.`id_user_data` AS `id_user_data`,`user_data`.`username` AS `username`,`user_data`.`password` AS `password`,`user_data`.`name` AS `name`,`user_dept`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept` from ((`user_data` join `user_dept` on((`user_dept`.`id_user_data` = `user_data`.`id`))) join `user_department` on((`user_dept`.`id_user_department` = `user_department`.`id`))) ;
+
+-- ----------------------------
+-- View structure for `view_user_dept_jaw`
+-- ----------------------------
+DROP VIEW IF EXISTS `view_user_dept_jaw`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_user_dept_jaw` AS select `user_dept_jaw`.`id` AS `id`,`user_dept_jaw`.`id_user_data` AS `id_user_data`,`user_data`.`name` AS `name`,`user_dept_jaw`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept`,`user_dept_jaw`.`id_user_jawatan` AS `id_user_jawatan`,`user_jawatan`.`jawatan` AS `jawatan`,`user_jawatan`.`remarks` AS `remarks` from (((`user_dept_jaw` join `user_data` on((`user_dept_jaw`.`id_user_data` = `user_data`.`id`))) join `user_department` on((`user_dept_jaw`.`id_user_department` = `user_department`.`id`))) join `user_jawatan` on((`user_dept_jaw`.`id_user_jawatan` = `user_jawatan`.`id`))) order by `user_data`.`name`,`user_dept_jaw`.`id_user_department`,`user_dept_jaw`.`id_user_jawatan` ;
