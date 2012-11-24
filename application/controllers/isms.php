@@ -482,7 +482,7 @@ class Isms extends CI_Controller
 												$jawatan = $this->input->post('jawatan', TRUE);
 
 												//x boleh masukkan staff dalam jabatan atau jawatan yang dah dia ada dah...
-												$y = $this->user_dept_jaw->user_dept_jaw($id_user_data, $jabatan, $jawatan);
+												$y = $this->user_dept_jaw->user_dept_jaw($id_user_data, $jabatan);
 												if($y->num_rows() < 1)
 													{
 														//masukkan data ke dalam table user_dept
@@ -519,7 +519,7 @@ class Isms extends CI_Controller
 													}
 													else
 													{
-														$data['info'] = 'Pengguna ini sudah pun berada dalam jabatan dan jawatan yang dipilih';
+														$data['info'] = 'Pengguna ini sudah pun berada dalam jabatan yang dipilih';
 														$this->load->view('user_cat', $data);
 													}
 											}
