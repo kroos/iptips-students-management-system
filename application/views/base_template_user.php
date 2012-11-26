@@ -23,22 +23,184 @@
 					<ul>
 						<li><?=anchor('isms/add_user', 'Tambah Pengguna', array('title' => 'Tambah Pengguna'))?></li>
 						<li><?=anchor('isms/user_cat', 'Tambah Jabatan Kepada Pengguna', array('title' => 'Tambah Jabatan Kepada Pengguna'))?></li>
+						<li><?=anchor('isms/user_perm_edit', 'Edit Capaian Pengguna', array('title' => 'Edit Capaian Pengguna'))?></li>
 					</ul>
 				</li>
 				<li><?=anchor('isms/devel', 'Developer', array('title' => 'Developer'))?></li>
 			</ul>
 		</li>
-		<li <?=($this->uri->segment(1, 0) == 'hea' ? 'class="selected"' : '')?>><?=anchor('hea/index', 'HEA', array('title' => 'HEA'))?></li>
-		<li <?=($this->uri->segment(1, 0) == 'hep' ? 'class="selected"' : '')?>><?=anchor('hep/index', 'HEP', array('title' => 'HEP'))?></li>
-		<li <?=($this->uri->segment(1, 0) == 'kewangan' ? 'class="selected"' : '')?>><?=anchor('kewangan/index', 'Kewangan', array('title' => 'Kewangan'))?></li>
-		<li <?=($this->uri->segment(1, 0) == 'pendaftar' ? 'class="selected"' : '')?>><?=anchor('pendaftar/index', 'Pendaftar', array('title' => 'Pendaftar'))?>
+
+<!-- controller hea sahaja mengikut jawatan -->
+		<li <?=($this->uri->segment(1, 0) == 'hea' ? 'class="selected"' : '')?>><?=anchor('hea/index', 'HEA', array('title' => 'HEA'))?>
 			<ul>
-				<!-- 1. tambah menu utk user boleh access function yang baru kita buat
-					 2. buat link untuk controller dan function yang berkaitan -->
-				<li><?=anchor('pendaftar/senarai_pemohon', 'Senarai Pemohon', array('title' => 'Senarai Pemohon'))?></li>
+				<li><?=anchor('hea/index/#', 'Ketua Jabatan', array('title' => 'Ketua Jabatan'))?>
+					<ul>
+						<li><?=anchor('hea/insert your function here', 'Nama Function', array('title' => 'Nama Function'))?></li>
+					</ul>
+				</li>
+
+				<li><?=anchor('hea/index/#', 'Timbalan Ketua Jabatan', array('title' => 'Timbalan Ketua Jabatan'))?>
+					<ul>
+						<li><?=anchor('hea/insert your function here', 'Nama Function', array('title' => 'Nama Function'))?></li>
+					</ul>
+				</li>
+
+				<li><?=anchor('hea/index/#', 'Dekan', array('title' => 'Dekan'))?>
+					<ul>
+						<li><?=anchor('hea/insert your function here', 'Nama Function', array('title' => 'Nama Function'))?></li>
+					</ul>
+				</li>
+
+				<li><?=anchor('hea/index/#', 'Timbalan Dekan', array('title' => 'Timbalan Dekan '))?>
+					<ul>
+						<li><?=anchor('hea/insert your function here', 'Nama Function', array('title' => 'Nama Function'))?></li>
+					</ul>
+				</li>
+
+				<li><?=anchor('hea/index/#', 'Pensyarah', array('title' => 'Pensyarah'))?>
+					<ul>
+						<li><?=anchor('hea/insert your function here', 'Nama Function', array('title' => 'Nama Function'))?></li>
+					</ul>
+				</li>
+
+				<li><?=anchor('hea/index/#', 'Kerani', array('title' => 'Kerani'))?>
+					<ul>
+						<li><?=anchor('hea/insert your function here', 'Nama Function', array('title' => 'Nama Function'))?></li>
+					</ul>
+				</li>
+
+				<li><?=anchor('hea/index/#', 'PAR', array('title' => 'PAR'))?>
+					<ul>
+						<li><?=anchor('hea/insert your function here', 'Nama Function', array('title' => 'Nama Function'))?></li>
+					</ul>
+				</li>
+
 			</ul>
 		</li>
-		<li <?=($this->uri->segment(1, 0) == 'perpustakaan' ? 'class="selected"' : '')?>><?=anchor('perpustakaan/index', 'Perpustakaan', array('title' => 'Perpustakaan'))?></li>
+
+<!-- controller hep sahaja mengikut jawatan -->
+		<li <?=($this->uri->segment(1, 0) == 'hep' ? 'class="selected"' : '')?>><?=anchor('hep/index', 'HEP', array('title' => 'HEP'))?>
+			<ul>
+				<li><?=anchor('hep/index/#', 'Ketua Jabatan', array('title' => 'Ketua Jabatan'))?>
+					<ul>
+						<li><?=anchor('hep/insert your function here', 'Nama Function', array('title' => 'Nama Function'))?></li>
+					</ul>
+				</li>
+				<li><?=anchor('hep/index/#', 'Timbalan Ketua Jabatan', array('title' => 'Timbalan Ketua Jabatan'))?>
+					<ul>
+						<li><?=anchor('hep/insert your function here', 'Nama Function', array('title' => 'Nama Function'))?></li>
+					</ul>
+				</li>
+				<li><?=anchor('hep/index/#', 'Warden', array('title' => 'Warden'))?>
+					<ul>
+						<li><?=anchor('hep/insert your function here', 'Nama Function', array('title' => 'Nama Function'))?></li>
+					</ul>
+				</li>
+				<li><?=anchor('hep/index/#', 'Kerani', array('title' => 'Kerani'))?>
+					<ul>
+						<li><?=anchor('hep/insert your function here', 'Nama Function', array('title' => 'Nama Function'))?></li>
+					</ul>
+				</li>
+				<li><?=anchor('hep/index/#', 'PAR', array('title' => 'PAR'))?>
+					<ul>
+						<li><?=anchor('hep/insert your function here', 'Nama Function', array('title' => 'Nama Function'))?></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+
+<!-- controller hep sahaja mengikut jawatan -->
+		<li <?=($this->uri->segment(1, 0) == 'kewangan' ? 'class="selected"' : '')?>><?=anchor('kewangan/index', 'Kewangan', array('title' => 'Kewangan'))?>
+			<ul>
+				<li><?=anchor('kewangan/index/#', 'Bendahari', array('title' => 'Bendahari'))?>
+					<ul>
+						<li><?=anchor('kewangan/insert your function here', 'Nama Function', array('title' => 'Nama Function'))?></li>
+					</ul>
+				</li>
+				<li><?=anchor('kewangan/index/#', 'Timbalan Bendahari', array('title' => 'Timbalan Bendahari'))?>
+					<ul>
+						<li><?=anchor('kewangan/insert your function here', 'Nama Function', array('title' => 'Nama Function'))?></li>
+					</ul>
+				</li>
+				<li><?=anchor('kewangan/index/#', 'Kerani', array('title' => 'Kerani'))?>
+					<ul>
+						<li><?=anchor('kewangan/insert your function here', 'Nama Function', array('title' => 'Nama Function'))?></li>
+					</ul>
+				</li>
+				<li><?=anchor('kewangan/index/#', 'PAR', array('title' => 'PAR'))?>
+					<ul>
+						<li><?=anchor('kewangan/insert your function here', 'Nama Function', array('title' => 'Nama Function'))?></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+
+<!-- controller hep sahaja mengikut jawatan -->
+		<li <?=($this->uri->segment(1, 0) == 'pendaftar' ? 'class="selected"' : '')?>><?=anchor('pendaftar/index', 'Pendaftar', array('title' => 'Pendaftar'))?>
+			<ul>
+				<li><?=anchor('pendaftar/index/#', 'Pendaftar', array('title' => 'Pendaftar'))?>
+					<ul>
+						<li><?=anchor('pendaftar/insert your function here', 'Nama Function', array('title' => 'Nama Function'))?></li>
+					</ul>
+				</li>
+				<li><?=anchor('pendaftar/index/#', 'Timbalan Pendaftar', array('title' => 'Timbalan Pendaftar'))?>
+					<ul>
+						<li><?=anchor('pendaftar/insert your function here', 'Nama Function', array('title' => 'Nama Function'))?></li>
+					</ul>
+				</li>
+				<li><?=anchor('pendaftar/index/#', 'Kerani', array('title' => 'Kerani'))?>
+					<ul>
+
+						<!--
+							1. tambah menu utk user boleh access function yang baru kita buat
+							2. fikir mana sesuai nak letak link
+							3. buat link untuk controller dan function yang berkaitan
+						-->
+						<li><?=anchor('pendaftar/senarai_pemohon', 'Senarai Pemohon', array('title' => 'Senarai Pemohon'))?></li>
+
+						<li><?=anchor('pendaftar/insert your function here', 'Nama Function', array('title' => 'Nama Function'))?></li>
+					</ul>
+				</li>
+				<li><?=anchor('pendaftar/index/#', 'PAR', array('title' => 'PAR'))?>
+					<ul>
+						<li><?=anchor('pendaftar/insert your function here', 'Nama Function', array('title' => 'Nama Function'))?></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+
+
+<!-- controller perpustakaan sahaja mengikut jawatan -->
+		<li <?=($this->uri->segment(1, 0) == 'perpustakaan' ? 'class="selected"' : '')?>><?=anchor('perpustakaan/index', 'Perpustakaan', array('title' => 'Perpustakaan'))?>
+			<ul>
+				<li><?=anchor('perpustakaan/index/#', 'Ketua Pustakawan', array('title' => 'Ketua Pustakawan'))?>
+					<ul>
+						<li><?=anchor('perpustakaan/insert your function here', 'Nama Function', array('title' => 'Nama Function'))?></li>
+					</ul>
+				</li>
+				<li><?=anchor('perpustakaan/index/#', 'Timbalan Ketua Pustakawan', array('title' => 'Timbalan Ketua Pustakawan'))?>
+					<ul>
+						<li><?=anchor('perpustakaan/insert your function here', 'Nama Function', array('title' => 'Nama Function'))?></li>
+					</ul>
+				</li>
+				<li><?=anchor('perpustakaan/index/#', 'Pustakawan', array('title' => 'Pustakawan'))?>
+					<ul>
+						<li><?=anchor('perpustakaan/insert your function here', 'Nama Function', array('title' => 'Nama Function'))?></li>
+					</ul>
+				</li>
+				<li><?=anchor('perpustakaan/index/#', 'Kerani', array('title' => 'Kerani'))?>
+					<ul>
+						<li><?=anchor('perpustakaan/insert your function here', 'Nama Function', array('title' => 'Nama Function'))?></li>
+					</ul>
+				</li>
+				<li><?=anchor('perpustakaan/index/#', 'PAR', array('title' => 'PAR'))?>
+					<ul>
+						<li><?=anchor('perpustakaan/insert your function here', 'Nama Function', array('title' => 'Nama Function'))?></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+
 		<li><?=anchor('isms/logout', 'Log Keluar', array('title' => 'Log Keluar'))?></li>
 	<? endblock() ?>
 

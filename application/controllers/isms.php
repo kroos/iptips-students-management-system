@@ -536,7 +536,48 @@ class Isms extends CI_Controller
 					}
 			}
 
-
+		public function user_perm_edit()
+			{
+				if ($this->session->userdata('logged_in') === TRUE)
+					{
+						if(user_role($this->session->userdata('id_user'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === TRUE)
+							{
+								$data['ui'] =$this->user_data->GetAllXAdmin();
+								$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+								if ($this->form_validation->run() == FALSE)
+									{
+										//form
+										$this->load->view('user_perm_edit', $data);
+									}
+									else
+									{
+										//form process
+										if($this->input->post('search', TRUE))
+											{
+												$name = $this->input->post('name', TRUE);
+												$l = $this->user_data->search_user($name);
+												if($l)
+													{
+														redirect('/isms/set_privillege/'.$l->row()->id, 'location');
+													}
+													else
+													{
+														$data['info'] = 'Nama yang anda cari tidak dapat dijumpai';
+														$this->load->view('user_perm_edit', $data);
+													};
+											}
+									}
+							}
+							else
+							{
+								redirect('/isms/unauthorised', 'location');
+							}
+					}
+					else
+					{
+						redirect('/isms/index', 'location');
+					}
+			}
 
 
 

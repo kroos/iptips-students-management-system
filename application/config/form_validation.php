@@ -361,6 +361,15 @@ $config = array	(
 							)
 					),
 					//refer balik kat controller pendaftar.php, checklist no 10
+					'isms/user_perm_edit' => array
+					(
+						array
+							(
+								'field' => 'name',
+								'label' => 'Nama Staf',
+								'rules' => 'trim|required|min_length[2]|xss_clean'
+							)
+					),
 				);
 
 
