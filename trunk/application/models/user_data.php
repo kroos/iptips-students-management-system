@@ -11,6 +11,13 @@ class User_data extends CI_Model
 //CRUD for user_data
 
 //SELECT
+
+		function ap ($nama)
+			{
+				$this->db->order_by('apa', 'ASC')->like('nama', $nama)->or_like('ic', $nama)->get_where('user_data', array('id <>' => 1, 'nama' => 'Admin'));
+			}
+
+
 		function GetAll()
 			{
 				return $this->db->order_by('name', 'ASC')->get('user_data');
