@@ -24,9 +24,9 @@ class User_function extends CI_Model
 
 
 //INSERT
-		function insert_function($function, $remarks)
+		function insert_function($function, $remarks, $menu, $display)
 			{
-				return $this->db->insert('user_function', array('function' => $function, 'remarks' => $remarks));
+				return $this->db->insert('user_function', array('function' => $function, 'remarks' => $remarks, 'menu' => $menu, 'menu_display' => $display));
 			}
 
 //DELETE

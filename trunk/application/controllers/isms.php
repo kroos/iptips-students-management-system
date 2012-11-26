@@ -264,9 +264,11 @@ class Isms extends CI_Controller
 												$ctrlr = $this->input->post('ctrlr', TRUE);
 												$func = $this->input->post('function', TRUE);
 												$remarks = $this->input->post('remarks', TRUE);
+												$display = $this->input->post('display', TRUE);
+												$menu = ucwords(strtolower($this->input->post('menu', TRUE)));
 
 												//masukkan dalam table function
-												$y = $this->user_function->insert_function($func, $remarks);
+												$y = $this->user_function->insert_function($func, $remarks, $menu, $display);
 
 												//masukkan dalam table dept_func utk func tadi, akan tetapi perlu dapatkan id untk function dulu
 												$id_func = $this->db->insert_id();
