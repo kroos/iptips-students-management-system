@@ -13,7 +13,12 @@ class User_data extends CI_Model
 //SELECT
 		function GetAll()
 			{
-				return $this->db->get('user_data');
+				return $this->db->order_by('name', 'ASC')->get('user_data');
+			}
+
+		function GetAllXAdmin()
+			{
+				return $this->db->order_by('name', 'ASC')->get_where('user_data', array('id <>' => 1));
 			}
 
 		function login($user, $pass)
@@ -30,6 +35,12 @@ class User_data extends CI_Model
 			{
 				return $this->db->get_where('user_data', array('id' => $id));
 			}
+
+		function search_user($name)
+			{
+				return $this->db->order_by('name', 'ASC')->get_where('user_data', array('id <>' => 1, 'name' => $name));
+			}
+
 //UPDATE
 		function update_profile($id_user, $name, $ic, $email, $address, $city, $state, $zip, $cellphone, $telephone)
 			{

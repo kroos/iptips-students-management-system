@@ -222,6 +222,7 @@ class Pendaftar extends CI_Controller
 			$this->load->view('pendaftar/detail_pemohon',$data);
 		}
 	}
+#############################################################################################################################
 //template
 /*
 		public function home()
