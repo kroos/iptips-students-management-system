@@ -17,7 +17,7 @@
 		<div class="form_settings">
 		<?=form_open()?>
 
-		<div id="radioset">
+		<div id="radioset1">
 			<p>Jabatan/controller/modul : <br />
 			<?$p = 0?>
 			<?$b = 0?>
@@ -34,6 +34,19 @@
 			<p><span><label for="name">Nama Function : </label></span>
 			<?=form_input(array('name' => 'function', 'value' => set_value('function'), 'maxlength' => '30', 'size' => '12', 'id' => 'name'))?>
 			<br /><?=form_error('function')?>
+			</p>
+
+			<p><span><label for="menu">Menu Function : </label></span>
+			<?=form_input(array('name' => 'menu', 'value' => set_value('menu'), 'maxlength' => '30', 'size' => '12', 'id' => 'menu'))?>
+			<br /><?=form_error('menu')?>
+			</p>
+
+			<p>Paparkan di Menu : 
+			<div id="radioset2">
+			<?=form_radio('display', 1, '', 'id="radio11"').form_label('Ya', 'radio11')?>
+			<?=form_radio('display', 0, '', 'id="radio21"').form_label('Tidak', 'radio21')?>
+			</div>
+			<br /><?=form_error('display')?>
 			</p>
 
 			<p><span><label for="remarks">Catitan Function : </label></span>
@@ -54,7 +67,8 @@
 			$(function() {
 				$( "input[type=submit], a, button", ".demo" )
 					.button();
-				$( "#radioset" ).buttonset();
+				$( "#radioset1" ).buttonset();
+				$( "#radioset2" ).buttonset();
 
 				// Datepicker
 				$('#datepicker1').datetimepicker({dateFormat: "yy-mm-dd", timeFormat: "hh:mm:ss", showSecond: true, showMillisec: false, ampm: false, stepHour: 1, stepMinute: 1, stepSecond: 5});

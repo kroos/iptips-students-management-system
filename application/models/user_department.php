@@ -16,6 +16,11 @@ class User_department extends CI_Model
 				return $this->db->get('user_department');
 			}
 
+		function GetAllXISMS()
+			{
+				return $this->db->get_where('user_department', array('id >' => 1));
+			}
+
 		function id($id)
 			{
 				return $this->db->get_where('user_department', array('id' => $id));

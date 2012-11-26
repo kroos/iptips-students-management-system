@@ -245,6 +245,18 @@ $config = array	(
 							),
 						array
 							(
+								'field' => 'menu',
+								'label' => 'Menu Function',
+								'rules' => 'trim|min_length[2]|max_length[50]|is_unique[user_function.menu]|xss_clean'
+							),
+						array
+							(
+								'field' => 'display',
+								'label' => 'Paparkan di Menu',
+								'rules' => 'trim|required|is_natural|exact_length[1]|xss_clean'
+							),
+						array
+							(
 								'field' => 'remarks',
 								'label' => 'Catitan Function',
 								'rules' => 'trim|required|min_length[2]|max_length[255]|is_unique[user_function.remarks]|xss_clean'
