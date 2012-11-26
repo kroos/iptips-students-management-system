@@ -1,9 +1,5 @@
 <?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class App_waris_model extends CI_Model{
 	public function _construct(){
 		$this->load->database();
