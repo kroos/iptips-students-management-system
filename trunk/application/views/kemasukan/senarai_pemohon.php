@@ -16,15 +16,9 @@
 	<!-- <div class="form_settings"> dari template  -->
     <div class="form_settings">
 	    <?=form_open()?>
-                <p>
-                <!--  span ni mai dari template, buat laa sikit supaya nampak cantik, sekurang2nya komen dari user tak boleh kata "unfriendly user" -->
-                <!-- <span><?=form_label('Nama', 'nama')?> : </span> -->
-                <?=form_input(array('name' => 'nama', 'value' => set_value('nama'), 'maxlength' => '50', 'size' => '30', 'id' => 'nama'))?>
-                <?=form_submit(array('name' => 'cari', 'value' => 'Cari', 'class' => 'submit'))?><br />
-                <!-- form_error function kena letak, supaya user dapat tau kalau form tak diproses sepenuhnya jika ada kesalahan input dari user....  -->
+                <span>Carian</span><?=form_input(array('name' => 'nama', 'value' => set_value('nama'), 'maxlength' => '50', 'size' => '30', 'id' => 'nama'))?>
+                <span>&nbsp;</span><?=form_submit(array('name' => 'cari', 'value' => 'Cari', 'class' => 'submit'))?><br />
                 <?=form_error('nama')?>
-
-                </p>
 	    <?=form_close()?>
     </div>
 
@@ -34,7 +28,7 @@
 
 	<!-- kalau process di controller return 0 rows ( ->num_rows() equivalent to mysql_num_rows() ) -->
 	<?if($pemohon->num_rows() < 1):?>
-		<p>Nama yang anda cari tidak dapat dijumpai</p>
+		<p>Tiada dijumpai</p>
 	<?else:?>
 				<!-- <div class="demo"> = utk bg cantik supaya semua anchor dpt di"jquery"kan -->
 				<div class="demo">
@@ -71,10 +65,10 @@
 							<tr>
 								<!-- utk pengetahuan, kalau scratch coding, syntax $p['id'] ni adalah betul, tp dlm CI, ia diringkaskan lagi jadi mcm ni, $p->id -->
 								<td><?=$i++?></td>
-								<td><?=anchor('pendaftar/detail_pemohon/'.$p->id, $p->nama, array('title' => 'Keterangan Pemohon'))?></td>
+								<td><?=anchor('kemasukan/detail_pemohon/'.$p->id, $p->nama, array('title' => 'Keterangan Pemohon'))?></td>
 								<td><?=$p->ic?></td>
 								<td><?=$p->warganegara?></td>
-								<td><?=anchor('pendaftar/detail_pemohon/'.$p->id, 'Kemaskini', array('title' => 'Kemaskini Pemohon'))?></td>
+								<td><?=anchor('kemasukan/detail_pemohon/'.$p->id, 'Kemaskini', array('title' => 'Kemaskini Pemohon'))?></td>
 							</tr>
 						<?endforeach?>
 						</tbody>

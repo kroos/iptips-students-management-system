@@ -1,34 +1,16 @@
 <?php extend('base_template_user') ?>
 	<?php startblock('head')?>
-		<?//= get_extended_block() ?>
+		<?= get_extended_block() ?>
 		
 	<?php endblock()?>
-	
-	<?php startblock('head') ?>
-    <title>ISMS : <?=$title?></title>
-    <style>
-		.ui-autocomplete {
-			max-height: 100px;
-			overflow-y: auto;
-			/* prevent horizontal scrollbar */
-			overflow-x: hidden;
-			/* add padding to account for vertical scrollbar */
-			padding-right: 20px;
-			width:300px;
-		}
-		/* IE 6 doesn't support max-height
-		 * we use height instead, but this forces the menu to always be this tall
-		 */
-		* html .ui-autocomplete {
-			height: 100px;
-			width:300px;
-		}
-	</style>
-    <?php endblock()?>
     
     <?php startblock('content') ?>
     	<h1>Selamat Datang ke IPTIPs Students Management System</h1>
         <h2><?=$title?></h2>
+        <div id="accordion">
+	        <h3>Bantuan</h3>
+	        <p>Masukkan maklumat peribadi pelajar.</p>
+        </div>
         <div class="info"><?=@$info?><br>
                     <?=validation_errors(); ?></div>
         <div class="form_settings">
@@ -58,8 +40,8 @@
                         <?=form_input(array('name' => 'bangsa', 'value' => set_value('bangsa'), 'id' => 'bangsa', 'size' => '12' ))?>
                         <br /><?=form_error('bangsa')?></p>
                     <p><span><?=form_label('Jantina', 'jantina')?></span>
-                        <?=form_radio(array('name'=>'jantina', 'value' => 'lelaki', 'id' => 'jantina'))?>Lelaki 
-                        <?=form_radio(array('name'=>'jantina', 'value' => 'perempuan', 'id' =>'jantina'))?>Perempuan
+                        <?=form_radio(array('name'=>'jantina', 'value' => 'lelaki', 'id' => 'jantina', 'class'=>'checkbox'))?>Lelaki 
+                        <?=form_radio(array('name'=>'jantina', 'value' => 'perempuan', 'id' =>'jantina', 'class'=>'checkbox'))?>Perempuan
                         <br /><?=form_error('jantina')?></p>
                     <p><span><?=form_label('Taraf Perkawinan', 'status_kahwin')?></span>
                         <?=form_input(array('name' => 'status_kahwin', 'value' => set_value('status_kahwin'), 'id' => 'status_kahwin', 'size' => '12' ))?>
@@ -89,9 +71,7 @@
 	<?php endblock()?>
 	
 	<?php startblock('jscript')?>
-<!--		<script src="<?=base_url()?>js/jquery/jquery-ui-1.9.1.custom.js"></script>-->
-<!--		<script type="text/javascript" src="<?=base_url()?>js/jquery/jquery-ui-timepicker-addon.js"></script>-->
-		<?= get_extended_block() ?>
+	<?= get_extended_block() ?>
 		<script>
 			$(document).ready(function() {
 	
@@ -116,6 +96,17 @@
     		                $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
     		            }
 	    			});
+		        });
+
+		        $( "#accordion" ).accordion({
+		            collapsible: true
+		        });
+
+		        $('input').each(function(index){
+			        $(this).blur(function(){
+				        val = $(this).val()
+			        	$(this).val(val.toUpperCase());
+			        });
 		        });
 
 		        function negara_hid(kod){
