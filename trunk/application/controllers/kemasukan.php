@@ -118,7 +118,7 @@ class Kemasukan extends CI_Controller
 		            'nama' => $this->input->post('nama', TRUE),
 		            'ic' => $this->input->post('ic', TRUE),
 		            'passport' => $this->input->post('passport', TRUE),
-		            'dt_lahir' => $this->input->post('dt_lahir', TRUE),
+		            'dt_lahir' => $this->input->date('Y-m-d', strtotime(post('dt_lahir', TRUE))),
 		            'tempat_lahir' => $this->input->post('tempat_lahir', TRUE),
 		            'status_warga' => $this->input->post('status_warga', TRUE),
 		            'warganegara' => $this->input->post('warganegara', TRUE),
@@ -131,12 +131,13 @@ class Kemasukan extends CI_Controller
 		            'bandar' => $this->input->post('bandar', TRUE),
 		            'negeri' => $this->input->post('negeri', TRUE),
 		            'negara' => $this->input->post('negara', TRUE),
-		            'id_add' => 'id_add',
+		            'id_add' => $this->session->userdata('id_user'),
 		            'dt_add' => date('Y-d-m')
 				);
 				$this->app_pelajar->set_app_pelajar($insert);
+				$data['insertID'] = $this->db->insert_id();
 				$data['info'] = 'Data telah berjaya disimpan';
-				redirect('kemasukan/akademik',$data);
+				redirect('kemasukan/akademik/'.$data['insertID']);
 			}
 		}
 	}
@@ -145,15 +146,14 @@ class Kemasukan extends CI_Controller
 	public function akademik($id = NULL){
 		
 		$data['title'] = 'Kelayakan Akademik';
-		if(user_role($this->session->userdata('id_user'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === FALSE)
-		{
-			redirect('/isms/unauthorised', 'location');
-		}
+		$data['id_mohon'] = $id;
 		
 		$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
 		if ($this->form_validation->run() == FALSE)
 		{	
-			$data['info'] = 'Data tidak berjaya disimpan';
+			if($this->input->post('simpan', TRUE)){
+				$data['info'] = 'Data tidak berjaya disimpan';
+			}
 			$this->load->view('kemasukan/akademik',$data);
 		}
 		else
