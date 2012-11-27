@@ -27,10 +27,13 @@ class App_pelajar extends CI_Model{
     	if($nama == NULL){
     		return $this->get_app_pelajar();
     	}
-    	$sql = "select * from app_pelajar where nama like '%$nama%' or ic = ? or passport = ?";
-        //return $this->db->or_like('nama', $nama)->or_where('ic',$nama)->or_where('passport', $nama)->order_by('nama', 'asc')->get('app_pelajar');
-    	return $this->db->query($sql,array($nama, $nama, $nama));
-    	//return $query->result_array();
+    	//$sql = "select * from app_pelajar where nama like '%$nama%' or ic = ? or passport = ?";
+        $this->db->like('ic',$nama);
+        $this->db->or_like('nama', $nama);
+        $this->db->or_like('passport', $nama);
+         //$this->db->order_by('nama', 'asc');
+          return $this->db->get('app_pelajar');
+    	//return $this->db->query($sql,array($nama, $nama, $nama));
     }
     
     function get_where($where = array()){
