@@ -129,7 +129,7 @@ $config = array	(
 								'rules' => 'trim|required|is_natural_no_zero|xss_clean'
 							),
 					),
-					'pendaftar/permohonan_baru' => array
+					'kemasukan/permohonan_baru' => array
 					( 
 						array
 							(
@@ -362,14 +362,14 @@ $config = array	(
 							),
 					),
 					//baca kat sini hanya selepas siapkan ./application/views/pendaftar/senarai_pemohon.php
-					'pendaftar/senarai_pemohon' => array
+					'kemasukan/senarai_pemohon' => array
 					(
 						//hanya ada 1 input sahaja
 						array
 							(
 								'field' => 'nama',						//<-- input name
 								'label' => 'Nama',						//<-- input label
-								'rules' => 'trim|required|xss_clean'	//<-- input filter, boleh refer kat http://codeigniter.com/user_guide/libraries/form_validation.html#rulereference
+								'rules' => 'trim|xss_clean'	//<-- input filter, boleh refer kat http://codeigniter.com/user_guide/libraries/form_validation.html#rulereference
 							)
 					),
 					//refer balik kat controller pendaftar.php, checklist no 10
