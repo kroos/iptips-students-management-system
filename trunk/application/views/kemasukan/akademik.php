@@ -6,8 +6,7 @@
 		<div id="info">
                     <?=@$info?>
                     <?php echo validation_errors(); ?>
-                </div>
-                
+                </div>      
                 <div class="form_settings">
                     <?=form_open()?>
                     	<?=form_input(array('name'=>'id_mohon', 'id'=>'id_mohon', 'value'=>set_value('id_mohon' , $id_mohon)))  #set_value('id_mohon')))?>
@@ -16,25 +15,40 @@
                         <p><span><?php echo form_label('Tahun Tamat Pengajian', 'tahun')?></span>
 	                            <?=form_input(array('name'=>'tahun', 'id'=>'tahun', 'value'=>set_value('tahun'), 'size'=>'4'))?>
 	                    <p><span><?php echo form_label('Tahap Pengajian', 'level')?></span>
-	                           <?=form_input(array('name'=>'level', 'id'=>'level', 'value'=>set_value('level'), 'size'=>'12'));?></p>p>
+	                           <?=form_input(array('name'=>'level', 'id'=>'level', 'value'=>set_value('level'), 'size'=>'12'));?></p>	                    	                    
+	                    <table>
+		                    <thead>
+			                    <tr>
+			                    	<th>Mata Pelajaran</th><th>Gred</th><th><?php echo form_button('addRow', '+', 'class=addRow')?></th>
+			                    </tr>
+		                    </thead>
+		                    <tbody>
+		                        <tr>
+		                            <td><?=form_input(array('name'=>'gred[]', 'id'=>'gred', 'value'=>set_value('gred'), 'size'=>'12'))?></td>
+		                            <td><?=form_input(array('name'=>'gred[]', 'id'=>'gred', 'value'=>set_value('gred'), 'size'=>'4'))?></td>
+		                            <td><?php echo form_button('delRow', '-', 'class=delRow')?></td>
+	                        	</tr>
+	                        </tbody>
+	                    </table>
 	                    
-	                    <p><?=form_submit('simpan', 'Simpan', 'class=submit')?>
-	                    <?=form_close()?>
-	                    <?=form_open()?>
-                    <table>
-                        <tr>
-                            <td><?=form_dropdown('subjek[]', $options)?></td>
-                            <td><?=form_input(array('name'=>'gred', 'id'=>'gred', 'value'=>set_value('gred')))?></td>
-                        </tr>
-                    </table>
+	                    <p><?=form_submit('simpanTam', 'Simpan & Tambah Kelayakan', 'class=submit')?><?=form_submit('simpan', 'Seterusnya', 'class=submit')?></p>
                     <?=form_close()?>
-                    <?=anchor('kemasukan/permohonan_baru/'.$id_mohon, 'Kembali', array('title' => 'Kembali'))?>
                 </div>
-                <?php startblock('jscript')?>
-					<?//=get_extended_block() ?>
-				<?php endblock()?>
-
-
+		
+		<div class="demo"> 
+         	<?=anchor('kemasukan/permohonan_baru/'.$id_mohon, 'Kembali', array('title' => 'Kembali'))?>
+		</div>
 	<? endblock() ?>
+
+	<?php startblock('jscript')?>
+	<script type="text/javascript" src="<?php echo base_url()?>js/jquery/jquery.table.addrow.js"></script>
+		<?//=get_extended_block() ?>
+		<script>
+			$(document).ready(function(){
+				$(".addRow").btnAddRow();
+				$(".delRow").btnDelRow();
+			});
+		</script>
+	<?php endblock()?>
 
 <? end_extend() ?>
