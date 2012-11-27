@@ -14,10 +14,10 @@ class Kemasukan extends CI_Controller
 				{
 					redirect('/isms/index', 'location');
 				}else{
-                                    if(user_role($this->session->userdata('id_user'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === false){
-                                        redirect('/isms/unauthorised', 'location');
-                                    }
-                                }
+					if(user_role($this->session->userdata('id_user'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === false){
+                    	redirect('/isms/unauthorised', 'location');
+					}
+				}
 			}
 			
 
@@ -63,7 +63,7 @@ class Kemasukan extends CI_Controller
 								{
 									$data['pemohon'] = $this->app_pelajar->get_app_pelajar();	
 									$this->load->view('kemasukan/senarai_pemohon', $data);													//buat paparan file ./application/views/kemasukan/senarai_pemohon.php yang mana variable "$data" (variable array) dari controller akan di"pas"kan ke views/kemasukan/senarai_pemohon.php
-                                                                }
+                                }
 								else
 								{
 									if($this->input->post('cari', TRUE))																	//var dr submit button, refer views/kemasukan/senarai_pemohon.php
@@ -113,9 +113,30 @@ class Kemasukan extends CI_Controller
 		else
 		{		
 			if($this->input->post('simpan', TRUE)){	
-				//$this->app_pelajar_model->set_app_pelajar();
+				$insert = array(
+	//	            'matrik' => $this->input->post('matrik'),
+		            'nama' => $this->input->post('nama', TRUE),
+		            'ic' => $this->input->post('ic', TRUE),
+		            'passport' => $this->input->post('passport', TRUE),
+		            'dt_lahir' => $this->input->post('dt_lahir', TRUE),
+		            'tempat_lahir' => $this->input->post('tempat_lahir', TRUE),
+		            'status_warga' => $this->input->post('status_warga', TRUE),
+		            'warganegara' => $this->input->post('warganegara', TRUE),
+		            'bangsa' => $this->input->post('bangsa', TRUE),
+		            'jantina' => $this->input->post('jantina', TRUE),
+		            'status_kahwin' => $this->input->post('status_kahwin', TRUE),
+		            'alamat1' => $this->input->post('alamat1', TRUE),
+		            'alamat2' => $this->input->post('alamat2', TRUE),
+		            'poskod' => $this->input->post('poskod', TRUE),
+		            'bandar' => $this->input->post('bandar', TRUE),
+		            'negeri' => $this->input->post('negeri', TRUE),
+		            'negara' => $this->input->post('negara', TRUE),
+		            'id_add' => 'id_add',
+		            'dt_add' => date('Y-d-m')
+				);
+				$this->app_pelajar->set_app_pelajar($insert);
 				$data['info'] = 'Data telah berjaya disimpan';
-				$this->load->view('kemasukan/akademik',$data);
+				redirect('kemasukan/akademik',$data);
 			}
 		}
 	}
