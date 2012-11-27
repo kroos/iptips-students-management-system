@@ -6,14 +6,32 @@
 	
 	<?php startblock('head') ?>
     <title>ISMS : <?=$title?></title>
+    <style>
+		.ui-autocomplete {
+			max-height: 100px;
+			overflow-y: auto;
+			/* prevent horizontal scrollbar */
+			overflow-x: hidden;
+			/* add padding to account for vertical scrollbar */
+			padding-right: 20px;
+			width:300px;
+		}
+		/* IE 6 doesn't support max-height
+		 * we use height instead, but this forces the menu to always be this tall
+		 */
+		* html .ui-autocomplete {
+			height: 100px;
+			width:300px;
+		}
+	</style>
     <?php endblock()?>
     
     <?php startblock('content') ?>
+    	<h1>Selamat Datang ke IPTIPs Students Management System</h1>
         <h2><?=$title?></h2>
         <div class="info"><?=@$info?><br>
                     <?=validation_errors(); ?></div>
-        <div class="form_setting">
-        	<div class="demo">
+        <div class="form_settings">
             <?=form_open()?>
                     <p><span><?=form_label('Nama', 'nama')?></span>
                         <?=form_input(array('name' => 'nama', 'value' => set_value('nama'), 'maxlength' => '50', 'size' => '30', 'id' => 'nama'))?>
@@ -36,12 +54,12 @@
                     <p><span><?=form_label('Warganegara', 'warganegara')?></span>
                         <?=form_input(array('name' => 'warganegara', 'value' => set_value('warganegara'), 'id' => 'warganegara', 'size' => '12' ))?>
                         <br /><?=form_error('warganegara')?></p>
-                    <p><span><?=form_label('Bangsa', 'bangsa')?></sapn>
+                    <p><span><?=form_label('Bangsa', 'bangsa')?></span>
                         <?=form_input(array('name' => 'bangsa', 'value' => set_value('bangsa'), 'id' => 'bangsa', 'size' => '12' ))?>
                         <br /><?=form_error('bangsa')?></p>
                     <p><span><?=form_label('Jantina', 'jantina')?></span>
-                        <?=form_radio(array('name'=>'jantina', 'value' => 'lelaki', 'label' => 'Lelaki'))?><?=form_radio(array('name'=>'jantina', 'value' => 'perempuan', 'label' =>'Perempuan'))?>
-                                <?=form_input(array('name' => 'jantina', 'value' => set_value('jantina'), 'id' => 'jantina', 'size' => '12' ))?>
+                        <?=form_radio(array('name'=>'jantina', 'value' => 'lelaki', 'id' => 'jantina'))?>Lelaki 
+                        <?=form_radio(array('name'=>'jantina', 'value' => 'perempuan', 'id' =>'jantina'))?>Perempuan
                         <br /><?=form_error('jantina')?></p>
                     <p><span><?=form_label('Taraf Perkawinan', 'status_kahwin')?></span>
                         <?=form_input(array('name' => 'status_kahwin', 'value' => set_value('status_kahwin'), 'id' => 'status_kahwin', 'size' => '12' ))?>
@@ -55,22 +73,18 @@
                     <p><span><?=form_label('Poskod', 'poskod')?></span>
                         <?=form_input(array('name' => 'poskod', 'value' => set_value('poskod'), 'id' => 'poskod', 'size' => '12' ))?>
                         <br /><?=form_error('poskod')?></p>
-                    <p><?=form_label('Bandar', 'bandar')?></span>
+                    <p><span><?=form_label('Bandar', 'bandar')?></span>
                         <?=form_input(array('name' => 'bandar', 'value' => set_value('bandar'), 'id' => 'bangsa', 'size' => '12' ))?>
                         <br /><?=form_error('bandar')?></p>
                     <p><span><?=form_label('Negeri', 'negeri')?></span>
                         <?=form_input(array('name' => 'negeri', 'value' => set_value('negeri'), 'id' => 'negeri', 'size' => '12' ))?>
                         <br /><?=form_error('negeri')?></p>
-                    <p><?=form_label('Negara', 'negara')?></span>
+                    <p><span><?=form_label('Negara', 'negara')?></span>
                         <?=form_input(array('name' => 'negara', 'value' => set_value('negara'), 'id' => 'negara', 'size' => '12',  'autocomplete'=>'on'  ))?>
                         <?=form_input(array('name' => 'negara_hid', 'value' => set_value('negara_hid'), 'id' => 'negara_hid', 'size' => '12'  ))?>
                         <br /><?=form_error('negara')?></p>
                     <p><span>&nbsp;</span><?=form_submit('simpan','Seterusnya>>','class="submit"')?></p>
-                    
-                </tbody>
-            </table>
             <?=form_close()?>
-            </div>
         </div>
 	<?php endblock()?>
 	
@@ -91,7 +105,7 @@
 	    				source: data,
 	    				minLength: 2,
 	    				select: function( event, ui ){
-	    					var id = $(this).closest('td').parent()[0].sectionRowIndex; //get row index
+	    					//var id = $(this).closest('td').parent()[0].sectionRowIndex; //get row index
 	    					var val = ui.item.kod; //get value to be passing to selectlist 
 	    					negara_hid(val);
     					},
