@@ -39,34 +39,8 @@ class App_pelajar extends CI_Model{
     }
     
     //insert
-    function set_app_pelajar(){
-        $this->load->helper('url');
-	
-	//$slug = url_title($this->input->post('userid'), 'dash', TRUE);
-	
-		$data = array(
-//	            'matrik' => $this->input->post('matrik'),
-	            'nama' => $this->input->post('nama', TRUE),
-	            'ic' => $this->input->post('ic', TRUE),
-	            'passport' => $this->input->post('passport', TRUE),
-	            'dt_lahir' => $this->input->post('dt_lahir', TRUE),
-	            'tempat_lahir' => $this->input->post('tempat_lahir', TRUE),
-	            'status_warga' => $this->input->post('status_warga', TRUE),
-	            'warganegara' => $this->input->post('warganegara', TRUE),
-	            'bangsa' => $this->input->post('bangsa', TRUE),
-	            'jantina' => $this->input->post('jantina', TRUE),
-	            'status_kahwin' => $this->input->post('status_kahwin', TRUE),
-	            'alamat1' => $this->input->post('alamat1', TRUE),
-	            'alamat2' => $this->input->post('alamat2', TRUE),
-	            'poskod' => $this->input->post('poskod', TRUE),
-	            'bandar' => $this->input->post('bandar', TRUE),
-	            'negeri' => $this->input->post('negeri', TRUE),
-	            'negara' => $this->input->post('negara', TRUE),
-	            'id_add' => 'id_add',
-	            'dt_add' => date('Y-d-m')
-		);
-		
-		return $this->db->insert('app_pelajar', $data);
+    function set_app_pelajar($data){
+        return $this->db->insert('app_pelajar', $data);
     }
     
     //update
