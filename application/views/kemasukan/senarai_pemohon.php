@@ -8,7 +8,7 @@
 	<h2><?=$title?></h2>
 
 	<!-- sedikit keterangan apa yang page ni dapat buat utk user...  -->
-	<p>Sila masukkan nama pemohon, klik pada butang cari. Senarai pemohon yang anda cari akan dipaparkan</p>
+	<p>Sila masukkan nama pemohon/ic/passport, klik pada butang cari. Senarai pemohon yang anda cari akan dipaparkan</p>
 
 	<!-- variable $info hanya akan dipaparkan selepas button submit di"klik" yang mana ia akan memberitahu user samada proses berjaya atau tidak mengikut input yg telah diberikan kepada user  -->
     <p><font color="#FF0000"><?=@$info?></font></p>
@@ -16,26 +16,21 @@
 	<!-- <div class="form_settings"> dari template  -->
     <div class="form_settings">
 	    <?=form_open()?>
+                <p>
+                <!--  span ni mai dari template, buat laa sikit supaya nampak cantik, sekurang2nya komen dari user tak boleh kata "unfriendly user" -->
+                <!-- <span><?=form_label('Nama', 'nama')?> : </span> -->
+                <?=form_input(array('name' => 'nama', 'value' => set_value('nama'), 'maxlength' => '50', 'size' => '30', 'id' => 'nama'))?>
+                <?=form_submit(array('name' => 'cari', 'value' => 'Cari', 'class' => 'submit'))?><br />
+                <!-- form_error function kena letak, supaya user dapat tau kalau form tak diproses sepenuhnya jika ada kesalahan input dari user....  -->
+                <?=form_error('nama')?>
 
-			<p>
-			<!--  span ni mai dari template, buat laa sikit supaya nampak cantik, sekurang2nya komen dari user tak boleh kata "unfriendly user" -->
-			<span><?=form_label('Nama', 'nama')?> : </span>
-			<?=form_input(array('name' => 'nama', 'value' => set_value('nama'), 'maxlength' => '50', 'size' => '30', 'id' => 'nama'))?><br />
-			<!-- form_error function kena letak, supaya user dapat tau kalau form tak diproses sepenuhnya jika ada kesalahan input dari user....  -->
-			<?=form_error('nama')?>
-			</p>
-
-			<p>
-			<!--  macam biasa, dari template html yang aku dapat dari google, tujuan nak bagi cantik dan teratur.... -->
-			<span>&nbsp;</span>
-	    	<?=form_submit(array('name' => 'cari', 'value' => 'Cari', 'class' => 'submit'))?>
-			</p>
+                </p>
 	    <?=form_close()?>
     </div>
 
 <!--  table kat bawah ni, user taka akan nampak selagi mana form tak diproses.. i.e kalau tak klik submit button, maka table x nampak -->
 <!--  cuba sedaya mungkin utk gunakan php shorthand supaya mudah utk lihat code -->
-<?if($this->form_validation->run() == TRUE):?>
+<?//if($this->form_validation->run() == TRUE):?>
 
 	<!-- kalau process di controller return 0 rows ( ->num_rows() equivalent to mysql_num_rows() ) -->
 	<?if($pemohon->num_rows() < 1):?>
@@ -75,8 +70,8 @@
 						<?foreach($pemohon->result() as $p):?>
 							<tr>
 								<!-- utk pengetahuan, kalau scratch coding, syntax $p['id'] ni adalah betul, tp dlm CI, ia diringkaskan lagi jadi mcm ni, $p->id -->
-								<td><?=anchor('pendaftar/detail_pemohon/'.$p->id, $i++, array('title' => 'Keterangan Pemohon'))?></td>
-								<td><?=$p->nama?></td>
+								<td><?=$i++?></td>
+								<td><?=anchor('pendaftar/detail_pemohon/'.$p->id, $p->nama, array('title' => 'Keterangan Pemohon'))?></td>
 								<td><?=$p->ic?></td>
 								<td><?=$p->warganegara?></td>
 								<td><?=anchor('pendaftar/detail_pemohon/'.$p->id, 'Kemaskini', array('title' => 'Kemaskini Pemohon'))?></td>
@@ -90,9 +85,8 @@
 		<?endif?>
 
 <!-- end php code of [ if($this->form_validation->run() == TRUE) ] -->
-<?endif?>
+<?//endif?>
 
 <!-- check kat ./application/config/form_validation.php	<-- isi apa yang patut -->
-
 <? endblock() ?>
 <? end_extend()?>
