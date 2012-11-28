@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50523
 File Encoding         : 65001
 
-Date: 2012-11-25 02:44:26
+Date: 2012-11-27 04:35:53
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -38,6 +38,7 @@ CREATE TABLE `app_akademik` (
 DROP TABLE IF EXISTS `app_pelajar`;
 CREATE TABLE `app_pelajar` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id_mohon` varchar(20) DEFAULT NULL,
   `matrik` varchar(20) DEFAULT NULL,
   `nama` varchar(100) DEFAULT NULL,
   `ic` varchar(50) DEFAULT NULL,
@@ -55,6 +56,9 @@ CREATE TABLE `app_pelajar` (
   `bandar` varchar(10) DEFAULT NULL,
   `negeri` varchar(10) DEFAULT NULL,
   `negara` varchar(10) DEFAULT NULL,
+  `notel` varchar(20) DEFAULT NULL,
+  `nohp` varchar(20) DEFAULT NULL,
+  `emel` varchar(50) DEFAULT NULL,
   `id_add` varchar(20) DEFAULT NULL,
   `dt_add` date DEFAULT NULL,
   `id_edit` varchar(20) DEFAULT NULL,
@@ -62,17 +66,38 @@ CREATE TABLE `app_pelajar` (
   `layak` tinyint(1) DEFAULT NULL,
   `dt_transfer` datetime DEFAULT NULL,
   `id_transfer` varchar(20) DEFAULT NULL,
+  `sesi_mohon` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of app_pelajar
 -- ----------------------------
-INSERT INTO `app_pelajar` VALUES ('1', null, 'a', '123', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `app_pelajar` VALUES ('2', null, 'b', '321', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `app_pelajar` VALUES ('3', null, 'qwe', '444', '0', '0000-00-00', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0000-00-00', '0', '0000-00-00', '0', '0000-00-00 00:00:00', '0');
-INSERT INTO `app_pelajar` VALUES ('4', null, 'asd', '123', '0', '0000-00-00', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0000-00-00', '0', '0000-00-00', '0', '0000-00-00 00:00:00', '0');
-INSERT INTO `app_pelajar` VALUES ('5', null, 'aku', '901201023343', '0', '1990-12-01', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0000-00-00', '0', '0000-00-00', '0', '0000-00-00 00:00:00', '0');
+INSERT INTO `app_pelajar` VALUES ('1', null, null, 'a', '123', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `app_pelajar` VALUES ('2', null, null, 'b', '321', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `app_pelajar` VALUES ('3', null, null, 'qwe', '444', '0', '0000-00-00', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', null, null, null, '0', '0000-00-00', '0', '0000-00-00', '0', '0000-00-00 00:00:00', '0', null);
+INSERT INTO `app_pelajar` VALUES ('4', null, null, 'asd', '123', '0', '0000-00-00', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', null, null, null, '0', '0000-00-00', '0', '0000-00-00', '0', '0000-00-00 00:00:00', '0', null);
+INSERT INTO `app_pelajar` VALUES ('5', null, null, 'aku', '901201023343', '0', '1990-12-01', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', null, null, null, '0', '0000-00-00', '0', '0000-00-00', '0', '0000-00-00 00:00:00', '0', null);
+
+-- ----------------------------
+-- Table structure for `app_progmohon`
+-- ----------------------------
+DROP TABLE IF EXISTS `app_progmohon`;
+CREATE TABLE `app_progmohon` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `siri_mohon` varchar(30) DEFAULT NULL,
+  `kod_prog` varchar(20) DEFAULT NULL,
+  `pilihan` int(1) DEFAULT NULL,
+  `status_mohon` varchar(20) DEFAULT 'DIP',
+  `user_edit` varchar(20) DEFAULT NULL,
+  `dt_edit` datetime DEFAULT NULL,
+  `catatan` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of app_progmohon
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `app_subjek_akademik`
@@ -96,13 +121,16 @@ CREATE TABLE `app_subjek_akademik` (
 DROP TABLE IF EXISTS `app_waris`;
 CREATE TABLE `app_waris` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `id_pelajar` bigint(20) DEFAULT NULL,
+  `id_mohon` varchar(20) DEFAULT NULL,
   `nama` varchar(50) DEFAULT NULL,
   `hubungan` varchar(50) DEFAULT NULL,
   `alamat1` longtext,
   `alamat2` longtext,
   `poskod` varchar(10) DEFAULT NULL,
-  `no_telefon` varchar(11) DEFAULT NULL,
+  `notel_rumah` varchar(11) DEFAULT NULL,
+  `notel_pej` varchar(20) DEFAULT NULL,
+  `nohp` varchar(20) DEFAULT NULL,
+  `emel` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -119,7 +147,7 @@ CREATE TABLE `dept_func` (
   `id_user_department` int(11) NOT NULL,
   `id_user_function` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of dept_func
@@ -135,6 +163,7 @@ INSERT INTO `dept_func` VALUES ('9', '1', '6');
 INSERT INTO `dept_func` VALUES ('10', '1', '7');
 INSERT INTO `dept_func` VALUES ('11', '1', '8');
 INSERT INTO `dept_func` VALUES ('12', '5', '9');
+INSERT INTO `dept_func` VALUES ('13', '1', '10');
 
 -- ----------------------------
 -- Table structure for `dept_jaw`
@@ -175,6 +204,64 @@ INSERT INTO `dept_jaw` VALUES ('22', '6', '7');
 INSERT INTO `dept_jaw` VALUES ('23', '6', '13');
 INSERT INTO `dept_jaw` VALUES ('24', '6', '14');
 INSERT INTO `dept_jaw` VALUES ('25', '6', '15');
+
+-- ----------------------------
+-- Table structure for `dept_jaw_func`
+-- ----------------------------
+DROP TABLE IF EXISTS `dept_jaw_func`;
+CREATE TABLE `dept_jaw_func` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_department` int(11) NOT NULL,
+  `user_jawatan` int(11) DEFAULT NULL,
+  `user_function` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of dept_jaw_func
+-- ----------------------------
+INSERT INTO `dept_jaw_func` VALUES ('1', '0', '0', '0');
+
+-- ----------------------------
+-- Table structure for `host_bilik`
+-- ----------------------------
+DROP TABLE IF EXISTS `host_bilik`;
+CREATE TABLE `host_bilik` (
+  `id` int(8) NOT NULL AUTO_INCREMENT,
+  `kodhostel` varchar(20) DEFAULT NULL,
+  `nobilik` varchar(20) DEFAULT NULL,
+  `harga_hari` double(8,2) DEFAULT NULL,
+  `harga_bulan` double(8,2) DEFAULT NULL,
+  `max_capacity` int(3) DEFAULT NULL,
+  `aktif` tinyint(1) DEFAULT '1',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx1` (`nobilik`,`kodhostel`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of host_bilik
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `hostel`
+-- ----------------------------
+DROP TABLE IF EXISTS `hostel`;
+CREATE TABLE `hostel` (
+  `kodhostel` varchar(20) NOT NULL,
+  `namahostel` varchar(50) DEFAULT NULL,
+  `alamat1` varchar(100) DEFAULT NULL,
+  `alamat2` varchar(100) DEFAULT NULL,
+  `bandar` varchar(20) DEFAULT NULL,
+  `negeri` varchar(20) DEFAULT NULL,
+  `negara` varchar(20) DEFAULT NULL,
+  `kat_jantina` tinyint(1) DEFAULT NULL COMMENT '1=lelaki; 2=perempuan',
+  `aktif` tinyint(1) DEFAULT '1',
+  PRIMARY KEY (`kodhostel`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of hostel
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `item_taqwim`
@@ -275,6 +362,28 @@ CREATE TABLE `pel_akademik` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for `pel_dafhostel`
+-- ----------------------------
+DROP TABLE IF EXISTS `pel_dafhostel`;
+CREATE TABLE `pel_dafhostel` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `matrik` varchar(20) DEFAULT NULL,
+  `idbilik` varchar(20) DEFAULT NULL,
+  `tarikh_masuk` date DEFAULT NULL,
+  `tarikh_keluar` date DEFAULT NULL,
+  `sesi` varchar(20) DEFAULT NULL,
+  `id_add` varchar(20) DEFAULT NULL,
+  `dt_add` date DEFAULT NULL,
+  `id_edit` varchar(20) DEFAULT NULL,
+  `dt_edit` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of pel_dafhostel
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for `pel_daftarsubjek`
 -- ----------------------------
 DROP TABLE IF EXISTS `pel_daftarsubjek`;
@@ -298,6 +407,23 @@ CREATE TABLE `pel_daftarsubjek` (
 
 -- ----------------------------
 -- Records of pel_daftarsubjek
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `pel_lib`
+-- ----------------------------
+DROP TABLE IF EXISTS `pel_lib`;
+CREATE TABLE `pel_lib` (
+  `id` int(20) NOT NULL AUTO_INCREMENT,
+  `matrik` varchar(20) DEFAULT NULL,
+  `sesi` varchar(20) DEFAULT NULL,
+  `aktif` tinyint(1) DEFAULT NULL,
+  `tarikh_clear` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of pel_lib
 -- ----------------------------
 
 -- ----------------------------
@@ -379,6 +505,9 @@ CREATE TABLE `pelajar` (
   `bandar` varchar(10) DEFAULT NULL,
   `negeri` varchar(10) DEFAULT NULL,
   `negara` varchar(10) DEFAULT NULL,
+  `notel` varchar(20) DEFAULT NULL,
+  `nohp` varchar(20) DEFAULT NULL,
+  `emel` varchar(50) DEFAULT NULL,
   `dt_daftar` date DEFAULT NULL,
   `sesi_daftar` varchar(20) DEFAULT NULL,
   `id_add` varchar(20) DEFAULT NULL,
@@ -2996,6 +3125,27 @@ INSERT INTO `sel_statusDtl` VALUES ('07', '0704', 'MASTER/SARJANA (TAMAT)');
 INSERT INTO `sel_statusDtl` VALUES ('07', '0705', 'PHD (TAMAT)');
 
 -- ----------------------------
+-- Table structure for `sel_statusmohon`
+-- ----------------------------
+DROP TABLE IF EXISTS `sel_statusmohon`;
+CREATE TABLE `sel_statusmohon` (
+  `kodstatus` varchar(10) NOT NULL,
+  `status_MY` varchar(50) DEFAULT NULL,
+  `status_EN` varchar(50) DEFAULT NULL,
+  `status_AR` varchar(50) DEFAULT NULL,
+  `tawar` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`kodstatus`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of sel_statusmohon
+-- ----------------------------
+INSERT INTO `sel_statusmohon` VALUES ('DIP', 'DALAM PROSES', 'IN PROCESS', null, '0');
+INSERT INTO `sel_statusmohon` VALUES ('GL', 'GAGAL', 'REJECTED', null, '0');
+INSERT INTO `sel_statusmohon` VALUES ('INC', 'TIDAK LENGKAP', 'INCOMPLETE', null, '0');
+INSERT INTO `sel_statusmohon` VALUES ('TW', 'TAWARAN', 'OFFERED', null, '1');
+
+-- ----------------------------
 -- Table structure for `sel_subjek`
 -- ----------------------------
 DROP TABLE IF EXISTS `sel_subjek`;
@@ -3393,13 +3543,33 @@ CREATE TABLE `sesi_akademik` (
   `tarikh_mula` date DEFAULT NULL,
   `tarikh_tamat` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sesi_akademik
 -- ----------------------------
 INSERT INTO `sesi_akademik` VALUES ('1', '2012_1', 'JANUARI-JUN 2012', '2012', '2011-12-31', '2012-06-29');
 INSERT INTO `sesi_akademik` VALUES ('2', '2012_2', 'JULAI-DISEMBER 2012', '2012', '2012-06-30', '2013-01-04');
+INSERT INTO `sesi_akademik` VALUES ('3', '2013_1', 'JANUARI-JUN 2013', '2013', '2013-01-06', '2013-06-30');
+
+-- ----------------------------
+-- Table structure for `sesi_intake`
+-- ----------------------------
+DROP TABLE IF EXISTS `sesi_intake`;
+CREATE TABLE `sesi_intake` (
+  `kodsesi` varchar(10) NOT NULL,
+  `kodmula` varchar(10) DEFAULT NULL,
+  `siri` int(8) DEFAULT NULL,
+  `tarikh_mula` date DEFAULT NULL,
+  `tarikh_tamat` date DEFAULT NULL,
+  `aktif` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`kodsesi`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of sesi_intake
+-- ----------------------------
+INSERT INTO `sesi_intake` VALUES ('2013_1', 'P131', '1', '2012-06-01', '2012-11-30', '1');
 
 -- ----------------------------
 -- Table structure for `sesi_taqwim`
@@ -3437,6 +3607,20 @@ INSERT INTO `sesi_taqwim` VALUES ('17', 'EXAM', '2012-11-05', '2012-11-23', '201
 INSERT INTO `sesi_taqwim` VALUES ('18', 'CUTI_AKHIR', '2012-11-24', '2013-01-04', '2012_2');
 
 -- ----------------------------
+-- Table structure for `siri_matrik`
+-- ----------------------------
+DROP TABLE IF EXISTS `siri_matrik`;
+CREATE TABLE `siri_matrik` (
+  `kod_mula` varchar(5) DEFAULT NULL,
+  `siri` int(5) DEFAULT NULL,
+  `aktif` tinyint(1) DEFAULT '0'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of siri_matrik
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for `spm_gred_year`
 -- ----------------------------
 DROP TABLE IF EXISTS `spm_gred_year`;
@@ -3454,23 +3638,6 @@ CREATE TABLE `spm_gred_year` (
 INSERT INTO `spm_gred_year` VALUES ('1', 'S1', '0', '1999');
 INSERT INTO `spm_gred_year` VALUES ('2', 'S2', '2000', '2008');
 INSERT INTO `spm_gred_year` VALUES ('3', 'S3', '2009', '99999');
-
--- ----------------------------
--- Table structure for `stud_lib`
--- ----------------------------
-DROP TABLE IF EXISTS `stud_lib`;
-CREATE TABLE `stud_lib` (
-  `id` int(20) NOT NULL AUTO_INCREMENT,
-  `matrik` varchar(20) DEFAULT NULL,
-  `sesi` varchar(20) DEFAULT NULL,
-  `aktif` tinyint(1) DEFAULT NULL,
-  `tarikh_clear` date DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of stud_lib
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for `subjek`
@@ -3601,7 +3768,7 @@ INSERT INTO `user_department` VALUES ('1', 'isms', 'ISMS');
 INSERT INTO `user_department` VALUES ('2', 'hea', 'Hal Ehwal Akademik');
 INSERT INTO `user_department` VALUES ('3', 'hep', 'Hal Ehwal Pelajar');
 INSERT INTO `user_department` VALUES ('4', 'kewangan', 'Kewangan');
-INSERT INTO `user_department` VALUES ('5', 'pendaftar', 'Pendaftar');
+INSERT INTO `user_department` VALUES ('5', 'kemasukan', 'Kemasukan');
 INSERT INTO `user_department` VALUES ('6', 'perpustakaan', 'Perpustakaan');
 
 -- ----------------------------
@@ -3640,7 +3807,7 @@ CREATE TABLE `user_dept_func` (
   `active` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'weather its active for the user or not',
   PRIMARY KEY (`id`),
   KEY `unique` (`id_user_function`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user_dept_func
@@ -3659,6 +3826,7 @@ INSERT INTO `user_dept_func` VALUES ('13', '2', '2', '1', '1');
 INSERT INTO `user_dept_func` VALUES ('14', '2', '3', '1', '1');
 INSERT INTO `user_dept_func` VALUES ('15', '2', '4', '1', '1');
 INSERT INTO `user_dept_func` VALUES ('16', '1', '5', '9', '1');
+INSERT INTO `user_dept_func` VALUES ('17', '1', '1', '10', '1');
 
 -- ----------------------------
 -- Table structure for `user_dept_jaw`
@@ -3687,20 +3855,23 @@ CREATE TABLE `user_function` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `function` varchar(255) NOT NULL,
   `remarks` varchar(255) NOT NULL,
+  `menu` varchar(255) NOT NULL,
+  `menu_display` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `Function` (`function`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user_function
 -- ----------------------------
-INSERT INTO `user_function` VALUES ('1', 'index', 'index page');
-INSERT INTO `user_function` VALUES ('4', 'add_user', 'isms add user page');
-INSERT INTO `user_function` VALUES ('5', 'devel', 'isms developer add function page');
-INSERT INTO `user_function` VALUES ('6', 'set_privillege', 'isms set_privillege only display permission user to a function');
-INSERT INTO `user_function` VALUES ('7', 'update_privillege', 'isms update_privillege changing the permission of the function to a user');
-INSERT INTO `user_function` VALUES ('8', 'user_cat', 'isms user_cat tambah jabatan untuk user');
-INSERT INTO `user_function` VALUES ('9', 'senarai_pemohon', 'pendaftar senarai_pemohon memaparkan senarai pemohon kemasukan ke pusat pengajian');
+INSERT INTO `user_function` VALUES ('1', 'index', 'index page', 'Home', '1');
+INSERT INTO `user_function` VALUES ('4', 'add_user', 'isms add user page', 'Tambah Pengguna', '1');
+INSERT INTO `user_function` VALUES ('5', 'devel', 'isms developer add function page', 'Developer', '1');
+INSERT INTO `user_function` VALUES ('6', 'set_privillege', 'isms set_privillege only display permission user to a function', '', '0');
+INSERT INTO `user_function` VALUES ('7', 'update_privillege', 'isms update_privillege changing the permission of the function to a user', '', '0');
+INSERT INTO `user_function` VALUES ('8', 'user_cat', 'isms user_cat tambah jabatan untuk user', 'Tambah Jabatan Kepada Pengguna', '1');
+INSERT INTO `user_function` VALUES ('9', 'senarai_pemohon', 'pendaftar senarai_pemohon memaparkan senarai pemohon kemasukan ke pusat pengajian', 'Senarai Pemohon', '1');
+INSERT INTO `user_function` VALUES ('10', 'user_perm_edit', 'isms user_perm_edit digunakan untuk mengedit capaian pengguna kepada fungsi page mengikut jabatan/controller/modul', 'Kemaskini Capaian Pengguna', '1');
 
 -- ----------------------------
 -- Table structure for `user_jawatan`
@@ -3736,7 +3907,7 @@ INSERT INTO `user_jawatan` VALUES ('15', 'Pustakawan', 'Pustakawan');
 -- View structure for `view_department_function`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_department_function`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_department_function` AS select `dept_func`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept`,`dept_func`.`id_user_function` AS `id_user_function`,`user_function`.`function` AS `function`,`user_function`.`remarks` AS `remarks` from ((`dept_func` join `user_department` on((`dept_func`.`id_user_department` = `user_department`.`id`))) join `user_function` on((`dept_func`.`id_user_function` = `user_function`.`id`))) order by `dept_func`.`id_user_department`,`dept_func`.`id_user_function` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_department_function` AS select `dept_func`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept`,`dept_func`.`id_user_function` AS `id_user_function`,`user_function`.`function` AS `function`,`user_function`.`remarks` AS `remarks`,`user_function`.`menu` AS `menu`,`user_function`.`menu_display` AS `menu_display` from ((`dept_func` join `user_department` on((`dept_func`.`id_user_department` = `user_department`.`id`))) join `user_function` on((`dept_func`.`id_user_function` = `user_function`.`id`))) order by `dept_func`.`id_user_department`,`dept_func`.`id_user_function` ;
 
 -- ----------------------------
 -- View structure for `view_department_jawatan`
