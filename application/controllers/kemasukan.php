@@ -6,7 +6,7 @@ class Kemasukan extends CI_Controller
 			//contructor*/
 			public function __construct(){							//ni mesti hang tgk dari example yang lama iaitu CI sblm version 2.0. hanya CI version 1.X perlu command ni...
 				parent::__construct();
-				$this->load->model('app_pelajar');			//letak benda ni dalam autoload : /config/autoload.php section => $autoload['model']
+				//$this->load->model('app_pelajar');				//letak benda ni dalam autoload : /config/autoload.php section => $autoload['model']
 				//$this->load->helper('template_inheritance');		letak benda ni dalam autoload : /config/autoload.php section => $autoload['helper']
 				//$this->load->view('CSS3_four/main_template');		payah nak terang ni....
 				//$this->load->view('base_template_user');			payah nak terang ni....
@@ -88,7 +88,7 @@ class Kemasukan extends CI_Controller
 	//maklumat pemohon individual
 	public function detail_pemohon($id){
 		$data['title'] = 'Keterangan Pemohon';
-		$data['pemohon'] = $this->app_pelajar_model->get_app_pelajar($id);
+		$data['pemohon'] = $this->app_pelajar->get_app_pelajar($id);
 		$data['field'] = $this->db->list_fields('app_pelajar');
 		foreach($data['field'] as $fields){
 			$data[$fields] = $data['pemohon'][$fields];
@@ -115,18 +115,18 @@ class Kemasukan extends CI_Controller
 			if($this->input->post('simpan', TRUE)){	
 				$insert = array(
 	//	            'matrik' => $this->input->post('matrik'),
-		            'nama' => $this->input->post('nama', TRUE),
+		            'nama' => ucwords(strtolower($this->input->post('nama', TRUE))),
 		            'ic' => $this->input->post('ic', TRUE),
 		            'passport' => $this->input->post('passport', TRUE),
-		            'dt_lahir' => $this->input->date('Y-m-d', strtotime(post('dt_lahir', TRUE))),
-		            'tempat_lahir' => $this->input->post('tempat_lahir', TRUE),
+		            'dt_lahir' => $this->input->post('dt_lahir', TRUE),
+		            'tempat_lahir' => ucwords(strtolower($this->input->post('tempat_lahir', TRUE))),
 		            'status_warga' => $this->input->post('status_warga', TRUE),
-		            'warganegara' => $this->input->post('warganegara', TRUE),
-		            'bangsa' => $this->input->post('bangsa', TRUE),
+		            'warganegara' => ucwords(strtolower($this->input->post('warganegara', TRUE))),
+		            'bangsa' => ucwords(strtolower($this->input->post('bangsa', TRUE))),
 		            'jantina' => $this->input->post('jantina', TRUE),
-		            'status_kahwin' => $this->input->post('status_kahwin', TRUE),
-		            'alamat1' => $this->input->post('alamat1', TRUE),
-		            'alamat2' => $this->input->post('alamat2', TRUE),
+		            'status_kahwin' => ucwords(strtolower($this->input->post('status_kahwin', TRUE))),
+		            'alamat1' => ucwords(strtolower($this->input->post('alamat1', TRUE))),
+		            'alamat2' => ucwords(strtolower($this->input->post('alamat2', TRUE))),
 		            'poskod' => $this->input->post('poskod', TRUE),
 		            'bandar' => $this->input->post('bandar', TRUE),
 		            'negeri' => $this->input->post('negeri', TRUE),
