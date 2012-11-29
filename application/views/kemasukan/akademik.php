@@ -6,7 +6,8 @@
 		<div id="info">
                     <?=@$info?>
                     <?php echo validation_errors(); ?>
-                </div>      
+                </div>
+                <div class="demo">
                 <div class="form_settings">
                     <?=form_open()?>
                     	<?=form_input(array('name'=>'id_mohon', 'id'=>'id_mohon', 'value'=>set_value('id_mohon' , $id_mohon)))  #set_value('id_mohon')))?>
@@ -16,17 +17,19 @@
 	                            <?=form_input(array('name'=>'tahun', 'id'=>'tahun', 'value'=>set_value('tahun'), 'size'=>'4'))?>
 	                    <p><span><?php echo form_label('Tahap Pengajian', 'level')?></span>
 	                           <?=form_input(array('name'=>'level', 'id'=>'level', 'value'=>set_value('level'), 'size'=>'12'));?></p>	                    	                    
-	                    <table>
+	                    <table class="tab_form">
 		                    <thead>
 			                    <tr>
-			                    	<th>Mata Pelajaran</th><th>Gred</th><th><?php echo form_button('addRow', '+', 'class=addRow')?></th>
+			                    	<th>Mata Pelajaran</th>
+									<th>Gred</th>
+                                    <th><?=form_button('addRow', '+', 'class="addRow"')?></th>
 			                    </tr>
 		                    </thead>
 		                    <tbody>
 		                        <tr>
 		                            <td><?=form_input(array('name'=>'gred[]', 'id'=>'gred', 'value'=>set_value('gred'), 'size'=>'12'))?></td>
 		                            <td><?=form_input(array('name'=>'gred[]', 'id'=>'gred', 'value'=>set_value('gred'), 'size'=>'4'))?></td>
-		                            <td><?php echo form_button('delRow', '-', 'class=delRow')?></td>
+                                            <td><?=form_button('delRow', '-', 'class="delRow"')?></td>
 	                        	</tr>
 	                        </tbody>
 	                    </table>
@@ -35,14 +38,14 @@
                     <?=form_close()?>
                 </div>
 		
-		<div class="demo"> 
+		 
          	<?=anchor('kemasukan/permohonan_baru/'.$id_mohon, 'Kembali', array('title' => 'Kembali'))?>
 		</div>
 	<? endblock() ?>
 
 	<?php startblock('jscript')?>
 	<script type="text/javascript" src="<?php echo base_url()?>js/jquery/jquery.table.addrow.js"></script>
-		<?//=get_extended_block() ?>
+		<?=get_extended_block() ?>
 		<script>
 			$(document).ready(function(){
 				$(".addRow").btnAddRow();
