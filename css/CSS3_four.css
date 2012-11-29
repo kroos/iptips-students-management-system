@@ -519,3 +519,10 @@ ul#nav li a:hover, ul#nav li a:focus, ul#nav li.selected {
 * html .ui-autocomplete {
     height: 100px;
 }
+
+.tab_form input{
+	width: 100px;
+}
+.addRow, .delRow{
+	width: auto;
+}
