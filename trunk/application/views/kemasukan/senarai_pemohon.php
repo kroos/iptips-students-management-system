@@ -10,7 +10,10 @@
 	<!-- sedikit keterangan apa yang page ni dapat buat utk user...  -->
 	<div id="accordion">
 	        <h3>Bantuan</h3>
-	        <p>Sila masukkan nama pemohon/ic/passport, klik pada butang cari. Senarai pemohon yang anda cari akan dipaparkan</p>
+	        <p>Sila masukkan nama pemohon/kad pengenalan/passport, klik pada butang cari. 
+	        <br>Senarai pemohon yang anda cari akan dipaparkan. 
+	        <br>Kosongkan field dan klik butang untuk dapatkan semua senarai pemohon.
+	</p>
         </div>
 
 	<!-- variable $info hanya akan dipaparkan selepas button submit di"klik" yang mana ia akan memberitahu user samada proses berjaya atau tidak mengikut input yg telah diberikan kepada user  -->
@@ -19,7 +22,7 @@
 	<!-- <div class="form_settings"> dari template  -->
     <div class="form_settings">
 	    <?=form_open()?>
-                <span>Carian</span><?=form_input(array('name' => 'nama', 'value' => set_value('nama'), 'maxlength' => '50', 'size' => '30', 'id' => 'nama'))?>
+                <span>Carian</span><?=form_input(array('name' => 'nama', 'value' => set_value('nama'), 'maxlength' => '50', 'size' => '30', 'id' => 'nama', 'title' => 'masukkan nama/nombor KP/nombor pasport'))?>
                 <span>&nbsp;</span><?=form_submit(array('name' => 'cari', 'value' => 'Cari', 'class' => 'submit'))?><br />
                 <?=form_error('nama')?>
 	    <?=form_close()?>
@@ -86,14 +89,19 @@
 
 <!-- check kat ./application/config/form_validation.php	<-- isi apa yang patut -->
 <? endblock() ?>
+
 <?php startblock('jscript')?>
 	<?=get_extended_block() ?>
+	<script type="text/javascript" src="<?=base_url()?>js/jquery/jquery.hints.js"></script>
 	<script>
 		$(document).ready(function(){	
 	        $( "#accordion" ).accordion({
 	            collapsible: true
 	        });
+
+	        $('input[title!=""]').hint();
 		});
 	</script>
 <?php endblock()?>
+
 <? end_extend()?>
