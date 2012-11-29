@@ -521,8 +521,11 @@ ul#nav li a:hover, ul#nav li a:focus, ul#nav li.selected {
 }
 
 .tab_form input{
-	width: 100px;
+	width: 200px;
 }
 .addRow, .delRow{
-	width: auto;
+	width: 40px;
+	font-size:14px;
+	font-weight:bolder;
+	
 }
