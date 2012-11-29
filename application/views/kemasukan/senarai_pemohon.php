@@ -8,7 +8,10 @@
 	<h2><?=$title?></h2>
 
 	<!-- sedikit keterangan apa yang page ni dapat buat utk user...  -->
-	<p>Sila masukkan nama pemohon/ic/passport, klik pada butang cari. Senarai pemohon yang anda cari akan dipaparkan</p>
+	<div id="accordion">
+	        <h3>Bantuan</h3>
+	        <p>Sila masukkan nama pemohon/ic/passport, klik pada butang cari. Senarai pemohon yang anda cari akan dipaparkan</p>
+        </div>
 
 	<!-- variable $info hanya akan dipaparkan selepas button submit di"klik" yang mana ia akan memberitahu user samada proses berjaya atau tidak mengikut input yg telah diberikan kepada user  -->
     <p><font color="#FF0000"><?=@$info?></font></p>
@@ -83,4 +86,14 @@
 
 <!-- check kat ./application/config/form_validation.php	<-- isi apa yang patut -->
 <? endblock() ?>
+<?php startblock('jscript')?>
+	<?=get_extended_block() ?>
+	<script>
+		$(document).ready(function(){	
+	        $( "#accordion" ).accordion({
+	            collapsible: true
+	        });
+		});
+	</script>
+<?php endblock()?>
 <? end_extend()?>

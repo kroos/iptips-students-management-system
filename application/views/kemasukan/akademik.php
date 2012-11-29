@@ -1,8 +1,12 @@
 <? extend('base_template_user') ?>
 
-	<? startblock('content') ?>
-                <h2><?=$title?></h2>
-                <p>Masukkan kelayakan akademik pelajar</p>
+	<? startblock('content') ?>		
+    	<h1>Selamat Datang ke IPTIPs Students Management System</h1>
+		<h2><?=$title?></h2>                
+        <div id="accordion">
+	        <h3>Bantuan</h3>
+	        <p>Masukkan kelayakan akademik pelajar</p>
+        </div>
 		<div id="info">
                     <?=@$info?>
                     <?php echo validation_errors(); ?>
@@ -50,6 +54,10 @@
 			$(document).ready(function(){
 				$(".addRow").btnAddRow();
 				$(".delRow").btnDelRow();
+
+		        $( "#accordion" ).accordion({
+		            collapsible: true
+		        });
 			});
 		</script>
 	<?php endblock()?>
