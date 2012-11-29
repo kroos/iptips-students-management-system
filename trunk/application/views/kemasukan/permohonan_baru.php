@@ -11,7 +11,8 @@
 	        <h3>Bantuan</h3>
 	        <p>Masukkan maklumat peribadi pelajar.</p>
         </div>
-        <div class="info"><?=@$info?><br /><?=validation_errors(); ?></div>
+        <div class="info"><?=@$info?><br>
+                    <?=validation_errors(); ?></div>
         <div class="form_settings">
             <?=form_open()?>
                     <p><span><?=form_label('Nama', 'nama')?></span>
@@ -39,8 +40,8 @@
                         <?=form_input(array('name' => 'bangsa', 'value' => set_value('bangsa'), 'id' => 'bangsa', 'size' => '12' ))?>
                         <br /><?=form_error('bangsa')?></p>
                     <p><span><?=form_label('Jantina', 'jantina')?></span>
-                        <?=form_radio(array('name'=>'jantina', 'value' => 'lelaki', 'id' => 'jantina', 'class'=>'checkbox'))?><label for="jantina">Lelaki</label>
-                        <?=form_radio(array('name'=>'jantina', 'value' => 'perempuan', 'id' =>'jantina', 'class'=>'checkbox'))?><label for="jantina">Perempuan</label>
+                        <?=form_radio(array('name'=>'jantina', 'value' => 'lelaki', 'id' => 'jantina', 'class'=>'checkbox'))?>Lelaki 
+                        <?=form_radio(array('name'=>'jantina', 'value' => 'perempuan', 'id' =>'jantina', 'class'=>'checkbox'))?>Perempuan
                         <br /><?=form_error('jantina')?></p>
                     <p><span><?=form_label('Taraf Perkawinan', 'status_kahwin')?></span>
                         <?=form_input(array('name' => 'status_kahwin', 'value' => set_value('status_kahwin'), 'id' => 'status_kahwin', 'size' => '12' ))?>
@@ -75,7 +76,6 @@
 			$(document).ready(function() {
 	
 		        $( "#dt_lahir" ).datepicker({
-					dateFormat: "yy-mm-dd",
 		            changeMonth: true,
 		            changeYear: true
 		        });
