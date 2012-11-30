@@ -109,9 +109,9 @@ class Kemasukan extends CI_Controller
 		            'dt_add' => date('Y-d-m')
 				);
 				$this->app_pelajar->set_app_pelajar($insert);
-				$data['insertID'] = $this->db->insert_id();
+				$id = $this->db->insert_id();
 				$data['info'] = 'Data telah berjaya disimpan';
-				redirect('kemasukan/akademik/'.$data['insertID']);
+				redirect('kemasukan/akademik/'.$id, 'location');
 			}
 		}
 	}
@@ -132,11 +132,11 @@ class Kemasukan extends CI_Controller
 		}
 		else
 		{
-                    if($this->input->post('simpan', TRUE)){
-			$this->app_pelajar_model->set_app_akademik();
-			$data['info'] = 'Data telah berjaya disimpan';
-			$this->load->view('kemasukan/waris',$data);
-                    }
+			if($this->input->post('simpan', TRUE)){
+				$this->app_pelajar->set_app_akademik();
+				$data['info'] = 'Data telah berjaya disimpan';
+				$this->load->view('kemasukan/waris',$data);
+			}
 		}
 	}
 
