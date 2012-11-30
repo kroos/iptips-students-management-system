@@ -65,77 +65,84 @@ class Kemasukan extends CI_Controller
 	}
 	
 	//insert pemohon
-	public function permohonan_baru($id = NULL){
-		$data['title'] = 'Permohonan Baru';
-		
-		$data['field'] = $this->db->list_fields('app_pelajar');
-		
-		$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
-		if ($this->form_validation->run() === FALSE)
-		{
-			$data['v'] = $this->sel_negara->get();
-			$data['vq'] = $this->sel_gender->get();
-			$data['vw'] = $this->sel_marital->get();
-			$data['bandar'] = $this->sel_bandar->get();
-			$data['warga'] = $this->sel_warga->get();
-			$data['bangsa'] = $this->sel_race->get();
-			if($this->input->post('simpan', TRUE)){
-				$data['info'] = 'Data tidak berjaya disimpan';				
+	public function permohonan_baru(){
+		$id = $this->uri->segment(3, 0);
+		echo $id;
+		var_dump(is_numeric($id));
+
+		if(is_numeric($id)){
+			$data['title'] = 'Permohonan Baru';
+
+			$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+			if ($this->form_validation->run() === FALSE)
+			{
+				$data['v'] = $this->sel_negara->get();
+				$data['vq'] = $this->sel_gender->get();
+				$data['vw'] = $this->sel_marital->get();
+				$data['bandar'] = $this->sel_bandar->get();
+				$data['warga'] = $this->sel_warga->get();
+				$data['bangsa'] = $this->sel_race->get();
+
+				if ($id != 0){
+					$data['z'] = $this->app_pelajar->get_app_pelajar($id);
+				}
+				$this->load->view('kemasukan/permohonan_baru',$data);
 			}
-			$this->load->view('kemasukan/permohonan_baru',$data);
-		}
-		else
-		{		
-			if($this->input->post('simpan', TRUE)){	
-				$insert = array(
-	//	            'matrik' => $this->input->post('matrik'),
-		            'nama' => ucwords(strtolower($this->input->post('nama', TRUE))),
-		            'ic' => $this->input->post('ic', TRUE),
-		            'passport' => $this->input->post('passport', TRUE),
-		            'dt_lahir' => $this->input->post('dt_lahir', TRUE),
-		            'tempat_lahir' => ucwords(strtolower($this->input->post('tempat_lahir', TRUE))),
-		            'status_warga' => $this->input->post('status_warga', TRUE),
-		            'warganegara' => ucwords(strtolower($this->input->post('warganegara', TRUE))),
-		            'bangsa' => ucwords(strtolower($this->input->post('bangsa', TRUE))),
-		            'jantina' => $this->input->post('jantina', TRUE),
-		            'status_kahwin' => ucwords(strtolower($this->input->post('status_kahwin', TRUE))),
-		            'alamat1' => ucwords(strtolower($this->input->post('alamat1', TRUE))),
-		            'alamat2' => ucwords(strtolower($this->input->post('alamat2', TRUE))),
-		            'poskod' => $this->input->post('poskod', TRUE),
-		            'bandar' => $this->input->post('bandar', TRUE),
-		            'negeri' => $this->input->post('negeri', TRUE),
-		            'negara' => $this->input->post('negara', TRUE),
-		            'id_add' => $this->session->userdata('id_user'),
-		            'dt_add' => date('Y-d-m')
-				);
-				$this->app_pelajar->set_app_pelajar($insert);
-				$id = $this->db->insert_id();
-				$data['info'] = 'Data telah berjaya disimpan';
-				redirect('kemasukan/akademik/'.$id, 'location');
+			else
+			{		
+				if($this->input->post('simpan', TRUE)){	
+					$insert = array(
+						'nama' => ucwords(strtolower($this->input->post('nama', TRUE))),
+						'ic' => $this->input->post('ic', TRUE),
+						'passport' => $this->input->post('passport', TRUE),
+						'dt_lahir' => $this->input->post('dt_lahir', TRUE),
+						'tempat_lahir' => ucwords(strtolower($this->input->post('tempat_lahir', TRUE))),
+						'status_warga' => $this->input->post('status_warga', TRUE),
+						'warganegara' => ucwords(strtolower($this->input->post('warganegara', TRUE))),
+						'bangsa' => ucwords(strtolower($this->input->post('bangsa', TRUE))),
+						'jantina' => $this->input->post('jantina', TRUE),
+						'status_kahwin' => ucwords(strtolower($this->input->post('status_kahwin', TRUE))),
+						'alamat1' => ucwords(strtolower($this->input->post('alamat1', TRUE))),
+						'alamat2' => ucwords(strtolower($this->input->post('alamat2', TRUE))),
+						'poskod' => $this->input->post('poskod', TRUE),
+						'bandar' => $this->input->post('bandar', TRUE),
+						'negeri' => $this->input->post('negeri', TRUE),
+						'negara' => $this->input->post('negara', TRUE),
+						'id_add' => $this->session->userdata('id_user'),
+						'dt_add' => date_db($date),
+						'sesi_mohon' => $sesi_mohon
+					);
+					$this->app_pelajar->set_app_pelajar($insert);
+					$id = $this->db->insert_id();
+					$data['info'] = 'Data telah berjaya disimpan';
+					redirect('kemasukan/akademik/'.$id, 'location');
+				}
 			}
 		}
 	}
 	
 	//akademik
-	public function akademik($id = NULL){
-		
+	public function akademik()
+	{
 		$data['title'] = 'Kelayakan Akademik';
-		$data['id_mohon'] = $id;
-		
-		$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
-		if ($this->form_validation->run() == FALSE)
-		{	
-			if($this->input->post('simpan', TRUE)){
-				$data['info'] = 'Data tidak berjaya disimpan';
+		$id = $this->uri->segment(3, 0);
+
+		if (ctype_digit($id))
+		{		
+			$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+			if ($this->form_validation->run() == FALSE)
+			{
+				$this->load->view('kemasukan/akademik', $data);
 			}
-			$this->load->view('kemasukan/akademik',$data);
-		}
-		else
-		{
-			if($this->input->post('simpan', TRUE)){
-				$this->app_pelajar->set_app_akademik();
-				$data['info'] = 'Data telah berjaya disimpan';
-				$this->load->view('kemasukan/waris',$data);
+			else
+			{
+				if($this->input->post('simpan', TRUE))
+				{
+						$this->app_pelajar->set_app_akademik();
+						$data['info'] = 'Data telah berjaya disimpan';
+						redirect('kemasukan/waris/'.$id, 'location');
+						//$this->load->view('kemasukan/waris', $data);
+				}
 			}
 		}
 	}
