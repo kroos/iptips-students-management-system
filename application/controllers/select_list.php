@@ -23,4 +23,46 @@ class Select_list extends CI_Controller{
         $jsdata = json_encode($json);
 		echo $jsdata;
 	}
+
+	public function sel_negara(){
+
+		$array = array();
+		if ($_GET['_name'] == 'country') 
+			{
+				if ( $_GET['_value'] == 3 )//usa
+					{
+						$array[] = array('1' => 'New York');
+						$array[] = array('2' => 'Montana');	
+						$array[] = array('3' => 'Texas');	
+					}
+					else
+					{
+						$array[] = array('0' => 'No state');
+					}
+			}
+			else
+			{
+				if ($_GET['_name'] == 'state')
+					{
+						if ( $_GET['_value'] == 2 )//New York
+							{
+								$array[] = array('1' => 'New York');
+								$array[] = array('2' => 'Another city');	
+							}
+							else
+							{
+								$array[] = array('0' => 'No city');
+							}
+					}
+					else
+					{
+						$array[] = array('1' => 'Data 1');
+						$array[] = array('2' => 'Data 2');	
+						$array[] = array('3' => 'Data 3');	
+					}
+			}
+		
+		echo json_encode( $array );
+
+	}
 }
