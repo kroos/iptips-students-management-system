@@ -2,12 +2,31 @@
 
 class Hep extends CI_Controller
 	{
+		//contructor => default utk semua function dlm controller nih...
+		public function __construct()
+			{
+				parent::__construct();
+
+				//$this->load->model('app_pelajar');				//nak tau controller ni pakai model mana 1...
+
+				//mesti ikut peraturan ni..
+				//user mesti log on kalau tidak redirect to index
+				if ($this->session->userdata('logged_in') === FALSE)
+					{
+						redirect('/isms/index', 'location');
+					}
+					else
+					{
+						//user mesti ada access ni kalau tidak redirect to unauthorised
+						if(user_role($this->session->userdata('id_user'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === FALSE)
+							{
+								redirect('/isms/unauthorised', 'location');
+							}
+					}
+			}
+
 		public function index()
 			{
-				if ($this->session->userdata('logged_in') === TRUE)
-					{
-						if(user_role($this->session->userdata('id_user'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === TRUE)
-							{
 								$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
 								if ($this->form_validation->run() == FALSE)
 									{
@@ -19,16 +38,6 @@ class Hep extends CI_Controller
 										//form process
 										
 									}
-							}
-							else
-							{
-								redirect('/isms/unauthorised', 'location');
-							}
-					}
-					else
-					{
-						redirect('/isms/index', 'location');
-					}
 			}
 
 #############################################################################################################################
@@ -43,30 +52,16 @@ class Hep extends CI_Controller
 /*
 		public function home()
 			{
-				if ($this->session->userdata('logged_in') === TRUE)
+				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+				if ($this->form_validation->run() == FALSE)
 					{
-						if(user_role($this->session->userdata('id_user'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === TRUE)
-							{
-								$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
-								if ($this->form_validation->run() == FALSE)
-									{
-										//form
-										
-									}
-									else
-									{
-										//form process
-										
-									}
-							}
-							else
-							{
-								redirect('/isms/unauthorised', 'location');
-							}
+						//form
+						
 					}
 					else
 					{
-						redirect('/isms/index', 'location');
+						//form process
+						
 					}
 			}
 */
