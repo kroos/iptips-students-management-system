@@ -2,52 +2,33 @@
 
 class Kemasukan extends CI_Controller
 	{
-			/*		yang ni semua x payah seabab dia.... :
-			//contructor*/
-			public function __construct(){							//ni mesti hang tgk dari example yang lama iaitu CI sblm version 2.0. hanya CI version 1.X perlu command ni...
-				parent::__construct();
-				//$this->load->model('app_pelajar');				//letak benda ni dalam autoload : /config/autoload.php section => $autoload['model']
-				//$this->load->helper('template_inheritance');		letak benda ni dalam autoload : /config/autoload.php section => $autoload['helper']
-				//$this->load->view('CSS3_four/main_template');		payah nak terang ni....
-				//$this->load->view('base_template_user');			payah nak terang ni....
-				if ($this->session->userdata('logged_in') === FALSE)
+			//contructor => default utk semua function dlm controller nih...
+			public function __construct()
 				{
-					redirect('/isms/index', 'location');
-				}else{
-					if(user_role($this->session->userdata('id_user'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === false){
-                    	redirect('/isms/unauthorised', 'location');
-					}
+					parent::__construct();
+
+					$this->load->model('app_pelajar');				//nak tau controller ni pakai model mana 1...
+
+					//mesti ikut peraturan ni..
+						//user mesti log on kalau tidak redirect to index
+						if ($this->session->userdata('logged_in') === FALSE)
+						{
+							redirect('/isms/index', 'location');
+						}
+						else
+						{
+							//user mesti ada access ni kalau tidak redirect to unauthorised
+							if(user_role($this->session->userdata('id_user'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === FALSE)
+								{
+									redirect('/isms/unauthorised', 'location');
+								}
+						}
 				}
-			}
 			
 
 		public function index()
 			{
-				if ($this->session->userdata('logged_in') === TRUE)
-					{
-						if(user_role($this->session->userdata('id_user'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === TRUE)
-							{
-								$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
-								if ($this->form_validation->run() == FALSE)
-									{
-										//form
-										$this->load->view('kemasukan/home');
-									}
-									else
-									{
-										//form process
-										
-									}
-							}
-							else
-							{
-								redirect('/isms/unauthorised', 'location');
-							}
-					}
-					else
-					{
-						redirect('/isms/index', 'location');
-					}
+						$this->load->view('kemasukan/home');
 			}
 
 	public function senarai_pemohon()
@@ -187,37 +168,7 @@ class Kemasukan extends CI_Controller
 			$this->load->view('kemasukan/detail_pemohon',$data);
 		}
 	}
-//template
-/*
-		public function home()
-			{
-				if ($this->session->userdata('logged_in') === TRUE)
-					{
-						if(user_role($this->session->userdata('id_user'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === TRUE)
-							{
-								$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
-								if ($this->form_validation->run() == FALSE)
-									{
-										//form
-										
-									}
-									else
-									{
-										//form process
-										
-									}
-							}
-							else
-							{
-								redirect('/isms/unauthorised', 'location');
-							}
-					}
-					else
-					{
-						redirect('/isms/index', 'location');
-					}
-			}
-*/
+
 #############################################################################################################################
 	}
 
