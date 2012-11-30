@@ -31,46 +31,33 @@ class Kemasukan extends CI_Controller
 				$this->load->view('kemasukan/home');
 			}
 
-	public function senarai_pemohon()
-		{
-			if ($this->session->userdata('logged_in') === TRUE)																				//hanya logged in user shj boleh access function
-				{
-					if(user_role($this->session->userdata('id_user'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === TRUE)		//hanya user yang logged in DAN yang berkenaan shj boleh access function senarai_pemohon
-						{
-							$data['title'] = 'Senarai Pemohon';																				//data ni kita paskan ke views sebab di views, "$data['title']" variables akan di'extract' jadi di views akan jadi "echo $title" yang mana memaparkan "Senarai Pemohon"
-																																			//variable "$data['title']" letak kat sini supaya ia boleh diaccess dari dalam "if" atau yg mana difikirkan perlu
-							$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');								//saja nak bg kaler merah kalau user letak input yang salah
-							if ($this->form_validation->run() == FALSE)																		//bhg ni kalau user belum lg click submit button i.e bukak page ada form
-								{
-									$data['pemohon'] = $this->app_pelajar->get_app_pelajar();	
-									$this->load->view('kemasukan/senarai_pemohon', $data);													//buat paparan file ./application/views/kemasukan/senarai_pemohon.php yang mana variable "$data" (variable array) dari controller akan di"pas"kan ke views/kemasukan/senarai_pemohon.php
-                                }
-								else
-								{
-									if($this->input->post('cari', TRUE))																	//var dr submit button, refer views/kemasukan/senarai_pemohon.php
-									{
-                                        $nama = $this->input->post('nama', TRUE);														//equivalent to $_POST from form
-                                        $data['pemohon'] = $this->app_pelajar->seacrh_app($nama);
-									}
-									$this->load->view('kemasukan/senarai_pemohon', $data);													//buat paparan balik jerrrr.....
-								}
-						}
-						else
-						{
-							redirect('/isms/unauthorised', 'location');
-						}
-				}
-				else
-				{
-					redirect('/isms/index', 'location');
-				}
-		}
+		public function senarai_pemohon()
+			{
+				$data['title'] = 'Senarai Pemohon';																				//data ni kita paskan ke views sebab di views, "$data['title']" variables akan di'extract' jadi di views akan jadi "echo $title" yang mana memaparkan "Senarai Pemohon"
+																																//variable "$data['title']" letak kat sini supaya ia boleh diaccess dari dalam "if" atau yg mana difikirkan perlu
+				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');								//saja nak bg kaler merah kalau user letak input yang salah
+				if ($this->form_validation->run() == FALSE)																		//bhg ni kalau user belum lg click submit button i.e bukak page ada form
+					{
+						$data['pemohon'] = $this->app_pelajar->get_app_pelajar();	
+						$this->load->view('kemasukan/senarai_pemohon', $data);													//buat paparan file ./application/views/kemasukan/senarai_pemohon.php yang mana variable "$data" (variable array) dari controller akan di"pas"kan ke views/kemasukan/senarai_pemohon.php
+					}
+					else
+					{
+						if($this->input->post('cari', TRUE))																	//var dr submit button, refer views/kemasukan/senarai_pemohon.php
+							{
+								$nama = $this->input->post('nama', TRUE);														//equivalent to $_POST from form
+								$data['pemohon'] = $this->app_pelajar->seacrh_app($nama);
+							}
+						$this->load->view('kemasukan/senarai_pemohon', $data);													//buat paparan balik jerrrr.....
+					}
+			}
 	
 	//maklumat pemohon individual
 	public function detail_pemohon($id){
 		$data['title'] = 'Keterangan Pemohon';
 		$data['pemohon'] = $this->app_pelajar->get_app_pelajar($id);
 		$data['field'] = $this->db->list_fields('app_pelajar');
+
 		foreach($data['field'] as $fields){
 			$data[$fields] = $data['pemohon'][$fields];
 		}

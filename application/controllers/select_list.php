@@ -27,7 +27,7 @@ class Select_list extends CI_Controller{
 	public function sel_negara(){
 
 		$array = array();
-		if ($_GET['_name'] == 'country') 
+		if ($_GET['_name'] == 'negara') 
 			{
 				if ( $_GET['_value'] == 3 )//usa
 					{
@@ -42,7 +42,7 @@ class Select_list extends CI_Controller{
 			}
 			else
 			{
-				if ($_GET['_name'] == 'state')
+				if ($_GET['_name'] == 'negeri')
 					{
 						if ( $_GET['_value'] == 2 )//New York
 							{
@@ -61,8 +61,6 @@ class Select_list extends CI_Controller{
 						$array[] = array('3' => 'Data 3');	
 					}
 			}
-		
-		echo json_encode( $array );
-
+				echo json_encode( $array );
 	}
 }
