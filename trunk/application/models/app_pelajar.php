@@ -12,15 +12,13 @@ class App_pelajar extends CI_Model{
 			}
 	
 	//select
-	function get_app_pelajar($id = FALSE)
+	function get_app_pelajar($id)
     {
         if ($id === FALSE)
         {
             return $this->db->get('app_pelajar');
-            //return $query->result_array();
         }
-        $query = $this->db->get_where('app_pelajar', array('id'=>$id));
-        return $query->row_array();        
+        return $this->db->get_where('app_pelajar', array('id'=>$id));
     }
     
     function seacrh_app($nama = NULL){
@@ -37,8 +35,7 @@ class App_pelajar extends CI_Model{
     }
     
     function get_where($where = array()){
-    	$query = $this->db->get_where('app_pelajar', $where);
-        return $query->row_array();
+    	return $this->db->get_where('app_pelajar', $where);
     }
     
     //insert

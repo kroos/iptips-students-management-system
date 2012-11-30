@@ -7,20 +7,20 @@
 	        <h3>Bantuan</h3>
 	        <p>Masukkan kelayakan akademik pelajar</p>
         </div>
-		<div id="info">
-                    <?=@$info?>
-                    <?php echo validation_errors(); ?>
-                </div>
+
+		<div id="info"><?=@$info?><?php echo validation_errors(); ?></div>
                 <div class="demo">
                 <div class="form_settings">
                     <?=form_open()?>
-                    	<?=form_input(array('name'=>'id_mohon', 'id'=>'id_mohon', 'value'=>set_value('id_mohon' , $id_mohon)))  #set_value('id_mohon')))?>
-	                    <p><span><?php echo form_label('Institisi Pengajian', 'institusi')?></span></td>
+	                    <p><span><?php echo form_label('Institisi Pengajian', 'institusi')?></span>
 	                            <?=form_input(array('name'=>'institusi', 'id'=>'institusi', 'size'=>'30'))?></p>
+
                         <p><span><?php echo form_label('Tahun Tamat Pengajian', 'tahun')?></span>
-	                            <?=form_input(array('name'=>'tahun', 'id'=>'tahun', 'value'=>set_value('tahun'), 'size'=>'4'))?>
+	                            <?=form_input(array('name'=>'tahun', 'id'=>'tahun', 'value'=>set_value('tahun'), 'size'=>'4'))?></p>
+
 	                    <p><span><?php echo form_label('Tahap Pengajian', 'level')?></span>
-	                           <?=form_input(array('name'=>'level', 'id'=>'level', 'value'=>set_value('level'), 'size'=>'12'));?></p>	                    	                    
+	                           <?=form_input(array('name'=>'level', 'id'=>'level', 'value'=>set_value('level'), 'size'=>'12'));?></p>
+							   
 	                    <table class="tab_form">
 		                    <thead>
 			                    <tr>
@@ -43,7 +43,7 @@
                 </div>
 		
 		 
-         	<?=anchor('kemasukan/permohonan_baru/'.$id_mohon, 'Kembali', array('title' => 'Kembali'))?>
+         	<?=anchor('kemasukan/permohonan_baru/'.$this->uri->segment(3, 0), 'Kembali', array('title' => 'Kembali'))?>
 		</div>
 	<? endblock() ?>
 

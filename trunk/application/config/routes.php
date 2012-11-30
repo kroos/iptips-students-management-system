@@ -41,6 +41,8 @@
 $route['default_controller'] = 'isms';
 $route['404_override'] = 'isms/page_missing';
 $route['isms/user_cat/(:num)'] = 'isms/user_cat';
+$route['kemasukan/permohonan_baru/(:num)'] = 'kemasukan/permohonan_baru';
+
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
