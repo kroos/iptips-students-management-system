@@ -2,33 +2,33 @@
 
 class Kemasukan extends CI_Controller
 	{
-			//contructor => default utk semua function dlm controller nih...
-			public function __construct()
-				{
-					parent::__construct();
+		//contructor => default utk semua function dlm controller nih...
+		public function __construct()
+			{
+				parent::__construct();
 
-					$this->load->model('app_pelajar');				//nak tau controller ni pakai model mana 1...
+				$this->load->model('app_pelajar');				//nak tau controller ni pakai model mana 1...
 
-					//mesti ikut peraturan ni..
-						//user mesti log on kalau tidak redirect to index
-						if ($this->session->userdata('logged_in') === FALSE)
-						{
-							redirect('/isms/index', 'location');
-						}
-						else
-						{
-							//user mesti ada access ni kalau tidak redirect to unauthorised
-							if(user_role($this->session->userdata('id_user'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === FALSE)
-								{
-									redirect('/isms/unauthorised', 'location');
-								}
-						}
-				}
+				//mesti ikut peraturan ni..
+				//user mesti log on kalau tidak redirect to index
+				if ($this->session->userdata('logged_in') === FALSE)
+					{
+						redirect('/isms/index', 'location');
+					}
+					else
+					{
+						//user mesti ada access ni kalau tidak redirect to unauthorised
+						if(user_role($this->session->userdata('id_user'), $this->uri->segment(1, 0), $this->uri->segment(2, 0)) === FALSE)
+							{
+								redirect('/isms/unauthorised', 'location');
+							}
+					}
+			}
 			
 
 		public function index()
 			{
-						$this->load->view('kemasukan/home');
+				$this->load->view('kemasukan/home');
 			}
 
 	public function senarai_pemohon()
