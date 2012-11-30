@@ -11,12 +11,11 @@ class Sel_negara extends CI_Model
 //CRUD for user_data
 
 	//select		
-	function get($id = FALSE){
-		if ($id === FALSE)
+	function get($kodnegara = FALSE){
+		if ($kodnegara === FALSE)
         {
-            return $this->db->get('sel_negara');
-            //return $query->result_array();
+            return $this->db->order_by('namanegara ASC')->get('sel_negara');
         }
-        return $this->db->get_where('sel_negara', array('id'=>$id));  
+        return $this->db->get_where('sel_negara', array('kodnegara' => $kodnegara));  
 	}
 }

@@ -72,7 +72,9 @@ class Kemasukan extends CI_Controller
 		
 		$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
 		if ($this->form_validation->run() === FALSE)
-		{	
+		{
+			$data['v'] = $this->sel_negara->get();
+			$data['vq'] = $this->sel_gender->get();
 			if($this->input->post('simpan', TRUE)){
 				$data['info'] = 'Data tidak berjaya disimpan';				
 			}
