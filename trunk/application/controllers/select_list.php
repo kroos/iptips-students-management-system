@@ -29,38 +29,37 @@ class Select_list extends CI_Controller{
 		$array = array();
 		if ($_GET['_name'] == 'negara') 
 			{
-				if ( $_GET['_value'] == 3 )//usa
+				$y = $this->sel_negara->get();
+				foreach($y->result() as $g)
 					{
-						$array[] = array('1' => 'New York');
-						$array[] = array('2' => 'Montana');	
-						$array[] = array('3' => 'Texas');	
-					}
-					else
-					{
-						$array[] = array('0' => 'No state');
+						if ( $_GET['_value'] == $g->kodnegara )//usa
+							{
+								$x = $this->sel_negeri->get($g->kodnegara);
+								foreach($x->result() as $z)
+									{
+										$array[] = array($z->kodnegeri => $z->namanegeri);
+									}
+							}
 					}
 			}
 			else
 			{
 				if ($_GET['_name'] == 'negeri')
 					{
-						if ( $_GET['_value'] == 2 )//New York
+						$u = $this->sel_negeri->get();
+						foreach ($u->result() as $h)
 							{
-								$array[] = array('1' => 'New York');
-								$array[] = array('2' => 'Another city');	
+								if ( $_GET['_value'] == $h->kodnegeri )//New York
+									{
+										$j = $this->sel_bandar->get($h->kodnegeri);
+										foreach($j->result() as $l)
+											{
+												$array[] = array($l->kodbandar => $l->namabandar);
+											}
+									}
 							}
-							else
-							{
-								$array[] = array('0' => 'No city');
-							}
-					}
-					else
-					{
-						$array[] = array('1' => 'Data 1');
-						$array[] = array('2' => 'Data 2');	
-						$array[] = array('3' => 'Data 3');	
 					}
 			}
-				echo json_encode( $array );
+		echo json_encode( $array );
 	}
 }

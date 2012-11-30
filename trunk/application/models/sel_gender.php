@@ -1,7 +1,7 @@
 <?php
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Sel_bandar extends CI_Model 
+class Sel_gender extends CI_Model 
 {
 	function __construct()
 	{
@@ -11,12 +11,12 @@ class Sel_bandar extends CI_Model
 //CRUD for user_data
 
 	//select		
-	function get($kodnegeri = FALSE){
-		if ($kodnegeri === FALSE)
+	function get($kodgender = FALSE){
+		if ($kodgender === FALSE)
         {
-            return $this->db->order_by('namabandar')->get('sel_bandar');
+            return $this->db->order_by('kodgender')->get('sel_gender');
             //return $query->result_array();
         }
-        return $this->db->get_where('sel_bandar', array('kodnegeri' => $kodnegeri));  
+        return $this->db->get_where('sel_gender', array('kodgender' => $kodgender));  
 	}
 }

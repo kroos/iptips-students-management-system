@@ -18,7 +18,7 @@
                         <?=form_input(array('name' => 'nama', 'value' => set_value('nama'), 'maxlength' => '50', 'size' => '30', 'id' => 'nama'))?>
                         <br /><?=form_error('nama')?></p>
 
-                    <p><span><?=form_label('Nombor Kad Pengenalan', 'id')?></span>
+                    <p><span><?=form_label('Nombor Kad Pengenalan', 'ic')?></span>
                         <?php echo form_input(array('name' => 'ic', 'value' => set_value('ic'), 'id' => 'ic', 'size' => '12', 'maxlength'=>'12'))?>
                         <br /><?=form_error('ic')?></p>
 
@@ -46,11 +46,18 @@
                         <?=form_input(array('name' => 'bangsa', 'value' => set_value('bangsa'), 'id' => 'bangsa', 'size' => '12' ))?>
                         <br /><?=form_error('bangsa')?></p>
 
-                    <p><span><?=form_label('Jantina', 'jantina')?></span>
-                        <?=form_radio(array('name'=>'jantina', 'value' => 'lelaki', 'id' => 'jantina', 'class'=>'checkbox'))?>Lelaki 
-                        <?=form_radio(array('name'=>'jantina', 'value' => 'perempuan', 'id' =>'jantina', 'class'=>'checkbox'))?>Perempuan
-                        <br /><?=form_error('jantina')?></p>
+					</div>
+					<div id="radioset">
+                    <p><span>Jantina</span>
+					<?$t = 0?>
+					<?$i = 0?>
+					<?foreach($vq->result() as $g):?>
+					<?=form_radio(array('name'=>'jantina', 'value' => $g->kodgender, 'id' => 'radio'.$t++))?><?=form_label($g->gender_MY, 'radio'.$i++)?>
+					<?endforeach?>
+					<br /><?=form_error('jantina')?></p>
+					</div>
 
+					<div class="form_settings">
                     <p><span><?=form_label('Taraf Perkawinan', 'status_kahwin')?></span>
                         <?=form_input(array('name' => 'status_kahwin', 'value' => set_value('status_kahwin'), 'id' => 'status_kahwin', 'size' => '12' ))?>
                         <br /><?=form_error('status_kahwin')?></p>
@@ -80,17 +87,22 @@
                         <?=form_input(array('name' => 'bandar', 'value' => set_value('bandar'), 'id' => 'bangsa', 'size' => '12' ))?>
                         <br /><?=form_error('bandar')?></p>
 -->
+<?php
+foreach($v->result() as $h)
+	{
+		$opt[$h->kodnegara] = $h->namanegara;
+	}
+?>
 					<p><span><?=form_label('Negara', 'negara')?></span>
-					<?=form_input(array('name' => 'negara', 'value' => set_value('negara'), 'id' => 'negara', 'size' => '12',  'autocomplete'=>'on'  ))?><br />
-					<span>&nbsp;</span><?=form_input(array('name' => 'negara_hid', 'value' => set_value('negara_hid'), 'id' => 'negara_hid', 'size' => '12'  ))?>
+					<?=form_dropdown('negara', $opt, '', 'id="negara"')?>
 					<br /><?=form_error('negara')?></p>
 
                     <p><span><?=form_label('Negeri', 'negeri')?></span>
-                        <?=form_input(array('name' => 'negeri', 'value' => set_value('negeri'), 'id' => 'negeri', 'size' => '12' ))?>
-                        <br /><?=form_error('negeri')?></p>
+			<select name="negeri" id="negeri" style="display:none"></select>
+			<br /><?=form_error('negeri')?></p>
 
 						<p><span><?=form_label('Bandar', 'bandar')?></span>
-                        <?=form_input(array('name' => 'bandar', 'value' => set_value('bandar'), 'id' => 'bangsa', 'size' => '12' ))?>
+			<select name="bandar" id="bandar" style="display:none"></select>
                         <br /><?=form_error('bandar')?></p>
 
                     <p><span>&nbsp;</span><?=form_submit('simpan','Seterusnya>>','class="submit"')?></p>
