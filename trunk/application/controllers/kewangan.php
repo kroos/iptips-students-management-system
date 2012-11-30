@@ -27,17 +27,7 @@ class Kewangan extends CI_Controller
 
 		public function index()
 			{
-				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
-				if ($this->form_validation->run() == FALSE)
-					{
-						//form
-						$this->load->view('kewangan/home');
-					}
-					else
-					{
-						//form process
-						
-					}
+				$this->load->view('kewangan/home');
 			}
 
 #############################################################################################################################

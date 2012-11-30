@@ -100,27 +100,6 @@
 	<?php endblock()?>
 	
 	<?php startblock('jscript')?>
-	<? startblock('jscript') ?>
-<style>
-#loading
-{
-	position:absolute;
-	top:0px;
-	right:0px;
-	background:#ff0000;
-	color:#fff;
-	font-size:14px;
-	font-familly:Arial;
-	padding:2px;
-	display:none;
-}
-.ui-autocomplete-loading
-{
-	background: white url('../images/ui-anim_basic_16x16.gif') right center no-repeat;
-}
-#city { width: 25em; }
-#state { width: 25em; }
-</style>
 		<script src="<?=base_url()?>js/jquery/jquery-ui-1.9.1.custom.js"></script>
 		<script type="text/javascript" src="<?=base_url()?>js/jquery/jquery-ui-timepicker-addon.js"></script>
 		<script language="JavaScript" type="text/javascript" src="<?=base_url()?>js/jquery.chainedSelects.js"></script>
@@ -133,95 +112,33 @@
 				// Datepicker
 				$('#datepicker').datetimepicker({dateFormat: "yy-mm-dd", timeFormat: "hh:mm:ss", showSecond: true, showMillisec: false, ampm: false, stepHour: 1, stepMinute: 1, stepSecond: 5});
 
-				$('#jabatan').chainSelect('#jawatan','<?=site_url().'isms/combobox'?>',
+				//chain select 3 level
+				$('#negara').chainSelect('#negeri','<?=base_url()?>select_list/sel_negara',
+				{ 
+					before:function (target) //before request hide the target combobox and display the loading message
 					{ 
-						before:function (target) //before request hide the target combobox and display the loading message
-							{ 
-								$("#loading").css("display","block");
-								$(target).css("display","none");
-							},
-						after:function (target) //after request show the target combobox and hide the loading message
-							{ 
-								$("#loading").css("display","none");
-								$(target).css("display","inline");
-							}
-					});
-
-        function log( message ) {
-            $( "<div>" ).text( message ).prependTo( "#log" );
-            $( "#log" ).scrollTop( 0 );
-        }
-
-        $( "#city" ).autocomplete({
-            source: function( request, response ) {
-                $.ajax({
-                    url: "http://ws.geonames.org/searchJSON",
-                    dataType: "jsonp",
-                    data: {
-                        featureClass: "P",
-                        style: "full",
-                        maxRows: 12,
-                        name_startsWith: request.term
-                    },
-                    success: function( data ) {
-                        response( $.map( data.geonames, function( item ) {
-                            return {
-                                label: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryName,
-                                value: item.name
-                            }
-                        }));
-                    }
-                });
-            },
-            minLength: 2,
-            select: function( event, ui ) {
-                log( ui.item ?
-                    "Selected: " + ui.item.label :
-                    "Nothing selected, input was " + this.value);
-            },
-            open: function() {
-                $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
-            },
-            close: function() {
-                $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
-            }
-        });
-
-        $( "#state" ).autocomplete({
-            source: function( request, response ) {
-                $.ajax({
-                    url: "http://ws.geonames.org/searchJSON",
-                    dataType: "jsonp",
-                    data: {
-                        featureClass: "P",
-                        style: "full",
-                        maxRows: 12,
-                        name_startsWith: request.term
-                    },
-                    success: function( data ) {
-                        response( $.map( data.geonames, function( item ) {
-                            return {
-                                label: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryName,
-                                value: item.name
-                            }
-                        }));
-                    }
-                });
-            },
-            minLength: 2,
-            select: function( event, ui ) {
-                log( ui.item ?
-                    "Selected: " + ui.item.label :
-                    "Nothing selected, input was " + this.value);
-            },
-            open: function() {
-                $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
-            },
-            close: function() {
-                $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
-            }
-        });
-
+						$("#loading").css("display","block");
+						$(target).css("display","none");
+					},
+					after:function (target) //after request show the target combobox and hide the loading message
+					{ 
+						$("#loading").css("display","none");
+						$(target).css("display","inline");
+					}
+				});
+				$('#negeri').chainSelect('#bandar','<?=base_url()?>select_list/sel_negara',
+				{ 
+					before:function (target) 
+					{ 
+						$("#loading").css("display","block");
+						$(target).css("display","none");
+					},
+					after:function (target) 
+					{ 
+						$("#loading").css("display","none");
+						$(target).css("display","inline");
+					}
+				});
 			});
 		</script>
 

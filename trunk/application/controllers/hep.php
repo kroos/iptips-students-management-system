@@ -27,17 +27,7 @@ class Hep extends CI_Controller
 
 		public function index()
 			{
-								$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
-								if ($this->form_validation->run() == FALSE)
-									{
-										//form
-										$this->load->view('hep/home');
-									}
-									else
-									{
-										//form process
-										
-									}
+				$this->load->view('hep/home');
 			}
 
 #############################################################################################################################
