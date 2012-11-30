@@ -1,7 +1,7 @@
 <?php
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Sel_negeri extends CI_Model 
+class Sel_marital extends CI_Model 
 {
 	function __construct()
 	{
@@ -11,11 +11,12 @@ class Sel_negeri extends CI_Model
 //CRUD for user_data
 
 	//select		
-	function get($kodnegara = FALSE){
-		if ($kodnegara === FALSE)
+	function get($kod = FALSE){
+		if ($kod === FALSE)
         {
-            return $this->db->order_by('namanegeri')->get('sel_negeri');
+            return $this->db->order_by('kod')->get('sel_marital');
+            //return $query->result_array();
         }
-        return $this->db->order_by('namanegeri')->get_where('sel_negeri', array('kodnegara' => $kodnegara));  
+        return $this->db->order_by('kod')->get_where('sel_marital', array('kod' => $kod));  
 	}
 }

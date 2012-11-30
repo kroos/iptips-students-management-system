@@ -17,6 +17,6 @@ class Sel_bandar extends CI_Model
             return $this->db->order_by('namabandar')->get('sel_bandar');
             //return $query->result_array();
         }
-        return $this->db->get_where('sel_bandar', array('kodnegeri' => $kodnegeri));  
+        return $this->db->order_by('namabandar')->get_where('sel_bandar', array('kodnegeri' => $kodnegeri));  
 	}
 }

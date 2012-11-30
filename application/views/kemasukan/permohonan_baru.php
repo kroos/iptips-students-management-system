@@ -30,37 +30,58 @@
                         <?=form_input(array('name' => 'dt_lahir', 'value' => set_value('dt_lahir'), 'id' => 'dt_lahir', 'size' => '12' ))?>
                         <br /><?=form_error('dt_lahir')?></p>
 
-                    <p><span><?=form_label('Tempat Lahir', 'tempat_lahir')?></span>
-                        <?=form_input(array('name' => 'tempat_lahir', 'value' => set_value('tempat_lahir'), 'id' => 'tempat_lahir', 'size' => '12' ))?>
-                        <br /><?=form_error('tempat_lahir')?></p>
+					<p><span><?=form_label('Tempat Lahir', 'tempat_lahir')?></span>
+					<?php
+					foreach($bandar->result() as $e){
+						$opt[$e->kodbandar] = $e->namabandar;}
+					?>
+					<?=form_dropdown('tempat_lahir', $opt,  set_select('tempat_lahir', set_value('tempat_lahir'), TRUE), 'id="tempat_lahir"')?>
+                       <br /><?=form_error('tempat_lahir')?></p>
 
-                    <p><span><?=form_label('Taraf Warganegara', 'status_warga')?></span>
-                        <?=form_input(array('name' => 'status_warga', 'value' => set_value('status_warga'), 'id' => 'status_warga', 'size' => '12' ))?>
-                        <br /><?=form_error('status_warga')?></p>
+					<p><span><?=form_label('Taraf Warganegara', 'status_warga')?></span>
+					<?php
+					foreach($warga->result() as $j){
+						$warg[$j->kodwarga] = $j->warga_EN;
+					}
+					?>
+					<?=form_dropdown('status_warga', $warg,  set_select('status_warga', set_value('status_warga'), TRUE), 'id="status_warga"')?>
+					<br /><?=form_error('status_warga')?></p>
 
                     <p><span><?=form_label('Warganegara', 'warganegara')?></span>
-                        <?=form_input(array('name' => 'warganegara', 'value' => set_value('warganegara'), 'id' => 'warganegara', 'size' => '12' ))?>
-                        <br /><?=form_error('warganegara')?></p>
+					<?php
+					foreach($v->result() as $q){
+						$negara[$q->kodnegara] = $q->namanegara;
+					}
+					?>
+					<?=form_dropdown('warganegara', $negara,  set_select('warganegara', set_value('warganegara'), TRUE), 'id="warganegara"')?>
+					<br /><?=form_error('warganegara')?></p>
 
-                    <p><span><?=form_label('Bangsa', 'bangsa')?></span>
-                        <?=form_input(array('name' => 'bangsa', 'value' => set_value('bangsa'), 'id' => 'bangsa', 'size' => '12' ))?>
-                        <br /><?=form_error('bangsa')?></p>
+					<p><span><?=form_label('Bangsa', 'bangsa')?></span>
+					<?php
+					foreach($bangsa->result() as $qd){
+						$bang[$qd->kodbangsa] = $qd->bangsa_MY;
+					}
+					?>
+					<?=form_dropdown('bangsa', $bang,  set_select('warganegara', set_value('bangsa'), TRUE), 'id="bangsa"');?>
+					<br /><?=form_error('bangsa')?></p>
 
 					</div>
 					<div id="radioset">
-                    <p><span>Jantina</span>
-					<?$t = 0?>
+ 					<?$t = 0?>
 					<?$i = 0?>
+                   <p><span>Jantina</span>
 					<?foreach($vq->result() as $g):?>
-					<?=form_radio(array('name'=>'jantina', 'value' => $g->kodgender, 'id' => 'radio'.$t++))?><?=form_label($g->gender_MY, 'radio'.$i++)?>
+						<?=form_radio(array('name'=>'jantina', 'value' => $g->kodgender, 'id' => 'radio'.$t++))?><?=form_label($g->gender_MY, 'radio'.$i++)?>
 					<?endforeach?>
 					<br /><?=form_error('jantina')?></p>
+					
+                    <p><span>Taraf Perkahwinan</span>
+					<?foreach($vw->result() as $h):?>
+						<?=form_radio(array('name'=>'status_kahwin', 'value' => $h->kod, 'id' => 'radio'.$t++))?><?=form_label($h->marital_MY, 'radio'.$i++)?>
+					<?endforeach?>
+					<br /><?=form_error('status_kahwin')?></p>
 					</div>
-
 					<div class="form_settings">
-                    <p><span><?=form_label('Taraf Perkawinan', 'status_kahwin')?></span>
-                        <?=form_input(array('name' => 'status_kahwin', 'value' => set_value('status_kahwin'), 'id' => 'status_kahwin', 'size' => '12' ))?>
-                        <br /><?=form_error('status_kahwin')?></p>
 
                     <p><span><?=form_label('Alamat', 'alamat1')?></span>
                         <?=form_input(array('name' => 'alamat1', 'value' => set_value('alamat1'), 'id' => 'alamat1', 'size' => '30', 'maxlength' =>'255' ))?>
@@ -90,11 +111,11 @@
 <?php
 foreach($v->result() as $h)
 	{
-		$opt[$h->kodnegara] = $h->namanegara;
+		$country[$h->kodnegara] = $h->namanegara;
 	}
 ?>
 					<p><span><?=form_label('Negara', 'negara')?></span>
-					<?=form_dropdown('negara', $opt, '', 'id="negara"')?>
+					<?=form_dropdown('negara', $country, '', 'id="negara"')?>
 					<br /><?=form_error('negara')?></p>
 
                     <p><span><?=form_label('Negeri', 'negeri')?></span>
@@ -159,6 +180,7 @@ foreach($v->result() as $h)
 			$(document).ready(function() {
 	
 		        $( "#dt_lahir" ).datepicker({
+					dateFormat: "yy-mm-dd",
 		            changeMonth: true,
 		            changeYear: true
 		        });
