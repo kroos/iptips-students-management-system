@@ -111,7 +111,7 @@ $autoload['language'] = array();
 
 //baca sini hamya selepas hang melalui checklist controller pendaftar 13
 //insert masuk model ./application/models/app_pelajar_model.php supaya framework autoload model "app_pelajar_model"
-$autoload['model'] = array('dept_func', 'sel_gender', 'sel_negara', 'sel_negeri', 'sel_bandar', 'user_data', 'user_department', 'user_dept', 'user_dept_func', 'user_dept_jaw', 'user_function', 'view');
+$autoload['model'] = array('dept_func', 'sel_gender', 'sel_marital', 'sel_negara', 'sel_negeri', 'sel_bandar', 'sel_race', 'sel_warga', 'user_data', 'user_department', 'user_dept', 'user_dept_func', 'user_dept_jaw', 'user_function', 'view');
 //pi dekat ./application/models/app_pelajar_model.php, ada benda nak bgtau dekat situ...
 
 

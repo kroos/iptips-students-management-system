@@ -75,6 +75,10 @@ class Kemasukan extends CI_Controller
 		{
 			$data['v'] = $this->sel_negara->get();
 			$data['vq'] = $this->sel_gender->get();
+			$data['vw'] = $this->sel_marital->get();
+			$data['bandar'] = $this->sel_bandar->get();
+			$data['warga'] = $this->sel_warga->get();
+			$data['bangsa'] = $this->sel_race->get();
 			if($this->input->post('simpan', TRUE)){
 				$data['info'] = 'Data tidak berjaya disimpan';				
 			}
