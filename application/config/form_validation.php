@@ -17,7 +17,7 @@ $config = array	(
 				);
 */
 ##################################################################################################
-$config = array	( 
+$config = array	(
 					'isms/index' => array
 					( 
 						array
@@ -130,7 +130,7 @@ $config = array	(
 							),
 					),
 					'kemasukan/permohonan_baru' => array
-					( 
+					(
 						array
 							(
 								'field' => 'nama',
@@ -227,7 +227,19 @@ $config = array	(
 								'label' => 'Negara',
 								'rules' => 'trim|required|min_length[1]|max_length[30]|xss_clean'
 							),
-							
+						array
+							(
+								'field' => 'sesi_mohon',
+								'label' => 'Sesi Pengambilan',
+								'rules' => 'trim|required|min_length[1]|max_length[30]|xss_clean'
+							),
+						/*array
+							(
+								'field' => 'id_mohon',
+								'label' => 'ID Permohonan',
+								'rules' => 'trim|required|min_length[1]|max_length[30]|is_unique[app_pelajar.id_mohon]|xss_clean'
+							),*/
+
 					),
 					'isms/devel' => array
 					( 
@@ -381,6 +393,98 @@ $config = array	(
 								'label' => 'Nama Staf',
 								'rules' => 'trim|required|min_length[2]|xss_clean'
 							)
+					),
+					'kemasukan/akademik' => array
+					(
+						array
+							(
+								'field' => 'institusi',
+								'label' => 'Institusi Pengajian',
+								'rules' => 'trim|required|min_length[2]|xss_clean'
+							),
+						array
+							(
+								'field' => 'tahun',
+								'label' => 'Tahun Tamat Pengajian',
+								'rules' => 'trim|required|exact_length[4]|is_natural_no_zero|xss_clean'
+							),
+						array
+							(
+								'field' => 'level',
+								'label' => 'Tahap Pengajian',
+								'rules' => 'trim|required|min_length[2]|alpha|xss_clean'
+							),
+///*
+						array
+							(
+								'field' => 'gred[]',
+								'label' => 'Gred',
+								'rules' => 'required|min_length[1]|xss_clean'
+							),
+							array
+							(
+								'field' => 'subjek[]',
+								'label' => 'Mata Pelajaran',
+								'rules' => 'required|min_length[1]|xss_clean'
+							),
+//*/
+					),
+					'kemasukan/waris' => array
+					(
+						array
+							(
+								'field' => 'nama',
+								'label' => 'Nama',
+								'rules' => 'trim|required|min_length[1]|max_length[30]|xss_clean'
+							),
+						array
+							(
+								'field' => 'hubungan',
+								'label' => 'Hubungan',
+								'rules' => 'trim|required|min_length[1]|max_length[100]|xss_clean'
+							),
+						array
+							(
+								'field' => 'alamat1',
+								'label' => 'Alamat',
+								'rules' => 'trim|required|min_length[1]|max_length[255]|xss_clean'
+							),
+						array
+							(
+								'field' => 'alamat2',
+								'label' => 'Alamat',
+								'rules' => 'trim|min_length[1]|max_length[255]|xss_clean'
+							),
+						array
+							(
+								'field' => 'poskod',
+								'label' => 'Poskod',
+								'rules' => 'trim|required|is_natural|xss_clean'
+							),
+						array
+							(
+								'field' => 'notel_rumah',
+								'label' => 'Telefon Tetap',
+								'rules' => 'trim|max_length[12]|xss_clean'
+							),
+						array
+							(
+								'field' => 'notel_pej',
+								'label' => 'Telefon Pejabat',
+								'rules' => 'trim|max_length[12]|xss_clean'
+							),
+						array
+							(
+								'field' => 'nohp',
+								'label' => 'Telefon Bimbit',
+								'rules' => 'trim|required|max_length[12]|xss_clean'
+							),
+						array
+							(
+								'field' => 'email',
+								'label' => 'Email',
+								'rules' => 'trim|valid_email|xss_clean'
+							),
 					),
 				);
 
