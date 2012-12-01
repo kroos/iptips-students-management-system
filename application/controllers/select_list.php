@@ -23,6 +23,37 @@ class Select_list extends CI_Controller{
         $jsdata = json_encode($json);
 		echo $jsdata;
 	}
+	
+	//select list negeri
+	public function ajax_select_negeri(){
+		$this->load->model('sel_negeri');
+		if($this->input->post('negara',TRUE)){
+			$post = array('kodnegara'=>$this->input->post('negara'));
+			$negeri = $this->sel_negeri->get_where($post);
+		}
+		
+		foreach($negeri->result() as $n){
+			$optionnegeri[$n->kodnegeri] = $n->namanegeri;
+		}
+		echo 'haha';
+	}
+	//select list subjek
+	public function ajax_select_subjek(){
+		if($this->input->post('level',TRUE)){
+			$get = array('level'=>$this->input->post('level'),
+				'aktif'=>'1');
+			$subjek = $this->sel_subjek->get_where($get);
+		}
+		foreach($subjek->result() as $sub){
+			$optionsubjek[$sub->kodsubjek] = $sub->subjek_MY;
+		}
+		//echo form_dropdown('subjek[]', $optionsubjek, set_select('subjek'), 'id="subjek"');
+		echo 'oi';
+	}
+	
+	public function select_gred(){
+		
+	}
 
 	public function sel_negara(){
 
