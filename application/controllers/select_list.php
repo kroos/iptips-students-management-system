@@ -55,8 +55,8 @@ class Select_list extends CI_Controller{
 		
 	}
 
-	public function sel_negara(){
-
+	public function sel_negara()
+	{
 		$array = array();
 		if ($_GET['_name'] == 'negara') 
 			{
