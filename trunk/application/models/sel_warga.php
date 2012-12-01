@@ -10,7 +10,7 @@ class Sel_warga extends CI_Model
 #############################################################################################################################
 //CRUD for user_data
 
-	//select		
+//SELECT		
 	function get($kodwarga = FALSE){
 		if ($kodwarga === FALSE){
 			return $this->db->order_by('kodwarga')->get('sel_warga');

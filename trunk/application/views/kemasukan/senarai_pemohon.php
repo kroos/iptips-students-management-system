@@ -13,8 +13,8 @@
 	        <p>Sila masukkan nama pemohon/kad pengenalan/passport, klik pada butang cari. 
 	        <br>Senarai pemohon yang anda cari akan dipaparkan. 
 	        <br>Kosongkan field dan klik butang untuk dapatkan semua senarai pemohon.
-	</p>
-        </div>
+			</p>
+	</div>
 
 	<!-- variable $info hanya akan dipaparkan selepas button submit di"klik" yang mana ia akan memberitahu user samada proses berjaya atau tidak mengikut input yg telah diberikan kepada user  -->
     <p><font color="#FF0000"><?=@$info?></font></p>
@@ -22,9 +22,11 @@
 	<!-- <div class="form_settings"> dari template  -->
     <div class="form_settings">
 	    <?=form_open()?>
-                <span>Carian</span><?=form_input(array('name' => 'nama', 'value' => set_value('nama'), 'maxlength' => '50', 'size' => '30', 'id' => 'nama', 'title' => 'masukkan nama/nombor KP/nombor pasport'))?>
-                <span>&nbsp;</span><?=form_submit(array('name' => 'cari', 'value' => 'Cari', 'class' => 'submit'))?><br />
-                <?=form_error('nama')?>
+            <p><span>Carian</span>
+			<?=form_input(array('name' => 'nama', 'value' => set_value('nama'), 'maxlength' => '50', 'size' => '30', 'id' => 'nama', 'title' => 'masukkan nama/nombor KP/nombor pasport'))?>
+			<br /><?=form_error('nama')?></p>
+
+			<p><span>&nbsp;</span><?=form_submit(array('name' => 'cari', 'value' => 'Cari', 'class' => 'submit'))?></p>
 	    <?=form_close()?>
     </div>
 
@@ -39,6 +41,7 @@
 				<!-- <div class="demo"> = utk bg cantik supaya semua anchor dpt di"jquery"kan -->
 				<div class="demo">
 
+				<p><?=$paginate?></p>
 				<!-- style utk table adalah dari template -->
 					<table style="width:100%; border-spacing:0;">
 						<thead>
@@ -47,7 +50,7 @@
 								<th>Nama</th>
 								<th>Nombor Kad Pengenalan/Passport</th>
 								<th>Warganegara</th>
-								<th>&nbsp;</th>
+								<th>Sesi Mohon</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -72,9 +75,13 @@
 								<!-- utk pengetahuan, kalau scratch coding, syntax $p['id'] ni adalah betul, tp dlm CI, ia diringkaskan lagi jadi mcm ni, $p->id -->
 								<td><?=$i++?></td>
 								<td><?=anchor('kemasukan/detail_pemohon/'.$p->id, $p->nama, array('title' => 'Keterangan Pemohon'))?></td>
-								<td><?=$p->ic?></td>
-								<td><?=$p->warganegara?></td>
-								<td><?=anchor('kemasukan/detail_pemohon/'.$p->id, 'Kemaskini', array('title' => 'Kemaskini Pemohon'))?></td>
+								<td><?=$p->ic?> / <?=$p->passport?></td>
+								<?foreach($negara->result() as $h):?>
+									<?if ($h->kodnegara == $p->warganegara):?>
+										<td><?=$h->namanegara?></td>
+									<?endif?>
+								<?endforeach?>
+								<td><?=$p->sesi_mohon?></td>
 							</tr>
 						<?endforeach?>
 						</tbody>
