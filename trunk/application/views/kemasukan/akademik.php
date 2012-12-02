@@ -36,7 +36,10 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td><?=form_input(array('name'=>'subjek[]', 'id'=>'gred', 'value'=>set_value('subjek[]'), 'size'=>'12'))?><br /><?=form_error('subjek[]')?></td>
+							<td>
+							<select name="subjek[]" id="subjek"></select>
+							<?//=form_input(array('name'=>'subjek[]', 'id'=>'gred', 'value'=>set_value('subjek[]'), 'size'=>'12'))?>
+							<br /><?=form_error('subjek[]')?></td>
 							<td><?=form_input(array('name'=>'gred[]', 'id'=>'gred', 'value'=>set_value('gred[]'), 'size'=>'4'))?><br /><?=form_error('gred[]')?></td>
 							<td><?=form_button('delRow', '-', 'class="delRow"')?></td>
 						</tr>
@@ -51,9 +54,23 @@
 	<? endblock() ?>
 	
 	<?php startblock('jscript')?>
-	<script type="text/javascript" src="<?php echo base_url()?>js/jquery/jquery.table.addrow.js"></script>
 	<?=get_extended_block() ?>
+	<script type="text/javascript" src="<?php echo base_url()?>js/jquery/jquery.table.addrow.js"></script>
+	<script language="JavaScript" type="text/javascript" src="<?=base_url()?>js/jquery.chainedSelects.js"></script>
 	<script>
+				$('#level').chainSelect('#subjek','<?=site_url().'select_list/sel_subjek'?>',
+					{ 
+						before:function (target) //before request hide the target combobox and display the loading message
+							{ 
+								$("#loading").css("display","block");
+								$(target).css("display","none");
+							},
+						after:function (target) //after request show the target combobox and hide the loading message
+							{ 
+								$("#loading").css("display","none");
+								$(target).css("display","inline");
+							}
+					});
 		$(document).ready(function(){
 			$(".addRow").btnAddRow();
 			$(".delRow").btnDelRow();

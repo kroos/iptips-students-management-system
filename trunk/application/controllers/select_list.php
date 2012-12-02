@@ -54,9 +54,26 @@ class Select_list extends CI_Controller{
 		//echo 'oi';
 	}
 	
-	public function select_gred(){
-		
-	}
+	public function sel_subjek()
+		{
+				$array = array();
+				if ($_GET['_name'] == 'level') 
+					{
+						$rt = $this->sel_level->GetAll();
+						foreach($rt->result() as $y)
+							{
+								if ( $_GET['_value'] == $y->kodtahap )
+									{
+										$th = $this->sel_subjek->GetWhere(array('level' => $y->kodtahap, 'aktif' => 1));
+										foreach($th->result() as $b)
+											{
+												$array[] = array($b->kodsubjek => $b->subjek_MY);
+											}
+									}
+							}
+					}
+				echo json_encode( $array );
+		}
 
 	public function sel_negara()
 	{

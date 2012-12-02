@@ -11,6 +11,7 @@ class Kemasukan extends CI_Controller
 				$this->load->model('app_akademik');				//nak tau controller ni pakai model mana 1...
 				$this->load->model('app_subjek_akademik');		//nak tau controller ni pakai model mana 1...
 				$this->load->model('app_waris');				//nak tau controller ni pakai model mana 1...
+				$this->load->model('app_progmohon');			//nak tau controller ni pakai model mana 1...
 
 				//mesti ikut peraturan ni..
 				//user mesti log on kalau tidak redirect to index
@@ -92,6 +93,14 @@ class Kemasukan extends CI_Controller
 				{
 					if($this->input->post('simpan', TRUE))
 						{
+							//kena cari siri_mohon dulu dari sesi_intake
+							//dapatkan siri_mohon dari sesi_intake
+							$semo = $this->input->post('sesi_mohon');
+							$kodmula = $this->sesi_intake->GetWhere(array('kodsesi' => $semo))->row()->kodmula;
+							$siri = $this->sesi_intake->GetWhere(array('kodsesi' => $semo))->row()->siri;
+							//SIRI MMG AKAN JADI 4 digit SBB DISET DI DATABASE
+							$siri_mohon = $kodmula.$siri;
+
 							$insert = array(
 												'nama' => ucwords(strtolower($this->input->post('nama', TRUE))),
 												'ic' => $this->input->post('ic', TRUE),
@@ -111,8 +120,8 @@ class Kemasukan extends CI_Controller
 												'negara' => $this->input->post('negara', TRUE),
 												'id_add' => $this->session->userdata('id_user'),
 												'dt_add' => date_db($date),
-												'sesi_mohon' => $this->input->post('sesi_mohon')
-												//'id_mohon' => camelize(ucwords(strtolower($this->input->post('id_mohon'))))
+												'sesi_mohon' => $semo,
+												'siri_mohon' => $siri_mohon
 											);
 							$v = $this->app_pelajar->set_app_pelajar($insert);
 							$id = $this->db->insert_id();
@@ -120,7 +129,7 @@ class Kemasukan extends CI_Controller
 								{
 									//$data['info'] = 'Data telah berjaya disimpan';
 									//redirect('kemasukan/akademik/'.$id.'/'.$this->input->post('id_mohon'), 'location');
-									redirect('kemasukan/akademik/'.$id, 'location');
+									redirect('kemasukan/progmohon/'.$id, 'location');
 								}
 								else
 								{
@@ -130,7 +139,50 @@ class Kemasukan extends CI_Controller
 				}
 			$this->load->view('kemasukan/permohonan_baru',$data);
 		}
-	
+
+	public function progmohon()
+		{
+			$id = $this->uri->segment(3, 0);
+			if(is_numeric($id))
+				{
+					$data['prog'] = $this->program->GetAll();
+					//$data['statm'] = $this->sel_statusmohon->GetWhere(array('kodstatus' => 'DIP'));
+					$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+					if ($this->form_validation->run() == TRUE)
+						{
+							if($this->input->post('simpan', TRUE))
+								{
+									$kod_prog = $this->input->post('kod_prog', TRUE);
+									$catatan = $this->input->post('catatan', TRUE);
+
+									//mula2 combine array 2 tu dulu
+									$c = array_combine($kod_prog, $catatan);
+
+									//dapatkan siri mohon
+									$siri_mohon = $this->app_pelajar->GetWhere(array('id' => $id))->row()->siri_mohon;	//siri_mohon di app_pelajar
+
+									$i = 1;
+									foreach($c as $k => $h)
+										{
+											//mulakan proses insert
+											$dat[] = $this->app_progmohon->insert(array('id_mohon' => $id, 'siri_mohon' => $siri_mohon, 'kod_prog' => $k, 'pilihan' => $i++, 'status_mohon' => 'DIP', 'user_edit' => $this->session->userdata('id_user'), 'dt_edit' => datetime_db(now()), 'catatan' => ucwords(strtolower($h))));
+										}
+
+									if($dat)
+										{
+											//redirect ke sini daripada permohonan_baru
+											redirect('kemasukan/akademik/'.$id, 'location');
+										}
+										else
+										{
+											$data['info'] = 'Data tidak berjaya disimpan. Sila cuba sebentar lagi';
+										}
+								}
+						}
+					$this->load->view('kemasukan/progmohon', $data);
+				}
+		}
+
 	//akademik
 	public function akademik()
 		{
@@ -230,7 +282,7 @@ class Kemasukan extends CI_Controller
 				}
 		}
 
-	//waris
+		//waris
 		public function waris()
 			{
 				$id_mohon = $this->uri->segment(3, 0);

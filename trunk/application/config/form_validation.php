@@ -486,6 +486,21 @@ $config = array	(
 								'rules' => 'trim|valid_email|xss_clean'
 							),
 					),
+					'kemasukan/progmohon' => array
+					(
+						array
+							(
+								'field' => 'kod_prog[]',
+								'label' => 'Program',
+								'rules' => 'trim|required|xss_clean'
+							),
+						array
+							(
+								'field' => 'catatan[]',
+								'label' => 'Catatan',
+								'rules' => 'trim|required|xss_clean'
+							),
+					),
 				);
 
 

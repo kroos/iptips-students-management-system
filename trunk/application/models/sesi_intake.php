@@ -13,7 +13,12 @@ class Sesi_intake extends CI_Model
 //SELECT
 		function GetAll()
 			{
-				return $this->db->order_by()->get('sesi_intake');
+				return $this->db->order_by('kod_sesi')->get('sesi_intake');
+			}
+
+		function GetWhere($where)
+			{
+				return $this->db->get_where('sesi_intake', $where);
 			}
 
 		function GetKodSesi($kodsesi)
