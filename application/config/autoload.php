@@ -64,7 +64,7 @@ $autoload['libraries'] = array('database', 'session', 'form_validation', 'tcpdf/
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('form', 'url', 'inflector', 'template_inheritance', 'date', 'password', 'user', 'siri_mohon');
+$autoload['helper'] = array('form', 'url', 'inflector', 'template_inheritance', 'date', 'password', 'user');
 
 
 /*
