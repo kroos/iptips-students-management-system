@@ -7,8 +7,7 @@ class Hea extends CI_Controller
 			{
 				parent::__construct();
 
-				//$this->load->model('app_pelajar');				//nak tau controller ni pakai model mana 1...
-
+				$this->load->model('subjek');				//nak tau controller ni pakai model mana 1...
 				//mesti ikut peraturan ni..
 				//user mesti log on kalau tidak redirect to index
 				if ($this->session->userdata('logged_in') === FALSE)
@@ -38,23 +37,35 @@ class Hea extends CI_Controller
 			}
 
 #############################################################################################################################
-//template
-/*
-		public function home()
+		public function subj_mgmt()
 			{
+				$data['title'] = 'Senarai Subjek';
+
+				//pagination process
+				$this->load->library('pagination');
+				$config['base_url'] = base_url().'hea/subj_mgmt';
+				$config['total_rows'] = $this->subjek->GetAll()->num_rows();
+				$config['per_page'] = 5;
+				$config['suffix'] = '.exe';
+
+				$this->pagination->initialize($config);
+
+				$data['subjek'] = $this->subjek->GetAllPage($config['per_page'], $this->uri->segment(3, 0));
+
+				$data['paginate'] =$this->pagination->create_links();
+
 				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
-				if ($this->form_validation->run() == FALSE)
+				if ($this->form_validation->run() == TRUE)
 					{
-						//form
-						
+						if($this->input->post('cari', TRUE))
+							{
+								$namasubjek = $this->input->post('namasubjek', TRUE);
+								$data['subjek'] = $this->subjek->search_subj($namasubjek);
+							}
 					}
-					else
-					{
-						//form process
-						
-					}
+				
+				$this->load->view('hea/subj_mgmt', $data);
 			}
-*/
 #############################################################################################################################
 	}
 
