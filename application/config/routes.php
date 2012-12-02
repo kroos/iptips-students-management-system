@@ -42,6 +42,7 @@ $route['default_controller'] = 'isms';
 $route['404_override'] = 'isms/page_missing';
 $route['isms/user_cat/(:num)'] = 'isms/user_cat';
 $route['kemasukan/senarai_pemohon/(:num)'] = 'kemasukan/senarai_pemohon';
+$route['kemasukan/progmohon/(:num)'] = 'kemasukan/progmohon';
 $route['kemasukan/akademik/(:num)'] = 'kemasukan/akademik';
 $route['kemasukan/waris/(:num)'] = 'kemasukan/waris';
 

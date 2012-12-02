@@ -20,7 +20,7 @@ class App_pelajar extends CI_Model
 
 		function GetWhere($where)
 			{
-				$this->db->get_where('app_pelajar', $where);
+				return $this->db->get_where('app_pelajar', $where);
 			}
 
 		function get_app_pelajar($id = NULL)
@@ -57,6 +57,10 @@ class App_pelajar extends CI_Model
 			}
 
 //UPDATE
+		function update($update, $where)
+			{
+				return $this->db->update('app_pelajar', $update, $where);
+			}
 		function edit_app_pelajar()
 			{
 				$data = array(
