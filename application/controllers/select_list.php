@@ -43,12 +43,15 @@ class Select_list extends CI_Controller{
 			$get = array('level'=>$this->input->post('level'),
 				'aktif'=>'1');
 			$subjek = $this->sel_subjek->get_where($get);
+		}else {
+			$get = array('aktif'=>'1');
+			$subjek = $this->sel_subjek->get_where($get);
 		}
 		foreach($subjek->result() as $sub){
 			$optionsubjek[$sub->kodsubjek] = $sub->subjek_MY;
 		}
-		//echo form_dropdown('subjek[]', $optionsubjek, set_select('subjek'), 'id="subjek"');
-		echo 'oi';
+		echo form_dropdown('subjek[]', $optionsubjek, set_select('subjek[]'), 'id="subjek"');
+		//echo 'oi';
 	}
 	
 	public function select_gred(){
@@ -92,5 +95,18 @@ class Select_list extends CI_Controller{
 					}
 			}
 		echo json_encode( $array );
+	}
+	
+	public function select_level(){
+		$this->load->model('sel_level');
+		$option = '';
+		$level = $this->sel_level->get_where(array('aktif'=>'1'));
+		foreach($level->result() as $l){
+			$optionLevel[$l->kodtahap] = $l->tahap_MY;
+			$option .= '<option value="'.$l->kodtahap.'"/>'.$l->tahap_MY.'</option>';
+		}
+		//echo form_dropdown('level', $option, 'id="level"');
+		echo '<select>'.$option.'</select>';
+		return $optionLevel;
 	}
 }
