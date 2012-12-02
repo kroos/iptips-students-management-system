@@ -29,7 +29,7 @@ class App_pelajar extends CI_Model
 					{
 						return $this->db->order_by('sesi_mohon DESC')->get('app_pelajar');
 					}
-					return $this->db->order_by('sesi_mohon DESC')->get_where('app_pelajar', array('id'=>$id));
+				return $this->db->order_by('sesi_mohon DESC')->get_where('app_pelajar', array('id'=>$id));
 			}
 		
 		function seacrh_app($nama = NULL)

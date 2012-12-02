@@ -67,15 +67,12 @@ class Kemasukan extends CI_Controller
 			//maklumat pemohon individual
 			public function detail_pemohon()
 				{
-					$data['title'] = 'Keterangan Pemohon';
-					$data['pemohon'] = $this->app_pelajar->get_app_pelajar($id);
-					$data['field'] = $this->db->list_fields('app_pelajar');
-
-					foreach($data['field'] as $fields)
+					$id = $this->uri->segment(3, 0);
+					if(is_numeric($id))
 						{
-							$data[$fields] = $data['pemohon'][$fields];
+							$data['pe'] = $this->app_pelajar->get_app_pelajar($id);
+							$this->load->view('kemasukan/detail_pemohon', $data);
 						}
-					$this->load->view('Kemasukan/detail_pemohon', $data);
 				}
 	
 	//insert pemohon
