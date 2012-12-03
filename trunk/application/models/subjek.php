@@ -32,7 +32,7 @@ class Subjek extends CI_Model
 					return $this->db->order_by('namasubjek_MY DESC')->get_where('subjek', array('id'=>$id));
 			}
 		
-		function search_subj($nama = NULL)
+/*  		function search_subj($nama = NULL)
 			{
 				if($nama == NULL)
 					{
@@ -42,8 +42,18 @@ class Subjek extends CI_Model
 				$this->db->or_like('kodsubjek', $nama);
 				$this->db->order_by('namasubjek_MY', 'asc');
 				return $this->db->get('subjek');
+			} */
+
+		function SearchSub($nama)
+			{
+				//hanya 1 baris shj kalau perasan...
+				return $this->db->
+				order_by('namasubjek_MY', 'asc')->
+				like('namasubjek_MY',$nama)->
+				or_like('kodsubjek', $nama)->
+				get('subjek');
 			}
-		
+
 		function get_where($where = array())
 			{
 				return $this->db->get_where('subjek', $where);

@@ -61,12 +61,29 @@ class Hea extends CI_Controller
 							{
 								$namasubjek = $this->input->post('namasubjek', TRUE);
 								$data['subjek'] = $this->subjek->search_subj($namasubjek);
+
+								#########################################################
+								//yg ni sy buat...
+								$data['sub'] = $this->subjek->SearchSub($nama);
+								//bandingkan dgn model dgn yang ina buat....
+
+								//check balik kalau query kat atas menjadi..kalau tidak paparkan carian yg depa cari tu takdak
+								if($data['sub'])
+									{
+										$data['info'] = '';
+									}
+									else
+									{
+										$data['info'] = 'Query x menjadi, check balik database connection';
+									}
+								#########################################################
 							}
 					}
 				
 				$this->load->view('hea/subj_mgmt', $data);
 			}
 
+	//aaa... iiii... uuuu... tidoq dulu...
 		public function mohon_pelajar()
 			{
 			
