@@ -1,22 +1,23 @@
 <?php
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class App_akademik extends CI_Model
-	{
-		public function _construct()
+class App_akademik extends CI_Model{
+	function __construct()
 			{
 				parent::__construct();
 			}
-#############################################################################################################################
-//select
-		public function get_app_akademik($id = FALSE)
-			{
-				if ($id === FALSE)
-					{
-						return $this->db->get('app_akademik');
-					}
-					return $this->db->get_where('app_akademik', array('id'=>$id));
-			}
+	
+	//select
+	function get_app_akademik($id = FALSE)
+    {
+        if ($id === FALSE)
+        {
+            $query = $this->db->get('app_akademik');
+            return $query->result_array();
+        }
+        $query = $this->db->get_where('app_akademik', array('id'=>$id));
+        return $query->row_array();        
+    }
     
 		public function get_where($where = array())
 			{
