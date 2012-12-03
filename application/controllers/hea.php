@@ -66,6 +66,11 @@ class Hea extends CI_Controller
 				
 				$this->load->view('hea/subj_mgmt', $data);
 			}
+
+		public function mohon_pelajar()
+			{
+			
+			}
 #############################################################################################################################
 	}
 
