@@ -169,5 +169,35 @@ class View extends CI_Model
 											order by `dept_func`.`id_user_department`,`dept_func`.`id_user_function`
 										");
 			}
+
+		function view_app_list()
+			{
+				return $this->db->query("
+											SELECT
+											`app_pelajar`.`id` AS `id`,
+											`app_pelajar`.`nama` AS `nama`,
+											`sel_negara`.`namanegara` AS `namanegara`,
+											`app_akademik`.`institusi` AS `institusi`,
+											`app_akademik`.`tahun` AS `tahun`,
+											`sel_level`.`tahap_MY` AS `tahap_MY`,
+											`sel_subjek`.`subjek_MY` AS `subjek_MY`,
+											`app_subjek_akademik`.`gred` AS `gred`,
+											`program`.`namaprog_MY` AS `namaprog_MY`,
+											`app_progmohon`.`pilihan` AS `pilihan`,
+											`app_progmohon`.`catatan` AS `catatan`,
+											`sel_statusmohon`.`status_MY` AS `status_MY`
+											FROM ((((((((`app_pelajar`
+											LEFT JOIN `app_akademik` on((`app_pelajar`.`id` = `app_akademik`.`id_mohon`)))
+											LEFT JOIN `app_progmohon` on((`app_pelajar`.`id` = `app_progmohon`.`id_mohon`)))
+											LEFT JOIN `app_subjek_akademik` on((`app_subjek_akademik`.`akademik_id` = `app_akademik`.`id`)))
+											LEFT JOIN `sel_level` on((`sel_level`.`kodtahap` = `app_akademik`.`level`)))
+											LEFT JOIN `sel_subjek` on((`sel_subjek`.`kodsubjek` = `app_subjek_akademik`.`subjek`)))
+											LEFT JOIN `program` on((`program`.`kod_prog` = `app_progmohon`.`kod_prog`)))
+											LEFT JOIN `sel_statusmohon` on((`sel_statusmohon`.`kodstatus` = `app_progmohon`.`status_mohon`)))
+											LEFT JOIN `sel_negara` on((`sel_negara`.`kodnegara` = `app_pelajar`.`warganegara`)))
+											WHERE
+											(`app_progmohon`.`status_mohon` = 'DIP')
+										");
+			}
 	}
 ?>

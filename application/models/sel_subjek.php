@@ -15,12 +15,15 @@ class Sel_subjek extends CI_Model {
 		if ($id === FALSE)
         {
             return $this->db->get('sel_subjek');
-            //return $query->result_array();
         }
         return $this->db->get_where('sel_subjek', array('id'=>$id));  
 	}
 	
 	function get_where($array){
+		return $this->db->get_where('sel_subjek', $array);
+	}
+
+	function GetWhere($array){
 		return $this->db->get_where('sel_subjek', $array);
 	}
 }

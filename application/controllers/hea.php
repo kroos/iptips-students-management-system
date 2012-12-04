@@ -7,7 +7,13 @@ class Hea extends CI_Controller
 			{
 				parent::__construct();
 
-				$this->load->model('subjek');				//nak tau controller ni pakai model mana 1...
+				$this->load->model('subjek');					//nak tau controller ni pakai model mana 1...
+				$this->load->model('app_pelajar');				//nak tau controller ni pakai model mana 1...
+				$this->load->model('app_akademik');				//nak tau controller ni pakai model mana 1...
+				$this->load->model('app_subjek_akademik');		//nak tau controller ni pakai model mana 1...
+				$this->load->model('app_waris');				//nak tau controller ni pakai model mana 1...
+				$this->load->model('app_progmohon');			//nak tau controller ni pakai model mana 1...
+
 				//mesti ikut peraturan ni..
 				//user mesti log on kalau tidak redirect to index
 				if ($this->session->userdata('logged_in') === FALSE)
@@ -83,10 +89,13 @@ class Hea extends CI_Controller
 				$this->load->view('hea/subj_mgmt', $data);
 			}
 
-	//aaa... iiii... uuuu... tidoq dulu...
 		public function mohon_pelajar()
 			{
-			
+				//mula2 buat list dulu, ambik dari list app_pelajar dan letak apa yang patut...sepatutnya ada checking dulu utk terima masuk sbg pelajar...
+				//query ni check semua status mohon "dalam proses" tp buang user yg salah satu tu dah ada status selain dr "dlm proses"
+				$data['u'] = $this->app_progmohon->GetWhereGroup('id_mohon', array('status_mohon <>' => 'DIP'));
+				
+				$this->load->view('hea/mohon_pelajar', $data);
 			}
 #############################################################################################################################
 	}
