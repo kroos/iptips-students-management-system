@@ -261,9 +261,9 @@ class Isms extends CI_Controller
 										//form process
 										if($this->input->post('save', TRUE))
 											{
-												$ctrlr = $this->input->post('ctrlr', TRUE);
-												$func = $this->input->post('function', TRUE);
-												$remarks = $this->input->post('remarks', TRUE);
+												$ctrlr = strtolower($this->input->post('ctrlr', TRUE));
+												$func = strtolower($this->input->post('function', TRUE));
+												$remarks = ucwords(strtolower($this->input->post('remarks', TRUE)));
 												$display = $this->input->post('display', TRUE);
 												$menu = ucwords(strtolower($this->input->post('menu', TRUE)));
 

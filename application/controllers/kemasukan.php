@@ -169,7 +169,7 @@ class Kemasukan extends CI_Controller
 									foreach($c as $k => $h)
 										{
 											//mulakan proses insert
-											$dat[] = $this->app_progmohon->insert(array( 'id_mohon' => $id, 'siri_mohon' => $siri_mohon, 'kod_prog' => $k, 'pilihan' => $i++, 'status_mohon' => 'DIP', 'user_edit' => $this->session->userdata('id_user'), 'dt_edit' => datetime_db(now()), 'catatan' => ucwords(strtolower($h)), 'aktif' => 1));
+											$dat[] = $this->app_progmohon->insert(array( 'id_mohon' => $id, 'siri_mohon' => $siri_mohon, 'kod_prog' => $k, 'pilihan' => $i++, 'status_mohon' => 'DIP', 'user_edit' => $this->session->userdata('id_user'), 'dt_edit' => datetime_db(now()), 'catatan' => ucwords(strtolower($h))));
 										}
 
 									if($dat)

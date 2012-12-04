@@ -34,7 +34,7 @@
 					</tbody>
 					</table>
 
-					<p><span>&nbsp;</span><?=form_submit('simpan', 'Seterusnya >>', 'class=submit')?></p>
+					<p><span>&nbsp;</span><?=form_submit('simpan', 'Seterusnya >>', 'class="submit"')?></p>
 				<?=form_close()?>
 		</div>
 		</div>

@@ -10,17 +10,22 @@ class App_pelajar extends CI_Model
 //SELECT
 		function GetAll()
 			{
-				return $this->db->order_by('sesi_mohon DESC')->get('app_pelajar');
+				return $this->db->order_by('sesi_mohon ASC')->get('app_pelajar');
 			}
 
 		function GetAllPage($num, $offset)
 			{
-				return $this->db->order_by('sesi_mohon DESC')->limit($num, $offset)->get('app_pelajar');
+				return $this->db->order_by('sesi_mohon ASC')->limit($num, $offset)->get('app_pelajar');
 			}
 
 		function GetWhere($where)
 			{
-				return $this->db->get_where('app_pelajar', $where);
+				return $this->db->order_by('dt_add ASC')->get_where('app_pelajar', $where);
+			}
+
+		function GetWherePage($where, $num, $offset)
+			{
+				return $this->db->order_by('dt_add ASC')->limit($num, $offset)->get_where('app_pelajar', $where);
 			}
 
 		function get_app_pelajar($id = NULL)
@@ -61,6 +66,7 @@ class App_pelajar extends CI_Model
 			{
 				return $this->db->update('app_pelajar', $update, $where);
 			}
+
 		function edit_app_pelajar()
 			{
 				$data = array(
