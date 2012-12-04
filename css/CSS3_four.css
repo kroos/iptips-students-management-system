@@ -520,10 +520,10 @@ ul#nav li a:hover, ul#nav li a:focus, ul#nav li.selected {
     height: 100px;
 }
 
-.tab_form input{
+.tab_form input, .tab_form select{
 	width: 200px;
 }
-.addRow, .delRow{
+.addRow, .delRow, .tambah{
 	width: 40px;
 	font-size:14px;
 	font-weight:bolder;
