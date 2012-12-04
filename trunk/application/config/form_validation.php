@@ -513,6 +513,33 @@ $config = array	(
 								'rules' => 'trim|required|xss_clean'
 							),
 					),
+					'hea/mohon_pelajar' => array
+					(
+						array
+							(
+								'field' => 'id_appprogmohon',
+								'label' => 'ID Permohonan Program',
+								'rules' => 'trim|required|is_natural_no_zero|xss_clean'
+							),
+						array
+							(
+								'field' => 'id_mohon',
+								'label' => 'ID Pemohon',
+								'rules' => 'trim|required|is_natural_no_zero|xss_clean'
+							),
+						array
+							(
+								'field' => 'kodprog',
+								'label' => 'Kod Program',
+								'rules' => 'trim|required|xss_clean'
+							),
+						array
+							(
+								'field' => 'catatan',
+								'label' => 'Catatan',
+								'rules' => 'trim|required|xss_clean'
+							),
+					),
 				);
 
 
