@@ -12,9 +12,13 @@
 			<?=form_input(array('name' => 'nama', 'value' => set_value('nama'), 'maxlength' => '30', 'size' => '12', 'id' => 'nama'))?>
 			<br /><?=form_error('nama')?>
 			</p>
-			
+
+<?foreach ($h->result() as $v):?>
+	<?$opth[$v->kodhubungan] = $v->hubungan_MY?>
+<?endforeach?>
+
 			<p><span><label for="hubungan">Hubungan : </label></span>
-			<?=form_input(array('name' => 'hubungan', 'value' => set_value('hubungan'), 'maxlength' => '12', 'size' => '12', 'id' => 'hubungan'))?>
+			<?=form_dropdown('hubungan', $opth, set_value('hubungan'), 'id="hubungan"')?>
 			<br /><?=form_error('hubungan')?>
 			</p>
 

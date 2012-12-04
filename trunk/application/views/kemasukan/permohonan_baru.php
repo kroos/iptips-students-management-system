@@ -129,6 +129,18 @@
 			<select name="bandar" id="bandar" style="display:none"></select>
             <br /><?=form_error('bandar')?></p>
 
+			<p><span><?=form_label('No Telefon', 'notel')?></span>
+			<?=form_input(array('name' => 'notel', 'value' => ($id != 0 ? $z->row()->nama : set_value('notel')), 'maxlength' => '50', 'size' => '30', 'id' => 'notel'))?>
+			<br /><?=form_error('notel')?></p>
+
+			<p><span><?=form_label('No Telefon Bimbit', 'nohp')?></span>
+			<?=form_input(array('name' => 'nohp', 'value' => ($id != 0 ? $z->row()->nama : set_value('nohp')), 'maxlength' => '50', 'size' => '30', 'id' => 'nohp'))?>
+			<br /><?=form_error('nama')?></p>
+
+			<p><span><?=form_label('Email', 'emel')?></span>
+			<?=form_input(array('name' => 'emel', 'value' => ($id != 0 ? $z->row()->nama : set_value('emel')), 'maxlength' => '50', 'size' => '30', 'id' => 'emel'))?>
+			<br /><?=form_error('emel')?></p>
+
 			<div class="form_settings"><p><span>&nbsp;</span><?=form_submit('simpan','Seterusnya>>','class="submit"')?></p></div>
 		</div>
 		<?=form_close()?>
