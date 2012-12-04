@@ -233,12 +233,24 @@ $config = array	(
 								'label' => 'Sesi Pengambilan',
 								'rules' => 'trim|required|min_length[1]|max_length[30]|xss_clean'
 							),
-						/*array
+						array
 							(
-								'field' => 'id_mohon',
-								'label' => 'ID Permohonan',
-								'rules' => 'trim|required|min_length[1]|max_length[30]|is_unique[app_pelajar.id_mohon]|xss_clean'
-							),*/
+								'field' => 'notel',
+								'label' => 'No Telefon',
+								'rules' => 'trim|required|min_length[1]|max_length[10]|xss_clean'
+							),
+						array
+							(
+								'field' => 'nohp',
+								'label' => 'No Telefon Bimbit',
+								'rules' => 'trim|required|min_length[1]|max_length[10]|xss_clean'
+							),
+						array
+							(
+								'field' => 'emel',
+								'label' => 'Email',
+								'rules' => 'trim|required|valid_email|is_unique[app_pelajar.emel]|xss_clean'
+							),
 
 					),
 					'isms/devel' => array

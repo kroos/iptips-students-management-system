@@ -92,7 +92,7 @@ class Hea extends CI_Controller
 			{
 				//mula2 buat list dulu, ambik dari list app_pelajar dan letak apa yang patut...sepatutnya ada checking dulu utk terima masuk sbg pelajar...
 				//query ni check semua status mohon "dalam proses" tp buang user yg salah satu tu dah ada status selain dr "dlm proses"
-				$data['u'] = $this->app_progmohon->GetWhereGroup('id_mohon', array('status_mohon <>' => 'DIP'));
+				$data['u'] = $this->app_pelajar->GetWhere(array('status_mohon' => 'DIP'));
 				
 				$this->load->view('hea/mohon_pelajar', $data);
 			}

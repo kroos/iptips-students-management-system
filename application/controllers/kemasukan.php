@@ -121,7 +121,11 @@ class Kemasukan extends CI_Controller
 												'id_add' => $this->session->userdata('id_user'),
 												'dt_add' => date_db($date),
 												'sesi_mohon' => $semo,
-												'siri_mohon' => $siri_mohon
+												'siri_mohon' => $siri_mohon,
+												'status_mohon' => 'DIP',
+												'notel' => $this->input->post('notel', TRUE),
+												'nohp' => $this->input->post('nohp', TRUE),
+												'emel' => $this->input->post('emel', TRUE)
 											);
 							$v = $this->app_pelajar->set_app_pelajar($insert);
 							$id = $this->db->insert_id();
@@ -165,16 +169,7 @@ class Kemasukan extends CI_Controller
 									foreach($c as $k => $h)
 										{
 											//mulakan proses insert
-											$dat[] = $this->app_progmohon->insert(array(
-											'id_mohon' => $id,
-											'siri_mohon' => $siri_mohon,
-											'kod_prog' => $k,
-											'pilihan' => $i++,
-											'status_mohon' => 'DIP',
-											'user_edit' => $this->session->userdata('id_user'),
-											'dt_edit' => datetime_db(now()),
-											'catatan' => ucwords(strtolower($h)),
-											'aktif' => 1));
+											$dat[] = $this->app_progmohon->insert(array( 'id_mohon' => $id, 'siri_mohon' => $siri_mohon, 'kod_prog' => $k, 'pilihan' => $i++, 'status_mohon' => 'DIP', 'user_edit' => $this->session->userdata('id_user'), 'dt_edit' => datetime_db(now()), 'catatan' => ucwords(strtolower($h)), 'aktif' => 1));
 										}
 
 									if($dat)
@@ -298,6 +293,7 @@ class Kemasukan extends CI_Controller
 				if(is_numeric($id_mohon))
 					{
 						$data['info'] = '';
+						$data['h'] = $this->sel_hubungan->GetAll();
 						$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
 						if ($this->form_validation->run() == TRUE)
 							{

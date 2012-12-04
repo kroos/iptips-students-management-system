@@ -26,26 +26,9 @@
 
 <?=form_open()?>
 
-	<?foreach($u->result() as $j):?>
-		<?//$array['id_mohon <> '.$i++] = $j->id_mohon?>
-		<?$m[] = "where('id_mohon <>', ".$j->id_mohon.")->"?>
-	<?endforeach?>
-
-<pre>
-<?=print_r($m)?>
-</pre>
-
-<?$g = '$this->db->'?>
-<?foreach($m as $l):?>
-<?$g .= $l?>
-<?endforeach?>	
-<?$g .= "get('app_progmohon')->result()"?>
-
-<?=$g?>
-		<?//$g = $this->app_progmohon->GetWhere($array)?>
-		<?foreach($g as $k):?>
+		<?foreach($u->result() as $k):?>
 			<tr>
-				<td><?=$k->id_mohon?></td>
+				<td><?=$k->id?></td>
 				<td><?=$k->status_mohon?></td>
 			</tr>
 		<?endforeach?>
