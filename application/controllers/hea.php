@@ -69,7 +69,6 @@ class Hea extends CI_Controller
 								$data['subjek'] = $this->subjek->search_subj($namasubjek);
 
 								#########################################################
-								//yg ni sy buat...
 								$data['sub'] = $this->subjek->SearchSub($nama);
 								//bandingkan dgn model dgn yang ina buat....
 
