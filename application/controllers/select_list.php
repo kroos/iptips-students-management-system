@@ -42,16 +42,38 @@ class Select_list extends CI_Controller{
 		if($this->input->post('level',TRUE)){
 			$get = array('level'=>$this->input->post('level'),
 				'aktif'=>'1');
-			$subjek = $this->sel_subjek->get_where($get);
+			$subjek = $this->sel_subjek->GetWhere($get);
 		}else {
 			$get = array('aktif'=>'1');
-			$subjek = $this->sel_subjek->get_where($get);
+			$subjek = $this->sel_subjek->GetWhere($get);
 		}
 		foreach($subjek->result() as $sub){
 			$optionsubjek[$sub->kodsubjek] = $sub->subjek_MY;
+			echo '<option value="'.$sub->kodsubjek.'">'.$sub->subjek_MY.'</option>';
 		}
-		echo form_dropdown('subjek[]', $optionsubjek, set_select('subjek[]'), 'id="subjek"');
+		//echo form_dropdown('subjek[]', $optionsubjek, set_select('subjek[]'), 'id="subjek"');
 		//echo 'oi';
+	}
+	
+	//ajax select gred
+	public function ajax_select_gred(){
+		if($this->input->post('level',TRUE)){
+			$get = array('level'=>$this->input->post('level'));
+			if($this->input->post('level')=='SPM' && $this->input->post('tahun',TRUE)){
+				$year = $this->input->post('tahun');
+				$this->load->model('spm_gred_year');	
+				$kodgred = $this->spm_gred_year->get_custom_where("thn_mula <= '$year' AND thn_akhir >= '$year'");
+				$kod = $kodgred->row();
+				$get['y_gred'] = $kod->kod_gred;
+			}
+			$gred = $this->sel_gred->get_where($get);
+		}else{
+			$gred = $this->sel_gred->get();
+		}
+		foreach($gred->result() as $grad){
+			//$optiongred[$sub->kodsubjek] = $sub->subjek_MY;
+			echo '<option value="'.$grad->nilaigred.'">'.$grad->gred.'</option>';
+		}
 	}
 	
 	public function sel_subjek()
