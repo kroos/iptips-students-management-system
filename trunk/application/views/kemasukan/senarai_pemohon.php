@@ -51,6 +51,7 @@
 								<th>Nombor Kad Pengenalan/Passport</th>
 								<th>Warganegara</th>
 								<th>Sesi Mohon</th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -82,6 +83,7 @@
 									<?endif?>
 								<?endforeach?>
 								<td><?=$p->sesi_mohon?></td>
+								<td><?=anchor('kemasukan/permohonan_baru/'.$p->id, 'Kemaskini', array('title' => 'Kemaskini Pemohon'))?></td>
 							</tr>
 						<?endforeach?>
 						</tbody>
