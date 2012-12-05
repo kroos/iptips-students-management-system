@@ -94,7 +94,7 @@
 			<?$iw = 10?>
 			<p><span>Taraf Perkahwinan</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<?foreach($vw->result() as $h):?>
-				<?=form_radio(array('name'=>'status_kahwin', 'value' => $h->kod, 'id' => 'radio'.$tw++))?><?=form_label($h->marital_MY, 'radio'.$iw++)?>
+				<?=form_radio(array('name'=>'status_kahwin', 'value' => $h->kod, 'checked' => ($id != 0 && $z->row()->status_kahwin == $h->kod ? 'checked' : ''), 'id' => 'radio'.$tw++))?><?=form_label($h->marital_MY, 'radio'.$iw++)?>
 			<?endforeach?>
 			<br /><?=form_error('status_kahwin')?></p>
 
@@ -130,15 +130,15 @@
             <br /><?=form_error('bandar')?></p>
 
 			<p><span><?=form_label('No Telefon', 'notel')?></span>
-			<?=form_input(array('name' => 'notel', 'value' => ($id != 0 ? $z->row()->nama : set_value('notel')), 'maxlength' => '50', 'size' => '30', 'id' => 'notel'))?>
+			<?=form_input(array('name' => 'notel', 'value' => ($id != 0 ? $z->row()->notel : set_value('notel')), 'maxlength' => '50', 'size' => '30', 'id' => 'notel'))?>
 			<br /><?=form_error('notel')?></p>
 
 			<p><span><?=form_label('No Telefon Bimbit', 'nohp')?></span>
-			<?=form_input(array('name' => 'nohp', 'value' => ($id != 0 ? $z->row()->nama : set_value('nohp')), 'maxlength' => '50', 'size' => '30', 'id' => 'nohp'))?>
+			<?=form_input(array('name' => 'nohp', 'value' => ($id != 0 ? $z->row()->nohp : set_value('nohp')), 'maxlength' => '50', 'size' => '30', 'id' => 'nohp'))?>
 			<br /><?=form_error('nama')?></p>
 
 			<p><span><?=form_label('Email', 'emel')?></span>
-			<?=form_input(array('name' => 'emel', 'value' => ($id != 0 ? $z->row()->nama : set_value('emel')), 'maxlength' => '50', 'size' => '30', 'id' => 'emel'))?>
+			<?=form_input(array('name' => 'emel', 'value' => ($id != 0 ? $z->row()->emel : set_value('emel')), 'maxlength' => '50', 'size' => '30', 'id' => 'emel'))?>
 			<br /><?=form_error('emel')?></p>
 
 			<div class="form_settings"><p><span>&nbsp;</span><?=form_submit('simpan','Seterusnya>>','class="submit"')?></p></div>
@@ -174,6 +174,7 @@
 						$(target).css("display","inline");
 					}
 				});
+				
 				$('#negeri').chainSelect('#bandar','<?=base_url()?>select_list/sel_negara',
 				{ 
 					before:function (target) 
@@ -223,10 +224,12 @@
 		        });
 
 		        $('input').each(function(index){
-			        $(this).blur(function(){
-				        val = $(this).val()
-			        	$(this).val(val.toUpperCase());
-			        });
+						$(this).blur(function(){
+							if($(this).attr('name')!='emel'){
+								val = $(this).val()
+								$(this).val(val.toUpperCase());
+							}
+						});
 		        });
 
 		        function negara_hid(kod){

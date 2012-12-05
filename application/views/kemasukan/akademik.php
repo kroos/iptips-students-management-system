@@ -25,7 +25,7 @@
 				<?endforeach?>
 					<p><span><?php echo form_label('Tahap Pengajian', 'level')?></span>
 					<?=form_dropdown('level', $opt, set_value('level'), 'id="level"')?><br /><?=form_error('passport')?></p>
-
+<div id="test"></div>
 					<table class="tab_form">
 					<thead>
 						<tr>
@@ -40,7 +40,10 @@
 							<select name="subjek[]" id="subjek"></select>
 							<?//=form_input(array('name'=>'subjek[]', 'id'=>'gred', 'value'=>set_value('subjek[]'), 'size'=>'12'))?>
 							<br /><?=form_error('subjek[]')?></td>
-							<td><?=form_input(array('name'=>'gred[]', 'id'=>'gred', 'value'=>set_value('gred[]'), 'size'=>'4'))?><br /><?=form_error('gred[]')?></td>
+							<td>
+							<select name="gred[]" id="gred"></select>
+							<?//=form_input(array('name'=>'gred[]', 'id'=>'gred', 'value'=>set_value('gred[]'), 'size'=>'4'))?><br />
+							<?=form_error('gred[]')?></td>
 							<td><?=form_button('delRow', '-', 'class="delRow"')?></td>
 						</tr>
 					</tbody>
@@ -57,8 +60,9 @@
 	<?=get_extended_block() ?>
 	<script type="text/javascript" src="<?php echo base_url()?>js/jquery/jquery.table.addrow.js"></script>
 	<script language="JavaScript" type="text/javascript" src="<?=base_url()?>js/jquery.chainedSelects.js"></script>
+	<script type="text/javascript" src="<?php echo base_url()?>js/jquery/jquery.cookies.2.2.0.js"></script>
 	<script>
-				$('#level').chainSelect('#subjek','<?=site_url().'select_list/sel_subjek'?>',
+				<?/*$('#level').chainSelect('#subjek','<?=site_url().'select_list/sel_subjek'?>',
 					{ 
 						before:function (target) //before request hide the target combobox and display the loading message
 							{ 
@@ -70,7 +74,8 @@
 								$("#loading").css("display","none");
 								$(target).css("display","inline");
 							}
-					});
+					});	*/?>
+					
 		$(document).ready(function(){
 			$(".addRow").btnAddRow();
 			$(".delRow").btnDelRow();
@@ -78,6 +83,54 @@
 			$( "#accordion" ).accordion({
 				collapsible: true
 			});
+			$("#tahun").blur(function(){
+				//alert($("#tahun").val());
+				select_gred();
+			});
+			$("#level").change(function(){
+				//alert($("#tahun").val());
+				select_subjek();
+				select_gred();
+			});
+			
+			//change input to upper case
+			$('input').each(function(index){
+			        $(this).blur(function(){
+				        val = $(this).val()
+			        	$(this).val(val.toUpperCase());
+			        });
+		        });
+				
+			function select_subjek(){
+				$.post("<?=site_url().'select_list/ajax_select_subjek'?>",
+					{
+						level: $("#level").val(),
+						<?php echo $this->config->item('csrf_token_name'); ?>: $.cookies.get("<?php echo $this->config->item('csrf_cookie_name'); ?>") //pass token cookie name klu x ajax xjln
+					},
+					function(data){
+						console.log(data);
+						$("#subjek").html(data);
+					}
+				);
+			}
+				
+			function select_gred(){
+				$.post("<?=site_url().'select_list/ajax_select_gred'?>",
+					{
+						level: $("#level").val(),
+						tahun: $("#tahun").val(),
+						<?php echo $this->config->item('csrf_token_name'); ?>: $.cookies.get("<?php echo $this->config->item('csrf_cookie_name'); ?>") //pass token cookie name klu x ajax xjln
+					},
+					function(data){
+						console.log(data);
+						$("#gred").html(data);
+					}
+				);
+			}
+			
+			select_subjek();
+			select_gred();
+				
 		});
 	</script>
 	<?php endblock()?>
