@@ -122,11 +122,11 @@
 			<br /><?=form_error('negara')?></p>
 
 			<p><span><?=form_label('Negeri', 'negeri')?></span>
-			<select name="negeri" id="negeri" style="display:none"></select>
+			<select name="negeri" id="negeri" style="display:inline"></select>
 			<br /><?=form_error('negeri')?></p>
 
 			<p><span><?=form_label('Bandar', 'bandar')?></span>
-			<select name="bandar" id="bandar" style="display:none"></select>
+			<select name="bandar" id="bandar" style="display:inline"></select>
             <br /><?=form_error('bandar')?></p>
 
 			<p><span><?=form_label('No Telefon', 'notel')?></span>
@@ -150,6 +150,7 @@
 		<script src="<?=base_url()?>js/jquery/jquery-ui-1.9.1.custom.js"></script>
 		<script type="text/javascript" src="<?=base_url()?>js/jquery/jquery-ui-timepicker-addon.js"></script>
 		<script language="JavaScript" type="text/javascript" src="<?=base_url()?>js/jquery.chainedSelects.js"></script>
+		<script type="text/javascript" src="<?php echo base_url()?>js/jquery/jquery.cookies.2.2.0.js"></script>
 		<script>
 			$(function() {
 				$( "input[type=submit], a, button", ".demo" )
@@ -161,7 +162,7 @@
 				$('#datepicker').datetimepicker({dateFormat: "yy-mm-dd", timeFormat: "hh:mm:ss", showSecond: true, showMillisec: false, ampm: false, stepHour: 1, stepMinute: 1, stepSecond: 5});
 
 				//chain select 3 level
-				$('#negara').chainSelect('#negeri','<?=base_url()?>select_list/sel_negara',
+				<?php /* $('#negara').chainSelect('#negeri','<?=base_url()?>select_list/sel_negara',
 				{ 
 					before:function (target) //before request hide the target combobox and display the loading message
 					{ 
@@ -187,7 +188,7 @@
 						$("#loading").css("display","none");
 						$(target).css("display","inline");
 					}
-				});
+				}); */?>
 			});
 		</script>
 
@@ -200,41 +201,59 @@
 		            changeMonth: true,
 		            changeYear: true
 		        });
-		        
-		        $.getJSON('<?=base_url()?>select_list/json_select_negara', function(data){
-		    		$("#negara").autocomplete({
-	    				source: data,
-	    				minLength: 2,
-	    				select: function( event, ui ){
-	    					//var id = $(this).closest('td').parent()[0].sectionRowIndex; //get row index
-	    					var val = ui.item.kod; //get value to be passing to selectlist 
-	    					negara_hid(val);
-    					},
-    					open: function() {
-    		                $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
-    		            },
-    		            close: function() {
-    		                $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
-    		            }
-	    			});
-		        });
 
 		        $( "#accordion" ).accordion({
 		            collapsible: true
 		        });
 
 		        $('input').each(function(index){
+					
+					if($(this).attr('id')!='emel'){
 						$(this).blur(function(){
-							if($(this).attr('name')!='emel'){
 								val = $(this).val()
-								$(this).val(val.toUpperCase());
-							}
+								$(this).val(val.toTitleCase());
 						});
+					}
 		        });
-
-		        function negara_hid(kod){
-			        $("#negara_hid").val(kod);
-		        }
+				
+				$("#negara").change(function(){
+					negeri();
+				});
+				
+				$("#negeri").change(function(){
+					bandar();
+				});
+				
+				function negeri(){
+					$.post('<?php echo base_url()."select_list/ajax_select_negeri";?>',
+						{	
+							<?php echo $this->config->item('csrf_token_name'); ?>: $.cookies.get("<?php echo $this->config->item('csrf_cookie_name'); ?>"), //pass token cookie name klu x ajax xjln
+							negara: $("#negara").val(),
+							negeri: '<?=@$z->row()->negeri?>'
+						},
+						function(data){
+							$("#negeri").html(data);
+						}
+					);
+				}
+				
+				function bandar(){
+					$.post('<?php echo base_url()."select_list/ajax_select_bandar";?>',
+						{
+							<?php echo $this->config->item('csrf_token_name'); ?>: $.cookies.get("<?php echo $this->config->item('csrf_cookie_name'); ?>"),
+							negara: $("#negara").val(),
+							negeri: $("#negeri").val(),
+							bandar: '<?=@$z->row()->bandar?>'
+						},
+						function(data){
+							$("#bandar").html(data);
+						}
+					);
+				}
+				
+				setTimeout(function(){negeri()}, 100);
+				//negeri();
+				setTimeout(function(){bandar()}, 2000);
 		        
 		    });
 	    </script>
