@@ -25,6 +25,7 @@ class Sel_subjek extends CI_Model
 	}
 
 	function GetWhere($array){
+		$this->db->order_by('subjek_MY');
 		return $this->db->get_where('sel_subjek', $array);
 	}
 	
@@ -32,5 +33,4 @@ class Sel_subjek extends CI_Model
 		{
 			return $this->db->get('sel_subjek');
 		}
-	}
 }
