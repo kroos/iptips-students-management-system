@@ -14,6 +14,7 @@
 			<div class="info"><p><?=@$info?></p></div>
 
 		<div class="demo">
+		
 		<div class="form_settings">
 				<?=form_open()?>
 
@@ -26,11 +27,23 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td><?=form_dropdown('kod_prog[]', $kod_prog, set_value('kod_prog[]'), array('id' => 'gred'))?><br /><?=form_error('kod_prog[]')?></td>
-							<td><?=form_input(array('name'=>'catatan[]', 'id'=>'gred', 'value'=>set_value('catatan[]'), 'size'=>'4'))?><br /><?=form_error('catatan[]')?></td>
-							<td><?=form_button('delRow', '-', 'class="delRow"')?></td>
-						</tr>
+						<?php if($mohon->num_rows()>0){?>
+							<?php foreach($mohon->result() as $m){?>
+								<tr>
+									<td><?=form_hidden(array('name'=>'id_progmohon[]', 'value'=>set_value('id_progmohon', $m->id), 'id'=>'id_progmohon'))?>
+										<?=form_dropdown('kod_prog[]', $kod_prog, set_value('kod_prog[]', $m->kod_prog), array('id' => 'gred'))?><br /><?=form_error('kod_prog[]')?></td>
+									<td><?=form_input(array('name'=>'catatan[]', 'id'=>'gred', 'value'=>set_value('catatan[]', $m->catatan), 'size'=>'4'))?><br /><?=form_error('catatan[]')?></td>
+									<td><?=form_button('delRow', '-', 'class="delRow"')?></td>
+								</tr>
+							<?php }
+							
+						}else{ // jika bruinsert?>
+								<tr>
+									<td><?=form_dropdown('kod_prog[]', $kod_prog, set_value('kod_prog[]'), array('id' => 'gred'))?><br /><?=form_error('kod_prog[]')?></td>
+									<td><?=form_input(array('name'=>'catatan[]', 'id'=>'gred', 'value'=>set_value('catatan[]'), 'size'=>'4'))?><br /><?=form_error('catatan[]')?></td>
+									<td><?=form_button('delRow', '-', 'class="delRow"')?></td>
+								</tr>
+						<?php }?>
 					</tbody>
 					</table>
 
