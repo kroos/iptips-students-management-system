@@ -7,7 +7,8 @@ class Kewangan extends CI_Controller
 			{
 				parent::__construct();
 
-				//$this->load->model('app_pelajar');				//nak tau controller ni pakai model mana 1...
+				$this->load->model('app_pelajar');				//nak tau controller ni pakai model mana 1...
+				$this->load->model('pel_resit');				//nak tau controller ni pakai model mana 1...
 
 				//mesti ikut peraturan ni..
 				//user mesti log on kalau tidak redirect to index
@@ -30,6 +31,79 @@ class Kewangan extends CI_Controller
 				$this->load->view('kewangan/home');
 			}
 
+		public function pmbyrn_penawarn()
+			{
+				//cari pelajar dulu <= harap2 cara ni tidak melambatkan proses mysql...
+				//cari dulu sesi_mohon dari sesi_intake
+				$data['h'] = $this->sesi_intake->GetWhere(array('aktif' => 1));
+				$where = array('status_mohon' => 'TW', 'sesi_mohon' => $data['h']->row()->kodsesi);
+				$data['u'] = $this->app_pelajar->GetWhere($where);
+
+				$this->load->library('pagination');
+				$config['base_url'] = base_url().'kewangan/pmbyrn_penawarn';
+				$config['total_rows'] = $data['u']->num_rows();
+				$config['per_page'] = 5;
+				$config['suffix'] = '.exe';
+
+				$this->pagination->initialize($config);
+
+				$data['paginate'] = $this->pagination->create_links();
+
+				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+				if ($this->form_validation->run() == TRUE)
+					{
+						if($this->input->post('cari', TRUE))
+							{
+								$nama = $this->input->post('carian', TRUE);
+								$s = "status_mohon = 'TW' AND sesi_mohon = '".$data['h']->row()->kodsesi."' AND (ic LIKE '%$nama%' OR nama LIKE '%$nama%' OR passport LIKE '%$nama%')";
+								$data['r'] = $this->app_pelajar->GetWherePage($s, $config['per_page'], $this->uri->segment(3, 0));
+								//echo $this->db->last_query();
+							}
+					}
+					else
+					{
+						$data['r'] = $this->app_pelajar->GetWherePage($where, $config['per_page'], $this->uri->segment(3, 0));
+					}
+				$this->load->view('kewangan/pmbyrn_penawarn', $data);
+			}
+
+		public function bayar_prmhnn()
+			{
+				$data['info'] = '';
+				$siri_mohon = $this->uri->segment(3, 0);
+				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+				if ($this->form_validation->run() == TRUE)
+					{
+						if($this->input->post('simpan', TRUE))
+							{
+								$noresit = ucwords(strtolower($this->input->post('noresit', TRUE)));
+								$ktr_bayaran = ucwords(strtolower($this->input->post('ktr_bayaran', TRUE)));
+								$jumlah = $this->input->post('jumlah', TRUE);
+
+								$insert = array
+											(
+												'noresit' => $noresit,
+												'matrik' => $siri_mohon,
+												'ktr_bayaran' => $ktr_bayaran,
+												'tarikhmasa_resit' => datetime_db(now()),
+												'jumlah' => $jumlah,
+												'id_add' => $this->session->userdata('id_user'),
+												'dt_add' => datetime_db(now()),
+												'aktif' => 1
+											);
+								$x = $this->pel_resit->insert($insert);
+								if($x)
+									{
+										$data['info'] = 'Pembayaran direkodkan';
+									}
+									else
+									{
+										$data['info'] = 'Pembayaran tidak berjaya direkodkan. Sila cuba sebentar lagi';
+									}
+							}
+					}
+				$this->load->view('kewangan/bayar_prmhnn', $data);
+			}
 #############################################################################################################################
 //error 404
 		public function page_missing()

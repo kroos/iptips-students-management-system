@@ -13,9 +13,9 @@ class App_pelajar extends CI_Model
 				return $this->db->order_by('sesi_mohon ASC')->get('app_pelajar');
 			}
 
-		function GetAllPage($num, $offset)
+		function GetAllPage($limit, $offset)
 			{
-				return $this->db->order_by('sesi_mohon ASC')->limit($num, $offset)->get('app_pelajar');
+				return $this->db->order_by('sesi_mohon ASC')->limit($limit, $offset)->get('app_pelajar');
 			}
 
 		function GetWhere($where)
