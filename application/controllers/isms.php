@@ -546,29 +546,26 @@ class Isms extends CI_Controller
 							{
 								$data['ui'] =$this->user_data->GetAllXAdmin();
 								$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
-								if ($this->form_validation->run() == FALSE)
-									{
-										//form
-										$this->load->view('user_perm_edit', $data);
-									}
-									else
+								if ($this->form_validation->run() == TRUE)
 									{
 										//form process
 										if($this->input->post('search', TRUE))
 											{
-												$name = $this->input->post('name', TRUE);
+												$name = ucwords(strtolower($this->input->post('name', TRUE)));
+												echo $name.' = nama<br />';
 												$l = $this->user_data->search_user($name);
-												if($l)
+												echo $l->num_rows().' = num rows<br />';
+												if($l->num_rows() == 1)
 													{
 														redirect('/isms/set_privillege/'.$l->row()->id, 'location');
 													}
 													else
 													{
 														$data['info'] = 'Nama yang anda cari tidak dapat dijumpai';
-														$this->load->view('user_perm_edit', $data);
-													};
+													}
 											}
 									}
+								$this->load->view('user_perm_edit', $data);
 							}
 							else
 							{

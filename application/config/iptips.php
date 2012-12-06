@@ -6,19 +6,9 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 $config['title'] = 'Students Management System';
 
 #############################################################################################
-//Facebook
-//optional. if u have a fan page just insert the URL of your fan page otherwise leave it blank.
-//more info => https://developers.facebook.com/docs/guides/web/#plugins
-//example : 
-$config['facebook'] = 'https://www.facebook.com/pages/A3-Revive/279787298733680';
+$config['insts'] = 'IPTIPs';
+$config['instl'] = 'Institut Pengajian Islam Tinggi Perlis';
 
-#############################################################################################
-//Paypal
-//optional. same as facebook configuration section
-$config['payemail'] = 'azaliha@gmail.com';										//if u dont set anything, donation page will not appear
-$config['paypickupline'] = 'this should be your donation pick up line. just put in nice word to persuade them make a donation to ur server';
-
-#############################################################################################
 #############################################################################################
 //Mailer Configurations
 //pop3 server and port

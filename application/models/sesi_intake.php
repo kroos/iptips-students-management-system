@@ -31,7 +31,10 @@ class Sesi_intake extends CI_Model
 				return $this->db->get_where('sesi_intake', array('aktif' => $aktif, 'tarikh_tamat >= ' => date_db(now())));
 			}
 //UPDATE
-
+		function update($where, $update)
+			{
+				return $this->db->update('sesi_intake', $update, $where);
+			}
 
 //INSERT
 		function insert_sesi($id_user_data, $id_user_department)

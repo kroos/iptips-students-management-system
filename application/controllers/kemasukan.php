@@ -84,7 +84,7 @@ class Kemasukan extends CI_Controller
 				{
 				$data['z'] = $this->app_pelajar->get_app_pelajar($id);
 				}
-			$data['title'] = 'Permohonan Baru';
+			$data['title'] = 'Proses Permohonan';
 			$data['v'] = $this->sel_negara->get();
 			$data['vq'] = $this->sel_gender->get();
 			$data['vw'] = $this->sel_marital->get();
@@ -132,6 +132,9 @@ class Kemasukan extends CI_Controller
 												'nohp' => $this->input->post('nohp', TRUE),
 												'emel' => $this->input->post('emel', TRUE)
 											);
+							//nak kena update +1 kepada siri
+							$siri1 = $siri + 1;
+							$s = $this->sesi_intake->update(array('kodmula' => $kodmula), array('siri' => $siri1));
 							$v = $this->app_pelajar->set_app_pelajar($insert);
 							$id = $this->db->insert_id();
 							if($v)
@@ -170,7 +173,7 @@ class Kemasukan extends CI_Controller
 									$c = array_combine($kod_prog, $catatan);
 
 									//dapatkan siri mohon
-									$siri_mohon = $this->app_pelajar->GetWhere(array('id' => $id))->row()->siri_mohon;	//siri_mohon di app_pelajar
+									$siri_mohon = $this->app_pelajar->GetWhere(array('id' => $id))->row()->siri_mohon;	//tarik siri_mohon di app_pelajar
 
 									$i = 1;
 									foreach($c as $k => $h)
