@@ -149,7 +149,7 @@ class View extends CI_Model
 		function menu($id_user_department)
 			{
 				return $this->db->query("
-											select
+											SELECT
 											`dept_func`.`id_user_department` AS `id_user_department`,
 											`user_department`.`dept_ctrlr` AS `dept_ctrlr`,
 											`user_department`.`dept` AS `dept`,
@@ -157,7 +157,8 @@ class View extends CI_Model
 											`user_function`.`function` AS `function`,
 											`user_function`.`remarks` AS `remarks`,
 											`user_function`.`menu` AS `menu`,
-											`user_function`.`menu_display` AS `menu_display`
+											`user_function`.`menu_display` AS `menu_display`,
+											`user_function`.`posisi` AS `posisi`
 											from ((`dept_func`
 											inner join `user_department` on((`dept_func`.`id_user_department` = `user_department`.`id`)))
 											inner join `user_function` on((`dept_func`.`id_user_function` = `user_function`.`id`)))
@@ -166,7 +167,7 @@ class View extends CI_Model
 											user_function.menu_display = 1 AND
 											dept_func.id_user_function > 1 AND
 											dept_func.id_user_department = $id_user_department
-											order by `dept_func`.`id_user_department`,`dept_func`.`id_user_function`
+											order by `user_function`.`posisi`
 										");
 			}
 

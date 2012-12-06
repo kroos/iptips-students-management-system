@@ -119,7 +119,7 @@ class Hea extends CI_Controller
 								$g = $this->app_pelajar->update(array('dt_edit' => date_db(now()), 'id_edit' => $this->session->userdata('id_user'), 'status_mohon' => 'TW', 'progTawar' => $kodprog), array('id' => $id_mohon));
 
 								//update app_progmohon
-								//1. gaglkan program semua program dulu
+								//1. gagalkan program semua program dulu
 								$r = $this->app_progmohon->update(array('id_mohon' => $id_mohon), array('status_mohon' => 'GL', 'user_edit' => $this->session->userdata('id_user'), 'dt_edit' => datetime_db(now()), 'catatan' => 'Penawaran Program Yang Lain'));
 								//2. tawarkan program yang berkenaan
 								$r1 = $this->app_progmohon->update(array('id_mohon' => $id_mohon, 'id' => $id_appprogmohon), array('status_mohon' => 'TW', 'user_edit' => $this->session->userdata('id_user'), 'dt_edit' => datetime_db(now()), 'catatan' => 'Penawaran Program '.$kodprog.' '.$catatan.''));
@@ -169,6 +169,12 @@ class Hea extends CI_Controller
 								redirect('/hea/mohon_pelajar', 'location');
 							}
 					}
+			}
+
+		public function pendaftaran()
+			{
+				$data['dip'] = $this->app_pelajar->GetWhere(array('status_mohon' => 'TW'));
+				$this->load->view('hea/pendaftaran', $data);
 			}
 
 #############################################################################################################################
