@@ -10,6 +10,23 @@
 		
 			<div class="info"><p><?=@$info?></p></div>
 		<div class="demo">
+		
+			<?php if($akademik->num_rows>0) {?>
+			
+			<div id="info_akademik">
+				<?php foreach ($akademik->result() as $a){?>
+					<h4><?php echo $a->level;?></h4>
+					<table>
+						<tr><td>Institusi Pengajian</td>
+							<td><?php echo $a->institusi;?></td></tr>
+						<tr><td>Tahun Tamat Pengajian</td>
+							<td><?php echo $a->tahun?></td></tr>
+					</table>
+				<?php }?>
+			</div>
+			
+			<?php }?>
+			
 			<div class="form_settings">
 				<?=form_open()?>
 					<p><span><?php echo form_label('Institisi Pengajian', 'institusi')?></span>
@@ -83,6 +100,12 @@
 			$( "#accordion" ).accordion({
 				collapsible: true
 			});
+
+			$( "#info_akademik" ).accordion({
+				collapsible: true
+			});
+
+			
 			$("#tahun").blur(function(){
 				//alert($("#tahun").val());
 				select_gred();
