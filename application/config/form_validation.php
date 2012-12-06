@@ -663,9 +663,38 @@ $config = array	(
 								'field' => 'emel',
 								'label' => 'Email',
 								'rules' => 'trim|required|valid_email|is_unique[app_pelajar.emel]|xss_clean'
-							),
-
+							)
 					),
+					'kewangan/pmbyrn_penawarn' => array
+					(
+						array
+							(
+								'field' => 'carian',
+								'label' => 'Carian',
+								'rules' => 'trim|required|xss_clean'
+							)
+					),
+					'kewangan/bayar_prmhnn' => array
+					(
+						array
+							(
+								'field' => 'noresit',
+								'label' => 'No Resit',
+								'rules' => 'trim|required|alpha_dash|is_unique[pel_resit.noresit]|xss_clean'
+							),
+						array
+							(
+								'field' => 'ktr_bayaran',
+								'label' => 'ktr Bayaran',
+								'rules' => 'trim|required|alpha_dash|xss_clean'
+							),
+						array
+							(
+								'field' => 'jumlah',
+								'label' => 'Jumlah',
+								'rules' => 'trim|required|decimal|xss_clean'
+							),
+					)
 					
 				);
 

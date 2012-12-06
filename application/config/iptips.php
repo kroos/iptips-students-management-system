@@ -3,11 +3,11 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 #############################################################################################
 //Website
-$config['title'] = 'Students Management System';
+$config['title'] = 'Sistem Pengurusan Pelajar';
 
 #############################################################################################
 $config['insts'] = 'IPTIPs';
-$config['instl'] = 'Institut Pengajian Islam Tinggi Perlis';
+$config['instl'] = 'Institut Pengajian Tinggi Islam Perlis';
 
 #############################################################################################
 //Mailer Configurations
@@ -41,5 +41,5 @@ $config['from_name'] = 'Admin';							//example [GM]Cabal
 #############################################################################################
 #############################################################################################
 
-/* End of file cabal.php */
-/* Location: ./application/config/cabal.php */
+/* End of file iptips.php */
+/* Location: ./application/config/iptips.php */
