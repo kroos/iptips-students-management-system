@@ -1,7 +1,6 @@
 <? extend('base_template_user') ?>
 
 	<? startblock('content') ?>
-		<h1>Selamat Datang ke IPTIPs Students Management System</h1>
 		<h2>Edit Kebenaran Capaian Staf (User Permission Access Level)</h2>
 		<p>Sila masukkan nama staff dan edit capaian staff kepada page</p>
 		<p><font color="#FF0000"><?=@$info?></font></p>

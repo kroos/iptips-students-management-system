@@ -1,7 +1,6 @@
 <? extend('base_template_user') ?>
 
 	<? startblock('content') ?>		
-		<h1>Selamat Datang ke IPTIPs Students Management System</h1>
 		<h2><?=$title?></h2>                
 			<div id="accordion">
 			<h3>Bantuan</h3>
@@ -18,9 +17,9 @@
 					<h4><?php echo $a->level;?></h4>
 					<table>
 						<tr><td>Institusi Pengajian</td>
-							<td><?php echo $a->institusi;?></td></tr>
+							<td><?=$a->institusi;?></td></tr>
 						<tr><td>Tahun Tamat Pengajian</td>
-							<td><?php echo $a->tahun?></td></tr>
+							<td><?=$a->tahun?></td></tr>
 					</table>
 				<?php }?>
 			</div>
@@ -97,10 +96,6 @@
 			$(".addRow").btnAddRow();
 			$(".delRow").btnDelRow();
 	
-			$( "#accordion" ).accordion({
-				collapsible: true
-			});
-
 			$( "#info_akademik" ).accordion({
 				collapsible: true
 			});

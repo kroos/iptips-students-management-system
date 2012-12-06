@@ -1,7 +1,6 @@
 <? extend('base_template_user') ?>
 
 	<? startblock('content') ?>
-		<h1>Selamat Datang ke IPTIPs Students Management System</h1>
 		<h2>Developer</h2>
 		<p>Page ini digunakan untuk memasukkan function yang <b>akan</b> dibina supaya developer boleh mencapai page ini. Berikut adalah langkah yang diperlukan :
 			<ol>

@@ -1,7 +1,6 @@
 <? extend('base_template_user') ?>
 
 	<? startblock('content') ?>		
-		<h1>Selamat Datang ke IPTIPs Students Management System</h1>
 		<h2>Permohonan Program Pilihan Pelajar</h2>                
 			<div id="accordion">
 			<h3>Bantuan</h3>
@@ -60,10 +59,6 @@
 		$(document).ready(function(){
 			$(".addRow").btnAddRow();
 			$(".delRow").btnDelRow();
-	
-			$( "#accordion" ).accordion({
-				collapsible: true
-			});
 		});
 	</script>
 	<?php endblock()?>

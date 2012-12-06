@@ -1,7 +1,6 @@
 <? extend('base_template_user') ?>
 
 	<? startblock('content') ?>
-		<h1>Selamat Datang ke IPTIPs Students Management System</h1>
 		<h2>Penetapan kebenaran capaian untuk pengguna <?=$u->row()->name?></h2>
 		<p>Klik di function samada untuk memberi kebenaran kepada <strong><?=$u->row()->name?></strong></p>
 		<p><font color="#FF0000"><?=@$info?></font></p>

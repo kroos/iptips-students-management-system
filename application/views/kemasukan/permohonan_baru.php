@@ -2,7 +2,6 @@
     
     <?php startblock('content') ?>
 	<?php $id = $this->uri->segment(3, 0)?>
-    	<h1>Selamat Datang ke IPTIPs Students Management System</h1>
         <h2><?php echo $title?></h2>
         <div id="accordion">
 	        <h3>Bantuan</h3>
@@ -202,10 +201,6 @@
 					dateFormat: "yy-mm-dd",
 		            changeMonth: true,
 		            changeYear: true
-		        });
-
-		        $( "#accordion" ).accordion({
-		            collapsible: true
 		        });
 
 		        $('input').each(function(index){

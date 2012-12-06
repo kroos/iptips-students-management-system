@@ -1,7 +1,6 @@
 <? extend('base_template_user') ?>
 
 	<? startblock('content') ?>
-		<h1>Selamat Datang ke IPTIPs Students Management System</h1>
 		<h2>Keterangan Pemohon</h2>                
 			<h3>Nama Pemohon : <strong><?=$pe->row()->nama?></strong></h3>
 			<div class="info"><p><?=@$info?></p></div>
