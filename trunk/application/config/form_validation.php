@@ -129,6 +129,7 @@ $config = array	(
 								'rules' => 'trim|required|is_natural_no_zero|xss_clean'
 							),
 					),
+					
 					'kemasukan/permohonan_baru' => array
 					(
 						array
@@ -213,13 +214,13 @@ $config = array	(
 							(
 								'field' => 'bandar',
 								'label' => 'Bandar',
-								'rules' => 'trim|required|min_length[1]|max_length[30]|xss_clean'
+								'rules' => 'trim|min_length[1]|max_length[30]|xss_clean'
 							),
 						array
 							(
 								'field' => 'negeri',
 								'label' => 'Negeri',
-								'rules' => 'trim|required|min_length[1]|max_length[30]|xss_clean'
+								'rules' => 'trim|min_length[1]|max_length[30]|xss_clean'
 							),
 						array
 							(
@@ -510,7 +511,7 @@ $config = array	(
 							(
 								'field' => 'catatan[]',
 								'label' => 'Catatan',
-								'rules' => 'trim|required|xss_clean'
+								'rules' => 'trim|xss_clean'
 							),
 					),
 					'hea/mohon_pelajar' => array
@@ -540,6 +541,132 @@ $config = array	(
 								'rules' => 'trim|required|xss_clean'
 							),
 					),
+					
+					'kemasukan/edit_permohonan' => array
+					(
+						array
+							(
+								'field' => 'nama',
+								'label' => 'Nama Pemohon',
+								'rules' => 'trim|required|min_length[1]|max_length[30]|xss_clean'
+							),
+						array
+							(
+								'field' => 'ic',
+								'label' => 'Nombor Kad Pengenalan',
+								'rules' => 'trim|required|min_length[1]|max_length[12]|numeric|is_unique[app_pelajar.ic]|xss_clean'
+							),
+						array
+							(
+								'field' => 'passport',
+								'label' => 'Nombor Pasport',
+								'rules' => 'trim|required|min_length[1]|max_length[30]|is_unique[app_pelajar.passport]|xss_clean'
+							),
+						array
+							(
+								'field' => 'dt_lahir',
+								'label' => 'Tarikh Lahir',
+								'rules' => 'trim|required|min_length[1]|max_length[30]|xss_clean'
+							),
+						array
+							(
+								'field' => 'tempat_lahir',
+								'label' => 'Tempat Lahir',
+								'rules' => 'trim|required|min_length[1]|max_length[30]|xss_clean'
+							),
+						array
+							(
+								'field' => 'status_warga',
+								'label' => 'Taraf Warganegara',
+								'rules' => 'trim|required|min_length[1]|max_length[30]|xss_clean'
+							),
+						array
+							(
+								'field' => 'warganegara',
+								'label' => 'Warganegara',
+								'rules' => 'trim|required|min_length[1]|max_length[30]|xss_clean'
+							),
+						array
+							(
+								'field' => 'bangsa',
+								'label' => 'Bangsa',
+								'rules' => 'trim|required|min_length[1]|max_length[30]|xss_clean'
+							),
+						array
+							(
+								'field' => 'jantina',
+								'label' => 'Jantina',
+								'rules' => 'trim|required|min_length[1]|max_length[30]|xss_clean'
+							),
+						array
+							(
+								'field' => 'status_kahwin',
+								'label' => 'Taraf Perkahwinan',
+								'rules' => 'trim|required|min_length[1]|max_length[30]|xss_clean'
+							),
+						array
+							(
+								'field' => 'alamat1',
+								'label' => 'Alamat',
+								'rules' => 'trim|required|min_length[1]|max_length[255]|xss_clean'
+							),
+						array
+							(
+								'field' => 'alamat2',
+								'label' => 'Alamat',
+								'rules' => 'min_length[1]|max_length[255]|xss_clean'
+							),
+						array
+							(
+								'field' => 'poskod',
+								'label' => 'Poskod',
+								'rules' => 'trim|required|min_length[1]|max_length[30]|xss_clean'
+							),
+						array
+							(
+								'field' => 'bandar',
+								'label' => 'Bandar',
+								'rules' => 'trim|min_length[1]|max_length[30]|xss_clean'
+							),
+						array
+							(
+								'field' => 'negeri',
+								'label' => 'Negeri',
+								'rules' => 'trim|min_length[1]|max_length[30]|xss_clean'
+							),
+						array
+							(
+								'field' => 'negara',
+								'label' => 'Negara',
+								'rules' => 'trim|required|min_length[1]|max_length[30]|xss_clean'
+							),
+						array
+							(
+								'field' => 'sesi_mohon',
+								'label' => 'Sesi Pengambilan',
+								'rules' => 'trim|required|min_length[1]|max_length[30]|xss_clean'
+							),
+						array
+							(
+								'field' => 'notel',
+								'label' => 'No Telefon',
+								'rules' => 'trim|required|min_length[1]|max_length[10]|xss_clean'
+							),
+						array
+							(
+								'field' => 'nohp',
+								'label' => 'No Telefon Bimbit',
+								'rules' => 'trim|required|min_length[1]|max_length[10]|xss_clean'
+							),
+						array
+							(
+								'field' => 'emel',
+								'label' => 'Email',
+								'rules' => 'trim|required|valid_email|is_unique[app_pelajar.emel]|xss_clean'
+							),
+
+					),
+					
 				);
 
 
