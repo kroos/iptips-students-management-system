@@ -238,7 +238,7 @@ $config = array	(
 							(
 								'field' => 'notel',
 								'label' => 'No Telefon',
-								'rules' => 'trim|required|min_length[1]|max_length[10]|xss_clean'
+								'rules' => 'trim|min_length[1]|max_length[10]|xss_clean'
 							),
 						array
 							(
@@ -650,7 +650,7 @@ $config = array	(
 							(
 								'field' => 'notel',
 								'label' => 'No Telefon',
-								'rules' => 'trim|required|min_length[1]|max_length[10]|xss_clean'
+								'rules' => 'trim|min_length[1]|max_length[10]|xss_clean'
 							),
 						array
 							(
