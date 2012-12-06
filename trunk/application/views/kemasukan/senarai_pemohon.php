@@ -1,9 +1,6 @@
 <? extend('base_template_user') ?>
 
 <? startblock('content') ?>
-	<!-- letak <h1> supaya nampak standardize...  -->
-    <h1>Selamat Datang ke IPTIPs Students Management System</h1>
-
 	<!-- variable $title dapat dari controller ( $data['title'] )  -->
 	<h2><?=$title?></h2>
 
@@ -104,10 +101,6 @@
 	<script type="text/javascript" src="<?=base_url()?>js/jquery/jquery.hints.js"></script>
 	<script>
 		$(document).ready(function(){	
-	        $( "#accordion" ).accordion({
-	            collapsible: true
-	        });
-
 	        $('input[title!=""]').hint();
 		});
 	</script>

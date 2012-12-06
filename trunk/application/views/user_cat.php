@@ -1,7 +1,6 @@
 <? extend('base_template_user') ?>
 
 	<? startblock('content') ?>
-		<h1>Selamat Datang ke IPTIPs Students Management System</h1>
 		<h2>Penambahan Jabatan Kepada Staff</h2>
 		<p>Page ini adalah untuk menambahkan jabatan kepada staff yang telah sedia ada. Jadi 1 staff boleh mempunyai 2 jabatan dan juga 2 jawatan yang berbeza mengikut jabatan. Akan tetapi 1 staff tidak boleh mempunyai 1 jabatan dgn 2 jawatan yang berbeza mengikut sistem ini. Sila klik pada nama staff dan pilih jabatan dan juga jawatan staff.</p>
 		<p><font color="#FF0000"><?=@$info?></font></p>

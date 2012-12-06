@@ -1,7 +1,6 @@
 <? extend('base_template_user') ?>
 
 	<? startblock('content') ?>
-		<h1>Selamat Datang ke IPTIPs Students Management System</h1>
 		<h2>Tambah Staf</h2>
 		<p>Sila masukkan data untuk penambahan staf. Staf yang akan dimasukkan ini boleh mencapai Sistem Pengurusan Pelajar.</p>
 		<p><font color="#FF0000"><?=@$info?></font></p>

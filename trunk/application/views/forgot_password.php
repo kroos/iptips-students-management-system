@@ -5,7 +5,6 @@
 	<? endblock() ?>
 
 	<? startblock('content') ?>
-		<h1>Selamat Datang ke IPTIPs Students Management System</h1>
 		<h2>Lupa Kata Laluan</h3>
 		<p>Masukan nama pengguna dan juaga email anda untuk mengetahui kata laluan. Kata laluan akan dihantar ke email anda.</p>
 		<p><font color="#FF0000"><?=@$info?></font></p>

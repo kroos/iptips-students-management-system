@@ -65,7 +65,8 @@
 		</div>
 		</div>
 		<div id="content">
-	
+
+<h1>Selamat Datang ke Sistem Pengurusan Pelajar <?=$this->config->item('insts')?></h1>
 <?php start_block_marker('content') ?>
 
 <?php end_block_marker() ?>

@@ -1,7 +1,6 @@
 <? extend('base_template_user') ?>
 
 	<? startblock('content') ?>
-		<h1>Selamat Datang ke IPTIPs Students Management System</h1>
 		<h2>Profile Pengguna</h2>
 		<p>Sila sunting(edit) data dibawah dan klik "Simpan"</p>
 		<p><font color="#FF0000"><?=@$info?></font></p>

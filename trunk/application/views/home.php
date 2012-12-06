@@ -1,7 +1,6 @@
 <? extend('base_template_user') ?>
 
 	<? startblock('content') ?>
-		<h1>Selamat Datang ke IPTIPs Students Management System</h1>
 		<h2>Staff</h2>
 		<p>Anda boleh klik menu diatas seperti yang telah pun diperuntukkan kepada anda mengikut jabatan.</p>
 		<p>Jika sekiranya anda mendapat page : <br />
