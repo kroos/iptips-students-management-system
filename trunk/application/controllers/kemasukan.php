@@ -203,6 +203,9 @@ class Kemasukan extends CI_Controller
 			if (is_numeric($id))
 				{
 					$data['lev'] =$this->sel_level->GetAktif(1);
+					
+					//dapatkan maklumat akademik
+					$data['akademik'] = $this->app_akademik->get_where(array('id_mohon' => $id));
 
 					$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
 					if ($this->form_validation->run() == TRUE)
@@ -354,10 +357,9 @@ class Kemasukan extends CI_Controller
 			if(is_numeric($id_mohon))
 				{
 				
-				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
-			
 				$data['z'] = $this->app_pelajar->get_app_pelajar($id_mohon);
-				
+				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+							
 				if ($this->form_validation->run() == TRUE)
 					{
 						echo 'berjaya validate form';
@@ -399,7 +401,7 @@ class Kemasukan extends CI_Controller
 								//$id_mohon = $this->uri->segment(3, 0);
 								$insert['id_edit'] = $this->session->userdata('id_user');
 								$insert['dt_edit'] = date_db($date);
-								$v = $this->app_pelajar->update($insert);
+								$v = $this->app_pelajar->update($insert, array('id' => $id_mohon));
 								$data['info'] = 'Data telah berjaya disimpan';
 								//$id_mohon = $this->db->insert_id();
 									
@@ -414,7 +416,8 @@ class Kemasukan extends CI_Controller
 										$data['info'] = 'Data tidak berjaya disimpan. Sila cuba sekali lagi';
 									}
 							}
-					}else{
+					}
+					else{
 						echo 'tak validate pese pa';
 					}
 					$this->load->view('kemasukan/permohonan_baru',$data);
