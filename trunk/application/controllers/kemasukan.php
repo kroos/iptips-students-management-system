@@ -161,6 +161,8 @@ class Kemasukan extends CI_Controller
 				{
 					$data['prog'] = $this->program->GetAll();
 					//$data['statm'] = $this->sel_statusmohon->GetWhere(array('kodstatus' => 'DIP'));
+					$data['mohon'] = $this->app_progmohon->GetWhere(array('id_mohon'=>$id));
+					
 					$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
 					if ($this->form_validation->run() == TRUE)
 						{
