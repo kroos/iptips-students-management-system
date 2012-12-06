@@ -14,7 +14,8 @@
 				1.&nbsp;Sila klik pada butang "Tawaran" yang bersangkutan dengan program yang dipohon<br />
 				2.&nbsp;Sekiranya pemohon tidak layak dari senarai program yang dipohonnya, sila klik pada senarai dropdown dan pilih dari senarai program yang ingin anda tawarkan pada pemohon. Jadi dengan cara ini, institusi anda dapat menawarkan program yang bersesuian dengan pemohon<br />
 				3.&nbsp;Klik pada button "TIDAK LENGKAP" sekiranya maklumat yang diberi adalah tidak mencukupi untuk penilaian<br />
-				4.&nbsp;Klik pada button "GAGAL" sekiranya pemohon tidak layak untuk menduduki program.</p>
+				4.&nbsp;Klik pada button "GAGAL" sekiranya pemohon tidak layak untuk menduduki program<br />
+				5.&nbsp;<strong>Anda dinasihatkan agar tidak klik pada button "TIDAK LENGKAP" dan "GAGAL" sehingga pada hari selepas pendaftaran, kerana jika sekiranya ada pemohon yang ingin membuat rayuan terhadap permohonannya, rayuan permohonan tersebut boleh ditimbang daripada page ini</strong></p>
 	</div>
     <p><font color="#FF0000"><?=@$info?></font></p>
 
