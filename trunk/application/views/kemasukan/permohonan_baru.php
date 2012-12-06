@@ -1,14 +1,15 @@
 <?php extend('base_template_user') ?>
     
     <?php startblock('content') ?>
-	<?$id = $this->uri->segment(3, 0)?>
+	<?php $id = $this->uri->segment(3, 0)?>
     	<h1>Selamat Datang ke IPTIPs Students Management System</h1>
-        <h2><?=$title?></h2>
+        <h2><?php echo $title?></h2>
         <div id="accordion">
 	        <h3>Bantuan</h3>
 	        <p>Masukkan maklumat peribadi pelajar.</p>
         </div>
-        <div class="info"><?=@$info?><br><?=validation_errors(); ?></div>
+        <div class="info"><?=@$info?>
+		<br><?php echo '<br>'.validation_errors(); ?></div>
         <div class="form_settings">
             <?=form_open()?>
 
@@ -188,7 +189,8 @@
 						$("#loading").css("display","none");
 						$(target).css("display","inline");
 					}
-				}); */?>
+				}); 
+				*/?>
 			});
 		</script>
 
@@ -211,7 +213,7 @@
 					if($(this).attr('id')!='emel'){
 						$(this).blur(function(){
 								val = $(this).val()
-								$(this).val(val.toTitleCase());
+								$(this).val(val.toUpperCase());
 						});
 					}
 		        });
