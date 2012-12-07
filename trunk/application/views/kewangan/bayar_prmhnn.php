@@ -16,7 +16,7 @@
 			<br /><?=form_error('noresit')?>
 			</p>
 
-            <p><span><label for="ktr_bayaran">ktr Bayaran : </label></span>
+            <p><span><label for="ktr_bayaran">Catatan : </label></span>
 			<?=form_input(array('name' => 'ktr_bayaran', 'value' => set_value('ktr_bayaran'), 'maxlength' => '30', 'size' => '12', 'id' => 'ktr_bayaran'))?>
 			<br /><?=form_error('ktr_bayaran')?>
 			</p>

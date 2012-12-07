@@ -95,15 +95,30 @@ class Hea extends CI_Controller
 			{
 				//mula2 buat list dulu, ambik dari list app_pelajar dan letak apa yang patut...sepatutnya ada checking dulu utk terima masuk sbg pelajar...
 				//query ni check semua status mohon "dalam proses" tp buang user yg salah satu tu dah ada status selain dr "dlm proses"
+				//nake kena tau sesi_intake dulu
+				//mula mula sekali nak kena tau sesi_intake mana
+				$where = array
+							(
+								'aktif' => 1
+							);
+				$g = $this->sesi_intake->GetWhere($where);
+
+				//hanya nak tgk status permohonan dlm proses shj...
+				$whe = array
+							(
+								'status_mohon' => 'DIP',
+								'sesi_mohon' => $g->row()->kodsesi
+							);
+
 				$this->load->library('pagination');
 				$config['base_url'] = base_url().'hea/mohon_pelajar';
-				$config['total_rows'] = $this->app_pelajar->GetWhere(array('status_mohon' => 'DIP'))->num_rows();
+				$config['total_rows'] = $this->app_pelajar->GetWhere($whe)->num_rows();
 				$config['per_page'] = 5;
 				$config['suffix'] = '.exe';
 
 				$this->pagination->initialize($config);
 
-				$data['u'] = $this->app_pelajar->GetWherePage(array('status_mohon' => 'DIP'), $config['per_page'], $this->uri->segment(3, 0));
+				$data['u'] = $this->app_pelajar->GetWherePage($whe, $config['per_page'], $this->uri->segment(3, 0));
 
 				$data['paginate'] =$this->pagination->create_links();
 				
@@ -163,7 +178,7 @@ class Hea extends CI_Controller
 				$id = $this->uri->segment(3, 0);
 				if(is_numeric($id))
 					{
-						$g = $this->app_pelajar->update(array('dt_edit' => date_db(now()), 'id_edit' => $this->session->userdata('id_user'),'status_mohon' => 'GL'), array('id' => $id));
+						$g = $this->app_pelajar->update(array('dt_edit' => date_db(now()), 'id_edit' => $this->session->userdata('id_user'),'status_mohon' => 'GL', 'aktif' => 0), array('id' => $id));
 
 						//update sekali app_progmohon
 						$r = $this->app_progmohon->update(array('id_mohon' => $id), array('status_mohon' => 'GL', 'user_edit' => $this->session->userdata('id_user'), 'dt_edit' => datetime_db(now()), 'catatan' => 'Permohonan Gagal'));

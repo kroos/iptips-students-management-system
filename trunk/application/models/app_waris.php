@@ -17,7 +17,7 @@ class App_waris extends CI_Model
 
 		function GetWhere($where = array())
 			{
-				$this->db->get_where('app_waris', $where);
+				return $this->db->get_where('app_waris', $where);
 			}
 //UPDATE
 		function update_all($where = array(), $update = array())

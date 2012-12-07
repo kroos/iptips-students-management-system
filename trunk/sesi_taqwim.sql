@@ -1,71 +1,54 @@
-/*
-Navicat MySQL Data Transfer
+KOMEN :
 
-Source Server         : Radius
-Source Server Version : 50523
-Source Host           : 202.185.6.131:3306
-Source Database       : iptip
+HEA >> PROSES PERMOHONAN -- pindah masuk modul KEMASUKAN
+HEA >> PENDAFTARAN -- pindah masuk modul KEMASUKAN
 
-Target Server Type    : MYSQL
-Target Server Version : 50523
-File Encoding         : 65001
+BORANG PERMOHONAN - perlu ada semakan ic dulu sblm ke borang..prevent duplicate ic...
+kalo cek di borang tu sendiri pon bleh gak...tp admin dah isi form sampai abeh, tekan submit baru tau ic dah wujud...mula laa nk marah kot..hehehe
+cara cek wujud: select ic from app_pelajar where ic=$cek_ic AND aktif=1 >> kalo wujud, x benarkan daftar baru
 
-Date: 2012-12-06 15:00:48
-*/
+SET app_pelajar.aktif=0 jika : [tujuan nk benarkan pemohon yg gagal / bekas pelajar, mohon semula..tp dgn siri mohon baru...]
+1) status_mohon = 'GL'  [penah mohon tp gagal]
+2) status_mohon == 'TW' && dt_transfer IS NOT NULL  [bekas pelajar nk mohon semula]
 
-SET FOREIGN_KEY_CHECKS=0;
 
--- ----------------------------
--- Table structure for `sesi_taqwim`
--- ----------------------------
-DROP TABLE IF EXISTS `sesi_taqwim`;
-CREATE TABLE `sesi_taqwim` (
-  `id` int(20) NOT NULL AUTO_INCREMENT,
-  `kod_item` varchar(20) DEFAULT NULL,
-  `tarikh_mula` date DEFAULT NULL,
-  `tarikh_tamat` date DEFAULT NULL,
-  `sesi` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+PROSES PERMOHONAN
+>> perlu ada : carian by nama/ic/sirimohon/status permohonan (gagal/tawar/diproses/dll)
+>> perlu ada : paparan profil pemohon -- hat skang ni ada nama, academic info & program dipohon ja..
+>> perlu ada : kemaskini status permohonan [cth: tukar drp gagal kepada ditawarkan]
 
--- ----------------------------
--- Records of sesi_taqwim
--- ----------------------------
-INSERT INTO `sesi_taqwim` VALUES ('1', 'DAF', '2011-12-31', '2011-12-31', '2012_1');
-INSERT INTO `sesi_taqwim` VALUES ('2', 'UKH', '2011-12-31', '2012-01-08', '2012_1');
-INSERT INTO `sesi_taqwim` VALUES ('3', 'KUL1', '2012-01-09', '2012-03-02', '2012_1');
-INSERT INTO `sesi_taqwim` VALUES ('4', 'AKT', '2012-03-03', '2012-03-09', '2012_1');
-INSERT INTO `sesi_taqwim` VALUES ('5', 'CUTI_MID', '2012-03-10', '2012-03-18', '2012_1');
-INSERT INTO `sesi_taqwim` VALUES ('6', 'KUL2', '2012-03-19', '2012-04-27', '2012_1');
-INSERT INTO `sesi_taqwim` VALUES ('7', 'STUDY', '2012-04-28', '2012-05-06', '2012_1');
-INSERT INTO `sesi_taqwim` VALUES ('8', 'EXAM', '2012-05-07', '2012-05-22', '2012_1');
-INSERT INTO `sesi_taqwim` VALUES ('9', 'CUTI_AKHIR', '2012-05-23', '2012-06-29', '2012_1');
-INSERT INTO `sesi_taqwim` VALUES ('10', 'DAF', '2012-06-30', '2012-06-30', '2012_2');
-INSERT INTO `sesi_taqwim` VALUES ('11', 'UKH', '2012-06-30', '2012-07-06', '2012_2');
-INSERT INTO `sesi_taqwim` VALUES ('12', 'KUL1', '2012-07-09', '2012-08-17', '2012_2');
-INSERT INTO `sesi_taqwim` VALUES ('13', 'AKT', '2012-08-18', '2012-08-26', '2012_2');
-INSERT INTO `sesi_taqwim` VALUES ('14', 'CUTI_MID', '2012-08-27', '2012-10-19', '2012_2');
-INSERT INTO `sesi_taqwim` VALUES ('15', 'KUL2', '2012-10-20', '2012-10-28', '2012_2');
-INSERT INTO `sesi_taqwim` VALUES ('16', 'STUDY', '2012-10-29', '2012-11-04', '2012_2');
-INSERT INTO `sesi_taqwim` VALUES ('17', 'EXAM', '2012-11-05', '2012-11-23', '2012_2');
-INSERT INTO `sesi_taqwim` VALUES ('18', 'CUTI_AKHIR', '2012-11-24', '2013-01-04', '2012_2');
 
-INSERT INTO `sesi_taqwim` VALUES ('19', 'DAF', '2012-12-31', '2012-12-31', '2013_1');
-INSERT INTO `sesi_taqwim` VALUES ('20', 'UKH', '2012-12-31', '2013-01-08', '2013_1');
-INSERT INTO `sesi_taqwim` VALUES ('21', 'KUL1', '2013-01-09', '2013-03-02', '2013_1');
-INSERT INTO `sesi_taqwim` VALUES ('22', 'AKT', '2013-03-03', '2013-03-09', '2013_1');
-INSERT INTO `sesi_taqwim` VALUES ('23', 'CUTI_MID', '2013-03-10', '2013-03-18', '2013_1');
-INSERT INTO `sesi_taqwim` VALUES ('24', 'KUL2', '2013-03-19', '2013-04-27', '2013_1');
-INSERT INTO `sesi_taqwim` VALUES ('25', 'STUDY', '2013-04-28', '2013-05-06', '2013_1');
-INSERT INTO `sesi_taqwim` VALUES ('26', 'EXAM', '2013-05-07', '2013-05-22', '2013_1');
-INSERT INTO `sesi_taqwim` VALUES ('27', 'CUTI_AKHIR', '2013-05-23', '2013-06-29', '2013_1');
-INSERT INTO `sesi_taqwim` VALUES ('28', 'DAF', '2013-06-30', '2013-06-30', '2013_2');
-INSERT INTO `sesi_taqwim` VALUES ('29', 'UKH', '2013-06-30', '2013-07-06', '2013_2');
-INSERT INTO `sesi_taqwim` VALUES ('30', 'KUL1', '2013-07-09', '2013-08-17', '2013_2');
-INSERT INTO `sesi_taqwim` VALUES ('31', 'AKT', '2013-08-18', '2013-08-26', '2013_2');
-INSERT INTO `sesi_taqwim` VALUES ('32', 'CUTI_MID', '2013-08-27', '2013-10-19', '2013_2');
-INSERT INTO `sesi_taqwim` VALUES ('33', 'KUL2', '2013-10-20', '2013-10-28', '2013_2');
-INSERT INTO `sesi_taqwim` VALUES ('34', 'STUDY', '2013-10-29', '2013-11-04', '2013_2');
-INSERT INTO `sesi_taqwim` VALUES ('35', 'EXAM', '2013-11-05', '2013-11-23', '2013_2');
-INSERT INTO `sesi_taqwim` VALUES ('36', 'CUTI_AKHIR', '2013-11-24', '2014-01-04', '2013_2');
+MAKLUMAN:
 
+BIDANG TUGAS BHG KEMASUKAN
+1) BORANG PERMOHONAN : Isi borang permohonan baru
+2) SENARAI PERMOHONAN : senarai pemohon, kemaskini info pemohon
+3) PROSES PERMOHONAN : Proses borang Permohonan
+4) PENDAFTARAN : Pendaftaran pelajar baru, jana no matrik, assign subject
+5) KONFIGURASI : sesi intake, siri matrik
+
+BIDANG TUGAS BHG HEA
+1) MAKLUMAT PELAJAR : kemaskini maklumat pelajar(profil, akademik, waris)
+2) DAFTAR SUBJEK : daftar subjek
+3) STATUS PELAJAR : mengemaskini status pelajar (tangguh, tarik diri, gagal berhenti, dll)
+4) PENGAKTIFAN : dibuat setiap awal semester (pelajar lama sahaja)
+5) PENGAJIAN   : assign lecturer-subject 
+6) PEPERIKSAAN : kelayakan memasuki peperiksaan, key-in markah pelajar, jana keputusan
+7) KEHADIRAN PELAJAR : rekod kehadiran pelajar di dlm kelas
+5) GRADUASI    : tetapan pelajar layak bergraduat
+6) KONFIGURASI : taqwim akademik, program, subjek, skema gred, skema markah, sesi_konvo
+
+BIDANG TUGAS BHG BENDAHARI
+1) PELAJAR BARU : terima bayaran utk pendaftaran
+2) YURAN PELAJAR : jana caj & terima bayaran
+3) KONFIGURASI : jenis-jenis caj, caj mengikut program, no invois, no resit 
+
+BIDANG TUGAS BHG HEP
+1) ASRAMA - check-in/check-out, konfigurasi asrama, bilik
+2) TAJAAN & PINJAMAN
+3) REKOD DISIPLIN
+
+BIDANG TUGAS BHG PERPUSTAKAAN
+1) PINJAMAN BUKU : rekod pelajar yg belum memulangkan buku ke perpustakaan
+
+ni saja dlu...komen2 lain bakal menyusul kemudian....hehehe...

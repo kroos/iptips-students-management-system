@@ -12,6 +12,7 @@ class Kemasukan extends CI_Controller
 				$this->load->model('app_subjek_akademik');		//nak tau controller ni pakai model mana 1...
 				$this->load->model('app_waris');				//nak tau controller ni pakai model mana 1...
 				$this->load->model('app_progmohon');			//nak tau controller ni pakai model mana 1...
+				$this->load->model('sesi_intake');			//nak tau controller ni pakai model mana 1...
 
 				//mesti ikut peraturan ni..
 				//user mesti log on kalau tidak redirect to index
@@ -41,15 +42,22 @@ class Kemasukan extends CI_Controller
 				//pagination process
 				$this->load->library('pagination');
 				$config['base_url'] = base_url().'kemasukan/senarai_pemohon';
-				$config['total_rows'] = $this->app_pelajar->GetAll()->num_rows();
+
+				//mula mula sekali nak kena tau sesi_intake mana
+				$where = array('aktif' => 1);
+				$g = $this->sesi_intake->GetWhere($where);
+
+				//hanya nak tgk status permohonan dlm proses shj...
+				$whe = array('status_mohon' => 'DIP', 'sesi_mohon' => $g->row()->kodsesi);
+				$config['total_rows'] = $this->app_pelajar->GetWhere($whe)->num_rows();
 				$config['per_page'] = 5;
 				$config['suffix'] = '.exe';
 
 				$this->pagination->initialize($config);
 
-				$data['pemohon'] = $this->app_pelajar->GetAllPage($config['per_page'], $this->uri->segment(3, 0));
+				$data['pemohon'] = $this->app_pelajar->GetWherePage($whe, $config['per_page'], $this->uri->segment(3, 0));
 
-				$data['paginate'] =$this->pagination->create_links();
+				$data['paginate'] = $this->pagination->create_links();
 			
 				$data['negara'] = $this->sel_negara->get();
 
@@ -59,7 +67,17 @@ class Kemasukan extends CI_Controller
 						if($this->input->post('cari', TRUE))
 							{
 								$nama = $this->input->post('nama', TRUE);
-								$data['pemohon'] = $this->app_pelajar->seacrh_app($nama);
+								$s = "status_mohon = 'DIP' AND sesi_mohon = '".$g->row()->kodsesi."' AND (ic LIKE '%$nama%' OR nama LIKE '%$nama%' OR passport LIKE '%$nama%')";
+								$data['pemohon'] = $this->app_pelajar->GetWhere($s);
+								//echo $this->db->last_query();
+								if($data['pemohon'])
+									{
+										$data['info'] = 'Carian berjaya';
+									}
+									else
+									{
+										$data['info'] = 'Sila cuba sebentar lagi';
+									}
 							}
 					}
 				$this->load->view('kemasukan/senarai_pemohon', $data);
@@ -72,6 +90,9 @@ class Kemasukan extends CI_Controller
 					if(is_numeric($id))
 						{
 							$data['pe'] = $this->app_pelajar->get_app_pelajar($id);
+							$data['prog'] = $this->app_progmohon->GetWhere(array('id_mohon' => $id));
+							$data['akad'] = $this->app_akademik->get_where(array('id_mohon' => $id));
+							$data['war'] = $this->app_waris->GetWhere(array('id_mohon' => $id));
 							$this->load->view('kemasukan/detail_pemohon', $data);
 						}
 				}

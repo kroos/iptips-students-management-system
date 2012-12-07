@@ -10,10 +10,41 @@ Target Server Type    : MYSQL
 Target Server Version : 50523
 File Encoding         : 65001
 
-Date: 2012-12-04 13:38:56
+Date: 2012-12-08 02:07:42
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `akaun`
+-- ----------------------------
+DROP TABLE IF EXISTS `akaun`;
+CREATE TABLE `akaun` (
+  `id` bigint(10) NOT NULL AUTO_INCREMENT,
+  `kod_jenis` varchar(2) DEFAULT NULL,
+  `kod_akaun` varchar(10) DEFAULT NULL,
+  `keterangan_MY` varchar(50) DEFAULT NULL,
+  `keterangan_EN` varchar(50) DEFAULT NULL,
+  `keterangan_AR` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of akaun
+-- ----------------------------
+INSERT INTO `akaun` VALUES ('1', '4', null, 'PENDAFTARAN', 'REGISTRATION', null);
+INSERT INTO `akaun` VALUES ('2', '4', null, 'PERKHIDMATAN', 'SERCIVE', null);
+INSERT INTO `akaun` VALUES ('3', '4', null, 'PERPUSTAKAAN & KOMPUTER', 'LIBRARY & COMPUTER', null);
+INSERT INTO `akaun` VALUES ('4', '4', null, 'TAKAFUL', 'INSURANCE', null);
+INSERT INTO `akaun` VALUES ('5', '4', null, 'KAD PELAJAR', 'STUDENT CARD', null);
+INSERT INTO `akaun` VALUES ('6', '4', null, 'KO-KURIKULUM', 'CO-CURRICULUM', null);
+INSERT INTO `akaun` VALUES ('7', '4', null, 'SUAIKENAL', 'ORIENTATION', null);
+INSERT INTO `akaun` VALUES ('8', '4', null, 'PERMAI', 'PERMAI', null);
+INSERT INTO `akaun` VALUES ('9', '4', null, 'PAKAIAN RASMI', 'OFFICIAL CLOTHES', null);
+INSERT INTO `akaun` VALUES ('10', '4', null, 'PENGANGKUTAN', 'TRANSPORTATION', null);
+INSERT INTO `akaun` VALUES ('11', '4', null, 'ASRAMA', 'HOSTEL', null);
+INSERT INTO `akaun` VALUES ('12', '4', null, 'PENGAJIAN', 'TUITION', null);
+INSERT INTO `akaun` VALUES ('13', '2', null, 'CAGARAN ASRAMA', 'HOSTEL DEPOSIT', null);
 
 -- ----------------------------
 -- Table structure for `app_akademik`
@@ -26,11 +57,20 @@ CREATE TABLE `app_akademik` (
   `institusi` varchar(100) DEFAULT NULL,
   `tahun` year(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of app_akademik
 -- ----------------------------
+INSERT INTO `app_akademik` VALUES ('1', '2', 'SPM', 'Maahad Mahmud', '1995');
+INSERT INTO `app_akademik` VALUES ('2', '2', 'MATRIK', 'Universiti Malaya, Kuala Lumpur', '1998');
+INSERT INTO `app_akademik` VALUES ('3', '3', 'SPM', 'Sek Men Agamakat Tepi Tu', '1998');
+INSERT INTO `app_akademik` VALUES ('4', '3', 'MATRIK', 'Sek Men Agama Kat Tepi Tu 1', '2000');
+INSERT INTO `app_akademik` VALUES ('5', '1', 'SPM', 'Smk Bapak Ku', '2006');
+INSERT INTO `app_akademik` VALUES ('6', '5', 'SPM', 'Smk Ntah', '1995');
+INSERT INTO `app_akademik` VALUES ('7', '5', 'MATRIK', 'Universiti Islam Antarabangsa', '2000');
+INSERT INTO `app_akademik` VALUES ('8', '6', 'MATRIK', 'Universiti Islam Antarabangsa', '2000');
+INSERT INTO `app_akademik` VALUES ('9', '7', 'SPM', 'Sek Men Agama Kat Tepi Tu 2', '1995');
 
 -- ----------------------------
 -- Table structure for `app_pelajar`
@@ -62,17 +102,26 @@ CREATE TABLE `app_pelajar` (
   `dt_add` date DEFAULT NULL,
   `id_edit` varchar(20) DEFAULT NULL,
   `dt_edit` date DEFAULT NULL,
-  `layak` tinyint(1) DEFAULT NULL,
   `dt_transfer` datetime DEFAULT NULL,
   `id_transfer` varchar(20) DEFAULT NULL,
   `sesi_mohon` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `status_mohon` varchar(10) DEFAULT 'DIP',
+  `progTawar` varchar(20) DEFAULT NULL,
+  `aktif` tinyint(1) DEFAULT '1',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `siri_mohon` (`siri_mohon`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of app_pelajar
 -- ----------------------------
-INSERT INTO `app_pelajar` VALUES ('1', 'P1410002', 'Ahmad', '900101025555', '111', '2012-12-03', 'M010701', '1', 'A12', '2022', '1', '1', 'Tmn Peruda', '', '05300', 'M010201', '02', 'M01', null, null, null, '1', '2012-12-03', null, null, null, null, null, '2014_1');
+INSERT INTO `app_pelajar` VALUES ('1', 'P1310002', 'Ahmad', '900101025555', '111', '2012-12-03', 'M010701', '1', 'A12', '2022', '0', '1', 'Tmn Peruda', '', '05300', 'M010101', '01', 'M01', '0', '0', '0', '1', '2012-12-03', '1', '2012-12-06', null, null, '2013_1', 'TW', 'DQH', '1');
+INSERT INTO `app_pelajar` VALUES ('2', 'P1310003', 'Student 1', '800101025555', '111234', '2012-12-03', 'M010701', '2', 'A09', '2043', '1', '1', 'Tmn Peruda', '', '05300', 'M010101', '01', 'M01', '0', '0', 'stud1@mail.com', '1', '2012-12-04', '1', '2012-12-07', null, null, '2013_1', 'TW', 'DQH', '1');
+INSERT INTO `app_pelajar` VALUES ('3', 'P1310004', 'Student 4 Bin Bapak Dia', '3232323232', '323232', '2012-12-03', 'M010701', '2', 'B03', '1103', '1', '1', 'Tmn Peruda', '', '05300', 'M010101', '01', 'M01', '0', '0', 'asd@asd.com', '1', '2012-12-05', '1', '2012-12-07', null, null, '2013_1', 'GL', null, '0');
+INSERT INTO `app_pelajar` VALUES ('4', 'P1310005', 'Student 3', '900101025555', '111', '2012-12-03', 'M010701', '1', 'A12', '2022', '0', '1', 'Tmn Peruda', '', '05300', 'M010101', '01', 'M01', '0', '0', '0', '1', '2012-12-05', '1', '2012-12-07', null, null, '2013_1', 'INC', null, '1');
+INSERT INTO `app_pelajar` VALUES ('5', 'P1310006', 'Student 2', '123456789014', '123456789014', '2012-12-06', 'M010701', '1', 'A01', '100', '1', '1', '72, Taman Keranji', '', '05400', 'M010201', '02', 'M01', '', '0162052420', 'email@email.com', '1', '2012-12-06', '1', '2012-12-07', null, null, '2013_1', 'GL', null, '1');
+INSERT INTO `app_pelajar` VALUES ('6', 'P1310007', 'Student 4', '123456789015', '123456789015', '2012-12-06', 'M010502', '1', 'A04', '2039', '2', '1', '2, Taman Mutiara', '', '08000', 'M010202', '02', 'M01', '', '0162052420', 'email1@email.com', '1', '2012-12-06', '1', '2012-12-06', null, null, '2013_1', 'TW', 'DUS', '1');
+INSERT INTO `app_pelajar` VALUES ('7', 'P1310008', 'Student 5', '123456789016', '123456789016', '2012-12-06', 'M010701', '1', 'A12', '2022', '2', '1', '2, Taman Mutiara', '', '08000', 'M010218', '02', 'M01', '', '0162052420', 'email5@email.com', '1', '2012-12-06', null, null, null, null, '2013_1', 'DIP', null, '1');
 
 -- ----------------------------
 -- Table structure for `app_progmohon`
@@ -89,12 +138,27 @@ CREATE TABLE `app_progmohon` (
   `dt_edit` datetime DEFAULT NULL,
   `catatan` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of app_progmohon
 -- ----------------------------
-INSERT INTO `app_progmohon` VALUES ('1', '1', 'P1410002', 'DQH', '1', 'DIP', '1', '2012-12-03 00:59:14', 'Dip');
+INSERT INTO `app_progmohon` VALUES ('1', '1', 'P1310002', 'DQH', '1', 'TW', '1', '2012-12-06 14:58:00', 'Penawaran Program DQH Catatan : Try Dulu');
+INSERT INTO `app_progmohon` VALUES ('2', '2', 'P1310003', 'ST', '1', 'GL', '1', '2012-12-07 08:58:22', 'Penawaran Program Yang Lain');
+INSERT INTO `app_progmohon` VALUES ('3', '2', 'P1310003', 'PST', '2', 'GL', '1', '2012-12-07 08:58:22', 'Penawaran Program Yang Lain');
+INSERT INTO `app_progmohon` VALUES ('4', '3', 'P1310004', 'DSY', '1', 'GL', '1', '2012-12-07 09:03:59', 'Permohonan Gagal');
+INSERT INTO `app_progmohon` VALUES ('5', '3', 'P1310004', 'DQH', '2', 'GL', '1', '2012-12-07 09:03:59', 'Permohonan Gagal');
+INSERT INTO `app_progmohon` VALUES ('6', '3', 'P1310004', 'DUS', '3', 'GL', '1', '2012-12-07 09:03:59', 'Permohonan Gagal');
+INSERT INTO `app_progmohon` VALUES ('7', '4', 'P1310002', 'DSY', '1', 'INC', '1', '2012-12-07 09:08:18', 'Maklumat Tidak Lengkap');
+INSERT INTO `app_progmohon` VALUES ('8', '2', 'P1310003', 'DQH', '1', 'TW', '1', '2012-12-07 08:58:22', 'Penawaran Program DQH Layak');
+INSERT INTO `app_progmohon` VALUES ('9', '5', 'P1310006', 'DSY', '1', 'GL', '1', '2012-12-07 09:04:43', 'Permohonan Gagal');
+INSERT INTO `app_progmohon` VALUES ('10', '5', 'P1310006', 'DUS', '2', 'GL', '1', '2012-12-07 09:04:43', 'Permohonan Gagal');
+INSERT INTO `app_progmohon` VALUES ('11', '5', 'P1310006', 'ST', '3', 'GL', '1', '2012-12-07 09:04:43', 'Permohonan Gagal');
+INSERT INTO `app_progmohon` VALUES ('12', '5', 'P1310006', 'PST', '4', 'GL', '1', '2012-12-07 09:04:43', 'Permohonan Gagal');
+INSERT INTO `app_progmohon` VALUES ('13', '6', 'P1310007', 'DUS', '1', 'TW', '1', '2012-12-06 14:50:48', 'Penawaran Program DUS Catatan : Ngeee');
+INSERT INTO `app_progmohon` VALUES ('14', '7', 'P1310008', 'DSY', '1', 'DIP', '1', '2012-12-06 14:36:59', 'Qwe');
+INSERT INTO `app_progmohon` VALUES ('15', '7', 'P1310008', 'DUS', '2', 'DIP', '1', '2012-12-06 14:37:00', 'Qwe');
+INSERT INTO `app_progmohon` VALUES ('16', '7', 'P1310008', 'ST', '3', 'DIP', '1', '2012-12-06 14:37:00', 'Qwe');
 
 -- ----------------------------
 -- Table structure for `app_subjek_akademik`
@@ -106,11 +170,47 @@ CREATE TABLE `app_subjek_akademik` (
   `subjek` varchar(50) DEFAULT NULL,
   `gred` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of app_subjek_akademik
 -- ----------------------------
+INSERT INTO `app_subjek_akademik` VALUES ('1', '1', 'Sub38', '7');
+INSERT INTO `app_subjek_akademik` VALUES ('2', '1', 'Sub42', '6');
+INSERT INTO `app_subjek_akademik` VALUES ('3', '1', 'Sub41', '1');
+INSERT INTO `app_subjek_akademik` VALUES ('4', '1', 'Sub54', '1');
+INSERT INTO `app_subjek_akademik` VALUES ('5', '1', 'Sub83', '2');
+INSERT INTO `app_subjek_akademik` VALUES ('6', '1', 'Sub50', '1');
+INSERT INTO `app_subjek_akademik` VALUES ('7', '1', 'Sub102', '1');
+INSERT INTO `app_subjek_akademik` VALUES ('8', '1', 'Sub101', '1');
+INSERT INTO `app_subjek_akademik` VALUES ('9', '1', 'Sub175', '6');
+INSERT INTO `app_subjek_akademik` VALUES ('10', '2', 'Sub258', 'Lulus');
+INSERT INTO `app_subjek_akademik` VALUES ('11', '2', 'Sub259', 'Lulus');
+INSERT INTO `app_subjek_akademik` VALUES ('12', '2', 'Sub260', 'Lulus');
+INSERT INTO `app_subjek_akademik` VALUES ('13', '2', 'Sub261', 'Lulus');
+INSERT INTO `app_subjek_akademik` VALUES ('14', '3', 'Sub38', '1');
+INSERT INTO `app_subjek_akademik` VALUES ('15', '3', 'Sub37', '1');
+INSERT INTO `app_subjek_akademik` VALUES ('16', '4', 'Sub258', '1');
+INSERT INTO `app_subjek_akademik` VALUES ('17', '4', 'Sub260', '1');
+INSERT INTO `app_subjek_akademik` VALUES ('18', '4', 'Sub259', '1');
+INSERT INTO `app_subjek_akademik` VALUES ('19', '5', 'Sub45', '9.00');
+INSERT INTO `app_subjek_akademik` VALUES ('20', '5', 'Sub194', '5.00');
+INSERT INTO `app_subjek_akademik` VALUES ('21', '5', 'Sub56', '8.00');
+INSERT INTO `app_subjek_akademik` VALUES ('22', '6', 'Sub30', '9.00');
+INSERT INTO `app_subjek_akademik` VALUES ('23', '6', 'Sub44', '9.00');
+INSERT INTO `app_subjek_akademik` VALUES ('24', '6', 'Sub40', '9.00');
+INSERT INTO `app_subjek_akademik` VALUES ('25', '6', 'Sub36', '9.00');
+INSERT INTO `app_subjek_akademik` VALUES ('26', '6', 'Sub37', '9.00');
+INSERT INTO `app_subjek_akademik` VALUES ('27', '7', 'Sub261', '4.00');
+INSERT INTO `app_subjek_akademik` VALUES ('28', '7', 'Sub260', '4.00');
+INSERT INTO `app_subjek_akademik` VALUES ('29', '7', 'Sub259', '4.00');
+INSERT INTO `app_subjek_akademik` VALUES ('30', '7', 'Sub258', '4.00');
+INSERT INTO `app_subjek_akademik` VALUES ('31', '8', 'Sub261', '4.00');
+INSERT INTO `app_subjek_akademik` VALUES ('32', '8', 'Sub260', '4.00');
+INSERT INTO `app_subjek_akademik` VALUES ('33', '8', 'Sub259', '0.00');
+INSERT INTO `app_subjek_akademik` VALUES ('34', '8', 'Sub258', '4.00');
+INSERT INTO `app_subjek_akademik` VALUES ('35', '9', 'Sub37', '9.00');
+INSERT INTO `app_subjek_akademik` VALUES ('36', '9', 'Sub30', '9.00');
 
 -- ----------------------------
 -- Table structure for `app_waris`
@@ -129,11 +229,16 @@ CREATE TABLE `app_waris` (
   `nohp` varchar(20) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of app_waris
 -- ----------------------------
+INSERT INTO `app_waris` VALUES ('1', '2', 'Parent 1', 'H04', '1, Taman Mutiara', '', '08000', '', '', '0162052420', 'email@email.com');
+INSERT INTO `app_waris` VALUES ('2', '3', 'Parent 2', 'H04', '2, Taman Mutiara', '', '08000', '', '', '0162052420', 'email1@email.com');
+INSERT INTO `app_waris` VALUES ('3', '5', 'Parent 2', 'H04', '1, Tamana Mutiara', '', '08000', '', '', '0162052420', 'parent2@email.com');
+INSERT INTO `app_waris` VALUES ('4', '6', 'Parent 4', 'H04', '2, Taman Mutiara', '', '05400', '', '', '0162052420', 'parent4@email.com');
+INSERT INTO `app_waris` VALUES ('5', '7', 'Parent 5', 'H07', '1, Taman Mutiara', '', '05400', '', '', '0162052420', 'parent5@email.com');
 
 -- ----------------------------
 -- Table structure for `ci_sessions`
@@ -152,7 +257,8 @@ CREATE TABLE `ci_sessions` (
 -- ----------------------------
 -- Records of ci_sessions
 -- ----------------------------
-INSERT INTO `ci_sessions` VALUES ('f62ca1c4ef9ddc082a209cb4cda74fa7', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/17.0 Firefox/17.0', '1354599128', 'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"id_user\";s:1:\"1\";s:8:\"username\";s:6:\"admin1\";s:8:\"password\";s:6:\"123123\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('638a95a033927f3031fbffc3cbda1e89', '127.0.0.1', 'Mozilla/5.0 (Windows NT 5.1; rv:15.0) Gecko/20100101 Firefox/15.0.1', '1354899836', 'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"id_user\";s:1:\"1\";s:8:\"username\";s:6:\"admin1\";s:8:\"password\";s:6:\"123123\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('dd0049eb1689ab44fd52e74551c40307', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/17.0 Firefox/17.0', '1354903679', 'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"id_user\";s:1:\"1\";s:8:\"username\";s:6:\"admin1\";s:8:\"password\";s:6:\"123123\";s:9:\"logged_in\";b:1;}');
 
 -- ----------------------------
 -- Table structure for `dept_func`
@@ -163,7 +269,7 @@ CREATE TABLE `dept_func` (
   `id_user_department` int(11) NOT NULL,
   `id_user_function` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of dept_func
@@ -182,6 +288,12 @@ INSERT INTO `dept_func` VALUES ('12', '5', '9');
 INSERT INTO `dept_func` VALUES ('13', '1', '10');
 INSERT INTO `dept_func` VALUES ('14', '5', '11');
 INSERT INTO `dept_func` VALUES ('15', '2', '12');
+INSERT INTO `dept_func` VALUES ('16', '2', '13');
+INSERT INTO `dept_func` VALUES ('17', '2', '14');
+INSERT INTO `dept_func` VALUES ('18', '2', '15');
+INSERT INTO `dept_func` VALUES ('19', '2', '16');
+INSERT INTO `dept_func` VALUES ('20', '4', '17');
+INSERT INTO `dept_func` VALUES ('21', '4', '18');
 
 -- ----------------------------
 -- Table structure for `dept_jaw`
@@ -330,6 +442,26 @@ INSERT INTO `jabatan` VALUES ('5', '14', 'STAM', 'STAM', 'STAM');
 INSERT INTO `jabatan` VALUES ('6', '15', 'PSTAM', 'PSTAM', 'PSTAM');
 
 -- ----------------------------
+-- Table structure for `jenis_akaun`
+-- ----------------------------
+DROP TABLE IF EXISTS `jenis_akaun`;
+CREATE TABLE `jenis_akaun` (
+  `id_jenis` varchar(10) NOT NULL,
+  `nama_jenis` varchar(20) DEFAULT NULL,
+  `kod_jenis` int(2) DEFAULT NULL,
+  PRIMARY KEY (`id_jenis`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of jenis_akaun
+-- ----------------------------
+INSERT INTO `jenis_akaun` VALUES ('JENIS1', 'ASSET', '1');
+INSERT INTO `jenis_akaun` VALUES ('JENIS2', 'LIABILITY', '2');
+INSERT INTO `jenis_akaun` VALUES ('JENIS3', 'EQUITY', '3');
+INSERT INTO `jenis_akaun` VALUES ('JENIS4', 'REVENUE', '4');
+INSERT INTO `jenis_akaun` VALUES ('JENIS5', 'EXPENSE', '6');
+
+-- ----------------------------
 -- Table structure for `lect_ajar`
 -- ----------------------------
 DROP TABLE IF EXISTS `lect_ajar`;
@@ -412,6 +544,49 @@ CREATE TABLE `pel_daftarsubjek` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for `pel_invois`
+-- ----------------------------
+DROP TABLE IF EXISTS `pel_invois`;
+CREATE TABLE `pel_invois` (
+  `no_inv` varchar(10) DEFAULT NULL,
+  `tarikh_inv` date DEFAULT NULL,
+  `matrik` varchar(10) DEFAULT NULL,
+  `ktr_invois` varchar(100) DEFAULT NULL,
+  `jumlah` double(8,2) DEFAULT NULL,
+  `id_add` varchar(20) DEFAULT NULL,
+  `dt_add` datetime DEFAULT NULL,
+  `id_edit` varchar(20) DEFAULT NULL,
+  `dt_edit` datetime DEFAULT NULL,
+  `aktif` tinyint(1) DEFAULT '1',
+  UNIQUE KEY `idx1` (`no_inv`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of pel_invois
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `pel_item_invois`
+-- ----------------------------
+DROP TABLE IF EXISTS `pel_item_invois`;
+CREATE TABLE `pel_item_invois` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `no_inv` varchar(10) DEFAULT NULL,
+  `kod_akaun` varchar(10) DEFAULT NULL,
+  `jumlah` double(8,2) DEFAULT NULL,
+  `aktif` tinyint(1) DEFAULT '1',
+  `id_add` varchar(20) DEFAULT NULL,
+  `dt_add` datetime DEFAULT NULL,
+  `id_edit` varchar(20) DEFAULT NULL,
+  `dt_edit` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of pel_item_invois
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for `pel_lib`
 -- ----------------------------
 DROP TABLE IF EXISTS `pel_lib`;
@@ -427,6 +602,31 @@ CREATE TABLE `pel_lib` (
 -- ----------------------------
 -- Records of pel_lib
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for `pel_resit`
+-- ----------------------------
+DROP TABLE IF EXISTS `pel_resit`;
+CREATE TABLE `pel_resit` (
+  `id` bigint(10) NOT NULL AUTO_INCREMENT,
+  `noresit` varchar(20) DEFAULT NULL,
+  `matrik` varchar(20) DEFAULT NULL,
+  `ktr_bayaran` varchar(100) DEFAULT NULL,
+  `tarikhmasa_resit` datetime DEFAULT NULL,
+  `jumlah` double(8,2) DEFAULT NULL,
+  `id_add` varchar(20) DEFAULT NULL,
+  `dt_add` datetime DEFAULT NULL,
+  `id_edit` varchar(20) DEFAULT NULL,
+  `dt_edit` datetime DEFAULT NULL,
+  `aktif` tinyint(1) DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `idx1` (`noresit`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of pel_resit
+-- ----------------------------
+INSERT INTO `pel_resit` VALUES ('1', 'a123', 'P1310007', 'a123', '2012-12-07 05:50:53', '20.00', '1', '2012-12-07 00:00:00', null, null, '1');
 
 -- ----------------------------
 -- Table structure for `pel_sem`
@@ -552,6 +752,8 @@ DROP TABLE IF EXISTS `program`;
 CREATE TABLE `program` (
   `kod_prog` varchar(10) NOT NULL,
   `namaprog_MY` varchar(50) NOT NULL,
+  `id_jabatan` int(11) DEFAULT NULL,
+  `kod_tahap` int(11) NOT NULL,
   `tempoh` int(2) DEFAULT NULL,
   PRIMARY KEY (`kod_prog`),
   UNIQUE KEY `IDX1` (`kod_prog`)
@@ -560,11 +762,45 @@ CREATE TABLE `program` (
 -- ----------------------------
 -- Records of program
 -- ----------------------------
-INSERT INTO `program` VALUES ('DQH', 'DIPLOMA AL-QURAN & HADIS', '6');
-INSERT INTO `program` VALUES ('DSY', 'DIPLOMA SYARIAH', '6');
-INSERT INTO `program` VALUES ('DUS', 'DIPLOMA USULUDDIN', '6');
-INSERT INTO `program` VALUES ('PST', 'PRA-STAM', '2');
-INSERT INTO `program` VALUES ('ST', 'STAM', '2');
+INSERT INTO `program` VALUES ('DQH', 'DIPLOMA AL-QURAN & HADIS', '3', '3', '6');
+INSERT INTO `program` VALUES ('DSY', 'DIPLOMA SYARIAH', '2', '3', '6');
+INSERT INTO `program` VALUES ('DUS', 'DIPLOMA USULUDDIN', '2', '3', '6');
+INSERT INTO `program` VALUES ('PST', 'PRA-STAM', '6', '1', '2');
+INSERT INTO `program` VALUES ('ST', 'STAM', '5', '2', '2');
+
+-- ----------------------------
+-- Table structure for `ruj_intake`
+-- ----------------------------
+DROP TABLE IF EXISTS `ruj_intake`;
+CREATE TABLE `ruj_intake` (
+  `id` bigint(10) NOT NULL AUTO_INCREMENT,
+  `id_intake` varchar(20) NOT NULL,
+  `no_ruj` varchar(50) DEFAULT NULL,
+  `no_intake` varchar(5) DEFAULT NULL,
+  `kod_tahap` varchar(5) DEFAULT NULL,
+  `siri_ruj` bigint(5) unsigned zerofill DEFAULT NULL,
+  `id_surat` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx1` (`id_intake`)
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of ruj_intake
+-- ----------------------------
+INSERT INTO `ruj_intake` VALUES ('1', '2013_1', 'INS 08/95 Jld.4', '91', '1', '00010', '3');
+INSERT INTO `ruj_intake` VALUES ('2', '2013_1', 'INS 08/95 Jld.4', '91', '1', '00002', '4');
+INSERT INTO `ruj_intake` VALUES ('3', '2013_1', 'INS 08/95 Jld.4', '91', '2', '00004', '3');
+INSERT INTO `ruj_intake` VALUES ('4', '2013_1', 'INS 08/95 Jld.4', '91', '3', '00000', '3');
+INSERT INTO `ruj_intake` VALUES ('5', '2013_1', 'INS 08/95 Jld.4', '91', '4', '00010', '3');
+INSERT INTO `ruj_intake` VALUES ('6', '2013_1', 'INS 08/95 Jld.4', '91', '5', '00000', '3');
+INSERT INTO `ruj_intake` VALUES ('7', '2013_1', 'INS 08/95 Jld.4', '91', '3', '00000', '4');
+INSERT INTO `ruj_intake` VALUES ('8', '2013_1', 'INS 08/95 Jld.4', '91', '4', '00003', '4');
+INSERT INTO `ruj_intake` VALUES ('9', '2013_1', 'INS 08/95 Jld.4', '91', '2', '00002', '4');
+INSERT INTO `ruj_intake` VALUES ('10', '2013_1', 'INS 08/95 Jld.4', '91', '5', '00000', '4');
+INSERT INTO `ruj_intake` VALUES ('11', '2013_1', 'INS 08/95 Jld.4', '91', '6', '00000', '3');
+INSERT INTO `ruj_intake` VALUES ('12', '2013_1', 'INS 08/95 Jld.4', '91', '6', '00000', '4');
+INSERT INTO `ruj_intake` VALUES ('13', '2014_1', 'KAQ 058/1995 Bil (3)', '91', '2', '00004', '5');
+INSERT INTO `ruj_intake` VALUES ('14', '2014_1', 'kki', '92', '3', '00000', '2');
 
 -- ----------------------------
 -- Table structure for `sel_bandar`
@@ -3582,7 +3818,7 @@ CREATE TABLE `sesi_akademik` (
   `tarikh_mula` date DEFAULT NULL,
   `tarikh_tamat` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sesi_akademik
@@ -3590,6 +3826,7 @@ CREATE TABLE `sesi_akademik` (
 INSERT INTO `sesi_akademik` VALUES ('1', '2012_1', 'JANUARI-JUN 2012', '2012', '2011-12-31', '2012-06-29');
 INSERT INTO `sesi_akademik` VALUES ('2', '2012_2', 'JULAI-DISEMBER 2012', '2012', '2012-06-30', '2013-01-04');
 INSERT INTO `sesi_akademik` VALUES ('3', '2013_1', 'JANUARI-JUN 2013', '2013', '2013-01-06', '2013-06-30');
+INSERT INTO `sesi_akademik` VALUES ('4', '2013_2', 'JULAI-DISEMBER 2013', '2013', '2012-06-30', '2013-01-04');
 
 -- ----------------------------
 -- Table structure for `sesi_intake`
@@ -3608,8 +3845,8 @@ CREATE TABLE `sesi_intake` (
 -- ----------------------------
 -- Records of sesi_intake
 -- ----------------------------
-INSERT INTO `sesi_intake` VALUES ('2013_1', 'P131', '0001', '2012-06-01', '2012-11-30', '0');
-INSERT INTO `sesi_intake` VALUES ('2014_1', 'P141', '0002', '2013-06-01', '2013-11-30', '1');
+INSERT INTO `sesi_intake` VALUES ('2013_1', 'P131', '0001', '2012-06-01', '2012-12-31', '1');
+INSERT INTO `sesi_intake` VALUES ('2014_1', 'P141', '0009', '2013-06-01', '2013-12-31', '0');
 
 -- ----------------------------
 -- Table structure for `sesi_taqwim`
@@ -3622,7 +3859,7 @@ CREATE TABLE `sesi_taqwim` (
   `tarikh_tamat` date DEFAULT NULL,
   `sesi` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sesi_taqwim
@@ -3645,6 +3882,24 @@ INSERT INTO `sesi_taqwim` VALUES ('15', 'KUL2', '2012-10-20', '2012-10-28', '201
 INSERT INTO `sesi_taqwim` VALUES ('16', 'STUDY', '2012-10-29', '2012-11-04', '2012_2');
 INSERT INTO `sesi_taqwim` VALUES ('17', 'EXAM', '2012-11-05', '2012-11-23', '2012_2');
 INSERT INTO `sesi_taqwim` VALUES ('18', 'CUTI_AKHIR', '2012-11-24', '2013-01-04', '2012_2');
+INSERT INTO `sesi_taqwim` VALUES ('19', 'DAF', '2012-12-31', '2012-12-31', '2013_1');
+INSERT INTO `sesi_taqwim` VALUES ('20', 'UKH', '2012-12-31', '2013-01-08', '2013_1');
+INSERT INTO `sesi_taqwim` VALUES ('21', 'KUL1', '2013-01-09', '2013-03-02', '2013_1');
+INSERT INTO `sesi_taqwim` VALUES ('22', 'AKT', '2013-03-03', '2013-03-09', '2013_1');
+INSERT INTO `sesi_taqwim` VALUES ('23', 'CUTI_MID', '2013-03-10', '2013-03-18', '2013_1');
+INSERT INTO `sesi_taqwim` VALUES ('24', 'KUL2', '2013-03-19', '2013-04-27', '2013_1');
+INSERT INTO `sesi_taqwim` VALUES ('25', 'STUDY', '2013-04-28', '2013-05-06', '2013_1');
+INSERT INTO `sesi_taqwim` VALUES ('26', 'EXAM', '2013-05-07', '2013-05-22', '2013_1');
+INSERT INTO `sesi_taqwim` VALUES ('27', 'CUTI_AKHIR', '2013-05-23', '2013-06-29', '2013_1');
+INSERT INTO `sesi_taqwim` VALUES ('28', 'DAF', '2013-06-30', '2013-06-30', '2013_2');
+INSERT INTO `sesi_taqwim` VALUES ('29', 'UKH', '2013-06-30', '2013-07-06', '2013_2');
+INSERT INTO `sesi_taqwim` VALUES ('30', 'KUL1', '2013-07-09', '2013-08-17', '2013_2');
+INSERT INTO `sesi_taqwim` VALUES ('31', 'AKT', '2013-08-18', '2013-08-26', '2013_2');
+INSERT INTO `sesi_taqwim` VALUES ('32', 'CUTI_MID', '2013-08-27', '2013-10-19', '2013_2');
+INSERT INTO `sesi_taqwim` VALUES ('33', 'KUL2', '2013-10-20', '2013-10-28', '2013_2');
+INSERT INTO `sesi_taqwim` VALUES ('34', 'STUDY', '2013-10-29', '2013-11-04', '2013_2');
+INSERT INTO `sesi_taqwim` VALUES ('35', 'EXAM', '2013-11-05', '2013-11-23', '2013_2');
+INSERT INTO `sesi_taqwim` VALUES ('36', 'CUTI_AKHIR', '2013-11-24', '2014-01-04', '2013_2');
 
 -- ----------------------------
 -- Table structure for `siri_matrik`
@@ -3765,6 +4020,75 @@ INSERT INTO `subjek` VALUES ('66', 'QH 1303', 'TAKHRIJ AL-HADIS', null, null, nu
 INSERT INTO `subjek` VALUES ('67', 'QH 1304', 'KRITIKAN PERAWI', null, null, null);
 
 -- ----------------------------
+-- Table structure for `surat_cetak`
+-- ----------------------------
+DROP TABLE IF EXISTS `surat_cetak`;
+CREATE TABLE `surat_cetak` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `siri_mohon` varchar(50) DEFAULT NULL,
+  `id_surat` varchar(20) DEFAULT NULL,
+  `ruj_cetak` varchar(100) DEFAULT NULL,
+  `dt_cetak` datetime DEFAULT NULL,
+  `id_cetak` varchar(50) DEFAULT NULL,
+  `status_mohon` varchar(20) DEFAULT NULL,
+  `admin_cetak` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=153 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of surat_cetak
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `tahap_akademik`
+-- ----------------------------
+DROP TABLE IF EXISTS `tahap_akademik`;
+CREATE TABLE `tahap_akademik` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `namatahap_MY` varchar(30) DEFAULT NULL,
+  `namatahap_EN` varchar(30) DEFAULT NULL,
+  `catatan` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of tahap_akademik
+-- ----------------------------
+INSERT INTO `tahap_akademik` VALUES ('1', 'PRA', 'PRA', null);
+INSERT INTO `tahap_akademik` VALUES ('2', 'STAM', 'STAM', null);
+INSERT INTO `tahap_akademik` VALUES ('3', 'DIPLOMA', 'DIPLOMA', null);
+
+-- ----------------------------
+-- Table structure for `template_surat`
+-- ----------------------------
+DROP TABLE IF EXISTS `template_surat`;
+CREATE TABLE `template_surat` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `nama_template` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `lang` varchar(4) DEFAULT 'MY' COMMENT 'MY=MALAY; ENG=ENGLISH',
+  `header` longtext,
+  `address` longtext,
+  `title` longtext,
+  `content1` longtext,
+  `content2` longtext,
+  `content3` longtext,
+  `signiture` longtext,
+  `footer` longtext,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx1` (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of template_surat
+-- ----------------------------
+INSERT INTO `template_surat` VALUES ('1', 'DEFAULT_MY', 'MY', 'echo  \'<h3 align=\"center\">\"KEDAH SEJAHTERA\"</h3>\r\n\r\n  <table>\r\n  <tbody><tr>\r\n    <td>Rujukan<br></td>\r\n    <td>:</td>\r\n    <td>\'.$auto_generate_siri.\'</td></tr>\r\n  <tr>\r\n    <td>Tarikh</td>\r\n    <td>:</td>\r\n    <td>\'.$today.\' (\'.$tarikh_hijri.\')<br></td>\r\n  </tr>\r\n<tr><td>&nbsp;</td><td></td><td><br></td></tr>\r\n<tr><td colspan=\"3\">&nbsp;</td></tr></tbody></table>\';', 'echo \'\r\n<table><tbody><tr><td>س</td></tr>\r\n<tr><td>\'.$siri_mohon.\'</td></tr>\r\n<tr><td>\'.$nama_pemohon.\' (\'.$ic_pemohon.\')</td></tr>\r\n<tr><td>\'.$alamat1_pemohon.\'</td></tr>\r\n<tr><td>\'.$alamat2_pemohon.\'</td></tr>\r\n<tr><td>\'.$poskod.\' \'.$bandar.\'</td></tr><tr><td>\'.$negeri.\', \'.$negara.\'</td></tr>\r\n<tr><td>&nbsp;</td></tr></tbody></table>\';', 'echo \'<table><tbody><tr><td><strong>TAWARAN KEMASUKAN KE KOLEJ UNIVERSITI  INSANIAH (KUIN) SESI PENGAJIAN AKADEMIK \'.$sesi_intake.\'</strong></td></tr>\r\n<tr><td>&nbsp;</td></tr></tbody></table>\';', ' echo \'<table><tbody><tr><td>Sekalung tahniah diucapkan kepada saudara/saudari kerana terpilih mengikuti program pengajian di Kolej Universiti INSANIAH, Alor Setar, Kedah Darulaman, Malaysia. Maklumat program pengajian adalah seperti berikut:<br></td>\r\n  </tr>\r\n<tr><td>&nbsp;</td></tr></tbody></table>\';\r\n', 'echo \'<table id=\"jadual\" border=\"1\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n  <tbody><tr>\r\n    <td><strong>Program ditawarkan</strong></td>\r\n    <td colspan=\"3\">\'.$progTawar.\'</td>\r\n  </tr>\r\n   <tr>\r\n    <td><strong>Kulliyah</strong></td> <td colspan=\"3\">\'.$kulliyah.\'</td></tr>\r\n<tr>\r\n<td width=\"25%\"><strong>Tahun Pengajian<br></strong></td><td width=\"25%\">\'.$tahun.\'</td><td><strong>Tempoh Pengajian</strong></td><td>\'.$tempoh_ngaji.\'</td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>Tarikh Pendaftaran</strong></td><td>\'.$tarikh_daftar.\'</td>\r\n<td><strong>Masa</strong></td><td>\'.$masa_daftar.\'</td>\r\n  </tr>\r\n  <tr>\r\n    <td valign=\"top\"><strong>Tempat Pendaftaran</strong></td>\r\n    <td colspan=\"3\">\'.$tempat_daftar.\'</td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>Maklumat lanjut sila hubungi</strong></td>\r\n    <td colspan=\"3\">\'.$no_telefon.\'</td>\r\n  </tr>\r\n</tbody></table>\';', 'echo \'<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n  <tbody><tr><td>&nbsp;</td></tr><tr>\r\n    <td><strong><u>Bayaran</u></strong></td>\r\n  </tr>\r\n  <tr>\r\n    <td>Anda hendaklah membuat bayaran sebanyak <strong>RM 2,755</strong> di kaunter kewangan semasa pendaftaran. Sila bawa bersama Surat Tawaran semasa membuat bayaran.</td>\r\n  </tr>\r\n<tr><td>&nbsp;</td></tr>\r\n<tr>\r\n    <td><strong>Kemudahan Asrama</strong> : Diwajibkan</td>\r\n  </tr>\r\n  <tr><td>&nbsp;</td></tr>\r\n<tr>\r\n    <td><strong>PENTING</strong>:</td>\r\n  </tr>\r\n  <tr>\r\n    <td>Anda dikehendaki mematuhi syarat-syarat tawaran seperti berikut:-</td>\r\n  </tr>\r\n</tbody></table>\r\n<table id=\"info\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n  <tbody><tr>\r\n    <td width=\"2%\">&nbsp;</td>\r\n    <td align=\"center\" width=\"4%\">1.</td>\r\n    <td width=\"94%\">Anda perlu menjawab tawaran ini melalui (http://ecampus.insaniah.my/frm/semak.php) selewat-lewatnya 10 hari sebelum hari pendaftaran. Jika tidak, pihak kami menganggap anda tidak berminat ke program yang ditawarkan dan surat tawaran ini akan terbatal.</td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">2.</td>\r\n    <td>Anda diwajibkan mencetak <strong>PANDUAN KEMASUKAN</strong> dari (http://ecampus.insaniah.my/frm/semak.php) yang menjadi sebahagian daripada Surat Tawaran ini, sila baca dengan teliti dan isikan borang-borang yang berkaitan.</td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">3.</td>\r\n    <td>Tawaran ini akan terbatal sekiranya jumlah pelajar yang mendaftar bagi program ini tidak mencukupi jumlah yang ditetapkan dan anda boleh memohon untuk mengikuti program lain yang anda layak.</td>\r\n  </tr>\r\n  <tr>\r\n    <td colspan=\"3\">Pihak universiti mengucapkan selamat datang dan mengalu-alukan kedatangan saudara/saudari ke KUIN.</td>\r\n  </tr>\r\n  <tr>\r\n    <td colspan=\"3\">Sekian, terima kasih</td>\r\n  </tr>\r\n</tbody></table>\';', 'echo \'<table>\r\n  <tbody><tr><td><strong>\"PENEROKAAN KE ARAH KEBIJAKSANAAN\"</strong></td></tr>\r\n   <tr><td>&nbsp;</td></tr>\r\n  <tr><td><strong>PROF. MADYA DR. AHMAD FAUZI BIN IDRIS</strong></td></tr>\r\n  <tr><td>DEKAN KEMASUKAN DAN REKOD</td></tr>\r\n  <tr><td>JABATAN HAL EHWAL AKADEMIK</td></tr>\r\n</tbody></table>\';', 'echo \'<table align=\"center\"><tbody><tr><td>Cetakan Komputer Tidak Memerlukan Tandatangan</td></tr></tbody></table>\';');
+INSERT INTO `template_surat` VALUES ('2', 'JUN2012_MY', 'MY', 'echo \'<h3 align=\"center\">\"KEDAH SEJAHTERA\"</h3>\r\n\r\n  <table>\r\n  <tbody><tr>\r\n    <td>Rujukan<br></td>\r\n    <td>:</td>\r\n    <td>\'.$auto_generate_siri.\'</td></tr>\r\n  <tr>\r\n    <td>Tarikh</td>\r\n    <td>:</td>\r\n    <td>\'.$today.\' (\'.$tarikh_hijri.\')<br></td>\r\n  </tr>\r\n<tr><td>&nbsp;</td><td></td><td><br></td></tr>\r\n<tr><td colspan=\"3\">&nbsp;</td></tr></tbody></table>\';', 'echo \'\r\n<table><tbody><tr><td>السلام عليكم و رحمة الله و بركاته</td></tr>\r\n<tr><td>\'.$siri_mohon.\'</td></tr>\r\n<tr><td>\'.$nama_pemohon.\' (\'.$ic_pemohon.\')</td></tr>\r\n<tr><td>\'.$alamat1_pemohon.\'</td></tr>\r\n<tr><td>\'.$alamat2_pemohon.\'</td></tr>\r\n<tr><td>\'.$poskod.\' \'.$bandar.\'</td></tr><tr><td>\'.$negeri.\', \'.$negara.\'</td></tr>\r\n<tr><td>&nbsp;</td></tr></tbody></table>\';', 'echo \'<table><tbody><tr><td><strong>TAWARAN KEMASUKAN KE KOLEJ UNIVERSITI  INSANIAH (KUIN) SESI \'.$sesi_intake.\'</strong></td></tr>\r\n<tr><td>&nbsp;</td></tr></tbody></table>\';', ' echo \'<table><tbody><tr><td>Sekalung tahniah diucapkan kepada saudara/saudari kerana terpilih mengikuti program pengajian di Kolej Universiti INSANIAH, Alor Setar, Kedah Darulaman, Malaysia. Maklumat program pengajian adalah seperti berikut:<br></td>\r\n  </tr>\r\n<tr><td>&nbsp;</td></tr></tbody></table>\';\r\n', 'echo \'<table id=\"jadual\" border=\"1\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n  <tbody><tr>\r\n    <td><strong>Program ditawarkan</strong></td>\r\n    <td colspan=\"3\">\'.$progTawar.\'</td>\r\n  </tr>\r\n   <tr>\r\n    <td><strong>Kulliyah</strong></td> <td colspan=\"3\">\'.$kulliyah.\'</td></tr>\r\n<tr>\r\n<td width=\"25%\"><strong>Tahun</strong></td><td width=\"25%\">\'.$tahun.\'</td><td><strong>Tempoh Pengajian</strong></td><td>\'.$tempoh_ngaji.\'</td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>Tarikh Pendaftaran</strong></td><td>\'.$tarikh_daftar.\'</td>\r\n<td><strong>Masa</strong></td><td>\'.$masa_daftar.\'</td>\r\n  </tr>\r\n  <tr>\r\n    <td valign=\"top\"><strong>Tempat Pendaftaran</strong></td>\r\n    <td colspan=\"3\">\'.$tempat_daftar.\'</td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>Maklumat lanjut sila hubungi</strong></td>\r\n    <td colspan=\"3\">\'.$no_telefon.\'</td>\r\n  </tr>\r\n</tbody></table>\';', 'echo \'<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n  <tbody><tr><td>&nbsp;</td></tr><tr>\r\n    <td><strong><u>Bayaran</u></strong></td>\r\n  </tr>\r\n  <tr>\r\n    <td>Anda hendaklah membuat bayaran sebanyak <strong>RM </strong>\'.$fee_reg.\' di kaunter kewangan semasa pendaftaran. Sila bawa bersama Surat Tawaran semasa membuat bayaran.</td>\r\n  </tr>\r\n<tr><td>&nbsp;</td></tr>\r\n<tr>\r\n    <td><strong>Kemudahan Asrama</strong> : Disediakan</td>\r\n  </tr>\r\n  <tr><td>&nbsp;</td></tr>\r\n<tr>\r\n    <td><strong>PENTING</strong>:</td>\r\n  </tr>\r\n  <tr>\r\n    <td>Anda dikehendaki mematuhi syarat-syarat tawaran seperti berikut:-</td>\r\n  </tr>\r\n</tbody></table>\r\n<table id=\"info\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n  <tbody><tr>\r\n    <td width=\"2%\">&nbsp;</td>\r\n    <td align=\"center\" width=\"4%\">1.</td>\r\n    <td width=\"94%\">Anda perlu menjawab tawaran ini melalui (http://ecampus.insaniah.my/frm/semak.php) selewat-lewatnya 10 hari sebelum hari pendaftaran. Jika tidak, pihak kami menganggap anda tidak berminat ke program yang ditawarkan dan surat tawaran ini akan terbatal.</td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">2.</td>\r\n    <td>Anda diwajibkan mencetak <strong>PANDUAN KEMASUKAN</strong> dari (http://ecampus.insaniah.edu.my/frm/semak.php) yang menjadi sebahagian daripada Surat Tawaran ini, sila baca dengan teliti dan isikan borang-borang yang berkaitan.</td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">3.</td>\r\n    <td>Tawaran ini akan terbatal sekiranya jumlah pelajar yang mendaftar bagi program ini tidak mencukupi jumlah yang ditetapkan dan anda boleh memohon untuk mengikuti program lain yang berkelayakan.</td>\r\n  </tr>\r\n  <tr>\r\n    <td colspan=\"3\">Pihak universiti mengucapkan selamat datang dan mengalu-alukan kedatangan saudara/saudari ke KUIN.</td>\r\n  </tr>\r\n  <tr>\r\n    <td colspan=\"3\">Sekian, terima kasih</td>\r\n  </tr>\r\n</tbody></table>\';', 'echo \'<table>\r\n    <tbody><tr><td><strong>\"PENEROKAAN KE ARAH KEBIJAKSANAAN\"</strong></td></tr>\r\n   <tr><td>&nbsp;</td></tr>  \r\n  <tr><td><strong>PROF. MADYA DR. AHMAD FAUZI BIN IDRIS</strong></td></tr>\r\n  <tr><td>DEKAN KEMASUKAN DAN REKOD</td></tr>\r\n  <tr><td>JABATAN HAL EHWAL AKADEMIK</td></tr>\r\n</tbody></table>\';', 'echo \'<table align=\"center\"><tbody><tr><td>Cetakan Komputer Tidak Memerlukan Tandatangan</td></tr></tbody></table>\';');
+INSERT INTO `template_surat` VALUES ('3', 'DEFAULT_ENG', 'ENG', '\r\n<h3 align=\"center\">\"KEDAH SEJAHTERA\"</h3>\r\n\r\n  <table>\r\n  <tbody><tr>\r\n    <td>Reference<br></td>\r\n    <td>:</td>\r\n    <td>$auto_generate_siri </td></tr>\r\n  <tr>\r\n    <td>Date</td>\r\n    <td>:</td>\r\n    <td>\'.$today.\' (\'.$tarikh_hijri.\')<br></td>\r\n  </tr>\r\n<tr><td>&nbsp;</td><td></td><td><br></td></tr>\r\n<tr><td colspan=\"3\">&nbsp;</td></tr></tbody></table>', 'echo \'\r\n<table><tbody><tr><td>السلام عليكم و رحمة الله و بركاته</td></tr>\r\n<tr><td>\'.$siri_mohon.\'</td></tr>\r\n<tr><td>\'.$nama_pemohon.\' (\'.$ic_pemohon.\')</td></tr>\r\n<tr><td>\'.$alamat1_pemohon.\'</td></tr>\r\n<tr><td>\'.$alamat2_pemohon.\'</td></tr>\r\n<tr><td>\'.$poskod.\' \'.$bandar.\'</td></tr><tr><td>\'.$negeri.\', \'.$negara.\'</td></tr>\r\n<tr><td>&nbsp;</td></tr></tbody></table>\';', 'echo \'<table><tbody><tr><td><strong>OFFER OF ADMISSION INTO INSANIAH UNIVERSITY COLLEGE (IUC) </strong><strong>\'.$sesi_intake.\'</strong><strong> IN THE FIRST ACADEMIC SESSION <br></strong></td></tr>\r\n<tr><td>&nbsp;</td></tr></tbody></table>\';', ' echo \'<table><tbody><tr><td>Congratulations! You have been accepted to further your study at INSANIAH University College (IUC), Alor&nbsp; Setar, Kedah Darul Aman, Malaysia. You are accepted to undertake the following study programme:<br></td>\r\n  </tr>\r\n<tr><td>&nbsp;</td></tr></tbody></table>\';\r\n', 'echo \'<table id=\"jadual\" border=\"1\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n  <tbody><tr>\r\n    <td><strong>Programme\r\n    </strong></td><td colspan=\"3\">\'.$progTawar.\'</td>\r\n  </tr>\r\n   <tr>\r\n    <td><strong>Kulliyah</strong></td> <td colspan=\"3\">\'.$kulliyah.\'</td></tr>\r\n<tr>\r\n<td width=\"25%\"><strong>Year</strong></td><td width=\"25%\">\'.$tahun.\'</td><td><strong>Duration</strong></td><td>\'.$tempoh_ngaji.\'</td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>Date of Registration<br></strong></td><td>\'.$tarikh_daftar.\'</td>\r\n<td><strong>Time of Registration<br></strong></td><td>\'.$masa_daftar.\'</td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>Venue of Registration</strong></td>\r\n    <td colspan=\"3\">\'.$tempat_daftar.\'</td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>For further enquiries, please&nbsp; contact</strong></td>\r\n    <td colspan=\"3\">\'.$no_telefon.\'</td>\r\n  </tr>\r\n</tbody></table>\';', 'echo \'<table id=\"pay\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n  <tbody><tr>\r\n    <td><strong><u>PAYMENT</u></strong></td>\r\n  </tr>\r\n  <tr>\r\n    <td>a) You are required to make the full  payment for the first semester tuition fees including the registration fees  before the date of registration. <em>(Please refer Fees Structure Schedule and  Payment Guideline)</em></td>\r\n  </tr>\r\n  <tr>\r\n    <td>b) Please <strong>make ready a Personal Bond</strong> in USD or in RM (Ringgit Malaysia) (<em>Please  refer attachment for Personal Bond</em>) and to be paid to our officer immediately upon arrival at the Kuala  Lumpur International Airport (KLIA).</td>\r\n  </tr>\r\n  <tr>\r\n    <td>c) Failing to do so, we will not be able to release  you from the custody of the Malaysian Immigration authority.</td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>Facilities :&nbsp;</strong> Hostel will be provided</td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>IMPORTANT</strong>:</td>\r\n  </tr>\r\n  <tr>\r\n    <td>You are to abide to the following condition(s):</td>\r\n  </tr>\r\n</tbody></table>\r\n<table id=\"info\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n  <tbody><tr>\r\n    <td width=\"2%\">&nbsp;</td>\r\n    <td align=\"center\" width=\"4%\">1.</td>\r\n    <td width=\"94%\">Candidates must reply to the offer letter by accepting or rejecting the offer at least 10 days before the date of registration via website. (http://ecampus.insaniah.my/frm/semak.php)</td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">2.</td>\r\n    <td>This offer will be automatically null and void if you fail to register on the stipulated date or within 14 days after the registration date.</td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">3.</td>\r\n    <td>Please arrange your travel to arrive in Malaysia on any of the dates i.e. on the 17 June 2012 until 23 June 2012) and inform the University (7) days prior to your arrival via email (daftar@insaniah.edu.my).</td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">4.</td>\r\n    <td>If you fail to arrive on any of the specified dates, our officer will not be able to assist your release from the airport. </td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">5.</td>\r\n    <td>It is compulsory for you to print the ADMISSION GUIDELINES as part of the Letter Offer of Admission and you are also required to read carefully and fill in the relevant forms.</td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">6.</td>\r\n    <td>If the programme offered does not achieve the minimum number of students, the University has the right to withhold the programme for this semester without prior notice.</td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">&nbsp;</td>\r\n    <td>On behalf of the University, we would like to take this opportunity to congratulate and welcome you to INSANIAH University College (IUC).<br></td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">&nbsp;</td>\r\n    <td>Thank you.</td>\r\n  </tr>\r\n</tbody></table>\';', 'echo \'<table>\r\n  <tbody><tr><td><strong>\"PAVING THE WAY TO WISDOM\"<strong></strong></strong></td></tr>\r\n  \r\n  <tr><td style=\"vertical-align: top;\">والسلام<br></td></tr>\r\n <tr><td>&nbsp;</td></tr>\r\n <tr><td><strong>PROF. MADYA DR. AHMAD FAUZI BIN IDRIS</strong></td></tr>\r\n  <tr><td>DEAN OF ADMISSIONS AND RECORDS</td></tr>\r\n  <tr><td>DEPARTMENT OF ACADEMIC AFFAIRS</td></tr>\r\n</tbody></table>\';', 'echo \'<table align=\"center\"><tbody><tr><td>Computer Generated. No Signature Required</td></tr></tbody></table>\';');
+INSERT INTO `template_surat` VALUES ('4', 'jun2012_mbbs_sy1', 'MY', 'echo \'<h3 align=\"center\">\"KEDAH SEJAHTERA\"</h3>\r\n\r\n  <table>\r\n  <tbody><tr>\r\n    <td>Rujukan<br></td>\r\n    <td>:</td>\r\n    <td>\'.$auto_generate_siri.\'</td></tr>\r\n  <tr>\r\n    <td>Tarikh</td>\r\n    <td>:</td>\r\n    <td>\'.$today.\' (\'.$tarikh_hijri.\')<br></td>\r\n  </tr>\r\n<tr><td>&nbsp;</td><td></td><td><br></td></tr>\r\n<tr><td colspan=\"3\">&nbsp;</td></tr></tbody></table>\';', 'echo \'\r\n<table><tbody><tr><td>السلام عليكم و رحمة الله و بركاته</td></tr>\r\n<tr><td>\'.$siri_mohon.\'</td></tr>\r\n<tr><td>\'.$nama_pemohon.\' (\'.$ic_pemohon.\')</td></tr>\r\n<tr><td>\'.$alamat1_pemohon.\'</td></tr>\r\n<tr><td>\'.$alamat2_pemohon.\'</td></tr>\r\n<tr><td>\'.$poskod.\' \'.$bandar.\'</td></tr><tr><td>\'.$negeri.\', \'.$negara.\'</td></tr>\r\n<tr><td>&nbsp;</td></tr></tbody></table>\';', 'echo \'<table><tbody><tr><td><strong>TAWARAN KEMASUKAN KE KOLEJ UNIVERSITI  INSANIAH (KUIN) SESI PENGAJIAN AKADEMIK \'.$sesi_intake.\'</strong></td></tr>\r\n<tr><td>&nbsp;</td></tr></tbody></table>\';', ' echo \'<table><tbody><tr><td>Sekalung tahniah diucapkan kepada saudara/saudari kerana terpilih mengikuti program pengajian di Kolej Universiti INSANIAH, Alor Setar, Kedah Darulaman, Malaysia. Maklumat program pengajian adalah seperti berikut:<br></td>\r\n  </tr>\r\n<tr><td>&nbsp;</td></tr></tbody></table>\';\r\n', 'echo \'<table id=\"jadual\" border=\"1\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n  <tbody><tr>\r\n    <td><strong>Program ditawarkan</strong></td>\r\n    <td colspan=\"3\">\'.$progTawar.\'</td>\r\n  </tr>\r\n   <tr>\r\n    <td><strong>Kulliyah</strong></td> <td colspan=\"3\">\'.$kulliyah.\'</td></tr>\r\n<tr>\r\n<td width=\"25%\"><strong>Tahun Pengajian<br></strong></td><td width=\"25%\">\'.$tahun.\'</td><td><strong>Tempoh Pengajian</strong></td><td>\'.$tempoh_ngaji.\'</td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>Tarikh Pendaftaran</strong></td><td>\'.$tarikh_daftar.\'</td>\r\n<td><strong>Masa</strong></td><td>\'.$masa_daftar.\'</td>\r\n  </tr>\r\n  <tr>\r\n    <td valign=\"top\"><strong>Tempat Pendaftaran</strong></td>\r\n    <td colspan=\"3\"><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><meta name=\"ProgId\" content=\"Word.Document\"><meta name=\"Generator\" content=\"Microsoft Word 12\"><meta name=\"Originator\" content=\"Microsoft Word 12\"><link rel=\"File-List\" href=\"file:///C:%5CUsers%5CMNHISYAM%5CAppData%5CLocal%5CTemp%5Cmsohtmlclip1%5C01%5Cclip_filelist.xml\"><!--[if gte mso 9]><xml>\r\n <w:WordDocument>\r\n  <w:View>Normal</w:View>\r\n  <w:Zoom>0</w:Zoom>\r\n  <w:TrackMoves/>\r\n  <w:TrackFormatting/>\r\n  <w:PunctuationKerning/>\r\n  <w:ValidateAgainstSchemas/>\r\n  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>\r\n  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>\r\n  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>\r\n  <w:DoNotPromoteQF/>\r\n  <w:LidThemeOther>EN-US</w:LidThemeOther>\r\n  <w:LidThemeAsian>X-NONE</w:LidThemeAsian>\r\n  <w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript>\r\n  <w:Compatibility>\r\n   <w:BreakWrappedTables/>\r\n   <w:SnapToGridInCell/>\r\n   <w:WrapTextWithPunct/>\r\n   <w:UseAsianBreakRules/>\r\n   <w:DontGrowAutofit/>\r\n   <w:SplitPgBreakAndParaMark/>\r\n   <w:DontVertAlignCellWithSp/>\r\n   <w:DontBreakConstrainedForcedTables/>\r\n   <w:DontVertAlignInTxbx/>\r\n   <w:Word11KerningPairs/>\r\n   <w:CachedColBalance/>\r\n  </w:Compatibility>\r\n  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>\r\n  <m:mathPr>\r\n   <m:mathFont m:val=\"Cambria Math\"/>\r\n   <m:brkBin m:val=\"before\"/>\r\n   <m:brkBinSub m:val=\"--\"/>\r\n   <m:smallFrac m:val=\"off\"/>\r\n   <m:dispDef/>\r\n   <m:lMargin m:val=\"0\"/>\r\n   <m:rMargin m:val=\"0\"/>\r\n   <m:defJc m:val=\"centerGroup\"/>\r\n   <m:wrapIndent m:val=\"1440\"/>\r\n   <m:intLim m:val=\"subSup\"/>\r\n   <m:naryLim m:val=\"undOvr\"/>\r\n  </m:mathPr></w:WordDocument>\r\n</xml><![endif]--><!--[if gte mso 9]><xml>\r\n <w:LatentStyles DefLockedState=\"false\" DefUnhideWhenUsed=\"true\"\r\n  DefSemiHidden=\"true\" DefQFormat=\"false\" DefPriority=\"99\"\r\n  LatentStyleCount=\"267\">\r\n  <w:LsdException Locked=\"false\" Priority=\"0\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"Normal\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"9\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"heading 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"9\" QFormat=\"true\" Name=\"heading 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"9\" QFormat=\"true\" Name=\"heading 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"9\" QFormat=\"true\" Name=\"heading 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"9\" QFormat=\"true\" Name=\"heading 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"9\" QFormat=\"true\" Name=\"heading 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"9\" QFormat=\"true\" Name=\"heading 7\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"9\" QFormat=\"true\" Name=\"heading 8\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"9\" QFormat=\"true\" Name=\"heading 9\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"39\" Name=\"toc 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"39\" Name=\"toc 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"39\" Name=\"toc 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"39\" Name=\"toc 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"39\" Name=\"toc 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"39\" Name=\"toc 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"39\" Name=\"toc 7\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"39\" Name=\"toc 8\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"39\" Name=\"toc 9\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"35\" QFormat=\"true\" Name=\"caption\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"10\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"Title\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"1\" Name=\"Default Paragraph Font\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"11\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"Subtitle\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"22\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"Strong\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"20\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"Emphasis\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"59\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Table Grid\"/>\r\n  <w:LsdException Locked=\"false\" UnhideWhenUsed=\"false\" Name=\"Placeholder Text\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"1\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"No Spacing\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"60\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Light Shading\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"61\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Light List\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"62\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Light Grid\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"63\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"64\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"65\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium List 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"66\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium List 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"67\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"68\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"69\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"70\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Dark List\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"71\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Colorful Shading\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"72\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Colorful List\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"73\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Colorful Grid\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"60\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Light Shading Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"61\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Light List Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"62\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Light Grid Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"63\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 1 Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"64\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 2 Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"65\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium List 1 Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" UnhideWhenUsed=\"false\" Name=\"Revision\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"34\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"List Paragraph\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"29\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"Quote\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"30\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"Intense Quote\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"66\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium List 2 Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"67\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 1 Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"68\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 2 Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"69\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 3 Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"70\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Dark List Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"71\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Colorful Shading Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"72\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Colorful List Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"73\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Colorful Grid Accent 1\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"60\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Light Shading Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"61\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Light List Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"62\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Light Grid Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"63\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 1 Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"64\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 2 Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"65\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium List 1 Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"66\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium List 2 Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"67\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 1 Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"68\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 2 Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"69\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 3 Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"70\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Dark List Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"71\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Colorful Shading Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"72\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Colorful List Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"73\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Colorful Grid Accent 2\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"60\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Light Shading Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"61\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Light List Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"62\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Light Grid Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"63\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 1 Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"64\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 2 Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"65\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium List 1 Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"66\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium List 2 Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"67\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 1 Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"68\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 2 Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"69\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 3 Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"70\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Dark List Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"71\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Colorful Shading Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"72\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Colorful List Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"73\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Colorful Grid Accent 3\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"60\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Light Shading Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"61\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Light List Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"62\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Light Grid Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"63\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 1 Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"64\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 2 Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"65\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium List 1 Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"66\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium List 2 Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"67\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 1 Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"68\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 2 Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"69\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 3 Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"70\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Dark List Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"71\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Colorful Shading Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"72\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Colorful List Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"73\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Colorful Grid Accent 4\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"60\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Light Shading Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"61\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Light List Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"62\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Light Grid Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"63\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 1 Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"64\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 2 Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"65\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium List 1 Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"66\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium List 2 Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"67\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 1 Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"68\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 2 Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"69\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 3 Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"70\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Dark List Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"71\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Colorful Shading Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"72\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Colorful List Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"73\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Colorful Grid Accent 5\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"60\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Light Shading Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"61\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Light List Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"62\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Light Grid Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"63\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 1 Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"64\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium Shading 2 Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"65\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium List 1 Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"66\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium List 2 Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"67\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 1 Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"68\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 2 Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"69\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Medium Grid 3 Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"70\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Dark List Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"71\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Colorful Shading Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"72\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Colorful List Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"73\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" Name=\"Colorful Grid Accent 6\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"19\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"Subtle Emphasis\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"21\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"Intense Emphasis\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"31\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"Subtle Reference\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"32\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"Intense Reference\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"33\" SemiHidden=\"false\"\r\n   UnhideWhenUsed=\"false\" QFormat=\"true\" Name=\"Book Title\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"37\" Name=\"Bibliography\"/>\r\n  <w:LsdException Locked=\"false\" Priority=\"39\" QFormat=\"true\" Name=\"TOC Heading\"/>\r\n </w:LatentStyles>\r\n</xml><![endif]--><style>\r\n<!--\r\n /* Font Definitions */\r\n @font-face\r\n	{font-family:\"Cambria Math\";\r\n	panose-1:2 4 5 3 5 4 6 3 2 4;\r\n	mso-font-charset:0;\r\n	mso-generic-font-family:roman;\r\n	mso-font-pitch:variable;\r\n	mso-font-signature:-1610611985 1107304683 0 0 415 0;}\r\n /* Style Definitions */\r\n p.MsoNormal, li.MsoNormal, div.MsoNormal\r\n	{mso-style-unhide:no;\r\n	mso-style-qformat:yes;\r\n	mso-style-parent:\"\";\r\n	margin:0in;\r\n	margin-bottom:.0001pt;\r\n	mso-pagination:widow-orphan;\r\n	font-size:12.0pt;\r\n	font-family:\"Times New Roman\",\"serif\";\r\n	mso-fareast-font-family:\"Times New Roman\";}\r\n.MsoChpDefault\r\n	{mso-style-type:export-only;\r\n	mso-default-props:yes;\r\n	font-size:10.0pt;\r\n	mso-ansi-font-size:10.0pt;\r\n	mso-bidi-font-size:10.0pt;\r\n	mso-ascii-font-family:Calibri;\r\n	mso-fareast-font-family:Calibri;\r\n	mso-hansi-font-family:Calibri;\r\n	mso-bidi-font-family:Arial;}\r\n@page Section1\r\n	{size:8.5in 11.0in;\r\n	margin:1.0in 1.0in 1.0in 1.0in;\r\n	mso-header-margin:.5in;\r\n	mso-footer-margin:.5in;\r\n	mso-paper-source:0;}\r\ndiv.Section1\r\n	{page:Section1;}\r\n-->\r\n</style><!--[if gte mso 10]>\r\n<style>\r\n /* Style Definitions */\r\n table.MsoNormalTable\r\n	{mso-style-name:\"Table Normal\";\r\n	mso-tstyle-rowband-size:0;\r\n	mso-tstyle-colband-size:0;\r\n	mso-style-noshow:yes;\r\n	mso-style-priority:99;\r\n	mso-style-qformat:yes;\r\n	mso-style-parent:\"\";\r\n	mso-padding-alt:0in 5.4pt 0in 5.4pt;\r\n	mso-para-margin:0in;\r\n	mso-para-margin-bottom:.0001pt;\r\n	mso-pagination:widow-orphan;\r\n	font-size:11.0pt;\r\n	font-family:\"Calibri\",\"sans-serif\";\r\n	mso-ascii-font-family:Calibri;\r\n	mso-ascii-theme-font:minor-latin;\r\n	mso-fareast-font-family:\"Times New Roman\";\r\n	mso-fareast-theme-font:minor-fareast;\r\n	mso-hansi-font-family:Calibri;\r\n	mso-hansi-theme-font:minor-latin;\r\n	mso-bidi-font-family:\"Times New Roman\";\r\n	mso-bidi-theme-font:minor-bidi;}\r\n</style>\r\n<![endif]-->\r\n\r\n<div style=\"\"><br></div>\r\n\r\n\'.$tempat_daftar.\'<span style=\"font-size: 9pt; font-family: \" arial\",\"sans-serif\";\"=\"\"><br><br></span></td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>Maklumat lanjut sila hubungi</strong></td>\r\n    <td colspan=\"3\">+604-7374331 / +604-7374316 / +604-7305624</td>\r\n  </tr>\r\n</tbody></table>\';', 'echo \'<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n  <tbody><tr><td>&nbsp;</td></tr><tr>\r\n    <td><strong><u>Bayaran</u></strong></td>\r\n  </tr>\r\n  <tr>\r\n    <td>Anda hendaklah membuat bayaran sebanyak <strong>RM </strong>\'.$fee_reg.\' di kaunter kewangan semasa pendaftaran. Sila bawa bersama Surat Tawaran semasa membuat bayaran.</td>\r\n  </tr>\r\n<tr><td>&nbsp;</td></tr>\r\n<tr>\r\n    <td><strong>Kemudahan Asrama</strong> : Diwajibkan</td>\r\n  </tr>\r\n  <tr><td>&nbsp;</td></tr>\r\n<tr>\r\n    <td><strong>PENTING</strong>:</td>\r\n  </tr>\r\n  <tr>\r\n    <td>Anda dikehendaki mematuhi syarat-syarat tawaran seperti berikut:-</td>\r\n  </tr>\r\n</tbody></table>\r\n<table id=\"info\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n  <tbody><tr>\r\n    <td width=\"2%\">&nbsp;</td>\r\n    <td align=\"center\" width=\"4%\">1.</td>\r\n    <td width=\"94%\">Anda dikehendaki untuk merayu secara bertulis kepada Yang Dipertua Lembaga Perubatan Malaysia (MMC) bagi matapelajaran atau syarat lain yang tidak memenuhi syarat kelayakan kemasukan ke program Bachelor Of Medicine &amp; Bachelor Of Surgery (MBBS) (KA11517). Sila lihat lampiran matapelajaran atau syarat lain yang tidak mencukupi syarat kemasukan.</td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">2.</td>\r\n    <td>Anda diwajibkan mencetak <strong>PANDUAN KEMASUKAN</strong> dari (http://ecampus.insaniah.my/frm/semak.php) yang menjadi sebahagian daripada Surat Tawaran ini, sila baca dengan teliti dan isikan borang-borang yang berkaitan.</td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">3.</td>\r\n    <td>Tawaran ini akan terbatal sekiranya jumlah pelajar yang mendaftar bagi program ini tidak mencukupi jumlah yang ditetapkan dan anda boleh memohon untuk mengikuti program lain yang anda layak.</td>\r\n  </tr>\r\n  <tr>\r\n    <td colspan=\"3\">Pihak universiti mengucapkan selamat datang dan mengalu-alukan kedatangan saudara/saudari ke KUIN.</td>\r\n  </tr>\r\n  <tr>\r\n    <td colspan=\"3\">Sekian, terima kasih</td>\r\n  </tr>\r\n</tbody></table>\';', 'echo \'<table>\r\n  <tbody><tr><td><strong>\"PENEROKAAN KE ARAH KEBIJAKSANAAN\"</strong></td></tr>\r\n   <tr><td>&nbsp;</td></tr>\r\n  <tr><td><strong>PROF. MADYA DR. AHMAD FAUZI BIN IDRIS</strong></td></tr>\r\n  <tr><td>DEKAN KEMASUKAN DAN REKOD</td></tr>\r\n  <tr><td>JABATAN HAL EHWAL AKADEMIK</td></tr>\r\n</tbody></table>\';', 'echo \'<table align=\"center\"><tbody><tr><td>Cetakan Komputer Tidak Memerlukan Tandatangan</td></tr></tbody></table>\';');
+INSERT INTO `template_surat` VALUES ('5', 'JUN2012_DTQ', 'MY', 'echo \'<h3 align=\"center\">\"KEDAH SEJAHTERA\"</h3>\r\n\r\n  <table>\r\n  <tbody><tr>\r\n    <td>Rujukan<br></td>\r\n    <td>:</td>\r\n    <td>\'.$auto_generate_siri.\'</td></tr>\r\n  <tr>\r\n    <td>Tarikh</td>\r\n    <td>:</td>\r\n    <td>\'.$today.\' (\'.$tarikh_hijri.\')<br></td>\r\n  </tr>\r\n<tr><td>&nbsp;</td><td></td><td><br></td></tr>\r\n<tr><td colspan=\"3\">&nbsp;</td></tr></tbody></table>\';', 'echo \'\r\n<table><tbody><tr><td>السلام عليكم و رحمة الله و بركاته</td></tr>\r\n<tr><td>\'.$siri_mohon.\'</td></tr>\r\n<tr><td>\'.$nama_pemohon.\' (\'.$ic_pemohon.\')</td></tr>\r\n<tr><td>\'.$alamat1_pemohon.\'</td></tr>\r\n<tr><td>\'.$alamat2_pemohon.\'</td></tr>\r\n<tr><td>\'.$poskod.\' \'.$bandar.\'</td></tr><tr><td>\'.$negeri.\', \'.$negara.\'</td></tr>\r\n<tr><td>&nbsp;</td></tr></tbody></table>\';', 'echo \'<table><tbody><tr><td style=\"vertical-align: top;\">Saudara/Saudari<br></td></tr><tr><td><strong>TEMUDUGA PROGRAM DIPLOMA TAHFIZ AL-QURAN WA AL-QIRAAT (A 9729) KOLEJ UNIVERSITI INSANIAH SESI PENGAJIAN AKADEMIK JUN 2012/2013.</strong></td></tr>\r\n<tr><td>&nbsp;</td></tr></tbody></table>\';', ' echo \'<table><tbody><tr><td>Dengan segala hormatnya saya merujuk kepada perkara di atas.<br></td>\r\n  </tr>\r\n<tr><td>&nbsp;2.&nbsp;&nbsp; &nbsp;Sehubungan dengan itu Saudara/saudari dijemput untuk menghadiri temuduga Program Diploma Tahfiz al-Quran Wa al-Qiraat seperti butir-butir berikut :-</td></tr></tbody></table>\';\r\n', 'echo \'<table id=\"jadual\" border=\"1\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n  <tbody>\r\n  <tr>\r\n    <td width=\"20%\"><strong>Tarikh<br></strong></td>\r\n    <td align=\"center\" width=\"5%\">:</td>\r\n    <td>27 Mei 2012 (AHAD)</td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>Masa<br></strong></td>\r\n    <td align=\"center\">:</td>\r\n    <td>9.00 Pagi</td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>Tempat<br></strong></td>\r\n    <td align=\"center\">:</td>\r\n    <td>Blok B, Kulliyyah al-Quran,<br>Kolej Universiti Insaniah (KUIN)<br></td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>Subjek<br></strong></td>\r\n    <td align=\"center\">:</td>\r\n    <td>Hafazan dan Tilawah (akan ditentukan semasa ujian), Tajwid Dan Bahasa Arab.</td>\r\n  </tr>\r\n</tbody></table>\';', 'echo \'<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n  <tbody><tr><td>&nbsp;</td></tr><tr>\r\n    <td>3.&nbsp;&nbsp;&nbsp; Sila bawa Mushaf al-Quran Uthmani bersama-sama saudara/saudari semasa menghadiri temuduga tersebut. Penerimaan saudara/saudari ke Program Diploma Tahfiz al-Quran Wa al-Qiraat adalah bergantung kepada keputusan temuduga.<br></td>\r\n  </tr>\r\n</tbody></table>\';', 'echo \'<table>\r\n  <tbody>\r\n  <tr><td>Sekian, terima kasih</td></tr>\r\n  <tr><td>&nbsp;</td></tr>\r\n<tr><td><strong>\"PENEROKAAN KE ARAH KEBIJAKSANAAN\"</strong></td></tr>\r\n   <tr><td style=\"vertical-align: top;\">والسلام<br></td></tr><tr><td>Saya yang menurut perintah,</td></tr>\r\n  <tr><td><strong>PROF. MADYA DR. AHMAD FAUZI BIN IDRIS</strong></td></tr>\r\n  <tr><td>DEKAN KEMASUKAN DAN REKOD</td></tr>\r\n  <tr><td>JABATAN HAL EHWAL AKADEMIK</td></tr>\r\n</tbody></table>\';', 'echo \'<table align=\"center\"><tbody><tr><td>Cetakan Komputer Tidak Memerlukan Tandatangan</td></tr></tbody></table>\';');
+INSERT INTO `template_surat` VALUES ('6', 'JUN2012_ENG', 'ENG', 'echo \'<h3 align=\"center\">\"KEDAH SEJAHTERA\"</h3>\r\n\r\n  <table>\r\n  <tbody><tr>\r\n    <td>Reference<br></td>\r\n    <td>:</td>\r\n    <td>\'.$auto_generate_siri.\'</td></tr>\r\n  <tr>\r\n    <td>Date</td>\r\n    <td>:</td>\r\n    <td>\'.$today.\' (\'.$tarikh_hijri.\')<br></td>\r\n  </tr>\r\n<tr><td>&nbsp;</td><td></td><td><br></td></tr>\r\n<tr><td colspan=\"3\">&nbsp;</td></tr></tbody></table>\';', 'echo \'\r\n<table><tbody><tr><td>السلام عليكم و رحمة الله و بركاته</td></tr>\r\n<tr><td>\'.$siri_mohon.\'</td></tr>\r\n<tr><td>\'.$nama_pemohon.\' (\'.$ic_pemohon.\')</td></tr>\r\n<tr><td>\'.$alamat1_pemohon.\'</td></tr>\r\n<tr><td>\'.$alamat2_pemohon.\'</td></tr>\r\n<tr><td>\'.$poskod.\' \'.$bandar.\'</td></tr><tr><td>\'.$negeri.\', \'.$negara.\'</td></tr>\r\n<tr><td>&nbsp;</td></tr></tbody></table>\';', 'echo \'<table><tbody><tr><td><strong>OFFER OF ADMISSION INTO INSANIAH UNIVERSITY COLLEGE (IUC) </strong><strong>\'.$sesi_intake.\'</strong><strong> IN THE FIRST ACADEMIC SESSION <br></strong></td></tr>\r\n<tr><td>&nbsp;</td></tr></tbody></table>\';', ' echo \'<table><tbody><tr><td>Congratulations! You have been accepted to further your study at INSANIAH University College (IUC), Alor&nbsp; Setar, Kedah Darul Aman, Malaysia. You are accepted to undertake the following study programme:<br></td>\r\n  </tr>\r\n<tr><td>&nbsp;</td></tr></tbody></table>\';\r\n', 'echo \'<table id=\"jadual\" border=\"1\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n  <tbody><tr>\r\n    <td><strong>Programme\r\n    </strong></td><td colspan=\"3\">\'.$progTawar.\'</td>\r\n  </tr>\r\n   <tr>\r\n    <td><strong>Kulliyah</strong></td> <td colspan=\"3\">\'.$kulliyah.\'</td></tr>\r\n<tr>\r\n<td width=\"25%\"><strong>Year</strong></td><td width=\"25%\">\'.$tahun.\'</td><td><strong>Duration</strong></td><td>\'.$tempoh_ngaji.\'</td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>Date of Registration<br></strong></td><td>\'.$tarikh_daftar.\'</td>\r\n<td><strong>Time of Registration<br></strong></td><td>\'.$masa_daftar.\'</td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>Venue of Registration</strong></td>\r\n    <td colspan=\"3\">\'.$tempat_daftar.\'</td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>For further enquiries, please&nbsp; contact</strong></td>\r\n    <td colspan=\"3\">\'.$no_telefon.\'</td>\r\n  </tr>\r\n</tbody></table>\';', 'echo \'<table id=\"pay\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n  <tbody><tr>\r\n    <td><strong><u>PAYMENT</u></strong></td>\r\n  </tr>\r\n  <tr>\r\n    <td>a) You are required to make the full  payment for the first semester tuition fees including the registration fees  before the date of registration. <em>(Please refer Fees Structure Schedule and  Payment Guideline)</em></td>\r\n  </tr>\r\n  <tr>\r\n    <td>b) Please <strong>make ready a Personal Bond</strong> in USD or in RM (Ringgit Malaysia) (<em>Please  refer attachment for Personal Bond</em>) and to be paid to our officer immediately upon arrival at the Kuala  Lumpur International Airport (KLIA).</td>\r\n  </tr>\r\n  <tr>\r\n    <td>c) Failing to do so, we will not be able to release  you from the custody of the Malaysian Immigration authority.</td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>Facilities :&nbsp;</strong> Hostel will be provided</td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>IMPORTANT</strong>:</td>\r\n  </tr>\r\n  <tr>\r\n    <td>You are to abide to the following condition(s):</td>\r\n  </tr>\r\n</tbody></table>\r\n<table id=\"info\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n  <tbody><tr>\r\n    <td width=\"2%\">&nbsp;</td>\r\n    <td align=\"center\" width=\"4%\">1.</td>\r\n    <td width=\"94%\">Candidates must reply to the offer letter by accepting or rejecting the offer at least 10 days before the date of registration via website. (http://ecampus.insaniah.my/frm/semak.php)</td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">2.</td>\r\n    <td>This offer will be automatically null and void if you fail to register on the stipulated date or within 14 days after the registration date.</td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">3.</td>\r\n    <td>Please arrange your travel to arrive in Malaysia on any of the dates i.e. on the 17 June 2012 until 23 June 2012) and inform the University (7) days prior to your arrival via email (daftar@insaniah.edu.my).</td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">4.</td>\r\n    <td>If you fail to arrive on any of the specified dates, our officer will not be able to assist your release from the airport. </td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">5.</td>\r\n    <td>It is compulsory for you to print the ADMISSION GUIDELINES as part of the Letter Offer of Admission and you are also required to read carefully and fill in the relevant forms.</td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">6.</td>\r\n    <td>If the programme offered does not achieve the minimum number of students, the University has the right to withhold the programme for this semester without prior notice.</td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">&nbsp;</td>\r\n    <td>On behalf of the University, we would like to take this opportunity to congratulate and welcome you to INSANIAH University College (IUC).<br></td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">&nbsp;</td>\r\n    <td>Thank you.</td>\r\n  </tr>\r\n</tbody></table>\';', 'echo \'<table>\r\n  <tbody><tr><td><strong>\"PAVING THE WAY TO WISDOM\"<strong></strong></strong></td></tr>\r\n  \r\n  <tr><td style=\"vertical-align: top;\">والسلام<br></td></tr>\r\n <tr><td>&nbsp;</td></tr>\r\n <tr><td><strong>PROF. MADYA DR. AHMAD FAUZI BIN IDRIS</strong></td></tr>\r\n  <tr><td>DEAN OF ADMISSIONS AND RECORDS</td></tr>\r\n  <tr><td>DEPARTMENT OF ACADEMIC AFFAIRS</td></tr>\r\n</tbody></table>\';', 'echo \'<table align=\"center\"><tbody><tr><td>Computer Generated. No Signature Required</td></tr></tbody></table>\';');
+
+-- ----------------------------
 -- Table structure for `user_data`
 -- ----------------------------
 DROP TABLE IF EXISTS `user_data`;
@@ -3849,7 +4173,7 @@ CREATE TABLE `user_dept_func` (
   `active` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'weather its active for the user or not',
   PRIMARY KEY (`id`),
   KEY `unique` (`id_user_function`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user_dept_func
@@ -3871,6 +4195,12 @@ INSERT INTO `user_dept_func` VALUES ('16', '1', '5', '9', '1');
 INSERT INTO `user_dept_func` VALUES ('17', '1', '1', '10', '1');
 INSERT INTO `user_dept_func` VALUES ('18', '1', '5', '11', '1');
 INSERT INTO `user_dept_func` VALUES ('19', '1', '2', '12', '1');
+INSERT INTO `user_dept_func` VALUES ('20', '1', '2', '13', '1');
+INSERT INTO `user_dept_func` VALUES ('21', '1', '2', '14', '1');
+INSERT INTO `user_dept_func` VALUES ('22', '1', '2', '15', '1');
+INSERT INTO `user_dept_func` VALUES ('23', '1', '2', '16', '1');
+INSERT INTO `user_dept_func` VALUES ('24', '1', '4', '17', '1');
+INSERT INTO `user_dept_func` VALUES ('25', '1', '4', '18', '1');
 
 -- ----------------------------
 -- Table structure for `user_dept_jaw`
@@ -3901,23 +4231,30 @@ CREATE TABLE `user_function` (
   `remarks` varchar(255) NOT NULL,
   `menu` varchar(255) NOT NULL,
   `menu_display` tinyint(1) NOT NULL,
+  `posisi` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `Function` (`function`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user_function
 -- ----------------------------
-INSERT INTO `user_function` VALUES ('1', 'index', 'index page', 'Home', '1');
-INSERT INTO `user_function` VALUES ('4', 'add_user', 'isms add user page', 'Tambah Pengguna', '1');
-INSERT INTO `user_function` VALUES ('5', 'devel', 'isms developer add function page', 'Developer', '1');
-INSERT INTO `user_function` VALUES ('6', 'set_privillege', 'isms set_privillege only display permission user to a function', '', '0');
-INSERT INTO `user_function` VALUES ('7', 'update_privillege', 'isms update_privillege changing the permission of the function to a user', '', '0');
-INSERT INTO `user_function` VALUES ('8', 'user_cat', 'isms user_cat tambah jabatan untuk user', 'Tambah Jabatan Kepada Pengguna', '1');
-INSERT INTO `user_function` VALUES ('9', 'senarai_pemohon', 'pendaftar senarai_pemohon memaparkan senarai pemohon kemasukan ke pusat pengajian', 'Senarai Pemohon', '1');
-INSERT INTO `user_function` VALUES ('10', 'user_perm_edit', 'isms user_perm_edit digunakan untuk mengedit capaian pengguna kepada fungsi page mengikut jabatan/controller/modul', 'Kemaskini Capaian Pengguna', '1');
-INSERT INTO `user_function` VALUES ('11', 'permohonan_baru', 'Masukkan data permohonan pelajar yang ingin melanjutkan pelajaran di sini.', 'Permohonan Baru', '1');
-INSERT INTO `user_function` VALUES ('12', 'subj_mgmt', 'menguruskan subjek-subjek', 'Pengurusan Subjek', '1');
+INSERT INTO `user_function` VALUES ('1', 'index', 'Index page', 'Home', '1', '0');
+INSERT INTO `user_function` VALUES ('4', 'add_user', 'Penambahan pengguna system', 'Tambah Pengguna', '1', '0');
+INSERT INTO `user_function` VALUES ('5', 'devel', 'Penambahan function', 'Developer', '1', '0');
+INSERT INTO `user_function` VALUES ('6', 'set_privillege', 'Memaparkan user dan function', '', '0', '0');
+INSERT INTO `user_function` VALUES ('7', 'update_privillege', 'Kemaskini kebenaran function utk pengguna', '', '0', '0');
+INSERT INTO `user_function` VALUES ('8', 'user_cat', 'Tambah jabatan untuk user', 'Tambah Jabatan Kepada Pengguna', '1', '0');
+INSERT INTO `user_function` VALUES ('9', 'senarai_pemohon', 'Memaparkan senarai pemohon kemasukan ke pusat pengajian', 'Senarai Pemohon', '1', '0');
+INSERT INTO `user_function` VALUES ('10', 'user_perm_edit', 'Digunakan untuk mengedit capaian pengguna kepada fungsi page mengikut jabatan/controller/modul', 'Kemaskini Capaian Pengguna', '1', '0');
+INSERT INTO `user_function` VALUES ('11', 'permohonan_baru', 'Masukkan data permohonan pelajar yang ingin melanjutkan pelajaran di sini.', 'Permohonan Baru', '1', '0');
+INSERT INTO `user_function` VALUES ('12', 'subj_mgmt', 'Menguruskan subjek-subjek', 'Pengurusan Subjek', '1', '20');
+INSERT INTO `user_function` VALUES ('13', 'mohon_pelajar', 'Page ni digunakan untuk memilih pelajar diterima masuk kedalam institusi pengajian', 'Proses Permohonan', '1', '1');
+INSERT INTO `user_function` VALUES ('14', 'pmhn_tdk_lgkp', 'Update status permohonan pelajar dari \"Dalam Proses\" kepada \"Tidak Lengkap\"', 'Permohonan Tidak Lengkap', '0', '0');
+INSERT INTO `user_function` VALUES ('15', 'pmhn_gagal', 'Update status permohonan pelajar dari \"Dalam Proses\" kepada \"Gagal\"', 'Permohonan Gagal', '0', '0');
+INSERT INTO `user_function` VALUES ('16', 'pendaftaran', 'Pendaftaran Bakal Pelajar Yang Permohonannya Diluluskan', 'Pendaftaran', '1', '3');
+INSERT INTO `user_function` VALUES ('17', 'pmbyrn_penawarn', 'Carian Pembayaran Perlu Dibuat Sebelum Proses Pendaftaran Dapat Dilakukan Kepada Bakal Pelajar.', 'Pembayaran Bakal Pelajar', '1', '1');
+INSERT INTO `user_function` VALUES ('18', 'bayar_prmhnn', 'Pembayaran Sebelum Pendaftaran Bakal Pelajar', 'Bayar Pendaftaran', '0', '2');
 
 -- ----------------------------
 -- Table structure for `user_jawatan`
@@ -3953,7 +4290,13 @@ INSERT INTO `user_jawatan` VALUES ('15', 'Pustakawan', 'Pustakawan');
 -- View structure for `view_app_pelajar`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_app_pelajar`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_app_pelajar` AS select `app_pelajar`.`id` AS `id_app_pel`,`app_pelajar`.`nama` AS `nama_app_pel`,`app_akademik`.`level` AS `level`,`app_akademik`.`institusi` AS `institusi`,`app_akademik`.`tahun` AS `tahun`,`app_akademik`.`id` AS `id_app_akad`,`app_subjek_akademik`.`subjek` AS `subjek`,`app_subjek_akademik`.`gred` AS `gred`,`app_waris`.`nama` AS `nama_app_waris`,`app_waris`.`hubungan` AS `hubungan` from (`app_waris` left join (`app_subjek_akademik` left join (`app_akademik` left join `app_pelajar` on((`app_pelajar`.`id` = `app_akademik`.`id_mohon`))) on((`app_akademik`.`id` = `app_subjek_akademik`.`akademik_id`))) on((`app_pelajar`.`id` = `app_waris`.`id_mohon`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_app_pelajar` AS select `app_pelajar`.`id` AS `id`,`app_pelajar`.`nama` AS `nama`,`sel_negara`.`namanegara` AS `namanegara`,`app_akademik`.`institusi` AS `institusi`,`app_akademik`.`tahun` AS `tahun`,`sel_level`.`tahap_MY` AS `tahap_MY`,`sel_subjek`.`subjek_MY` AS `subjek_MY`,`app_subjek_akademik`.`gred` AS `gred`,`program`.`namaprog_MY` AS `namaprog_MY`,`app_progmohon`.`pilihan` AS `pilihan`,`app_progmohon`.`catatan` AS `catatan`,`sel_statusmohon`.`status_MY` AS `status_MY` from ((((((((`app_pelajar` left join `app_akademik` on((`app_pelajar`.`id` = `app_akademik`.`id_mohon`))) left join `app_progmohon` on((`app_pelajar`.`id` = `app_progmohon`.`id_mohon`))) left join `app_subjek_akademik` on((`app_subjek_akademik`.`akademik_id` = `app_akademik`.`id`))) left join `sel_level` on((`sel_level`.`kodtahap` = `app_akademik`.`level`))) left join `sel_subjek` on((`sel_subjek`.`kodsubjek` = `app_subjek_akademik`.`subjek`))) left join `program` on(((`program`.`kod_prog` = `app_progmohon`.`kod_prog`) and (`app_pelajar`.`progTawar` = `program`.`kod_prog`)))) left join `sel_statusmohon` on(((`sel_statusmohon`.`kodstatus` = `app_progmohon`.`status_mohon`) and (`app_pelajar`.`status_mohon` = `sel_statusmohon`.`kodstatus`)))) join `sel_negara` on((`sel_negara`.`kodnegara` = `app_pelajar`.`warganegara`))) where (`app_progmohon`.`status_mohon` = 'DIP') ;
+
+-- ----------------------------
+-- View structure for `view_apppelajar_pelresit`
+-- ----------------------------
+DROP VIEW IF EXISTS `view_apppelajar_pelresit`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_apppelajar_pelresit` AS select `app_pelajar`.`nama` AS `nama`,`pel_resit`.`matrik` AS `matrik`,`pel_resit`.`jumlah` AS `jumlah` from (`pel_resit` join `app_pelajar` on((`app_pelajar`.`siri_mohon` = `pel_resit`.`matrik`))) ;
 
 -- ----------------------------
 -- View structure for `view_department_function`
@@ -3977,7 +4320,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_se
 -- View structure for `view_taqwim`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_taqwim`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_taqwim` AS select `sesi_taqwim`.`kod_item` AS `kod_item`,`sesi_taqwim`.`tarikh_mula` AS `tarikh_mula`,`sesi_taqwim`.`tarikh_tamat` AS `tarikh_tamat`,`sesi_akademik`.`namasesi_MY` AS `namasesi_MY`,`item_taqwim`.`item_MY` AS `item_MY`,((to_days(`sesi_taqwim`.`tarikh_tamat`) - to_days(`sesi_taqwim`.`tarikh_mula`)) + 1) AS `tempoh`,`sesi_akademik`.`kodsesi` AS `kodsesi` from ((`sesi_akademik` join `sesi_taqwim` on((`sesi_taqwim`.`sesi` = `sesi_akademik`.`kodsesi`))) join `item_taqwim` on((`sesi_taqwim`.`kod_item` = `item_taqwim`.`kod_item`))) order by `sesi_taqwim`.`tarikh_mula`,`item_taqwim`.`posisi` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_taqwim` AS select ((to_days(`sesi_taqwim`.`tarikh_tamat`) - to_days(`sesi_taqwim`.`tarikh_mula`)) + 1) AS `tempoh`,`item_taqwim`.`item_MY` AS `item_MY`,`sesi_taqwim`.`tarikh_mula` AS `t_mula`,`sesi_taqwim`.`tarikh_tamat` AS `t_tamat`,`sesi_taqwim`.`sesi` AS `sesi`,`sesi_akademik`.`namasesi_MY` AS `namasesi_MY`,`sesi_akademik`.`tahun` AS `tahun`,`sesi_akademik`.`tarikh_mula` AS `tarikh_mula`,`sesi_akademik`.`tarikh_tamat` AS `tarikh_tamat` from ((`sesi_akademik` join `sesi_taqwim` on((`sesi_taqwim`.`sesi` = `sesi_akademik`.`kodsesi`))) join `item_taqwim` on((`sesi_taqwim`.`kod_item` = `item_taqwim`.`kod_item`))) order by `sesi_taqwim`.`tarikh_mula`,`item_taqwim`.`posisi` ;
 
 -- ----------------------------
 -- View structure for `view_user_department`
