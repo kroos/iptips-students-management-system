@@ -16,7 +16,7 @@ class Sel_negeri extends CI_Model
         {
             return $this->db->order_by('namanegeri')->get('sel_negeri');
         }
-        return $this->db->order_by('namanegeri')->get_where('sel_negeri', array('kodnegara' => $kodnegara));  
+        return $this->db->order_by('namanegeri')->get_where('sel_negeri', array('kodnegeri' => $kodnegara));  
 	}
 	
 	function get_where($array){

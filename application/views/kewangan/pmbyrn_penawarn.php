@@ -57,7 +57,7 @@
 													<table style="width:100%; border-spacing:0;">
 														<tr>
 															<th>No Resit</th>
-															<th>ktr Bayaran</th>
+															<th>Catatan</th>
 															<th>Tarikh</th>
 															<th>Jumlah (RM)</th>
 														</tr>
@@ -111,7 +111,7 @@
 													<table style="width:100%; border-spacing:0;">
 														<tr>
 															<th>No Resit</th>
-															<th>ktr Bayaran</th>
+															<th>Catatan</th>
 															<th>Tarikh</th>
 															<th>Jumlah (RM)</th>
 														</tr>
