@@ -8,14 +8,14 @@ class Program extends CI_Model
 			}
 #############################################################################################################################
 //SELECT
-		function GetAll()
+		function GetAll($limit, $offset)
 			{
-				return $this->db->get('program');
+				return $this->db->get('program', $limit, $offset);
 			}
 
-		function GetWhere($where)
+		function GetWhere($where, $limit, $offset)
 			{
-				return $this->db->get_where('program', $where);
+				return $this->db->get_where('program', $where, $limit, $offset);
 			}
 
 //INSERT

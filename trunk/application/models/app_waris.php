@@ -34,5 +34,12 @@ class App_waris extends CI_Model
 			{
 				return $this->db->where($where)->delete('app_waris');
 			}
+
+#############################################################################################################################
+//TRUNCATE
+		public function truncate()
+			{
+				return $this->db->truncate('app_waris');
+			}
 	}
 ?>

@@ -33,5 +33,12 @@ class App_progmohon extends CI_Model
 			{
 				return $this->db->delete('app_progmohon', $where);
 			}
+			
+#############################################################################################################################
+//TRUNCATE
+		public function truncate()
+			{
+				return $this->db->truncate('app_progmohon');
+			}
 	}
 ?>

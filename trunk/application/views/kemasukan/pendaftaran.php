@@ -24,9 +24,13 @@
 		<?=form_close()?>
 		</div>
 
+<?if($u->num_rows() < 1):?>
+	<p>Sila Pastikan Proses Penawaran Sudah Pun Dilakukan Atau Carian Anda Tiada Dalam Penawaran Program</p>
+<?else:?>
 		<table style="width:100%; border-spacing:0;">
 			<thead>
 				<tr>
+					<th>Siri Mohon</th>
 					<th>Nama</th>
 					<th>Nombor Kad Pengenalan/Passport</th>
 					<th>Program</th>
@@ -35,15 +39,47 @@
 				</tr>
 			</thead>
 			<tbody>
+			<?foreach($u->result() AS $r):?>
 				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td><?=$r->siri_mohon?></td>
+					<td><?=$r->nama?></td>
+					<td><?=$r->ic?> / <?=$r->passport?></td>
+					<?$y = $this->program->GetWhere(array('kod_prog' => $r->progTawar), NULL, NULL)?>
+					<td><?=$y->row()->namaprog_MY?></td>
+					<?$l = $this->pel_resit->GetWhere(array('matrik' => $r->siri_mohon, 'aktif' => 1), NULL, NULL)?>
+					<td>
+
+					<?if($l->num_rows() < 1):?>
+						Tiada Pembayaran Dibuat
+					<?else:?>
+					<table>
+						<tr>
+							<th>No Resit</th>
+							<th>Keterangan</th>
+							<th>Jumlah</th>
+						</tr>
+						<?$c = 0?>
+						<?foreach($l->result() as $s):?>
+						<tr>
+							<td><?=$s->noresit?></td>
+							<td><?=$s->ktr_bayaran?></td>
+							<td>RM <?=$s->jumlah?><?$c += $s->jumlah?></td>
+						</tr>
+						<?endforeach?>
+						<tr>
+							<td colspan="2">Jumlah Semua</td>
+							<td>RM <?=$c?></td>
+						</tr>
+					</table>
+					<?endif?>
+
+					</td>
+					<td>Daftar</td>
 				</tr>
+			<?endforeach?>
 			</tbody>
 		</table>
+<?endif?>
 	<? endblock() ?>
 	
 <? end_extend() ?>

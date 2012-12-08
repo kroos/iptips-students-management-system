@@ -8,14 +8,14 @@ class Pel_resit extends CI_Model
 			}
 #############################################################################################################################
 //SELECT
-		function GetAll()
+		function GetAll($limit, $offset)
 			{
-				return $this->db->get('pel_resit');
+				return $this->db->get('pel_resit', $limit, $offset);
 			}
 
-		function GetWhere($where)
+		function GetWhere($where , $limit, $offset)
 			{
-				return $this->db->get_where('pel_resit', $where);
+				return $this->db->get_where('pel_resit', $where ,$limit, $offset);
 			}
 
 //INSERT
@@ -27,6 +27,13 @@ class Pel_resit extends CI_Model
 		function update($where, $update)
 			{
 				return $this->db->update('pel_resit', $update, $where);
+			}
+
+#############################################################################################################################
+//TRUNCATE
+		public function truncate()
+			{
+				return $this->db->truncate('pel_resit');
 			}
 	}
 ?>

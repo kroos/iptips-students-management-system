@@ -28,4 +28,11 @@ class Ruj_intake extends CI_Model
 	function edit_template($set, $where){
 		return $this->db->update('ruj_intake', $set, $where);
 	}
+
+#############################################################################################################################
+//TRUNCATE
+		public function truncate()
+			{
+				return $this->db->truncate('ruj_intake');
+			}
 }
