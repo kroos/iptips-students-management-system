@@ -46,7 +46,7 @@ $route['kemasukan/progmohon/(:num)'] = 'kemasukan/progmohon';
 $route['kemasukan/akademik/(:num)'] = 'kemasukan/akademik';
 $route['kemasukan/waris/(:num)'] = 'kemasukan/waris';
 $route['kemasukan/edit_permohonan/(:num)'] = 'kemasukan/edit_permohonan';
-$route['hea/mohon_pelajar/(:num)'] = 'hea/mohon_pelajar';
+$route['kemasukan/mohon_pelajar/(:num)'] = 'kemasukan/mohon_pelajar';
 $route['kewangan/bayar_prmhnn/(:any)'] = 'kewangan/bayar_prmhnn';
 
 
