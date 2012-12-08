@@ -83,97 +83,190 @@ class Kemasukan extends CI_Controller
 				$this->load->view('kemasukan/senarai_pemohon', $data);
 			}
 	
-			//maklumat pemohon individual
-			public function detail_pemohon()
-				{
-					$id = $this->uri->segment(3, 0);
-					if(is_numeric($id))
-						{
-							$data['pe'] = $this->app_pelajar->get_app_pelajar($id);
-							$data['prog'] = $this->app_progmohon->GetWhere(array('id_mohon' => $id));
-							$data['akad'] = $this->app_akademik->get_where(array('id_mohon' => $id));
-							$data['war'] = $this->app_waris->GetWhere(array('id_mohon' => $id));
-							$this->load->view('kemasukan/detail_pemohon', $data);
-						}
-				}
+		//maklumat pemohon individual
+		public function detail_pemohon()
+			{
+				$id = $this->uri->segment(3, 0);
+				if(is_numeric($id))
+					{
+						$data['pe'] = $this->app_pelajar->get_app_pelajar($id);
+						$data['prog'] = $this->app_progmohon->GetWhere(array('id_mohon' => $id));
+						$data['akad'] = $this->app_akademik->get_where(array('id_mohon' => $id));
+						$data['war'] = $this->app_waris->GetWhere(array('id_mohon' => $id));
+						$this->load->view('kemasukan/detail_pemohon', $data);
+					}
+			}
+
+		//nak beza antara kemasukan semula bekas pelajar dan juga pelajar yang x pernah memohon (pelajar baru)
+		public function permohonan()
+			{
+				$data['title'] = 'Pemeriksaan Permohonan';
+				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+				if ($this->form_validation->run() == TRUE)
+					{
+						if($this->input->post('check', TRUE))
+							{
+								$ic = $this->input->post('ic' ,TRUE);
+								$semo = $this->sesi_intake->GetWhere(array('aktif' => 1, 'tarikh_tamat >=' => date_db(now())))->row()->kodsesi;
+								$where = "(ic = $ic or passport = $ic) AND aktif = 1";
+								$d = $this->app_pelajar->GetWhere($where);
+								//echo $this->db->last_query();
+								if ($d->num_rows() > 0)
+									{
+										//bukan budak baru
+										//$data['info'] = 'bukan budak baru';
+										$stat_moh = $d->row()->status_mohon;
+										$dt_tran = $d->row()->dt_transfer;
+										//echo $stat_moh.' stat moh<br />'.$dt_tran.' date transfer<br />';
+
+										//app_pelajar (insert) & app_waris (update) kena adjust kat sini siap2
+										$kodmula = $this->sesi_intake->GetWhere(array('aktif' => 1, 'tarikh_tamat >=' => date_db(now())))->row()->kodmula;
+										$siri = $this->sesi_intake->GetWhere(array('aktif' => 1, 'tarikh_tamat >=' => date_db(now())))->row()->siri;
+										//SIRI MMG AKAN JADI 4 digit SBB DISET DI DATABASE
+										$siri_mohon = $kodmula.$siri;
+
+										$insert = array(
+															'nama' => $d->row()->nama,
+															'ic' => $d->row()->ic,
+															'passport' => $d->row()->passport,
+															'dt_lahir' => $d->row()->dt_lahir,
+															'tempat_lahir' => $d->row()->tempat_lahir,
+															'status_warga' => $d->row()->status_warga,
+															'warganegara' => $d->row()->warganegara,
+															'bangsa' => $d->row()->bangsa,
+															'jantina' => $d->row()->jantina,
+															'status_kahwin' => $d->row()->status_kahwin,
+															'alamat1' => $d->row()->alamat1,
+															'alamat2' => $d->row()->alamat2,
+															'poskod' => $d->row()->poskod,
+															'bandar' => $d->row()->bandar,
+															'negeri' => $d->row()->negeri,
+															'negara' => $d->row()->negara,
+															'id_add' => $this->session->userdata('id_user'),
+															'dt_add' => date_db(now()),
+															'sesi_mohon' => $semo,
+															'siri_mohon' => $siri_mohon,
+															'status_mohon' => 'DIP',
+															'notel' => $d->row()->notel,
+															'nohp' => $d->row()->nohp,
+															'emel' => $d->row()->emel
+														);
+										//nak kena update +1 kepada siri
+										$siri1 = $siri + 1;
+										$s = $this->sesi_intake->update(array('kodmula' => $kodmula), array('siri' => $siri1));
+										$v = $this->app_pelajar->set_app_pelajar($insert);
+										$id = $this->db->insert_id();
+
+										//update waris
+										$war = $this->app_waris->update_all(array('id_mohon' => $d->row()->id), array('id_mohon' => $id));
+
+										if($v && $war)
+											{
+												if($stat_moh == 'GL')
+													{
+														//pernah mohon tp gagal masuk
+														redirect('kemasukan/progmohon/'.$id, 'location');
+													}
+													else
+													{
+														if($stat_moh == 'TW' && $dt_tran === FALSE)
+															{
+																//bekas pelajar
+																redirect('kemasukan/progmohon/'.$id, 'location');
+															}
+													}
+											}
+											else
+											{
+												$data['info'] = 'Data tidak berjaya disimpan. Sila cuba sebentar lagi';
+											}
+									}
+									else
+									{
+										//budak baru
+										redirect('/kemasukan/permohonan_baru', 'location');
+									}
+							}
+					}
+				$this->load->view('kemasukan/permohonan', $data);
+			}
+
+		//insert pemohon
+		public function permohonan_baru()
+			{
+				$id = $this->uri->segment(3, 0);
+				if(is_numeric($id))
+					{
+					$data['z'] = $this->app_pelajar->get_app_pelajar($id);
+					}
+				$data['title'] = 'Proses Permohonan';
+				$data['v'] = $this->sel_negara->get();
+				$data['vq'] = $this->sel_gender->get();
+				$data['vw'] = $this->sel_marital->get();
+				$data['bandar'] = $this->sel_bandar->get();
+				$data['warga'] = $this->sel_warga->get();
+				$data['bangsa'] = $this->sel_race->get();
+				$data['ses'] = $this->sesi_intake->GetWhere(array('aktif' => 1, 'tarikh_tamat >=' => date_db(now())));
 	
-	//insert pemohon
-	public function permohonan_baru()
-		{
-			$id = $this->uri->segment(3, 0);
-			if(is_numeric($id))
-				{
-				$data['z'] = $this->app_pelajar->get_app_pelajar($id);
-				}
-			$data['title'] = 'Proses Permohonan';
-			$data['v'] = $this->sel_negara->get();
-			$data['vq'] = $this->sel_gender->get();
-			$data['vw'] = $this->sel_marital->get();
-			$data['bandar'] = $this->sel_bandar->get();
-			$data['warga'] = $this->sel_warga->get();
-			$data['bangsa'] = $this->sel_race->get();
-			$data['ses'] = $this->sesi_intake->GetIntake(1);
+				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+				if ($this->form_validation->run() == TRUE)
+					{
+						if($this->input->post('simpan', TRUE))
+							{
+								//kena cari siri_mohon dulu dari sesi_intake
+								//dapatkan siri_mohon dari sesi_intake
+								$semo = $this->input->post('sesi_mohon');
+								$kodmula = $this->sesi_intake->GetWhere(array('kodsesi' => $semo))->row()->kodmula;
+								$siri = $this->sesi_intake->GetWhere(array('kodsesi' => $semo))->row()->siri;
+								//SIRI MMG AKAN JADI 4 digit SBB DISET DI DATABASE
+								$siri_mohon = $kodmula.$siri;
 
-			$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
-			if ($this->form_validation->run() == TRUE)
-				{
-					if($this->input->post('simpan', TRUE))
-						{
-							//kena cari siri_mohon dulu dari sesi_intake
-							//dapatkan siri_mohon dari sesi_intake
-							$semo = $this->input->post('sesi_mohon');
-							$kodmula = $this->sesi_intake->GetWhere(array('kodsesi' => $semo))->row()->kodmula;
-							$siri = $this->sesi_intake->GetWhere(array('kodsesi' => $semo))->row()->siri;
-							//SIRI MMG AKAN JADI 4 digit SBB DISET DI DATABASE
-							$siri_mohon = $kodmula.$siri;
-
-							$insert = array(
-												'nama' => ucwords(strtolower($this->input->post('nama', TRUE))),
-												'ic' => $this->input->post('ic', TRUE),
-												'passport' => $this->input->post('passport', TRUE),
-												'dt_lahir' => $this->input->post('dt_lahir', TRUE),
-												'tempat_lahir' => ucwords(strtolower($this->input->post('tempat_lahir', TRUE))),
-												'status_warga' => $this->input->post('status_warga', TRUE),
-												'warganegara' => ucwords(strtolower($this->input->post('warganegara', TRUE))),
-												'bangsa' => ucwords(strtolower($this->input->post('bangsa', TRUE))),
-												'jantina' => $this->input->post('jantina', TRUE),
-												'status_kahwin' => ucwords(strtolower($this->input->post('status_kahwin', TRUE))),
-												'alamat1' => ucwords(strtolower($this->input->post('alamat1', TRUE))),
-												'alamat2' => ucwords(strtolower($this->input->post('alamat2', TRUE))),
-												'poskod' => $this->input->post('poskod', TRUE),
-												'bandar' => $this->input->post('bandar'),
-												'negeri' => $this->input->post('negeri'),
-												'negara' => $this->input->post('negara', TRUE),
-												'id_add' => $this->session->userdata('id_user'),
-												'dt_add' => date_db($date),
-												'sesi_mohon' => $semo,
-												'siri_mohon' => $siri_mohon,
-												'status_mohon' => 'DIP',
-												'notel' => $this->input->post('notel', TRUE),
-												'nohp' => $this->input->post('nohp', TRUE),
-												'emel' => $this->input->post('emel', TRUE)
-											);
-							//nak kena update +1 kepada siri
-							$siri1 = $siri + 1;
-							$s = $this->sesi_intake->update(array('kodmula' => $kodmula), array('siri' => $siri1));
-							$v = $this->app_pelajar->set_app_pelajar($insert);
-							$id = $this->db->insert_id();
-							if($v)
-								{
-									//$data['info'] = 'Data telah berjaya disimpan';
-									//redirect('kemasukan/akademik/'.$id.'/'.$this->input->post('id_mohon'), 'location');
-									redirect('kemasukan/progmohon/'.$id, 'location');
-								}
-								else
-								{
-									$data['info'] = 'Data tidak berjaya disimpan. Sila cuba sekali lagi';
-									$this->load->view('kemasukan/permohonan_baru',$data);
-								}
-						}
-				}
-				$this->load->view('kemasukan/permohonan_baru',$data);
-				
-		}
+								$insert = array(
+													'nama' => ucwords(strtolower($this->input->post('nama', TRUE))),
+													'ic' => $this->input->post('ic', TRUE),
+													'passport' => $this->input->post('passport', TRUE),
+													'dt_lahir' => $this->input->post('dt_lahir', TRUE),
+													'tempat_lahir' => ucwords(strtolower($this->input->post('tempat_lahir', TRUE))),
+													'status_warga' => $this->input->post('status_warga', TRUE),
+													'warganegara' => ucwords(strtolower($this->input->post('warganegara', TRUE))),
+													'bangsa' => ucwords(strtolower($this->input->post('bangsa', TRUE))),
+													'jantina' => $this->input->post('jantina', TRUE),
+													'status_kahwin' => ucwords(strtolower($this->input->post('status_kahwin', TRUE))),
+													'alamat1' => ucwords(strtolower($this->input->post('alamat1', TRUE))),
+													'alamat2' => ucwords(strtolower($this->input->post('alamat2', TRUE))),
+													'poskod' => $this->input->post('poskod', TRUE),
+													'bandar' => $this->input->post('bandar', TRUE),
+													'negeri' => $this->input->post('negeri', TRUE),
+													'negara' => $this->input->post('negara', TRUE),
+													'id_add' => $this->session->userdata('id_user'),
+													'dt_add' => date_db($date),
+													'sesi_mohon' => $semo,
+													'siri_mohon' => $siri_mohon,
+													'status_mohon' => 'DIP',
+													'notel' => $this->input->post('notel', TRUE),
+													'nohp' => $this->input->post('nohp', TRUE),
+													'emel' => $this->input->post('emel', TRUE)
+												);
+								//nak kena update +1 kepada siri
+								$siri1 = $siri + 1;
+								$s = $this->sesi_intake->update(array('kodmula' => $kodmula), array('siri' => $siri1));
+								$v = $this->app_pelajar->set_app_pelajar($insert);
+								$id = $this->db->insert_id();
+								if($v)
+									{
+										//$data['info'] = 'Data telah berjaya disimpan';
+										//redirect('kemasukan/akademik/'.$id.'/'.$this->input->post('id_mohon'), 'location');
+										redirect('kemasukan/waris/'.$id, 'location');
+									}
+									else
+									{
+										$data['info'] = 'Data tidak berjaya disimpan. Sila cuba sekali lagi';
+										$this->load->view('kemasukan/permohonan_baru',$data);
+									}
+							}
+					}
+					$this->load->view('kemasukan/permohonan_baru',$data);
+			}
 
 	public function progmohon()
 		{
@@ -263,7 +356,7 @@ class Kemasukan extends CI_Controller
 											if($r && $dat)
 												{
 													$data['info'] = 'Data telah berjaya disimpan';
-													redirect('kemasukan/waris/'.$id, 'location');
+													redirect('kemasukan/permohonan', 'location');
 												}
 												else
 												{
@@ -351,7 +444,7 @@ class Kemasukan extends CI_Controller
 										$v = $this->app_waris->insert_all($insert);
 										if($v)
 											{
-												redirect ('/kemasukan/index', 'location');
+												redirect ('/kemasukan/progmohon', 'location');
 											}
 											else
 											{
@@ -433,7 +526,7 @@ class Kemasukan extends CI_Controller
 									
 								if($v)
 									{
-										$data['info'] = 'Data telah berjaya disimpan';
+										//$data['info'] = 'Data telah berjaya disimpan';
 										//redirect('kemasukan/akademik/'.$id_mohon.'/'.$this->input->post('id_mohon'), 'location');
 										redirect('kemasukan/progmohon/'.$id_mohon, 'location');
 									}
