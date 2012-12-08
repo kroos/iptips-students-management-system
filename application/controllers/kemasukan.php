@@ -661,7 +661,7 @@ class Kemasukan extends CI_Controller
 							);
 
 				$this->load->library('pagination');
-				$config['base_url'] = base_url().'hea/mohon_pelajar';
+				$config['base_url'] = base_url().'kemasukan/mohon_pelajar';
 				$config['total_rows'] = $this->app_pelajar->GetWhere($whe)->num_rows();
 				$config['per_page'] = 5;
 				$config['suffix'] = '.exe';
@@ -674,7 +674,7 @@ class Kemasukan extends CI_Controller
 				
 
 				
-				$this->load->view('hea/pmhn_berjaya', $data);
+				$this->load->view('kemasukan/pmhn_berjaya', $data);
 		}
 			
 	//surat tawaran
@@ -774,7 +774,7 @@ class Kemasukan extends CI_Controller
 				$data['jquery'] = '<script src="<?=base_url()?>js/jquery/jquery.js"></script>';
 				$data['cetak'] = 'window.onload = print();';
 			}
-			$this->load->view('hea/surat_tawar',$data);
+			$this->load->view('kemasukan/surat_tawar',$data);
 		}
 		
 		function surat_pdf($data){
@@ -814,13 +814,13 @@ class Kemasukan extends CI_Controller
 	        //$p = new Stringparse(array('l', $html1));
 	        
 	        //$html = $p->parse($html1);
-			$html = $this->parser->parse('hea/surat_tawar', $data);;
+			$html = $this->parser->parse('kemasukan/surat_tawar', $data);;
 	        
 			$this->pdf->writeHTMLCell('auto', '', '', $y, $html, 0, 0, 0, true, 'J', true);
 			
 	        //Close and output PDF document
 	        $this->pdf->Output('Surat_tawaran.pdf', 'I');   
-			//$this->load->view('hea/surat_tawar',$data);
+			//$this->load->view('kemasukan/surat_tawar',$data);
 		}
 
 		public function pendaftaran()
