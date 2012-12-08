@@ -11,12 +11,11 @@ class Sel_bandar extends CI_Model
 //CRUD for user_data
 
 	//select		
-	function get($kodnegeri = FALSE){
-		if ($kodnegeri === FALSE)
+	function get($kodbandar = FALSE){
+		if ($kodbandar === FALSE)
         {
             return $this->db->order_by('namabandar')->get('sel_bandar');
-            //return $query->result_array();
         }
-        return $this->db->order_by('namabandar')->get_where('sel_bandar', array('kodbandar' => $kodnegeri));  
+        return $this->db->order_by('namabandar')->get_where('sel_bandar', array('kodbandar' => $kodbandar));  
 	}
 }

@@ -270,7 +270,7 @@ class Isms extends CI_Controller
 												//masukkan dalam table function
 												//nak kena dapatkan dulu posisi
 												$mn = $this->view->menu($ctrlr)->num_rows();
-												echo $mn;
+												//echo $mn;
 												//tambah 1
 												$mnb = $mn + 1;
 												$y = $this->user_function->insert_function($func, $remarks, $menu, $display, $mnb);

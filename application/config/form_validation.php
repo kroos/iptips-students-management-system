@@ -554,13 +554,13 @@ $config = array	(
 							(
 								'field' => 'ic',
 								'label' => 'Nombor Kad Pengenalan',
-								'rules' => 'trim|required|min_length[1]|max_length[12]|numeric|is_unique[app_pelajar.ic]|xss_clean'
+								'rules' => 'trim|required|min_length[1]|max_length[12]|numeric|xss_clean'
 							),
 						array
 							(
 								'field' => 'passport',
 								'label' => 'Nombor Pasport',
-								'rules' => 'trim|required|min_length[1]|max_length[30]|is_unique[app_pelajar.passport]|xss_clean'
+								'rules' => 'trim|required|min_length[1]|max_length[30]|xss_clean'
 							),
 						array
 							(

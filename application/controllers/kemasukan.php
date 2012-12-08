@@ -96,9 +96,13 @@ class Kemasukan extends CI_Controller
 				if(is_numeric($id))
 					{
 						$data['pe'] = $this->app_pelajar->get_app_pelajar($id);
+
 						$data['prog'] = $this->app_progmohon->GetWhere(array('id_mohon' => $id));
 						$data['akad'] = $this->app_akademik->get_where(array('id_mohon' => $id));
 						$data['war'] = $this->app_waris->GetWhere(array('id_mohon' => $id));
+
+						
+
 						$this->load->view('kemasukan/detail_pemohon', $data);
 					}
 			}
@@ -139,29 +143,85 @@ class Kemasukan extends CI_Controller
 										//kes 1
 										if($stat_moh == 'DIP' && $akti == 1 && $sesim == $semo)
 											{
-												$data['info'] = 'Status pemohon adalah "Dalam Proses" untuk sesi '.$semo.'. Sila teruskan dengan permohonan yang lain';
+												$data['info'] = 'Status pemohon adalah "DALAM PROSES" untuk sesi '.$semo.'. Sila teruskan dengan permohonan yang lain';
 											}
 											else
 											{
 												if($stat_moh == 'TW' && $akti == 1 && $sesim == $semo && $dt_tran == NULL)
 													{
-														$data['info'] = 'Status pemohon adalah "Tawaran" untuk sesi '.$semo.'. Sila teruskan dengan permohonan yang lain';
+														$data['info'] = 'Status pemohon adalah "TAWARAN" untuk sesi '.$semo.'. Sila teruskan dengan permohonan yang lain';
 													}
 													else
 													{
 														if ($stat_moh == 'INC' && $akti == 1 && $sesim == $semo)
 															{
-																$data['info'] = 'Status pemohon adalah "Tidak Lengkap" untuk sesi '.$semo.'. Sila teruskan dengan permohonan yang lain';
+																$data['info'] = 'Status pemohon adalah "TIDAK LENGKAP" untuk sesi '.$semo.'. Sila teruskan dengan permohonan yang lain';
 															}
 															else
 															{
 																if($stat_moh == 'GL' && $akti == 0 && $sesim == $semo)
 																	{
-																		$data['info'] = 'Status pemohon adalah "Gagal" untuk sesi '.$semo.'. Sila teruskan dengan permohonan yang lain';
+																		$data['info'] = 'Status pemohon adalah "GAGAL" untuk sesi '.$semo.'. Sila teruskan dengan permohonan yang lain';
 																	}
 																	else
 																	{
-																		$data['info'] = 'lps semua, mungkin utk sem depan';
+																		//app_pelajar (insert) & app_waris (update) kena adjust kat sini siap2
+																		$kodmula = $this->sesi_intake->GetWhere(array('aktif' => 1, 'tarikh_tamat >=' => date_db(now())))->row()->kodmula;
+																		$siri = $this->sesi_intake->GetWhere(array('aktif' => 1, 'tarikh_tamat >=' => date_db(now())))->row()->siri;
+																		//SIRI MMG AKAN JADI 4 digit SBB DISET DI DATABASE
+																		$siri_mohon = $kodmula.$siri;
+
+																		$insert = array(
+																							'nama' => $d->row()->nama,
+																							'ic' => $d->row()->ic,
+																							'passport' => $d->row()->passport,
+																							'dt_lahir' => $d->row()->dt_lahir,
+																							'tempat_lahir' => $d->row()->tempat_lahir,
+																							'status_warga' => $d->row()->status_warga,
+																							'warganegara' => $d->row()->warganegara,
+																							'bangsa' => $d->row()->bangsa,
+																							'jantina' => $d->row()->jantina,
+																							'status_kahwin' => $d->row()->status_kahwin,
+																							'alamat1' => $d->row()->alamat1,
+																							'alamat2' => $d->row()->alamat2,
+																							'poskod' => $d->row()->poskod,
+																							'bandar' => $d->row()->bandar,
+																							'negeri' => $d->row()->negeri,
+																							'negara' => $d->row()->negara,
+																							'id_add' => $this->session->userdata('id_user'),
+																							'dt_add' => date_db(now()),
+																							'sesi_mohon' => $semo,
+																							'siri_mohon' => $siri_mohon,
+																							'status_mohon' => 'DIP',
+																							'notel' => $d->row()->notel,
+																							'nohp' => $d->row()->nohp,
+																							'emel' => $d->row()->emel
+																						);
+																		//nak kena update +1 kepada siri
+																		$siri1 = $siri + 1;
+																		$s = $this->sesi_intake->update(array('kodmula' => $kodmula), array('siri' => $siri1));
+																		$v = $this->app_pelajar->set_app_pelajar($insert);
+																		$id = $this->db->insert_id();
+								
+																		//update waris
+																		$u = $this->app_waris->GetWhere(array('id_mohon' => $d->row()->id));
+																		if($u->num_rows() > 0)
+																			{
+																				$war = $this->app_waris->update_all(array('id_mohon' => $d->row()->id), array('id_mohon' => $id));
+																			}
+																			else
+																			{
+																				$war = TRUE;
+																			}
+								
+																		if($v && $war)
+																			{
+																				redirect('kemasukan/progmohon/'.$id, 'location');
+																			}
+																			else
+																			{
+																				$data['info'] = 'Data tidak berjaya disimpan. Sila cuba sebentar lagi';
+																			}
 																	}
 															}
 													}
@@ -448,9 +508,9 @@ class Kemasukan extends CI_Controller
 			}
 			
 	//edit permohonan
-	public function edit_permohonan(){
-		
-			$data['title'] = 'Maklumat Peribadi Pemohon';
+	public function edit_permohonan()
+		{
+			$data['title'] = 'Kemaskini Maklumat Peribadi Pemohon';
 			$data['v'] = $this->sel_negara->get();
 			$data['vq'] = $this->sel_gender->get();
 			$data['vw'] = $this->sel_marital->get();
@@ -462,75 +522,58 @@ class Kemasukan extends CI_Controller
 			$id_mohon = $this->uri->segment(3, 0);
 			if(is_numeric($id_mohon))
 				{
-				
-				$data['z'] = $this->app_pelajar->get_app_pelajar($id_mohon);
-				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
-							
-				if ($this->form_validation->run() == TRUE)
-					{
-						echo 'berjaya validate form';
-						if($this->input->post('simpan', TRUE))
-							{
-								echo 'nak simpan dah';
-								//kena cari siri_mohon dulu dari sesi_intake
-								//dapatkan siri_mohon dari sesi_intake
-								$semo = $this->input->post('sesi_mohon');
-								$kodmula = $this->sesi_intake->GetWhere(array('kodsesi' => $semo))->row()->kodmula;
-								$siri = $this->sesi_intake->GetWhere(array('kodsesi' => $semo))->row()->siri;
-								//SIRI MMG AKAN JADI 4 digit SBB DISET DI DATABASE
-								$siri_mohon = $kodmula.$siri;
+					$data['z'] = $this->app_pelajar->get_app_pelajar($id_mohon);
+					$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
 
-								$insert = array(
-													'nama' => ucwords(strtolower($this->input->post('nama', TRUE))),
-													'ic' => $this->input->post('ic', TRUE),
-													'passport' => $this->input->post('passport', TRUE),
-													'dt_lahir' => $this->input->post('dt_lahir', TRUE),
-													'tempat_lahir' => ucwords(strtolower($this->input->post('tempat_lahir', TRUE))),
-													'status_warga' => $this->input->post('status_warga', TRUE),
-													'warganegara' => ucwords(strtolower($this->input->post('warganegara', TRUE))),
-													'bangsa' => ucwords(strtolower($this->input->post('bangsa', TRUE))),
-													'jantina' => $this->input->post('jantina', TRUE),
-													'status_kahwin' => ucwords(strtolower($this->input->post('status_kahwin', TRUE))),
-													'alamat1' => ucwords(strtolower($this->input->post('alamat1', TRUE))),
-													'alamat2' => ucwords(strtolower($this->input->post('alamat2', TRUE))),
-													'poskod' => $this->input->post('poskod', TRUE),
-													'bandar' => $this->input->post('bandar'),
-													'negeri' => $this->input->post('negeri'),
-													'negara' => $this->input->post('negara', TRUE),
-													'sesi_mohon' => $semo,
-													//'siri_mohon' => $siri_mohon,
-													'status_mohon' => 'DIP',
-													'notel' => $this->input->post('notel', TRUE),
-													'nohp' => $this->input->post('nohp', TRUE),
-													'emel' => $this->input->post('emel', TRUE)
-												);
-								//$id_mohon = $this->uri->segment(3, 0);
-								$insert['id_edit'] = $this->session->userdata('id_user');
-								$insert['dt_edit'] = date_db($date);
-								$v = $this->app_pelajar->update($insert, array('id' => $id_mohon));
-								$data['info'] = 'Data telah berjaya disimpan';
-								//$id_mohon = $this->db->insert_id();
-									
-								if($v)
-									{
-										//$data['info'] = 'Data telah berjaya disimpan';
-										//redirect('kemasukan/akademik/'.$id_mohon.'/'.$this->input->post('id_mohon'), 'location');
-										redirect('kemasukan/progmohon/'.$id_mohon, 'location');
-									}
-									else
-									{
-										$data['info'] = 'Data tidak berjaya disimpan. Sila cuba sekali lagi';
-									}
-							}
-					}
-					else{
-						echo 'tak validate pese pa';
-					}
+					if ($this->form_validation->run() == TRUE)
+						{
+							if($this->input->post('simpan', TRUE))
+								{
+									$insert = array
+													(
+														'nama' => ucwords(strtolower($this->input->post('nama', TRUE))),
+														'ic' => $this->input->post('ic', TRUE),
+														'passport' => $this->input->post('passport', TRUE),
+														'dt_lahir' => $this->input->post('dt_lahir', TRUE),
+														'tempat_lahir' => ucwords(strtolower($this->input->post('tempat_lahir', TRUE))),
+														'status_warga' => $this->input->post('status_warga', TRUE),
+														'warganegara' => ucwords(strtolower($this->input->post('warganegara', TRUE))),
+														'bangsa' => ucwords(strtolower($this->input->post('bangsa', TRUE))),
+														'jantina' => $this->input->post('jantina', TRUE),
+														'status_kahwin' => ucwords(strtolower($this->input->post('status_kahwin', TRUE))),
+														'alamat1' => ucwords(strtolower($this->input->post('alamat1', TRUE))),
+														'alamat2' => ucwords(strtolower($this->input->post('alamat2', TRUE))),
+														'poskod' => $this->input->post('poskod', TRUE),
+														'bandar' => $this->input->post('bandar'),
+														'negeri' => $this->input->post('negeri'),
+														'negara' => $this->input->post('negara', TRUE),
+														'sesi_mohon' => $semo,
+														'status_mohon' => 'DIP',
+														'notel' => $this->input->post('notel', TRUE),
+														'nohp' => $this->input->post('nohp', TRUE),
+														'emel' => $this->input->post('emel', TRUE)
+													);
+									$insert['id_edit'] = $this->session->userdata('id_user');
+									$insert['dt_edit'] = date_db(now());
+									$v = $this->app_pelajar->update($insert, array('id' => $id_mohon));
+
+									if($v)
+										{
+											redirect('kemasukan/waris/'.$id_mohon, 'location');
+										}
+										else
+										{
+											$data['info'] = 'Data tidak berjaya disimpan. Sila cuba sekali lagi';
+										}
+								}
+						}
 					$this->load->view('kemasukan/permohonan_baru',$data);
-				}else{
+				}
+				else
+				{
 					redirect('/kemasukan/index', 'location');
 				}
-	}
+		}
 
 		public function mohon_pelajar()
 			{
@@ -562,7 +605,6 @@ class Kemasukan extends CI_Controller
 				$data['u'] = $this->app_pelajar->GetWherePage($whe, $config['per_page'], $this->uri->segment(3, 0));
 
 				$data['paginate'] =$this->pagination->create_links();
-				
 
 				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
 				if ($this->form_validation->run() == TRUE)
@@ -806,6 +848,67 @@ class Kemasukan extends CI_Controller
 	        $this->pdf->Output('Surat_tawaran.pdf', 'I');   
 			//$this->load->view('kemasukan/surat_tawar',$data);
 		}
+
+		public function rayuan_permohonan()
+			{
+				//mula2 buat list dulu, ambik dari list app_pelajar dan letak apa yang patut...sepatutnya ada checking dulu utk terima masuk sbg pelajar...
+				//query ni check semua status mohon "dalam proses" tp buang user yg salah satu tu dah ada status selain dr "dlm proses"
+				//nake kena tau sesi_intake dulu
+				//mula mula sekali nak kena tau sesi_intake mana
+				$where = array
+							(
+								'aktif' => 1
+							);
+				$g = $this->sesi_intake->GetWhere($where);
+
+				//hanya nak tgk status permohonan dlm proses shj...
+				$whe = "status_mohon <> 'DIP' AND status_mohon <> 'TW' AND sesi_mohon = '".$g->row()->kodsesi."'";
+
+				$this->load->library('pagination');
+				$config['base_url'] = base_url().'kemasukan/rayuan_permohonan';
+				$config['total_rows'] = $this->app_pelajar->GetWhere($whe)->num_rows();
+				$config['per_page'] = 5;
+				$config['suffix'] = '.exe';
+
+				$this->pagination->initialize($config);
+
+				$data['u'] = $this->app_pelajar->GetWherePage($whe, $config['per_page'], $this->uri->segment(3, 0));
+				//echo $this->db->last_query();
+
+				$data['paginate'] =$this->pagination->create_links();
+				
+
+				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+				if ($this->form_validation->run() == TRUE)
+					{
+						if($this->input->post('tawar', TRUE))
+							{
+								$id_appprogmohon = $this->input->post('id_appprogmohon', TRUE);
+								$id_mohon = $this->input->post('id_mohon', TRUE);
+								$kodprog = $this->input->post('kodprog', TRUE);
+								$catatan = ucwords(strtolower($this->input->post('catatan', TRUE)));
+
+								//upadte app_pelajar
+								$g = $this->app_pelajar->update(array('dt_edit' => date_db(now()), 'id_edit' => $this->session->userdata('id_user'), 'status_mohon' => 'TW', 'progTawar' => $kodprog), array('id' => $id_mohon));
+
+								//update app_progmohon
+								//1. gagalkan program semua program dulu
+								$r = $this->app_progmohon->update(array('id_mohon' => $id_mohon), array('status_mohon' => 'GL', 'user_edit' => $this->session->userdata('id_user'), 'dt_edit' => datetime_db(now()), 'catatan' => 'Penawaran Program Yang Lain'));
+								//2. tawarkan program yang berkenaan
+								$r1 = $this->app_progmohon->update(array('id_mohon' => $id_mohon, 'id' => $id_appprogmohon), array('status_mohon' => 'TW', 'user_edit' => $this->session->userdata('id_user'), 'dt_edit' => datetime_db(now()), 'catatan' => 'Penawaran Program '.$kodprog.' '.$catatan.''));
+
+								if($g && $r && $r1)
+									{
+										$data['info'] = 'Proses Penawaran Berjaya';
+									}
+									else
+									{
+										$data['info'] = 'Proses Penawaran Tidak Berjaya. Sila Cuba Sebentar Lagi';
+									}
+							}
+					}
+				$this->load->view('kemasukan/mohon_rayuan', $data);
+			}
 
 		public function pendaftaran()
 			{
