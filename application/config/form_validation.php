@@ -694,8 +694,17 @@ $config = array	(
 								'label' => 'Jumlah',
 								'rules' => 'trim|required|decimal|xss_clean'
 							),
-					)
-					
+					),
+					'kemasukan/permohonan' => array
+					(
+						array
+							(
+								'field' => 'ic',
+								'label' => 'No Kad Pengenalan / No Passport',
+								'rules' => 'trim|required|xss_clean'
+							)
+					),
+
 				);
 
 

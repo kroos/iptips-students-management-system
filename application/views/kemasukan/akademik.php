@@ -66,7 +66,7 @@
 					</table>
 
 			</div>
-					<p><?=form_submit('simpanTam', 'Simpan & Tambah Kelayakan', 'class=submit')?><?=form_submit('simpan', 'Seterusnya >>', 'class=submit')?></p>
+					<p><?=form_submit('simpanTam', 'Simpan & Tambah Kelayakan', 'class=submit')?><?=form_submit('simpan', 'Simpan', 'class=submit')?></p>
 				<?=form_close()?>
 
 		</div>

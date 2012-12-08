@@ -56,7 +56,7 @@
 			<br /><?=form_error('email')?>
 			</p>
 
-            <p style="padding-top: 15px"><span>&nbsp;</span><?=form_submit('waris', 'Simpan', 'class="submit"')?></p>
+            <p style="padding-top: 15px"><span>&nbsp;</span><?=form_submit('waris', 'Seterusnya >>', 'class="submit"')?></p>
 		<?=form_close()?>
 		</div>
 	<? endblock() ?>

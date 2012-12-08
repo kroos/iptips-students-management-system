@@ -7,8 +7,7 @@
 	        <h3>Bantuan</h3>
 	        <p>Masukkan maklumat peribadi pelajar.</p>
         </div>
-        <div class="info"><?=@$info?>
-		<br><?php echo '<br>'.validation_errors(); ?></div>
+        <div class="info"><?=@$info?></div>
         <div class="form_settings">
             <?=form_open()?>
 
@@ -161,6 +160,10 @@
 				// Datepicker
 				$('#datepicker').datetimepicker({dateFormat: "yy-mm-dd", timeFormat: "hh:mm:ss", showSecond: true, showMillisec: false, ampm: false, stepHour: 1, stepMinute: 1, stepSecond: 5});
 
+				$( "#accordion" ).accordion({
+					collapsible: true
+				});
+
 				//chain select 3 level
 				<?php /* $('#negara').chainSelect('#negeri','<?=base_url()?>select_list/sel_negara',
 				{ 
@@ -190,6 +193,7 @@
 					}
 				}); 
 				*/?>
+				
 			});
 		</script>
 
