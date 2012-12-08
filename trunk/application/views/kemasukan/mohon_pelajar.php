@@ -1,10 +1,8 @@
 <? extend('base_template_user') ?>
 
 <? startblock('content') ?>
-	<!-- variable $title dapat dari controller ( $data['title'] )  -->
 	<h2>Permohonan Pelajar</h2>
 
-	<!-- sedikit keterangan apa yang page ni dapat buat utk user...  -->
 	<div id="accordion">
 	        <h3>Bantuan</h3>
 	        <p>Berikut adalah permohonan pelajar<br />
