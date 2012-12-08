@@ -49,27 +49,32 @@ class Select_list extends CI_Controller{
 	}
 	
 	//select list bandar
-	public function ajax_select_bandar(){
-		$this->load->model('sel_bandar');
-		if($this->input->post('negara',TRUE)){
-			foreach($this->input->post() as $key => $val){
-				$$key = $val;
-			}
-			$post = array('kodnegara'=>$this->input->post('negara'),
-				'kodnegeri' => $negeri);
-			$negeri = $this->sel_bandar->get($negeri);
+	public function ajax_select_bandar()
+		{
+			$this->load->model('sel_bandar');
+			if($this->input->post('negara', TRUE))
+				{
+					foreach($this->input->post() as $key => $val)
+						{
+							$$key = $val;
+						}
+					$post = array('kodnegara' => $this->input->post('negara'), 'kodnegeri' => $negeri);
+					$negeri = $this->sel_bandar->get($negeri);
+				}
+			
+			foreach($negeri->result() as $n)
+				{
+					if(!strcmp($n->kodbandar, @$bandar))
+						{
+							$selected = 'selected="selected"';
+						}
+						else
+						{
+							$selected = '';
+						}
+					echo '<option value="'.$n->kodbandar.'" '.$selected.'">'.$n->namabandar.'</option>';
+				}
 		}
-		
-		foreach($negeri->result() as $n){
-			if(!strcmp($n->kodbandar, @$bandar)){
-				$selected = 'selected="selected"';
-			}else{
-				$selected = '';
-			}
-			echo '<option value="'.$n->kodbandar.'" '.$selected.'">'.$n->namabandar.'</option>';
-		}
-		//echo 'haha';
-	}
 	
 	//select list subjek
 	public function ajax_select_subjek(){

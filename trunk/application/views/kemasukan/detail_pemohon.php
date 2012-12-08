@@ -21,7 +21,7 @@
 			<p><span>Bandar : </span><?=$this->sel_bandar->get($pe->row()->bandar)->row()->namabandar == NULL ? 'Tiada Maklumat' : $this->sel_bandar->get($pe->row()->bandar)->row()->namabandar?></p>
 			<p><span>Negeri : </span><?=$this->sel_negeri->get($pe->row()->negeri)->row()->namanegeri == NULL ? 'Tiada Maklumat' : $this->sel_negeri->get($pe->row()->negeri)->row()->namanegeri?></p>
 			<p><span>Negara : </span><?=$this->sel_negara->get($pe->row()->negara)->row()->namanegara == NULL ? 'Tiada Maklumat' : $this->sel_negara->get($pe->row()->negara)->row()->namanegara?></p>
-			<p><span>No telefon : </span><?=$pe->row()->notel == NULL ? 'Tiada Maklumat' : $pe->row()->notel?></p>
+			<p><span>No Telefon : </span><?=$pe->row()->notel == NULL ? 'Tiada Maklumat' : $pe->row()->notel?></p>
 			<p><span>No Telefon Bimbit : </span><?=$pe->row()->nohp == NULL ? 'Tiada Maklumat' : $pe->row()->nohp?></p>
 			<p><span>Emel : </span><?=$pe->row()->emel == NULL ? 'Tiada Maklumat' : $pe->row()->emel?></p>
 		</div>
@@ -126,6 +126,7 @@ Permohonan tidak lengkap. Tiada permohonan program
 			</tbody>
 		</table>
 
+		<div class="demo"><p><?=anchor('/kemasukan/edit_permohonan/'.$this->uri->segment(3, 0), 'Kemaskini', 'title="Kemaskini"')?></p></div>
 		<div class="demo"><p><?=anchor('/kemasukan/senarai_pemohon', 'Back', 'title="Back Button"')?></p></div>
 	<? endblock() ?>
 
