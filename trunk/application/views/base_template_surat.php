@@ -15,7 +15,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 <?php start_block_marker('css')?>
-	<link href="<?php base_url()?>css/surat.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="<?=base_url()?>css/surat.css" />
 <?php end_block_marker()?>
 
 </head>
