@@ -13,6 +13,9 @@ class Kemasukan extends CI_Controller
 				$this->load->model('app_waris');				//nak tau controller ni pakai model mana 1...
 				$this->load->model('app_progmohon');			//nak tau controller ni pakai model mana 1...
 				$this->load->model('sesi_intake');			//nak tau controller ni pakai model mana 1...
+				$this->load->model('template_surat');			//load table tamplate surat tawaran
+				$this->load->model('ruj_intake');			//load table tamplate surat tawaran
+				$this->load->model('program');			//load table tamplate surat tawaran
 
 				//mesti ikut peraturan ni..
 				//user mesti log on kalau tidak redirect to index
@@ -643,55 +646,87 @@ class Kemasukan extends CI_Controller
 					}
 			}
 			
-		//surat tawaran
+		public function pmhn_berjaya(){
+			$where = array
+							(
+								'aktif' => 1
+							);
+				$g = $this->sesi_intake->GetWhere($where);
+
+				//hanya nak tgk status permohonan dlm proses shj...
+				$whe = array
+							(
+								'status_mohon' => 'TW',
+								'sesi_mohon' => $g->row()->kodsesi
+							);
+
+				$this->load->library('pagination');
+				$config['base_url'] = base_url().'hea/mohon_pelajar';
+				$config['total_rows'] = $this->app_pelajar->GetWhere($whe)->num_rows();
+				$config['per_page'] = 5;
+				$config['suffix'] = '.exe';
+
+				$this->pagination->initialize($config);
+
+				$data['u'] = $this->app_pelajar->GetWherePage($whe, $config['per_page'], $this->uri->segment(3, 0));
+
+				$data['paginate'] =$this->pagination->create_links();
+				
+
+				
+				$this->load->view('hea/pmhn_berjaya', $data);
+		}
+			
+	//surat tawaran
 		public function surat_tawar(){
 			
-			if($this->input->post('cetak', TRUE)){
+			if($this->input->post('surat', TRUE)){
 				foreach ($this->input->post() as $key => $val){
 					$$key = $val;
+					echo $key.' : '.$$key.' = '.$val.'<br>';
 				}
 			}
 			
-			$id_mohon = '1';
+			//$id_mohon = '7';
 			$data['title'] = 'Surat Tawaran Kemasukan : '.$id_mohon;
 			
 			$data['base'] = 'base_template_user';
 			
 			//maklumat pelajar
-			$data['pelajar'] = $this->app_pelajar->get_where(array('id' => $id_mohon));
+			$pelajar = $this->app_pelajar->get_where(array('id' => $id_mohon));
 			
 			$data['tarikh_masihi'] = date('Y-m-d');
 			$data['today'] = date('d F Y');
-			$data['siri_mohon']	= $data['pelajar']->row()->siri_mohon;
-			$data['nama_pemohon'] = $data['pelajar']->row()->nama;
-			$data['ic_pemohon'] = $data['pelajar']->row()->ic;
-			$data['alamat1_pemohon'] = $data['pelajar']->row()->alamat1;	
-			$data['alamat2_pemohon'] = $data['pelajar']->row()->alamat2;
-			$data['poskod']			= $data['pelajar']->row()->poskod;
-			$data['bandar']			= $data['pelajar']->row()->bandar;
-			$data['negeri'] 		= $data['pelajar']->row()->negeri;
-			$data['negara'] 		= $data['pelajar']->row()->negara;
-			$data['kod_prog']		= $data['pelajar']->row()->progTawar;
-			$data['intake'] 		= $data['pelajar']->row()->sesi_mohon;
-			$data['status_mohon'] 	= $data['pelajar']->row()->status_mohon;
+			$data['siri_mohon']	= $pelajar->row()->siri_mohon;
+			$data['nama_pemohon'] = $pelajar->row()->nama;
+			$data['ic_pemohon'] = $pelajar->row()->ic;
+			$data['alamat1_pemohon'] = $pelajar->row()->alamat1;	
+			$data['alamat2_pemohon'] = $pelajar->row()->alamat2;
+			$data['poskod']			= $pelajar->row()->poskod;
+			$data['bandar']			= $pelajar->row()->bandar;
+			$data['negeri'] 		= $pelajar->row()->negeri;
+			$data['negara'] 		= $pelajar->row()->negara;
+			$data['kod_prog']		= $pelajar->row()->progTawar;
+			$data['intake'] 		= $pelajar->row()->sesi_mohon;
+			$data['status_mohon'] 	= $pelajar->row()->status_mohon;
 	
-			$progTawar = $data['pelajar']->row()->progTawar;
-			$sesiMohon = $data['pelajar']->row()->sesi_mohon;
-			
+			$progTawar = $pelajar->row()->progTawar;
+			$sesiMohon = $pelajar->row()->sesi_mohon;
+			echo $progTawar;
 			//maklumat pgrogram
-			$data['program'] = $this->program->GetWhere(array('kod_prog' => $progTawar));
-			$tahap = $data['program']->row()->kod_tahap;
-			$kod_jabatan = $data['program']->row()->id_jabatan;
+			$program = $this->program->GetWhere(array('kod_prog' => $progTawar));
+			$tahap = $program->row()->kod_tahap;
+			$kod_jabatan = $program->row()->id_jabatan;
 			
 			//maklumat rujukan surat
-			$data['rujukan'] = $this->ruj_intake->get(array('kod_tahap' => $tahap, 'id_intake' => $sesiMohon));
+			$rujukan = $this->ruj_intake->get(array('kod_tahap' => $tahap, 'id_intake' => $sesiMohon));
 			
-			$id_surat = $data['rujukan']->row()->id_surat;
-			$intake = $data['rujukan']->row()->id_intake;
-			$data['siri_ruj'] = $data['rujukan']->row()->siri_ruj;
+			$id_surat = $rujukan->row()->id_surat;
+			$intake = $rujukan->row()->id_intake;
+			$data['siri_ruj'] = $rujukan->row()->siri_ruj;
 			
 			//template surat
-			$data['template'] = $this->template_surat->get(array('id' => $id_surat));
+			$template = $this->template_surat->get(array('id' => $id_surat));
 			
 			$data['auto_generate_siri'] = $data['siri_ruj'];
 			$data['tarikh_hijri'] = date('d F Y');
@@ -705,36 +740,87 @@ class Kemasukan extends CI_Controller
 			$data['tempat_daftar'] = '';
 			$data['no_telefon'] = '';
 		
+			$data['header'] = $template->row()->header;
+			$data['address'] = $template->row()->address;
+			$data['title_surat'] = $template->row()->title;
+			$data['content1'] = $template->row()->content1;
+			$data['content2'] = $template->row()->content2;
+			$data['content3'] = $template->row()->content2;
+			$data['signiture'] = $template->row()->signiture;
+			$data['footer'] = $template->row()->footer;
+			
+			//button 
+			$data['pdf'] = form_submit('pdf_v', 'PDF', 'submit');
+			$data['print'] = form_submit('cetak', 'Cetak', 'submit', 'id="cetak"');
+			
+			//script cetak
+			$data['jquery'] = '';
+			$data['cetak'] = '';
+			
 			if($this->input->post('pdf_v', TRUE)){
 				$data['base'] = 'base_template_surat';
+				//button 
+				$data['pdf'] = '';
+				$data['print'] = '';
 				$this->surat_pdf($data);
 			}
-			$this->load->view('kemasukan/surat_tawar',$data);
+			if($this->input->post('cetak', TRUE)){
+				$data['base'] = 'base_template_surat';
+				//button 
+				$data['pdf'] = '';
+				$data['print'] = '';
+				
+				//script cetak
+				$data['jquery'] = '<script src="<?=base_url()?>js/jquery/jquery.js"></script>';
+				$data['cetak'] = 'window.onload = print();';
+			}
+			$this->load->view('hea/surat_tawar',$data);
 		}
 		
 		function surat_pdf($data){
 			
 			$this->load->library('Pdf');
 			
-			
-			//$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+			foreach($data as $key => $val){
+				$$key = $val;
+				//echo $key.' = '.$val.'<br>';
+			}
+			$pdf = new Pdf('P', 'px', 'A4', true, 'UTF-8', true);
 			
 			// set document information
 	        $this->pdf->SetSubject('TCPDF Tutorial');
 	        $this->pdf->SetKeywords('TCPDF, PDF, example, test, guide');
-	        
+	        $y = $this->pdf->getY();
 	        // set font
-	        $this->pdf->SetFont('times', 'BI', 16);
-	        
+	        $this->pdf->SetFont('times', 'BI', 12);
+	        	        
 	        // add a page
 	        $this->pdf->AddPage();
 	        
 	        // print a line using Cell()
-	        $this->pdf->Cell(0, 12, 'Example 001 - €� èéìòù', 1, 1, 'C');
+	        //$this->pdf->Cell(0, 12, 'Example 001 - €� èéìòù', 1, 1, 'C');
 	        
+	        //$this->load->library('stringparse');
+	        $this->load->library('parser');
+	        
+	        $data['html'] = $header;
+			/*$html .= $template->row('address');
+			$html .= $template->row('title');
+			$html .= $template->row('content1');
+			$html .= $template->row('content2');
+			$html .= $template->row('content3');
+			$html .= $template->row('signiture');
+			$html .= $template->row('footer');*/
+	        //$p = new Stringparse(array('l', $html1));
+	        
+	        //$html = $p->parse($html1);
+			$html = $this->parser->parse('hea/surat_tawar', $data);;
+	        
+			$this->pdf->writeHTMLCell('auto', '', '', $y, $html, 0, 0, 0, true, 'J', true);
+			
 	        //Close and output PDF document
-	        $this->pdf->Output('example_001.pdf', 'I');   
-			//$this->load->view('kemasukan/surat_tawar',$data);
+	        $this->pdf->Output('Surat_tawaran.pdf', 'I');   
+			//$this->load->view('hea/surat_tawar',$data);
 		}
 
 		public function pendaftaran()
