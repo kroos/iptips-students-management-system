@@ -20,7 +20,7 @@
 		<?php echo eval($address = "echo '$address';");?>
 		<?php echo eval($title_surat = "echo '$title_surat';");?>
 		<?php echo eval($content1 = "echo '$content1';");?>
-		<?php //echo eval($content2 = "echo '$content2';");?>
+		<?php echo eval($content2 = "echo '$content2';");?>
 		<?php echo eval($content3 = "echo '$content3';");?>
 		<?php echo eval($signiture = "echo '$signiture';");?>
 		<?php echo eval($footer = "echo '$footer';");?>
@@ -29,12 +29,7 @@
 	<?php startblock('jscript')?>
 	<?php //echo $jquery?>
 	<script>
-		$(document).ready(function(){
-			/* $("#cetak").click(function(){
-				print();
-			}); */
-			<?php //echo $cetak;?>
-		});
+		
 		<?php echo $cetak;?>
 	</script>
 	<?php endblock()?>
