@@ -514,7 +514,7 @@ $config = array	(
 								'rules' => 'trim|xss_clean'
 							),
 					),
-					'hea/mohon_pelajar' => array
+					'kemasukan/mohon_pelajar' => array
 					(
 						array
 							(

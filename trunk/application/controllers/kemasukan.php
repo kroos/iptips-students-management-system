@@ -12,7 +12,10 @@ class Kemasukan extends CI_Controller
 				$this->load->model('app_subjek_akademik');		//nak tau controller ni pakai model mana 1...
 				$this->load->model('app_waris');				//nak tau controller ni pakai model mana 1...
 				$this->load->model('app_progmohon');			//nak tau controller ni pakai model mana 1...
-				$this->load->model('sesi_intake');			//nak tau controller ni pakai model mana 1...
+				$this->load->model('sesi_intake');				//nak tau controller ni pakai model mana 1...
+				$this->load->model('template_surat');			//load table tamplate surat tawaran
+				$this->load->model('ruj_intake');				//load table tamplate surat tawaran
+				$this->load->model('program');					//load table tamplate surat tawaran
 				$this->load->model('template_surat');			//load table tamplate surat tawaran
 				$this->load->model('ruj_intake');			//load table tamplate surat tawaran
 				$this->load->model('program');			//load table tamplate surat tawaran
@@ -110,78 +113,58 @@ class Kemasukan extends CI_Controller
 						if($this->input->post('check', TRUE))
 							{
 								$ic = $this->input->post('ic' ,TRUE);
+
+								//cari sesi_intake sekarang
 								$semo = $this->sesi_intake->GetWhere(array('aktif' => 1, 'tarikh_tamat >=' => date_db(now())))->row()->kodsesi;
-								$where = "(ic = $ic or passport = $ic) AND aktif = 1";
+
+								//cari ic dulu untuk memnentukan a adalah benar2 pelajar baru
+								$where = "ic = '$ic' OR passport = '$ic'";
 								$d = $this->app_pelajar->GetWhere($where);
-								//echo $this->db->last_query();
+								echo $this->db->last_query().' query<br />';
 								if ($d->num_rows() > 0)
 									{
 										//bukan budak baru
-										//$data['info'] = 'bukan budak baru';
+										//ada 4 kes
+										//1. dalam proses (takut key in 2 kali)
+										//2. dah tawar (dah tawar dan sesi_mohon sama sekarang)
+										//3. incomplete (x lengkap dan sesi_mohon sama sekarang)
+										//4. gagal (gagal dan sesi_mohon sama sekarang)
+
 										$stat_moh = $d->row()->status_mohon;
 										$dt_tran = $d->row()->dt_transfer;
-										//echo $stat_moh.' stat moh<br />'.$dt_tran.' date transfer<br />';
+										$akti = $d->row()->aktif;
+										$sesim = $d->row()->sesi_mohon;
+										echo $stat_moh.' stat moh<br />'.$dt_tran.' date transfer<br />'.$akti.' aktif<br />'.$sesim.' sesi_mohon<br />';
 
-										//app_pelajar (insert) & app_waris (update) kena adjust kat sini siap2
-										$kodmula = $this->sesi_intake->GetWhere(array('aktif' => 1, 'tarikh_tamat >=' => date_db(now())))->row()->kodmula;
-										$siri = $this->sesi_intake->GetWhere(array('aktif' => 1, 'tarikh_tamat >=' => date_db(now())))->row()->siri;
-										//SIRI MMG AKAN JADI 4 digit SBB DISET DI DATABASE
-										$siri_mohon = $kodmula.$siri;
-
-										$insert = array(
-															'nama' => $d->row()->nama,
-															'ic' => $d->row()->ic,
-															'passport' => $d->row()->passport,
-															'dt_lahir' => $d->row()->dt_lahir,
-															'tempat_lahir' => $d->row()->tempat_lahir,
-															'status_warga' => $d->row()->status_warga,
-															'warganegara' => $d->row()->warganegara,
-															'bangsa' => $d->row()->bangsa,
-															'jantina' => $d->row()->jantina,
-															'status_kahwin' => $d->row()->status_kahwin,
-															'alamat1' => $d->row()->alamat1,
-															'alamat2' => $d->row()->alamat2,
-															'poskod' => $d->row()->poskod,
-															'bandar' => $d->row()->bandar,
-															'negeri' => $d->row()->negeri,
-															'negara' => $d->row()->negara,
-															'id_add' => $this->session->userdata('id_user'),
-															'dt_add' => date_db(now()),
-															'sesi_mohon' => $semo,
-															'siri_mohon' => $siri_mohon,
-															'status_mohon' => 'DIP',
-															'notel' => $d->row()->notel,
-															'nohp' => $d->row()->nohp,
-															'emel' => $d->row()->emel
-														);
-										//nak kena update +1 kepada siri
-										$siri1 = $siri + 1;
-										$s = $this->sesi_intake->update(array('kodmula' => $kodmula), array('siri' => $siri1));
-										$v = $this->app_pelajar->set_app_pelajar($insert);
-										$id = $this->db->insert_id();
-
-										//update waris
-										$war = $this->app_waris->update_all(array('id_mohon' => $d->row()->id), array('id_mohon' => $id));
-
-										if($v && $war)
+										//kes 1
+										if($stat_moh == 'DIP' && $akti == 1 && $sesim == $semo)
 											{
-												if($stat_moh == 'GL')
-													{
-														//pernah mohon tp gagal masuk
-														redirect('kemasukan/progmohon/'.$id, 'location');
-													}
-													else
-													{
-														if($stat_moh == 'TW' && $dt_tran === FALSE)
-															{
-																//bekas pelajar
-																redirect('kemasukan/progmohon/'.$id, 'location');
-															}
-													}
+												$data['info'] = 'Status pemohon adalah "Dalam Proses" untuk sesi '.$semo.'. Sila teruskan dengan permohonan yang lain';
 											}
 											else
 											{
-												$data['info'] = 'Data tidak berjaya disimpan. Sila cuba sebentar lagi';
+												if($stat_moh == 'TW' && $akti == 1 && $sesim == $semo && $dt_tran == NULL)
+													{
+														$data['info'] = 'Status pemohon adalah "Tawaran" untuk sesi '.$semo.'. Sila teruskan dengan permohonan yang lain';
+													}
+													else
+													{
+														if ($stat_moh == 'INC' && $akti == 1 && $sesim == $semo)
+															{
+																$data['info'] = 'Status pemohon adalah "Tidak Lengkap" untuk sesi '.$semo.'. Sila teruskan dengan permohonan yang lain';
+															}
+															else
+															{
+																if($stat_moh == 'GL' && $akti == 0 && $sesim == $semo)
+																	{
+																		$data['info'] = 'Status pemohon adalah "Gagal" untuk sesi '.$semo.'. Sila teruskan dengan permohonan yang lain';
+																	}
+																	else
+																	{
+																		$data['info'] = 'lps semua, mungkin utk sem depan';
+																	}
+															}
+													}
 											}
 									}
 									else
@@ -248,7 +231,8 @@ class Kemasukan extends CI_Controller
 													'status_mohon' => 'DIP',
 													'notel' => $this->input->post('notel', TRUE),
 													'nohp' => $this->input->post('nohp', TRUE),
-													'emel' => $this->input->post('emel', TRUE)
+													'emel' => $this->input->post('emel', TRUE),
+													'aktif' => 1
 												);
 								//nak kena update +1 kepada siri
 								$siri1 = $siri + 1;
