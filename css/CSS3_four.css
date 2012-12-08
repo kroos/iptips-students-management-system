@@ -185,7 +185,7 @@ nav {
 } 
 
 #site_content {  
-  width: 885px;
+  width: 1085px;
   overflow: hidden;
   margin: 20px auto 0 auto;
   padding: 0 0 20px 0;
@@ -232,7 +232,7 @@ nav {
 
 #content {  
   text-align: left;
-  width: 600px;
+  width: 800px;
   padding: 0 0 0 5px;
   float: left;
 }
@@ -289,7 +289,7 @@ footer a:hover {
   text-align: left;
 }
   
-.form_settings input, .form_settings textarea { 
+.form_settings input, .form_settings select, .form_settings textarea { 
   padding: 5px; 
   width: 299px; 
   font: 100% arial; 
@@ -526,6 +526,9 @@ ul#nav li a:hover, ul#nav li a:focus, ul#nav li.selected {
 .addRow, .delRow, .tambah{
 	width: 40px;
 	font-size:14px;
-	font-weight:bolder;
-	
+	font-weight:bolder;	
 }
+
+.line td{
+	border: solid thin #000000;
+	}
