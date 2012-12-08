@@ -16,7 +16,7 @@
 	</div>
     <p><font color="#FF0000"><?=@$info?></font></p>
 
-<?$z = $this->program->GetAll()?>
+<?$z = $this->program->GetAll(NULL, NULL)?>
 <?foreach($z->result() as $x):?>
 <?$subj[$x->kod_prog] = $x->namaprog_MY?>
 <?endforeach?>
@@ -38,14 +38,14 @@
 			<tr>
 				<td style="border-left-style: solid; border-left-width: 1px; border-top-style: solid; border-top-width: 1px"><strong><?=$k->nama?></strong></td>
 				<td style="border-top-style: solid; border-top-width: 1px">
-					<?php $program = $this->program->GetWhere(array('kod_prog'=>$k->progTawar));
+					<?php $program = $this->program->GetWhere(array('kod_prog'=>$k->progTawar), NULL, NULL);
 					echo $k->progTawar.' : '.$program->row()->namaprog_MY;?>
 				</td>
 				<td style="border-right-style: solid; border-right-width: 1px">
 					<?php $k->sesi_mohon?>
 				</td>
 				<td><?php 
-						echo form_open('hea/surat_tawar', '', array('id_mohon' => $k->id));
+						echo form_open('kemasukan/surat_tawar', '', array('id_mohon' => $k->id));
 						echo form_submit('surat', 'Surat Tawaran', 'class="submit"');
 						echo form_close();
 					?>

@@ -26,7 +26,12 @@
 						<li><?=anchor('isms/user_perm_edit', 'Edit Capaian Pengguna', array('title' => 'Edit Capaian Pengguna'))?></li>
 					</ul>
 				</li>
-				<li><?=anchor('isms/devel', 'Developer', array('title' => 'Developer'))?></li>
+				<li><?=anchor('#', 'Developer', array('title' => 'Developer'))?>
+					<ul>
+						<li><?=anchor('isms/devel', 'Setup Function', array('title' => 'Setup Function'))?></li>
+						<li><?=anchor('isms/truncate', 'Truncate System', array('title' => 'Truncate System'))?></li>
+					</ul>
+				</li>
 			</ul>
 		</li>
 

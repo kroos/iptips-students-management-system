@@ -53,7 +53,7 @@ Permohonan tidak lengkap. Tiada permohonan program
 				<tr>
 					<td><?=$prog->row()->pilihan?></td>
 					<td><?=$prog->row()->kod_prog?></td>
-					<td><?=$this->program->GetWhere(array('kod_prog' => $prog->row()->kod_prog))->row()->namaprog_MY?></td>
+					<td><?=$this->program->GetWhere(array('kod_prog' => $prog->row()->kod_prog), NULL, NULL)->row()->namaprog_MY?></td>
 				</tr>
 			</tbody>
 		</table>

@@ -17,8 +17,9 @@ class Kemasukan extends CI_Controller
 				$this->load->model('ruj_intake');				//load table tamplate surat tawaran
 				$this->load->model('program');					//load table tamplate surat tawaran
 				$this->load->model('template_surat');			//load table tamplate surat tawaran
-				$this->load->model('ruj_intake');			//load table tamplate surat tawaran
-				$this->load->model('program');			//load table tamplate surat tawaran
+				$this->load->model('ruj_intake');				//load table tamplate surat tawaran
+				$this->load->model('program');					//load table tamplate surat tawaran
+				$this->load->model('pel_resit');					//load table tamplate surat tawaran
 
 				//mesti ikut peraturan ni..
 				//user mesti log on kalau tidak redirect to index
@@ -628,6 +629,7 @@ class Kemasukan extends CI_Controller
 								if($g && $r && $r1)
 									{
 										$data['info'] = 'Proses Penawaran Berjaya';
+										redirect('kemasukan/mohon_pelajar', 'location');
 									}
 									else
 									{
@@ -697,9 +699,6 @@ class Kemasukan extends CI_Controller
 				$data['u'] = $this->app_pelajar->GetWherePage($whe, $config['per_page'], $this->uri->segment(3, 0));
 
 				$data['paginate'] =$this->pagination->create_links();
-				
-
-				
 				$this->load->view('kemasukan/pmhn_berjaya', $data);
 		}
 			
@@ -912,7 +911,49 @@ class Kemasukan extends CI_Controller
 
 		public function pendaftaran()
 			{
-				$data['dip'] = $this->app_pelajar->GetWhere(array('status_mohon' => 'TW'));
+				$where = array
+							(
+								'aktif' => 1
+							);
+				$g = $this->sesi_intake->GetWhere($where);
+
+				//hanya nak tgk status permohonan dlm proses shj...
+				$whe = array
+							(
+								'status_mohon' => 'TW',
+								'sesi_mohon' => $g->row()->kodsesi
+							);
+
+				$this->load->library('pagination');
+				$config['base_url'] = base_url().'kemasukan/mohon_pelajar';
+				$config['total_rows'] = $this->app_pelajar->GetWhere($whe)->num_rows();
+				$config['per_page'] = 5;
+				$config['suffix'] = '.exe';
+
+				$this->pagination->initialize($config);
+
+				$data['u'] = $this->app_pelajar->GetWherePage($whe, $config['per_page'], $this->uri->segment(3, 0));
+
+				$data['paginate'] =$this->pagination->create_links();
+
+				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+				if ($this->form_validation->run() == TRUE)
+					{
+						if($this->input->post('cari', TRUE))
+							{
+								$carian = $this->input->post('carian', TRUE);
+								$whe = "status_mohon = 'TW' AND sesi_mohon = '".$g->row()->kodsesi."' AND (nama LIKE '%$carian%' OR ic LIKE '%$carian%' OR passport LIKE '%$carian%')";
+								$data['u'] = $this->app_pelajar->GetWherePage($whe, $config['per_page'], $this->uri->segment(3, 0));
+								if ($data['u'])
+									{
+										$data['info'] = 'Carian berjaya';
+									}
+									else
+									{
+										$data['info'] = 'Sila cuba sekali lagi';
+									}
+							}
+					}
 				$this->load->view('kemasukan/pendaftaran', $data);
 			}
 

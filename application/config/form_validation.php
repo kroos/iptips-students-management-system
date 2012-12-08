@@ -541,7 +541,34 @@ $config = array	(
 								'rules' => 'trim|required|xss_clean'
 							),
 					),
-					
+					'kemasukan/mohon_rayuan' => array
+					(
+						array
+							(
+								'field' => 'id_appprogmohon',
+								'label' => 'ID Permohonan Program',
+								'rules' => 'trim|required|is_natural_no_zero|xss_clean'
+							),
+						array
+							(
+								'field' => 'id_mohon',
+								'label' => 'ID Pemohon',
+								'rules' => 'trim|required|is_natural_no_zero|xss_clean'
+							),
+						array
+							(
+								'field' => 'kodprog',
+								'label' => 'Kod Program',
+								'rules' => 'trim|required|xss_clean'
+							),
+						array
+							(
+								'field' => 'catatan',
+								'label' => 'Catatan',
+								'rules' => 'trim|required|xss_clean'
+							),
+					),
+
 					'kemasukan/edit_permohonan' => array
 					(
 						array
@@ -701,6 +728,24 @@ $config = array	(
 							(
 								'field' => 'ic',
 								'label' => 'No Kad Pengenalan / No Passport',
+								'rules' => 'trim|required|xss_clean'
+							)
+					),
+					'kemasukan/pendaftaran' => array
+					(
+						array
+							(
+								'field' => 'carian',
+								'label' => 'No Kad Pengenalan / No Passport / Nama',
+								'rules' => 'trim|required|xss_clean'
+							)
+					),
+					'isms/truncate' => array
+					(
+						array
+							(
+								'field' => 'truncate',
+								'label' => 'Truncate',
 								'rules' => 'trim|required|xss_clean'
 							)
 					),

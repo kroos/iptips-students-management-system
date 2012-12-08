@@ -583,7 +583,34 @@ class Isms extends CI_Controller
 					}
 			}
 
-
+		public function truncate()
+			{
+				$data['info'] = '';
+				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+				if ($this->form_validation->run() == TRUE)
+					{
+						//form process
+						if($this->input->post('truncate', TRUE))
+							{
+/* 								//padam terus
+								$r[] = $this->app_akademik->truncate();
+								$r[] = $this->app_pelajar->truncate();
+								$r[] = $this->app_progmohon->truncate();
+								$r[] = $this->app_subjek_akademik->truncate();
+								$r[] = $this->app_waris->truncate();
+								$r[] = $this->pel_resit->truncate(); */
+								if($r)
+									{
+										$data['info'] = 'System kosong';
+									}
+									else
+									{
+										$data['info'] = 'sila cuba sebentar lagi';
+									}
+							}
+					}
+				$this->load->view('truncate', $data);
+			}
 
 
 

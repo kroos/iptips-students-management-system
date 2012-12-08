@@ -44,4 +44,11 @@ class App_subjek_akademik extends CI_Model
 			{
 				return $this->db->where(array('id' => $id))->delete('app_subjek_akademik');
 			}
+
+#############################################################################################################################
+//TRUNCATE
+		public function truncate()
+			{
+				return $this->db->truncate('app_subjek_akademik');
+			}
 }

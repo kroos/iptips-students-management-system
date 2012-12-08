@@ -98,5 +98,12 @@ class App_pelajar extends CI_Model
 							);
 				return $this->db->update('app_pelajar', $data, $data['id']);
 			}
+
+#############################################################################################################################
+//truncate
+		public function truncate()
+			{
+				return $this->db->truncate('app_pelajar');
+			}
 	}
 ?>

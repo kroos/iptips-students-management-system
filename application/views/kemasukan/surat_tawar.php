@@ -9,7 +9,7 @@
 	
 	<?php startblock('content')?>
 	
-		<?php echo form_open('hea/surat_tawar', array("target"=>"_blank"))?>
+		<?php echo form_open('', array("target"=>"_blank"))?>
 			<?php echo $pdf?>
 			<?php echo $print?>
 		<?php echo form_close()?>

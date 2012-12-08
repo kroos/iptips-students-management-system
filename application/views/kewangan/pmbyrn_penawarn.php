@@ -44,12 +44,12 @@
 							<tbody>
 							<?$i = 1?>
 							<?foreach($r->result() AS $v):?>
-								<?$t = $this->pel_resit->GetWhere(array('matrik' => $v->siri_mohon))?>
+								<?$t = $this->pel_resit->GetWhere(array('matrik' => $v->siri_mohon), NULL, NULL)?>
 									<tr>
 										<td><div class="demo"><?=anchor('kewangan/bayar_prmhnn/'.$v->siri_mohon, $i++)?></div></td>
 										<td><?=$v->nama?></td>
 										<td><?=$v->ic.' / '.$v->passport?></td>
-										<td><?=$this->program->GetWhere(array('kod_prog' => $v->progTawar))->row()->namaprog_MY?></td>
+										<td><?=$this->program->GetWhere(array('kod_prog' => $v->progTawar), NULL, NULL)->row()->namaprog_MY?></td>
 										<td>
 											<?if($t->num_rows() < 1):?>
 												Tiada Rekod Pembayaran
