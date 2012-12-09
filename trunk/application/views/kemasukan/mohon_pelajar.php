@@ -97,7 +97,12 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="3" style="border-left-style: solid; border-left-width: 1px; border-right-style: solid; border-right-width: 1px; border-bottom-style: solid; border-bottom-width: 1px"><div class="demo"><?=anchor('kemasukan/pmhn_tdk_lgkp/'.$k->id, 'TIDAK LENGKAP')?><?=anchor('kemasukan/pmhn_gagal/'.$k->id, 'GAGAL')?><?=anchor('kemasukan/detail_pemohon/'.$k->id, 'Profail', array('target' => '_blank'))?></div></td>
+				<td colspan="3" style="border-left-style: solid; border-left-width: 1px; border-right-style: solid; border-right-width: 1px; border-bottom-style: solid; border-bottom-width: 1px">
+					<div class="demo">
+						<?=anchor('kemasukan/pmhn_tdk_lgkp/'.$k->id, 'TIDAK LENGKAP')?>
+						<?=anchor('kemasukan/pmhn_gagal/'.$k->id, 'GAGAL')?>
+						<?=anchor('kemasukan/surat_tawar/'.$k->id, 'SURAT TAWARAN')?>
+					</div></td>
 			</tr>
 		<?endforeach?>
 
