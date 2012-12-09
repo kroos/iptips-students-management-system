@@ -11,14 +11,14 @@
 			<p><span>No Passport : </span><?=$pe->row()->passport == NULL ? 'Tiada Maklumat' : $pe->row()->passport?></p>
 			<p><span>Jantina : </span><?=$this->sel_gender->get($pe->row()->jantina)->row()->gender_MY == NULL ? 'Tiada Maklumat' : $this->sel_gender->get($pe->row()->jantina)->row()->gender_MY?></p>
 			<p><span>Tarikh Lahir : </span><?=date_view($pe->row()->dt_lahir) == NULL ? 'Tiada Maklumat' : date_view($pe->row()->dt_lahir)?></p>
-			<p><span>Tempat Lahir : </span><?=$this->sel_bandar->get($pe->row()->tempat_lahir)->row()->namabandar == NULL ? 'Tiada Maklumat' : $this->sel_bandar->get($pe->row()->tempat_lahir)->row()->namabandar?></p>
+			<p><span>Tempat Lahir : </span><?=$this->sel_bandar->get(array('kodbandar' => $pe->row()->tempat_lahir))->row()->namabandar == NULL ? 'Tiada Maklumat' : $this->sel_bandar->get(array('kodbandar' => $pe->row()->tempat_lahir))->row()->namabandar?></p>
 			<p><span>Warganegara : </span><?=$this->sel_negara->get($pe->row()->warganegara)->row()->namanegara == NULL ? 'Tiada Maklumat' : $this->sel_negara->get($pe->row()->warganegara)->row()->namanegara?></p>
 			<p><span>Status Warganegara : </span><?=$this->sel_warga->get($pe->row()->status_warga)->row()->warga_MY == NULL ? 'Tiada Maklumat' : $this->sel_warga->get($pe->row()->status_warga)->row()->warga_MY?></p>
 			<p><span>Bangsa : </span><?=$this->sel_race->get($pe->row()->bangsa)->row()->bangsa_MY == NULL ? 'Tiada Maklumat' : $this->sel_race->get($pe->row()->bangsa)->row()->bangsa_MY?></p>
 			<p><span>Alamat 1 : </span><?=$pe->row()->alamat1 == NULL ? 'Tiada Maklumat' : $pe->row()->alamat1?></p>
 			<p><span>Alamat 2 : </span><?=$pe->row()->alamat2 == NULL ? 'Tiada Maklumat' : $pe->row()->alamat2?></p>
 			<p><span>Poskod : </span><?=$pe->row()->poskod == NULL ? 'Tiada Maklumat' : $pe->row()->poskod?></p>
-			<p><span>Bandar : </span><?=$this->sel_bandar->get($pe->row()->bandar)->row()->namabandar == NULL ? 'Tiada Maklumat' : $this->sel_bandar->get($pe->row()->bandar)->row()->namabandar?></p>
+			<p><span>Bandar : </span><?=$this->sel_bandar->get(array('kodbandar' => $pe->row()->bandar))->row()->namabandar == NULL ? 'Tiada Maklumat' : $this->sel_bandar->get(array('kodbandar' => $pe->row()->bandar))->row()->namabandar?></p>
 			<p><span>Negeri : </span><?=$this->sel_negeri->get($pe->row()->negeri)->row()->namanegeri == NULL ? 'Tiada Maklumat' : $this->sel_negeri->get($pe->row()->negeri)->row()->namanegeri?></p>
 			<p><span>Negara : </span><?=$this->sel_negara->get($pe->row()->negara)->row()->namanegara == NULL ? 'Tiada Maklumat' : $this->sel_negara->get($pe->row()->negara)->row()->namanegara?></p>
 			<p><span>No Telefon : </span><?=$pe->row()->notel == NULL ? 'Tiada Maklumat' : $pe->row()->notel?></p>

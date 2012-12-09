@@ -101,8 +101,6 @@ class Kemasukan extends CI_Controller
 						$data['akad'] = $this->app_akademik->get_where(array('id_mohon' => $id));
 						$data['war'] = $this->app_waris->GetWhere(array('id_mohon' => $id));
 
-						
-
 						$this->load->view('kemasukan/detail_pemohon', $data);
 					}
 			}
