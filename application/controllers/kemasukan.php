@@ -703,14 +703,14 @@ class Kemasukan extends CI_Controller
 		}
 			
 	//surat tawaran
-		public function surat_tawar(){
+		public function surat_tawar($id_mohon = NULL ){
 			
-			if($this->input->post('surat', TRUE)){
+			/*if($this->input->post('surat', TRUE)){
 				foreach ($this->input->post() as $key => $val){
 					$$key = $val;
 					echo $key.' : '.$$key.' = '.$val.'<br>';
 				}
-			}
+			}*/
 			
 			//$id_mohon = '7';
 			$data['title'] = 'Surat Tawaran Kemasukan : '.$id_mohon;
@@ -734,70 +734,80 @@ class Kemasukan extends CI_Controller
 			$data['kod_prog']		= $pelajar->row()->progTawar;
 			$data['intake'] 		= $pelajar->row()->sesi_mohon;
 			$data['status_mohon'] 	= $pelajar->row()->status_mohon;
+			
+			if($data['status_mohon'] != 'TW'){
+				startblock('content');
+					$status = $this->sel_statusmohon->GetWhere(array('kod_status' => $data['status_mohon']));
+					echo '<div class="info">Permohonan '.$status->row()->status_MY.'</div>';
+				endblock();
+			}else{
 	
-			$progTawar = $pelajar->row()->progTawar;
-			$sesiMohon = $pelajar->row()->sesi_mohon;
-			echo $progTawar;
-			//maklumat pgrogram
-			$program = $this->program->GetWhere(array('kod_prog' => $progTawar));
-			$tahap = $program->row()->kod_tahap;
-			$kod_jabatan = $program->row()->id_jabatan;
+				$progTawar = $pelajar->row()->progTawar;
+				$sesiMohon = $pelajar->row()->sesi_mohon;
+				$progTawar;
+				//maklumat pgrogram
+				$program = $this->program->GetWhere(array('kod_prog' => $progTawar));
+				$tahap = $program->row()->kod_tahap;
+				$kod_jabatan = $program->row()->id_jabatan;
+				
+				$jabatan = $this->jabatan->GetWhere(array('id' => $kod_jabatan));
+				
+				//maklumat rujukan surat
+				$rujukan = $this->ruj_intake->get(array('kod_tahap' => $tahap, 'id_intake' => $sesiMohon));
+				
+				$id_surat = $rujukan->row()->id_surat;
+				$intake = $rujukan->row()->id_intake;
+				$data['siri_ruj'] = $rujukan->row()->siri_ruj;
+				
+				//template surat
+				$template = $this->template_surat->get(array('id' => $id_surat));
+				
+				$data['auto_generate_siri'] = $data['siri_ruj'];
+				$data['tarikh_hijri'] = date('d F Y');
+				$data['sesi_intake'] = $intake;
+				$data['progTawar'] = $program->row()->namaprog_MY;
+				$data['kulliyah'] = $jabatan->row()->janatan;
+				$data['tahun'] = date('Y');
+				$data['tempoh_ngaji'] = $program->row()->tempoh.' semester';
+				$data['tarikh_daftar'] = '';
+				$data['masa_daftar'] = '';
+				$data['tempat_daftar'] = '';
+				$data['no_telefon'] = '';
 			
-			//maklumat rujukan surat
-			$rujukan = $this->ruj_intake->get(array('kod_tahap' => $tahap, 'id_intake' => $sesiMohon));
-			
-			$id_surat = $rujukan->row()->id_surat;
-			$intake = $rujukan->row()->id_intake;
-			$data['siri_ruj'] = $rujukan->row()->siri_ruj;
-			
-			//template surat
-			$template = $this->template_surat->get(array('id' => $id_surat));
-			
-			$data['auto_generate_siri'] = $data['siri_ruj'];
-			$data['tarikh_hijri'] = date('d F Y');
-			$data['sesi_intake'] = $intake;
-			$data['progTawar'] = $progTawar;
-			$data['kulliyah'] = $kod_jabatan;
-			$data['tahun'] = date('Y');
-			$data['tempoh_ngaji'] = 2;
-			$data['tarikh_daftar'] = '';
-			$data['masa_daftar'] = '';
-			$data['tempat_daftar'] = '';
-			$data['no_telefon'] = '';
-		
-			$data['header'] = $template->row()->header;
-			$data['address'] = $template->row()->address;
-			$data['title_surat'] = $template->row()->title;
-			$data['content1'] = $template->row()->content1;
-			$data['content2'] = $template->row()->content2;
-			$data['content3'] = $template->row()->content2;
-			$data['signiture'] = $template->row()->signiture;
-			$data['footer'] = $template->row()->footer;
-			
-			//button 
-			$data['pdf'] = form_submit('pdf_v', 'PDF', 'submit');
-			$data['print'] = form_submit('cetak', 'Cetak', 'submit', 'id="cetak"');
-			
-			//script cetak
-			$data['jquery'] = '';
-			$data['cetak'] = '';
-			
-			if($this->input->post('pdf_v', TRUE)){
-				$data['base'] = 'base_template_surat';
+				$data['header'] = $template->row()->header;
+				$data['address'] = $template->row()->address;
+				$data['title_surat'] = $template->row()->title;
+				$data['content1'] = $template->row()->content1;
+				$data['content2'] = $template->row()->content2;
+				$data['content3'] = $template->row()->content2;
+				$data['signiture'] = $template->row()->signiture;
+				$data['footer'] = $template->row()->footer;
+				
 				//button 
-				$data['pdf'] = '';
-				$data['print'] = '';
-				$this->surat_pdf($data);
-			}
-			if($this->input->post('cetak', TRUE)){
-				$data['base'] = 'base_template_surat';
-				//button 
-				$data['pdf'] = '';
-				$data['print'] = '';
+				$data['pdf'] = form_submit('pdf_v', 'PDF', 'submit');
+				$data['print'] = form_submit('cetak', 'Cetak', 'submit', 'id="cetak"');
 				
 				//script cetak
-				$data['jquery'] = '<script src="<?=base_url()?>js/jquery/jquery.js"></script>';
-				$data['cetak'] = 'window.onload = print();';
+				$data['jquery'] = '';
+				$data['cetak'] = '';
+				
+				if($this->input->post('pdf_v', TRUE)){
+					$data['base'] = 'base_template_surat';
+					//button 
+					$data['pdf'] = '';
+					$data['print'] = '';
+					$this->surat_pdf($data);
+				}
+				if($this->input->post('cetak', TRUE)){
+					$data['base'] = 'base_template_surat';
+					//button 
+					$data['pdf'] = '';
+					$data['print'] = '';
+					
+					//script cetak
+					$data['jquery'] = '<script src="<?=base_url()?>js/jquery/jquery.js"></script>';
+					$data['cetak'] = 'window.onload = print();';
+				}
 			}
 			$this->load->view('kemasukan/surat_tawar',$data);
 		}
