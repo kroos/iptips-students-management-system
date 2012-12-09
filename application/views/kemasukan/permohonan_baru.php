@@ -219,6 +219,7 @@
 				
 				$("#negara").change(function(){
 					negeri();
+					bandar();
 				});
 				
 				$("#negeri").change(function(){
@@ -244,7 +245,7 @@
 							<?php echo $this->config->item('csrf_token_name'); ?>: $.cookies.get("<?php echo $this->config->item('csrf_cookie_name'); ?>"),
 							negara: $("#negara").val(),
 							negeri: $("#negeri").val(),
-							bandar: '<?=@$z->row()->bandar?>'
+							bandar: '<?=@$z->row()->bandar ?>'
 						},
 						function(data){
 							$("#bandar").html(data);
