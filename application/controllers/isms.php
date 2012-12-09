@@ -557,9 +557,9 @@ class Isms extends CI_Controller
 										if($this->input->post('search', TRUE))
 											{
 												$name = ucwords(strtolower($this->input->post('name', TRUE)));
-												echo $name.' = nama<br />';
+												//echo $name.' = nama<br />';
 												$l = $this->user_data->search_user($name);
-												echo $l->num_rows().' = num rows<br />';
+												//echo $l->num_rows().' = num rows<br />';
 												if($l->num_rows() == 1)
 													{
 														redirect('/isms/set_privillege/'.$l->row()->id, 'location');

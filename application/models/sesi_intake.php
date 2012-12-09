@@ -21,6 +21,16 @@ class Sesi_intake extends CI_Model
 				return $this->db->get_where('sesi_intake', $where);
 			}
 
+		function GetAllPage($order, $limit, $offset)
+			{
+				return $this->db->order_by($order)->get('sesi_intake', $limit, $offset);
+			}
+
+		function GetWherePage($where, $order, $limit, $offset)
+			{
+				return $this->db->order_by($order)->get_where('sesi_intake', $where, $limit, $offset);
+			}
+
 		function GetKodSesi($kodsesi)
 			{
 				return $this->db->get_where('sesi_intake', array('kodsesi' => $kodsesi));
@@ -30,6 +40,7 @@ class Sesi_intake extends CI_Model
 			{
 				return $this->db->get_where('sesi_intake', array('aktif' => $aktif ));
 			}
+
 //UPDATE
 		function update($where, $update)
 			{
@@ -37,9 +48,9 @@ class Sesi_intake extends CI_Model
 			}
 
 //INSERT
-		function insert_sesi($id_user_data, $id_user_department)
+		function insert($insert)
 			{
-				return $this->db->insert('sesi_intake', array('id_user_data' => $id_user_data, 'id_user_department' => $id_user_department));
+				return $this->db->insert('sesi_intake', $insert);
 			}
 
 //DELETE

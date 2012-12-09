@@ -689,7 +689,7 @@ $config = array	(
 							(
 								'field' => 'emel',
 								'label' => 'Email',
-								'rules' => 'trim|required|valid_email|is_unique[app_pelajar.emel]|xss_clean'
+								'rules' => 'trim|required|valid_email|xss_clean'
 							)
 					),
 					'kewangan/pmbyrn_penawarn' => array
@@ -748,6 +748,39 @@ $config = array	(
 								'label' => 'Truncate',
 								'rules' => 'trim|required|xss_clean'
 							)
+					),
+					'kemasukan/sesi_intake' => array
+					(
+						array
+							(
+								'field' => 'kodsesi',
+								'label' => 'Sesi Kemasukan',
+								'rules' => 'trim|required|alpha_dash|is_unique[sesi_intake.kodsesi]|xss_clean'
+							),
+						array
+							(
+								'field' => 'kodmula',
+								'label' => 'Kod Mula',
+								'rules' => 'trim|required|alpha_dash|is_unique[sesi_intake.kodmula]|xss_clean'
+							),
+						array
+							(
+								'field' => 'tarikh_mula',
+								'label' => 'Tarikh Mula',
+								'rules' => 'trim|required|alpha_dash|is_unique[sesi_intake.tarikh_mula]|xss_clean'
+							),
+						array
+							(
+								'field' => 'tarikh_tamat',
+								'label' => 'Tarikh Tamat',
+								'rules' => 'trim|required|alpha_dash|is_unique[sesi_intake.tarikh_tamat]|xss_clean'
+							),
+						array
+							(
+								'field' => 'tarikh_daftar',
+								'label' => 'Tarikh Daftar',
+								'rules' => 'trim|required|alpha_dash|is_unique[sesi_intake.tarikh_daftar]|xss_clean'
+							),
 					),
 
 				);
