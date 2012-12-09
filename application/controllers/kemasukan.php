@@ -738,6 +738,10 @@ class Kemasukan extends CI_Controller
 			
 			
 			//maklumat pelajar
+			//$pelajar = $this->db->select('sel_negara.namanegara, sel_negeri.namanegeri, sel_bandar.namabandar');
+			$pelajar = $this->db->join('sel_negara', 'app_pelajar.negara = sel_negara.kodnegara', 'left');
+			$pelajar = $this->db->join('sel_negeri', 'app_pelajar.negeri = sel_negeri.kodnegeri', 'left');
+			$pelajar = $this->db->join('sel_bandar', 'app_pelajar.bandar = sel_bandar.kodbandar', 'left');
 			$pelajar = $this->app_pelajar->get_where(array('id' => $id_mohon));
 			
 			$data['tarikh_masihi'] = date('Y-m-d');
@@ -749,9 +753,9 @@ class Kemasukan extends CI_Controller
 			$data['alamat1_pemohon'] = $pelajar->row()->alamat1;	
 			$data['alamat2_pemohon'] = $pelajar->row()->alamat2;
 			$data['poskod']			= $pelajar->row()->poskod;
-			$data['bandar']			= $pelajar->row()->bandar;
-			$data['negeri'] 		= $pelajar->row()->negeri;
-			$data['negara'] 		= $pelajar->row()->negara;
+			$data['bandar']			= $pelajar->row()->namabandar;
+			$data['negeri'] 		= $pelajar->row()->namanegeri;
+			$data['negara'] 		= $pelajar->row()->namanegara;
 			$data['kod_prog']		= $pelajar->row()->progTawar;
 			$data['intake'] 		= $pelajar->row()->sesi_mohon;
 			$data['status_mohon'] 	= $pelajar->row()->status_mohon;
