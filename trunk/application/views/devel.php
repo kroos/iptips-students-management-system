@@ -36,7 +36,7 @@
 			</p>
 
 			<p><span><label for="menu">Menu Function : </label></span>
-			<?=form_input(array('name' => 'menu', 'value' => set_value('menu'), 'maxlength' => '30', 'size' => '12', 'id' => 'menu'))?>
+			<?=form_input(array('name' => 'menu', 'value' => set_value('menu'), 'maxlength' => '200', 'size' => '12', 'id' => 'menu'))?>
 			<br /><?=form_error('menu')?>
 			</p>
 

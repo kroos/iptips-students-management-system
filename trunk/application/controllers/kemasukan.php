@@ -318,10 +318,10 @@ class Kemasukan extends CI_Controller
 			$id = $this->uri->segment(3, 0);
 			if(is_numeric($id))
 				{
-					$data['prog'] = $this->program->GetAll();
+					$data['prog'] = $this->program->GetAll(NULL, NULL);
 					//$data['statm'] = $this->sel_statusmohon->GetWhere(array('kodstatus' => 'DIP'));
 					$data['mohon'] = $this->app_progmohon->GetWhere(array('id_mohon'=>$id));
-					
+
 					$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
 					if ($this->form_validation->run() == TRUE)
 						{
@@ -466,6 +466,7 @@ class Kemasukan extends CI_Controller
 				$id_mohon = $this->uri->segment(3, 0);
 				if(is_numeric($id_mohon))
 					{
+						$data['c'] = $this->app_waris->GetWhere(array('id_mohon' => $id_mohon));
 						$data['info'] = '';
 						$data['h'] = $this->sel_hubungan->GetAll();
 						$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
@@ -489,7 +490,7 @@ class Kemasukan extends CI_Controller
 										$v = $this->app_waris->insert_all($insert);
 										if($v)
 											{
-												redirect ('/kemasukan/progmohon', 'location');
+												redirect ('/kemasukan/progmohon/'.$id_mohon, 'location');
 											}
 											else
 											{
@@ -977,6 +978,67 @@ class Kemasukan extends CI_Controller
 				$this->load->view('kemasukan/pendaftaran', $data);
 			}
 
+		public function sesi_intake()
+			{
+				$this->load->library('pagination');
+				$config['base_url'] = base_url().'kemasukan/sesi_intake';
+				$config['total_rows'] = $this->sesi_intake->GetAllPage('tarikh_tamat DESC', NULL, NULL)->num_rows();
+				$config['per_page'] = 5;
+				$config['suffix'] = '.exe';
+
+				$this->pagination->initialize($config);
+
+				$data['u'] = $this->sesi_intake->GetAllPage('tarikh_tamat DESC', $config['per_page'], $this->uri->segment(3, 0));
+
+				$data['paginate'] = $this->pagination->create_links();
+
+				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+				if ($this->form_validation->run() == TRUE)
+					{
+						if($this->input->post('insert', TRUE))
+							{
+								$carian = $this->input->post('carian', TRUE);
+								$insert = array
+												(
+													'kodsesi' => $this->input->post('kodsesi', TRUE),
+													'kodmula' => $this->input->post('kodmula', TRUE),
+													'siri' => 1,
+													'tarikh_mula' => $this->input->post('tarikh_mula', TRUE),
+													'tarikh_tamat' => $this->input->post('tarikh_tamat', TRUE),
+													'tarikh_daftar' => $this->input->post('tarikh_daftar', TRUE),
+													'aktif' => 0
+												);
+
+								$u = $this->sesi_intake->insert($insert);
+								if ($u)
+									{
+										$data['info'] = 'Sesi Permohonan Kemasukan Direkodkan';
+									}
+									else
+									{
+										$data['info'] = 'Sila cuba sekali lagi';
+									}
+							}
+					}
+				$this->load->view('kemasukan/sesi_intake', $data);
+			}
+
+		public function set_sesi()
+			{
+				$kodsesi = $this->uri->segment(3, 0);
+
+				//x reti nak checking lagu mana ni...terus update pun bahaya gak......
+				//check tarikh la ni dulu....
+				$dateDaftar = $this->sesi_intake->GetWhere(array('kodsesi' => $kodsesi))->row()->tarikh_daftar;
+				if (date_db(now()) > $dateDaftar)
+					{
+						//update semua jadi unactive dulu
+						$x = $this->sesi_intake->update(NULL, array('aktif' => 0));
+						//kendian update kodsesi aktiv
+						$m = $this->sesi_intake->update(array('kodsesi' => $kodsesi), array('aktif' => 1));
+						redirect ('kemasukan/sesi_intake', 'location');
+					}
+			}
 #############################################################################################################################
 	}
 
