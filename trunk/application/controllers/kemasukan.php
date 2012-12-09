@@ -14,11 +14,10 @@ class Kemasukan extends CI_Controller
 				$this->load->model('app_progmohon');			//nak tau controller ni pakai model mana 1...
 				$this->load->model('sesi_intake');				//nak tau controller ni pakai model mana 1...
 				$this->load->model('template_surat');			//load table tamplate surat tawaran
-				$this->load->model('ruj_intake');				//load table tamplate surat tawaran
-				$this->load->model('program');					//load table tamplate surat tawaran
-				$this->load->model('template_surat');			//load table tamplate surat tawaran
-				$this->load->model('ruj_intake');				//load table tamplate surat tawaran
-				$this->load->model('program');					//load table tamplate surat tawaran
+				$this->load->model('ruj_intake');				//load table ruj_intake surat tawaran
+				$this->load->model('program');					//load table program surat tawaran
+				$this->load->model('jabatan');					//load table jabatan surat tawaran
+				$this->load->model('sel_statusmohon');			//load table sel_statusmohon surat tawaran
 				$this->load->model('pel_resit');					//load table tamplate surat tawaran
 
 				//mesti ikut peraturan ni..
@@ -705,23 +704,47 @@ class Kemasukan extends CI_Controller
 	//surat tawaran
 		public function surat_tawar($id_mohon = NULL ){
 			
-			/*if($this->input->post('surat', TRUE)){
+			//base template
+			$data['base'] = 'base_template_user';
+			//button 
+			$data['pdf'] = form_submit('pdf_v', 'PDF', 'submit');
+			$data['print'] = form_submit('cetak', 'Cetak', 'submit', 'id="cetak"');
+			
+			//script cetak
+			$data['jquery'] = '';
+			$data['cetak'] = '';
+			if($this->input->post('surat', TRUE)){
 				foreach ($this->input->post() as $key => $val){
 					$$key = $val;
-					echo $key.' : '.$$key.' = '.$val.'<br>';
+					//echo $key.' : '.$$key.' = '.$val.'<br>';
 				}
-			}*/
+			}
 			
+			if($this->input->post('pdf_v', TRUE)){
+					$id_mohon = $this->input->post('id_mohon');
+			}
+			
+			if($this->input->post('cetak', TRUE)){
+				$id_mohon = $this->input->post('id_mohon');
+				$data['base'] = 'base_template_surat';
+				//button 
+				$data['pdf'] = '';
+				$data['print'] = '';
+				
+				//script cetak
+				$data['jquery'] = '<script src="<?=base_url()?>js/jquery/jquery.js"></script>';
+				$data['cetak'] = 'window.onload = print();';
+			}
 			//$id_mohon = '7';
 			$data['title'] = 'Surat Tawaran Kemasukan : '.$id_mohon;
 			
-			$data['base'] = 'base_template_user';
 			
 			//maklumat pelajar
 			$pelajar = $this->app_pelajar->get_where(array('id' => $id_mohon));
 			
 			$data['tarikh_masihi'] = date('Y-m-d');
 			$data['today'] = date('d F Y');
+			$data['id_mohon'] = $id_mohon;
 			$data['siri_mohon']	= $pelajar->row()->siri_mohon;
 			$data['nama_pemohon'] = $pelajar->row()->nama;
 			$data['ic_pemohon'] = $pelajar->row()->ic;
@@ -766,7 +789,7 @@ class Kemasukan extends CI_Controller
 				$data['tarikh_hijri'] = date('d F Y');
 				$data['sesi_intake'] = $intake;
 				$data['progTawar'] = $program->row()->namaprog_MY;
-				$data['kulliyah'] = $jabatan->row()->janatan;
+				$data['kulliyah'] = $jabatan->row()->jabatan;
 				$data['tahun'] = date('Y');
 				$data['tempoh_ngaji'] = $program->row()->tempoh.' semester';
 				$data['tarikh_daftar'] = '';
@@ -783,31 +806,16 @@ class Kemasukan extends CI_Controller
 				$data['signiture'] = $template->row()->signiture;
 				$data['footer'] = $template->row()->footer;
 				
-				//button 
-				$data['pdf'] = form_submit('pdf_v', 'PDF', 'submit');
-				$data['print'] = form_submit('cetak', 'Cetak', 'submit', 'id="cetak"');
-				
-				//script cetak
-				$data['jquery'] = '';
-				$data['cetak'] = '';
 				
 				if($this->input->post('pdf_v', TRUE)){
+					$id_mohon = $this->input->post('id_mohon');
 					$data['base'] = 'base_template_surat';
 					//button 
 					$data['pdf'] = '';
 					$data['print'] = '';
 					$this->surat_pdf($data);
 				}
-				if($this->input->post('cetak', TRUE)){
-					$data['base'] = 'base_template_surat';
-					//button 
-					$data['pdf'] = '';
-					$data['print'] = '';
-					
-					//script cetak
-					$data['jquery'] = '<script src="<?=base_url()?>js/jquery/jquery.js"></script>';
-					$data['cetak'] = 'window.onload = print();';
-				}
+				
 			}
 			$this->load->view('kemasukan/surat_tawar',$data);
 		}
