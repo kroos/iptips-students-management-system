@@ -9,7 +9,7 @@
 	
 	<?php startblock('content')?>
 	
-		<?php echo form_open('', array("target"=>"_blank"))?>
+		<?php echo form_open('', array("target"=>"_blank"), array("id_mohon" => $id_mohon))?>
 			<?php echo $pdf?>
 			<?php echo $print?>
 		<?php echo form_close()?>
