@@ -32,18 +32,22 @@ class Select_list extends CI_Controller{
 				$$key = $val;
 			}
 			$post = array('kodnegara'=>$this->input->post('negara'));
-			$negeri = $this->sel_negeri->get_where($post);
+			$negeris = $this->sel_negeri->get_where($post);
 		}
 		
-		foreach($negeri->result() as $n){
-			$optionnegeri[$n->kodnegeri] = $n->namanegeri;
-			if($n->kodnegeri == @$negeri){
-				$selected = 'selected="selected"';
-			}else
-			{
-				$selected = '';
+		if($negeris->num_rows()>0){
+			foreach($negeris->result() as $n){
+				$optionnegeri[$n->kodnegeri] = $n->namanegeri;
+				if($n->kodnegeri == @$negeri){
+					$selected = 'selected="selected"';
+				}else
+				{
+					$selected = '';
+				}
+				echo '<option value="'.$n->kodnegeri.'" '.$selected.'">'.$n->namanegeri.'</option>';
 			}
-			echo '<option value="'.$n->kodnegeri.'" '.$selected.'">'.$n->namanegeri.'</option>';
+		}else{
+			echo '<option value="">-tiada-</option>';
 		}
 		//echo 'haha';
 	}
@@ -59,10 +63,10 @@ class Select_list extends CI_Controller{
 							$$key = $val;
 						}
 					$post = array('kodnegara' => $this->input->post('negara'), 'kodnegeri' => $negeri);
-					$negeri = $this->sel_bandar->get($negeri);
+					$bandars = $this->sel_bandar->get($post);
 				}
-			
-			foreach($negeri->result() as $n)
+			if($bandars->num_rows()>0){
+				foreach($bandars->result() as $n)
 				{
 					if(!strcmp($n->kodbandar, @$bandar))
 						{
@@ -74,6 +78,9 @@ class Select_list extends CI_Controller{
 						}
 					echo '<option value="'.$n->kodbandar.'" '.$selected.'">'.$n->namabandar.'</option>';
 				}
+			}else{
+				echo '<option value="">-tiada-</option>';
+			}
 		}
 	
 	//select list subjek
