@@ -13,8 +13,11 @@ class Program extends CI_Model
 				return $this->db->get('program', $limit, $offset);
 			}
 
-		function GetWhere($where, $limit, $offset)
+		function GetWhere($where, $limit = FALSE, $offset = FALSE)
 			{
+				if($limit == FALSE){
+					return $this->db->get_where('program', $where);
+				}
 				return $this->db->get_where('program', $where, $limit, $offset);
 			}
 
