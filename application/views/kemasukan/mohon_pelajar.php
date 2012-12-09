@@ -101,7 +101,8 @@
 					<div class="demo">
 						<?=anchor('kemasukan/pmhn_tdk_lgkp/'.$k->id, 'TIDAK LENGKAP')?>
 						<?=anchor('kemasukan/pmhn_gagal/'.$k->id, 'GAGAL')?>
-						<?=anchor('kemasukan/surat_tawar/'.$k->id, 'SURAT TAWARAN')?>
+						<?=anchor('kemasukan/detail_pemohon/'.$k->id, 'Profail', array('target' => '_blank'))?>
+						<!-- <?=anchor('kemasukan/surat_tawar/'.$k->id, 'SURAT TAWARAN')?> bro, smpi bila bila pun tak dapat pasai kalau klik selain dari surat tawaran, baru status mohon berubah.. -->
 					</div></td>
 			</tr>
 		<?endforeach?>
