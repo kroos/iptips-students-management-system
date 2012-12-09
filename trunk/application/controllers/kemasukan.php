@@ -737,7 +737,7 @@ class Kemasukan extends CI_Controller
 			
 			if($data['status_mohon'] != 'TW'){
 				startblock('content');
-					$status = $this->sel_statusmohon->GetWhere(array('kod_status' => $data['status_mohon']));
+					$status = $this->sel_statusmohon->GetWhere(array('kodstatus' => $data['status_mohon']));
 					echo '<div class="info">Permohonan '.$status->row()->status_MY.'</div>';
 				endblock();
 			}else{
