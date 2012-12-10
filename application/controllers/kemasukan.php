@@ -1030,12 +1030,26 @@ class Kemasukan extends CI_Controller
 				//x reti nak checking lagu mana ni...terus update pun bahaya gak......
 				//check tarikh la ni dulu....
 				$dateDaftar = $this->sesi_intake->GetWhere(array('kodsesi' => $kodsesi))->row()->tarikh_daftar;
+				//echo $dateDaftar;
 				if (date_db(now()) > $dateDaftar)
 					{
 						//update semua jadi unactive dulu
 						$x = $this->sesi_intake->update(NULL, array('aktif' => 0));
 						//kendian update kodsesi aktiv
 						$m = $this->sesi_intake->update(array('kodsesi' => $kodsesi), array('aktif' => 1));
+						if($x && $m)
+							{
+								redirect ('kemasukan/sesi_intake', 'location');
+								//echo 'jadi';
+							}
+							else
+							{
+								redirect ('kemasukan/sesi_intake', 'location');
+								//echo 'x jadi';
+							}
+					}
+					else
+					{
 						redirect ('kemasukan/sesi_intake', 'location');
 					}
 			}
