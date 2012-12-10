@@ -4,7 +4,17 @@
 		<h2>Penetapan Sesi Permohonan Kemasukan</h2>
 		<div id="accordion">
 				<h3>Bantuan</h3>
-				<p>sat</p>
+				<p>
+				1.&nbsp;Masukkan maklumat untuk Sesi Permohonan Kemasukan<br />
+					&nbsp;a.&nbsp;Sesi Kemasukan : format untuk sesi kemasukan adalah dimestikan dalam format <strong>"TAHUN"_"SEMESTER"</strong>, contoh <strong>2014_1</strong> atau <strong>2015_1</strong><br />
+					&nbsp;b.&nbsp;Kod Mula : format untuk kod mula adalah dimestikan dalam format <strong>"P""TAHUN""SEMESTER"</strong>, contoh <strong>P141</strong> atau <strong>P151</strong><br />
+					&nbsp;c.&nbsp;Tarikh Mula : tarikh permulaan untuk <strong>sesi kemasukan</strong><br />
+					&nbsp;d.&nbsp;Tarikh Tamat : tarikh tamat permohonan untuk </strong>sesi yang dimasukkan</strong><br />
+					&nbsp;e.&nbsp;Tarikh Daftar : tarikh pendaftaran pelajar untuk </strong>sesi kemasukan</strong><br />
+					<br />
+					<br />
+				2.&nbsp;Pengaktifan Sesi Permohonan Kemasukan yang seterusnya boleh dilakukan selepas <strong>Tarikh Daftar</strong> pada Sesi Kemasukan yang sedang aktif sekarang<br />
+				</p>
 		</div>
 		<p><font color="#FF0000"><?=@$info?></font></p>
 
