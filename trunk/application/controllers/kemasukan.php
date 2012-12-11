@@ -19,6 +19,9 @@ class Kemasukan extends CI_Controller
 				$this->load->model('jabatan');					//load table jabatan surat tawaran
 				$this->load->model('sel_statusmohon');			//load table sel_statusmohon surat tawaran
 				$this->load->model('pel_resit');					//load table tamplate surat tawaran
+				
+				
+	        	//$this->load->helper('hijri');
 
 				//mesti ikut peraturan ni..
 				//user mesti log on kalau tidak redirect to index
@@ -755,8 +758,8 @@ class Kemasukan extends CI_Controller
 			$pelajar = $this->db->join('sel_bandar', 'app_pelajar.bandar = sel_bandar.kodbandar', 'left');
 			$pelajar = $this->app_pelajar->get_where(array('id' => $id_mohon));
 			
-			$data['tarikh_masihi'] = date('Y-m-d');
-			$data['today'] = date('d F Y');
+			$data['tarikh_masihi'] = date('d F Y');
+			$data['today'] = convertHijri(date('Y-m-d'), TRUE);
 			$data['id_mohon'] = $id_mohon;
 			$data['siri_mohon']	= $pelajar->row()->siri_mohon;
 			$data['nama_pemohon'] = $pelajar->row()->nama;
@@ -842,7 +845,7 @@ class Kemasukan extends CI_Controller
 				$$key = $val;
 				//echo $key.' = '.$val.'<br>';
 			}
-			$pdf = new Pdf('P', 'px', PDF_PAGE_FORMAT, true, 'UTF-8', false);
+			$pdf = new Pdf('P', 'px', 'A4', true, 'UTF-8', false);
 			
 			// set document information
 			$this->pdf->SetCreator(PDF_CREATOR);
