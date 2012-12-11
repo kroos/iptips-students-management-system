@@ -679,7 +679,7 @@ class Kemasukan extends CI_Controller
 							);
 				$g = $this->sesi_intake->GetWhere($where);
 
-				//hanya nak tgk status permohonan dlm proses shj...
+				//hanya nak tgk status permohonan dlm bejaya sahaja...
 				$whe = array
 							(
 								'status_mohon' => 'TW',
@@ -721,6 +721,16 @@ class Kemasukan extends CI_Controller
 			
 			if($this->input->post('pdf_v', TRUE)){
 					$id_mohon = $this->input->post('id_mohon');
+					$data['html_open'] = '<!DOCTYPE HTML>
+						<html>
+							<head>
+								<title></title>
+								<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+								<link rel="stylesheet" type="text/css" href="'.base_url().'css/surat.css" />
+							</head>
+							<body>
+								<div id="content">';
+					$data['html_close'] = '</div></body></html>';
 			}
 			
 			if($this->input->post('cetak', TRUE)){
@@ -805,7 +815,7 @@ class Kemasukan extends CI_Controller
 				$data['title_surat'] = $template->row()->title;
 				$data['content1'] = $template->row()->content1;
 				$data['content2'] = $template->row()->content2;
-				$data['content3'] = $template->row()->content2;
+				$data['content3'] = $template->row()->content3;
 				$data['signiture'] = $template->row()->signiture;
 				$data['footer'] = $template->row()->footer;
 				
@@ -816,6 +826,17 @@ class Kemasukan extends CI_Controller
 					//button 
 					$data['pdf'] = '';
 					$data['print'] = '';
+					$data['html_open'] = '<!DOCTYPE HTML>
+						<html>
+							<head>
+								<title></title>
+								<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+								<link rel="stylesheet" type="text/css" href="'.base_url().'css/surat.css" />
+							</head>
+							<body>
+								<div id="content">';
+					$data['html_close'] = '</div></body></html>';
+					
 					$this->surat_pdf($data);
 				}
 				
@@ -840,6 +861,16 @@ class Kemasukan extends CI_Controller
 	        // set font
 	        $this->pdf->SetFont('times', 'BI', 12);
 	        	        
+	        // set some language dependent data:
+			$lg = Array();
+			$lg['a_meta_charset'] = 'UTF-8';
+			$lg['a_meta_dir'] = 'rtl';
+			$lg['a_meta_language'] = 'fa';
+			$lg['w_page'] = 'page';
+			
+			//set some language-dependent strings
+			$pdf->setLanguageArray($lg);
+
 	        // add a page
 	        $this->pdf->AddPage();
 	        
@@ -849,7 +880,7 @@ class Kemasukan extends CI_Controller
 	        //$this->load->library('stringparse');
 	        $this->load->library('parser');
 	        
-	        $data['html'] = $header;
+	        //$data['html'] = $header;
 			/*$html .= $template->row('address');
 			$html .= $template->row('title');
 			$html .= $template->row('content1');
