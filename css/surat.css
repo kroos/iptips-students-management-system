@@ -13,7 +13,7 @@ body{
 
 #jadual, #jadual td{
 	border: thin solid;
-	padding: 5px;
+	padding: 5px !important;
 	border-collapse: collapse;
 	}
 	
