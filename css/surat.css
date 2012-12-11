@@ -1,12 +1,23 @@
 @CHARSET "ISO-8859-1";
 
 body{
-	font-family: serif;
+	font-family: arial;
 	font-size: 12;
 	color: #000000;
+	background: #FFFFFF url("../images/iptip.png") no-repeat center;
 }
 
 #content{
 	width: auto;
+	}
+
+#jadual, #jadual td{
+	border: thin solid;
+	padding: 5px;
+	border-collapse: collapse;
+	}
+	
+.surat{
+	background: url("../images/iptip.png") no-repeat center;
 	}
                  
