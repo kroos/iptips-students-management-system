@@ -8,7 +8,6 @@
 	<?php endblock()?>
 	
 	<?php startblock('content')?>
-		<?php echo @$html_open; //tuk pdf sbb dia xdpt load base sbb pakai parse?>
 		
 		<?php echo form_open('', array("target"=>"_blank"), array("id_mohon" => $id_mohon))?>
 			<?php echo $pdf?>
@@ -26,7 +25,6 @@
 		<?php echo eval($signiture = "echo '$signiture';");?>
 		<?php echo eval($footer = "echo '$footer';");?>
 		
-		<?php echo @$html_close;?>
 	<?php endblock()?>
 	
 	<?php startblock('jscript')?>
