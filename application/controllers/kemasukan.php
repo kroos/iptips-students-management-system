@@ -721,7 +721,7 @@ class Kemasukan extends CI_Controller
 			
 			if($this->input->post('pdf_v', TRUE)){
 					$id_mohon = $this->input->post('id_mohon');
-					$data['html_open'] = '<!DOCTYPE HTML>
+					/*$data['html_open'] = '<!DOCTYPE HTML>
 						<html>
 							<head>
 								<title></title>
@@ -730,7 +730,7 @@ class Kemasukan extends CI_Controller
 							</head>
 							<body>
 								<div id="content">';
-					$data['html_close'] = '</div></body></html>';
+					$data['html_close'] = '</div></body></html>';*/
 			}
 			
 			if($this->input->post('cetak', TRUE)){
@@ -826,16 +826,6 @@ class Kemasukan extends CI_Controller
 					//button 
 					$data['pdf'] = '';
 					$data['print'] = '';
-					$data['html_open'] = '<!DOCTYPE HTML>
-						<html>
-							<head>
-								<title></title>
-								<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-								<link rel="stylesheet" type="text/css" href="'.base_url().'css/surat.css" />
-							</head>
-							<body>
-								<div id="content">';
-					$data['html_close'] = '</div></body></html>';
 					
 					$this->surat_pdf($data);
 				}
@@ -852,15 +842,21 @@ class Kemasukan extends CI_Controller
 				$$key = $val;
 				//echo $key.' = '.$val.'<br>';
 			}
-			$pdf = new Pdf('P', 'px', 'A4', true, 'UTF-8', true);
+			$pdf = new Pdf('P', 'px', PDF_PAGE_FORMAT, true, 'UTF-8', false);
 			
 			// set document information
-	        $this->pdf->SetSubject('TCPDF Tutorial');
-	        $this->pdf->SetKeywords('TCPDF, PDF, example, test, guide');
+			$this->pdf->SetCreator(PDF_CREATOR);
+			$this->pdf->SetAuthor('Hishamudin Mohamad Azid');
+			//$pdf->SetTitle('Penyata Gaji');
+			$this->pdf->SetTitle($data['title']);
+			
+			// remove default header/footer
+			$this->pdf->setPrintHeader(false);
+			$this->pdf->setPrintFooter(false);
+
 	        $y = $this->pdf->getY();
-	        // set font
-	        $this->pdf->SetFont('times', 'BI', 12);
-	        	        
+	        
+	        
 	        // set some language dependent data:
 			$lg = Array();
 			$lg['a_meta_charset'] = 'UTF-8';
@@ -870,30 +866,30 @@ class Kemasukan extends CI_Controller
 			
 			//set some language-dependent strings
 			$pdf->setLanguageArray($lg);
-
+	        
+	        // set font
+	        //$this->pdf->SetFont('times', '', 12);
+	        
+			// set LTR direction for english translation
+			$this->pdf->setRTL(false); 
+									
+			$this->pdf->SetFont('aealarabiya', '', 10);
+	        //$pdf->SetFont('aefurat', '', 10);	        
+						
 	        // add a page
 	        $this->pdf->AddPage();
 	        
-	        // print a line using Cell()
-	        //$this->pdf->Cell(0, 12, 'Example 001 - €� èéìòù', 1, 1, 'C');
-	        
-	        //$this->load->library('stringparse');
 	        $this->load->library('parser');
 	        
-	        //$data['html'] = $header;
-			/*$html .= $template->row('address');
-			$html .= $template->row('title');
-			$html .= $template->row('content1');
-			$html .= $template->row('content2');
-			$html .= $template->row('content3');
-			$html .= $template->row('signiture');
-			$html .= $template->row('footer');*/
-	        //$p = new Stringparse(array('l', $html1));
 	        
 	        //$html = $p->parse($html1);
 			$html = $this->parser->parse('kemasukan/surat_tawar', $data);;
 	        
 			$this->pdf->writeHTMLCell('auto', '', '', $y, $html, 0, 0, 0, true, 'J', true);
+			//$pdf->writeHTML($html, true, false, true, false, '');
+									
+			// reset pointer to the last page
+			$this->pdf->lastPage();
 			
 	        //Close and output PDF document
 	        $this->pdf->Output('Surat_tawaran.pdf', 'I');   
