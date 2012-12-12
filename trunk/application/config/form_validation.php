@@ -791,6 +791,28 @@ $config = array	(
 								'rules' => 'trim|required|alpha_dash|is_unique[sesi_intake.tarikh_daftar]|xss_clean'
 							),
 					),
+					
+					'kemasukan/template_surat' => array(
+						
+						array
+							(
+								'field' => 'bahasa',
+								'label' => 'Bahasa',
+								'rules' => 'trim|required|xss_clean'
+							),
+						array
+							(
+								'field' => 'nama_template',
+								'label' => 'Sesi Kemasukan',
+								'rules' => 'trim|required|xss_clean'
+							),
+						array
+							(
+								'field' => 'header',
+								'label' => 'Kepala Surat',
+								'rules' => 'trim|required|xss_clean'
+							),
+					),
 
 				);
 
