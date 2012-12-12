@@ -1171,6 +1171,19 @@ class Kemasukan extends CI_Controller
 			$this->load->library('pagination');
 			$this->load->library('ckeditor');
 			
+			/*
+			 * /
+			 *  
+			 * */
+			$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+			if ($this->form_validation->run() == TRUE)
+			{
+				if($this->input->post('simpan', TRUE) && $this->input->post('simpan')=='Simpan')
+				{
+					
+				}
+			}
+			
 			$config['base_url'] = base_url().'kemasukan/template_surat';
 			$config['total_rows'] = $this->template_surat->get()->num_rows();
 			$config['per_page'] = 5;
@@ -1200,6 +1213,9 @@ class Kemasukan extends CI_Controller
 			$data['btnSubmit'] = 'Simpan';
 			if($this->input->post('lang', TRUE)){
 				$data['baru'] = $this->template_surat->get(array('lang'=>$this->input->post('lang')));
+			}
+			if($this->input->post('edit', TRUE)){
+				$data['baru'] = $this->template_surat->get(array('id'=>$this->input->post('id')));
 			}
 			
 			$this->pagination->initialize($config);
