@@ -707,13 +707,13 @@ $config = array	(
 							(
 								'field' => 'noresit',
 								'label' => 'No Resit',
-								'rules' => 'trim|required|alpha_dash|is_unique[pel_resit.noresit]|xss_clean'
+								'rules' => 'trim|required|is_unique[pel_resit.noresit]|xss_clean'
 							),
 						array
 							(
 								'field' => 'ktr_bayaran',
-								'label' => 'ktr Bayaran',
-								'rules' => 'trim|required|alpha_dash|xss_clean'
+								'label' => 'Catatan',
+								'rules' => 'trim|required|xss_clean'
 							),
 						array
 							(
@@ -731,7 +731,7 @@ $config = array	(
 								'rules' => 'trim|required|xss_clean'
 							)
 					),
-					'kemasukan/pendaftaran' => array
+/*  					'kemasukan/pendaftaran' => array
 					(
 						array
 							(
@@ -739,7 +739,7 @@ $config = array	(
 								'label' => 'No Kad Pengenalan / No Passport / Nama',
 								'rules' => 'trim|required|xss_clean'
 							)
-					),
+					), */
 					'isms/truncate' => array
 					(
 						array
@@ -749,6 +749,15 @@ $config = array	(
 								'rules' => 'trim|required|xss_clean'
 							)
 					),
+/* 					'kemasukan/daftar_student' => array
+					(
+						array
+							(
+								'field' => 'nomatriks',
+								'label' => 'No Matriks',
+								'rules' => 'trim|required|is_unique[pelajar.matrik]|xss_clean'
+							)
+					), */
 					'kemasukan/sesi_intake' => array
 					(
 						array

@@ -598,14 +598,15 @@ class Isms extends CI_Controller
 								$r[] = $this->app_progmohon->truncate();
 								$r[] = $this->app_subjek_akademik->truncate();
 								$r[] = $this->app_waris->truncate();
-								$r[] = $this->pel_resit->truncate(); */
+								$r[] = $this->pel_resit->truncate();
+								$r[] = $this->pelajar->truncate(); */
 								if($r)
 									{
 										$data['info'] = 'System kosong';
 									}
 									else
 									{
-										$data['info'] = 'sila cuba sebentar lagi';
+										$data['info'] = 'Sila cuba sebentar lagi';
 									}
 							}
 					}

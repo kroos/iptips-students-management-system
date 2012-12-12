@@ -96,7 +96,7 @@
 			<tr>
 				<td colspan="3" style="border-left-style: solid; border-left-width: 1px; border-right-style: solid; border-right-width: 1px; border-bottom-style: solid; border-bottom-width: 1px">
 					<font color="#FF0000"><?=$k->status_mohon == 'INC' ? 'Permohonan Ditolak Kerana Maklumat Tidak Lengkap' : 'Permohonan Ditolak Kerana Tidak Layak Minimum Kelayakan (GAGAL)'?></font><br />
-					<div class="demo"><?=anchor('kemasukan/pmhn_tdk_lgkp/'.$k->id, 'TIDAK LENGKAP')?><?=anchor('kemasukan/pmhn_gagal/'.$k->id, 'GAGAL')?><?=anchor('kemasukan/detail_pemohon/'.$k->id, 'Profail', array('target' => '_blank'))?></div>
+					<div class="demo"><?=anchor('kemasukan/detail_pemohon/'.$k->id, 'Profail', array('target' => '_blank'))?></div>
 				</td>
 			</tr>
 		<?endforeach?>
