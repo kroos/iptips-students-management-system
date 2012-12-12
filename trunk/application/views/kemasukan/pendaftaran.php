@@ -78,12 +78,17 @@
 					<?if($l->num_rows() < 1):?>
 						Tiada Rekod Pembayaran. Sila ke Jabatan Kewangan.
 					<?else:?>
-						<?=form_open('', '', array('siri_mohon' => $r->siri_mohon, 'id_mohon' => $r->id))?>
-						<?=form_label('No Matriks', 'nomatr')?>
-						<div class="form_settings"><?=form_input(array('name' => 'nomatriks', 'value' => set_value('nomatriks'), 'id' => 'nomatr'))?>
-						<br /><?=form_error('nomatriks')?></div>
-						<div class="demo"><?=form_submit('reg', 'Daftar', 'class="submit"')?></div>
-						<?=form_close()?>
+						<?$fg = $this->yuran_jadual->GetWhere(array('kod_prog' => $r->progTawar, 'bulan' => 1), NULL, NULL)?>
+						<?if($c <= $fg->row()->jum_ansuran):?>
+							Pembayaran minimum adalah RM <?=$fg->row()->jum_ansuran?>, baki RM<?=($fg->row()->jum_ansuran - $c)?> perlu dijelaskan.
+						<?else:?>
+							<?=form_open('', '', array('siri_mohon' => $r->siri_mohon, 'id_mohon' => $r->id))?>
+							<?=form_label('No Matriks', 'nomatr')?>
+							<div class="form_settings"><?=form_input(array('name' => 'nomatriks', 'value' => set_value('nomatriks'), 'id' => 'nomatr'))?>
+							<br /><?=form_error('nomatriks')?></div>
+							<div class="demo"><?=form_submit('reg', 'Daftar', 'class="submit"')?></div>
+							<?=form_close()?>
+						<?endif?>
 					<?endif?>
 					</td>
 				</tr>

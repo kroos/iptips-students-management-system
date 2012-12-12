@@ -23,6 +23,11 @@ class Subjek extends CI_Model
 				$this->db->get_where('subjek', $where);
 			}
 
+		function GetWherePage($where, $limit, $offset)
+			{
+				$this->db->get_where('subjek', $where, $limit, $offset);
+			}
+
 		function get_subj($id = NULL)
 			{
 				if ($id === FALSE)
@@ -65,6 +70,11 @@ class Subjek extends CI_Model
 				return $this->db->insert('subjek', $data);
 			}
 
+		function insert($data)
+			{
+				return $this->db->insert('subjek', $data);
+			}
+
 //UPDATE
 		function edit_subj()
 			{
@@ -76,6 +86,11 @@ class Subjek extends CI_Model
 				'namasubjek_AR'=>$this->input->post('namasubjek_AR'),
 				'kredit'=>$this->input->post('kredit'));
 				return $this->db->update('subjek', $data, $data['id']);
+			}
+
+		function update($where, $update)
+			{
+				return $this->db->update('subjek', $update, $where);
 			}
 	}
 ?>
