@@ -803,13 +803,19 @@ $config = array	(
 						array
 							(
 								'field' => 'nama_template',
-								'label' => 'Sesi Kemasukan',
+								'label' => 'Nama Template',
 								'rules' => 'trim|required|xss_clean'
 							),
 						array
 							(
 								'field' => 'header',
 								'label' => 'Kepala Surat',
+								'rules' => 'trim|required|xss_clean'
+							),
+						array
+							(
+								'field' => 'address',
+								'label' => 'Alamat',
 								'rules' => 'trim|required|xss_clean'
 							),
 					),
