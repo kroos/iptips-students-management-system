@@ -28,15 +28,17 @@
 						<tr><td></td>
 							<td><?php echo $t->nama_template;?></td>
 							<td><?php echo $t->lang;?></td>
-							<td><?php echo $t->id;?></td>
+							<td><?php echo form_open('', '', array('id' => $t->id));?>
+								<?php echo form_submit('edit', 'Kemaskini', 'class=Submit')?>
+								<?php echo form_close()?></td>
 						</tr>
 					<?php }?>
 				</tbody>
 			</table>
 		</div>
-		
+		<div class="info"><?php echo validation_errors()?></div>
 		<div class="form_settings">
-			<?php echo form_open('','','id="template"')?>
+			<?php echo form_open('','id="template"')?>
 				<p><span><?php echo form_label('Bahasa', 'lang');?></span>
 					<?php echo form_radio('lang', 'MY', set_radio('lang', 'MY', TRUE), 'id="lang" class="lang"').form_label('Melayu', 'lang1');?> 
 						<?php echo form_radio('lang', 'En', set_radio('lang', 'EN', False), 'id="lang" class="lang"').' Inggeris';?></p>
@@ -70,7 +72,9 @@
 				<p><span><?php echo form_label('Nota Kaki', 'footer')?></span>
 					<?php echo form_textarea(array('name'=>'footer', 'value'=>set_value('footer', @$baru->row()->footer), 'id'=>'footer', 'class'=>'ck'));?></p>
 					
-				<p><?php echo form_submit('simpan', $btnSubmit, 'id="submit" class="submit"')?></p>
+				<p class="form_settings"><?php echo form_submit('simpan', $btnSubmit, 'id="submit" class="submit"')?></p>
+				
+			<?php echo form_close()?>
 		</div>
 	<?php endblock()?>
 	
