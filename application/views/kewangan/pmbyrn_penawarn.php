@@ -13,6 +13,7 @@
 
 				<?if ($r->num_rows() < 1) :?>
 					<div class="info">
+					<p>Carian tidak dijumpai</p>
 					<p>Proses penawaran kursus masih lagi belum dibuat kepada pelajar untk sesi kemasukan <?=$h->row()->kodsesi?></p>
 					<p>Sila dapatkan maklumat dari Jabatan Hal Ehwal Akademik</p>
 					</div>
@@ -98,7 +99,7 @@
 							<tbody>
 							<?$i = 1?>
 							<?foreach($r->result() AS $v):?>
-								<?$t = $this->pel_resit->GetWhere(array('matrik' => $v->siri_mohon))?>
+								<?$t = $this->pel_resit->GetWhere(array('matrik' => $v->siri_mohon), NULL, NULL)?>
 									<tr>
 										<td><div class="demo"><?=anchor('kewangan/bayar_prmhnn/'.$v->siri_mohon, $i++)?></div></td>
 										<td><?=$v->nama?></td>

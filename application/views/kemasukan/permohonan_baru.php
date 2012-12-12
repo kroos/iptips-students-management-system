@@ -17,7 +17,7 @@
 				foreach($ses->result() as $e1){
 					$opts[$e1->kodsesi] = $e1->kodsesi;}
 				?>
-				<?=form_dropdown('sesi_mohon', $opts, ($id != 0 ? $z->row()->sesi_mohon : set_value('sesi_mohon')), 'id="sesi_mohon"')?>
+				<?=form_dropdown('sesi_mohon', $opts, ($id != 0 ? $z->row()->sesi_mohon : set_value('sesi_mohon')), 'id = "sesi_mohon"')?>
 				<br /><?=form_error('sesi_mohon')?></p>
 			<?else:?>
 				<div class="info"><p>Tidak dapat menentukan <strong>SESI PENGAMBILAN</strong>. Sila periksa dengan Jabatan Hal Ehwal Akademik</p></div>
@@ -85,7 +85,7 @@
 			<?$i = 0?>
 			<p><span>Jantina</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<?foreach($vq->result() as $g):?>
-				<?=form_radio(array('name'=>'jantina', 'value' => $g->kodgender, 'id' => 'radio'.$t++))?><?=form_label($g->gender_MY, 'radio'.$i++)?>
+				<?=form_radio(array('name'=>'jantina', 'value' => $g->kodgender, 'checked' => ($id != 0 && $z->row()->jantina == $g->kodgender ? 'checked' : ''), 'id' => 'radio'.$t++))?><?=form_label($g->gender_MY, 'radio'.$i++)?>
 			<?endforeach?>
 			<br /><?=form_error('jantina')?></p>
 

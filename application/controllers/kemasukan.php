@@ -19,6 +19,8 @@ class Kemasukan extends CI_Controller
 				$this->load->model('jabatan');					//load table jabatan surat tawaran
 				$this->load->model('sel_statusmohon');			//load table sel_statusmohon surat tawaran
 				$this->load->model('pel_resit');					//load table tamplate surat tawaran
+				$this->load->model('pelajar');					//load table tamplate surat tawaran
+				$this->load->model('pel_waris');					//load table tamplate surat tawaran
 				
 				
 	        	//$this->load->helper('hijri');
@@ -549,8 +551,8 @@ class Kemasukan extends CI_Controller
 														'bandar' => $this->input->post('bandar'),
 														'negeri' => $this->input->post('negeri'),
 														'negara' => $this->input->post('negara', TRUE),
-														'sesi_mohon' => $semo,
 														'status_mohon' => 'DIP',
+														'sesi_mohon' => $this->input->post('sesi_mohon', TRUE),
 														'notel' => $this->input->post('notel', TRUE),
 														'nohp' => $this->input->post('nohp', TRUE),
 														'emel' => $this->input->post('emel', TRUE)
@@ -682,11 +684,12 @@ class Kemasukan extends CI_Controller
 							);
 				$g = $this->sesi_intake->GetWhere($where);
 
-				//hanya nak tgk status permohonan dlm bejaya sahaja...
+				//hanya nak tgk status permohonan dlm bejaya sahaja dan belum daftar...
 				$whe = array
 							(
 								'status_mohon' => 'TW',
-								'sesi_mohon' => $g->row()->kodsesi
+								'sesi_mohon' => $g->row()->kodsesi,
+								'dt_transfer' => NULL
 							);
 
 				$this->load->library('pagination');
@@ -972,7 +975,8 @@ class Kemasukan extends CI_Controller
 				$whe = array
 							(
 								'status_mohon' => 'TW',
-								'sesi_mohon' => $g->row()->kodsesi
+								'sesi_mohon' => $g->row()->kodsesi,
+								'dt_transfer' => NULL
 							);
 
 				$this->load->library('pagination');
@@ -984,16 +988,27 @@ class Kemasukan extends CI_Controller
 				$this->pagination->initialize($config);
 
 				$data['u'] = $this->app_pelajar->GetWherePage($whe, $config['per_page'], $this->uri->segment(3, 0));
-
 				$data['paginate'] =$this->pagination->create_links();
 
 				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+				if($this->input->post('cari', TRUE))
+					{
+						$this->form_validation->set_rules('carian', 'No Kad Pengenalan / No Passport / Nama', 'trim|required|xss_clean');
+					}
+					else
+					{
+						if($this->input->post('reg', TRUE))
+							{
+								$this->form_validation->set_rules('nomatriks', 'No Matriks', 'trim|required|is_unique[pelajar.matrik]|xss_clean');
+							}
+					}
+
 				if ($this->form_validation->run() == TRUE)
 					{
 						if($this->input->post('cari', TRUE))
 							{
 								$carian = $this->input->post('carian', TRUE);
-								$whe = "status_mohon = 'TW' AND sesi_mohon = '".$g->row()->kodsesi."' AND (nama LIKE '%$carian%' OR ic LIKE '%$carian%' OR passport LIKE '%$carian%')";
+								$whe = "status_mohon = 'TW' AND sesi_mohon = '".$g->row()->kodsesi."' AND dt_transfer IS NULL AND (nama LIKE '%$carian%' OR ic LIKE '%$carian%' OR passport LIKE '%$carian%')";
 								$data['u'] = $this->app_pelajar->GetWherePage($whe, $config['per_page'], $this->uri->segment(3, 0));
 								if ($data['u'])
 									{
@@ -1002,6 +1017,70 @@ class Kemasukan extends CI_Controller
 									else
 									{
 										$data['info'] = 'Sila cuba sekali lagi';
+									}
+							}
+							else
+							{
+								if($this->input->post('reg', TRUE))
+									{
+										$siri_mohon = $this->input->post('siri_mohon', TRUE);
+										$matrik = strtoupper(strtolower($this->input->post('nomatriks', TRUE)));
+										$id_mohon = $this->input->post('id_mohon', TRUE);
+										echo $siri_mohon.' siri mohon<br />'.$matrik.' matriks<br />'.$id_mohon.' id_mohon<br />';
+
+										//proses copy data
+										//1. copy dari app_pelajar ke pelajar
+										//cari app_pelajar dulu
+										$pel = $this->app_pelajar->GetWhere(array('id_mohon' => $id_mohon));
+										$insert = array
+														(
+															'matrik' => $matrik,
+															'nama' => $pel->row()->nama,
+															'ic' => $pel->row()->ic,
+															'status_pljr' => 'A',
+															'dt_lahir' => $pel->row()->dt_lahir,
+															'tempat_lahir' => $pel->row()->tempat_lahir,
+															'status_warga' => $pel->row()->status_warga,
+															'warganegara' => $pel->row()->warganegara,
+															'bangsa' => $pel->row()->bangsa,
+															'jantina' => $pel->row()->jantina,
+															'status_kahwin' => $pel->row()->status_kahwin,
+															'alamat1' => $pel->row()->alamat1,
+															'alamat2' => $pel->row()->alamat2,
+															'poskod' => $pel->row()->poskod,
+															'bandar' => $pel->row()->bandar,
+															'negeri' => $pel->row()->negeri,
+															'negara' => $pel->row()->negara,
+															'notel' => $pel->row()->notel,
+															'nohp' => $pel->row()->nohp,
+															'emel' => $pel->row()->emel,
+															'dt_daftar' => date_db(now),
+															'sesi_daftar' => $pel->row()->sesi_mohon,
+															'id_add' => $this->session->userdata('id_user'),
+															'dt_add' => date_db(now)
+														);
+										//insert table pelajar
+										$reg = $this->pelajar->insert($insert);
+										//update table app_pelajar
+										$uap = $this->app_pelajar->update(array('dt_transfer' => date_db(now()), 'id_transfer' => $this->session->userdata('id_user')), array('id' => $id_mohon));
+
+										//insert table pel_waris
+										$war = $this->app_waris->GetWhere(array('id_mohon' => $idmohon));
+
+										$waris = array
+														(
+															'matrik' => $matrik,
+															'nama' => $war->row()->nama,
+															'hubungan' => $war->row()->hubungan,
+															'alamat1' => $war->row()->alamat1,
+															'alamat2' => $war->row()->alamat2,
+															'poskod' => $war->row()->poskod,
+															'no_telefon' => $war->row()->nohp,
+														);
+										//insert table pel_waris
+										$regwar = $this->pel_waris->insert($waris);
+
+										############################################################################
 									}
 							}
 					}
@@ -1083,6 +1162,7 @@ class Kemasukan extends CI_Controller
 						redirect ('kemasukan/sesi_intake', 'location');
 					}
 			}
+
 #############################################################################################################################
 	}
 
