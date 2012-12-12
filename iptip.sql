@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50523
 File Encoding         : 65001
 
-Date: 2012-12-10 17:43:53
+Date: 2012-12-13 05:59:27
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,24 +27,25 @@ CREATE TABLE `akaun` (
   `keterangan_EN` varchar(50) DEFAULT NULL,
   `keterangan_AR` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of akaun
 -- ----------------------------
-INSERT INTO `akaun` VALUES ('1', '4', null, 'PENDAFTARAN', 'REGISTRATION', null);
-INSERT INTO `akaun` VALUES ('2', '4', null, 'PERKHIDMATAN', 'SERCIVE', null);
-INSERT INTO `akaun` VALUES ('3', '4', null, 'PERPUSTAKAAN & KOMPUTER', 'LIBRARY & COMPUTER', null);
-INSERT INTO `akaun` VALUES ('4', '4', null, 'TAKAFUL', 'INSURANCE', null);
-INSERT INTO `akaun` VALUES ('5', '4', null, 'KAD PELAJAR', 'STUDENT CARD', null);
-INSERT INTO `akaun` VALUES ('6', '4', null, 'KO-KURIKULUM', 'CO-CURRICULUM', null);
-INSERT INTO `akaun` VALUES ('7', '4', null, 'SUAIKENAL', 'ORIENTATION', null);
-INSERT INTO `akaun` VALUES ('8', '4', null, 'PERMAI', 'PERMAI', null);
-INSERT INTO `akaun` VALUES ('9', '4', null, 'PAKAIAN RASMI', 'OFFICIAL CLOTHES', null);
-INSERT INTO `akaun` VALUES ('10', '4', null, 'PENGANGKUTAN', 'TRANSPORTATION', null);
-INSERT INTO `akaun` VALUES ('11', '4', null, 'ASRAMA', 'HOSTEL', null);
-INSERT INTO `akaun` VALUES ('12', '4', null, 'PENGAJIAN', 'TUITION', null);
-INSERT INTO `akaun` VALUES ('13', '2', null, 'CAGARAN ASRAMA', 'HOSTEL DEPOSIT', null);
+INSERT INTO `akaun` VALUES ('1', '4', '40001', 'PENDAFTARAN', 'REGISTRATION', null);
+INSERT INTO `akaun` VALUES ('2', '4', '40002', 'PERKHIDMATAN', 'SERCIVE', null);
+INSERT INTO `akaun` VALUES ('3', '4', '40003', 'PERPUSTAKAAN & KOMPUTER', 'LIBRARY & COMPUTER', null);
+INSERT INTO `akaun` VALUES ('4', '4', '40004', 'TAKAFUL', 'INSURANCE', null);
+INSERT INTO `akaun` VALUES ('5', '4', '40005', 'KAD PELAJAR', 'STUDENT CARD', null);
+INSERT INTO `akaun` VALUES ('6', '4', '40006', 'KO-KURIKULUM', 'CO-CURRICULUM', null);
+INSERT INTO `akaun` VALUES ('7', '4', '40007', 'SUAIKENAL', 'ORIENTATION', null);
+INSERT INTO `akaun` VALUES ('8', '4', '40008', 'PERMAI', 'PERMAI', null);
+INSERT INTO `akaun` VALUES ('9', '4', '40009', 'PAKAIAN RASMI', 'OFFICIAL CLOTHES', null);
+INSERT INTO `akaun` VALUES ('10', '4', '40010', 'PENGANGKUTAN', 'TRANSPORTATION', null);
+INSERT INTO `akaun` VALUES ('11', '4', '40011', 'ASRAMA', 'HOSTEL', null);
+INSERT INTO `akaun` VALUES ('12', '4', '40012', 'PENGAJIAN', 'TUITION', null);
+INSERT INTO `akaun` VALUES ('13', '2', '20001', 'CAGARAN ASRAMA', 'HOSTEL DEPOSIT', null);
+INSERT INTO `akaun` VALUES ('14', '4', '40013', 'YURAN PEPERIKSAAN STAM', 'STAM EXAMINATION FEE', null);
 
 -- ----------------------------
 -- Table structure for `app_akademik`
@@ -118,14 +119,14 @@ CREATE TABLE `app_pelajar` (
 -- Records of app_pelajar
 -- ----------------------------
 INSERT INTO `app_pelajar` VALUES ('1', 'P1310002', 'Ahmad', '900101025556', '1113', '2012-12-03', 'M010701', '1', 'A12', '2022', '2', '1', 'Tmn Peruda', '', '05300', 'M010101', '01', 'M01', '0', '0', '0', '1', '2012-12-03', '1', '2012-12-09', null, null, '2013_1', 'TW', 'PST', '1');
-INSERT INTO `app_pelajar` VALUES ('2', 'P1310003', 'Student 1', '800101025555', '111234', '2012-12-03', 'M010701', '2', 'A09', '2043', '1', '1', 'Tmn Peruda', '', '05300', 'M010101', '01', 'M01', '0', '0', 'stud1@mail.com', '1', '2012-12-04', '1', '2012-12-07', null, null, '2013_1', 'DIP', null, '1');
-INSERT INTO `app_pelajar` VALUES ('3', 'P1310004', 'Student 4 Bin Bapak Dia', '3232323232', '323232', '2012-12-03', 'M010701', '2', 'B03', '1103', '1', '1', 'Tmn Peruda', '', '05300', 'M010101', '01', 'M01', '0', '0', 'asd@asd.com', '1', '2012-12-05', '1', '2012-12-07', null, null, '2013_1', 'DIP', null, '1');
+INSERT INTO `app_pelajar` VALUES ('2', 'P1310003', 'Student 1', '800101025555', '111234', '2012-12-03', 'M010701', '2', 'A09', '2043', '1', '1', 'Tmn Peruda', '', '05300', 'M010217', '02', 'M01', '0', '0', 'stud1@mail.com', '1', '2012-12-04', '1', '2012-12-13', null, null, '2013_1', 'TW', 'DQH', '1');
+INSERT INTO `app_pelajar` VALUES ('3', 'P1310004', 'Student 4 Bin Bapak Dia', '3232323232', '323232', '2012-12-03', 'M010701', '2', 'B03', '1103', '1', '1', 'Tmn Peruda', '', '05300', 'M010101', '01', 'M01', '0', '0', 'asd@asd.com', '1', '2012-12-05', '1', '2012-12-12', null, null, '2013_1', 'TW', 'DSY', '1');
 INSERT INTO `app_pelajar` VALUES ('4', 'P1310005', 'Student 3', '900101025555', '1112', '2012-12-03', 'M010701', '1', 'A12', '2022', '1', '1', 'Tmn Peruda', '', '05300', 'M010101', '01', 'M01', '0', '0', '0', '1', '2012-12-05', '1', '2012-12-09', null, null, '2013_1', 'INC', null, '1');
 INSERT INTO `app_pelajar` VALUES ('5', 'P1310006', 'Student 2', '123456789014', '123456789014', '2012-12-06', 'M010701', '1', 'A01', '100', '1', '1', '72, Taman Keranji', '', '05400', 'M010201', '02', 'M01', '', '0162052420', 'email@email.com', '1', '2012-12-06', '1', '2012-12-07', null, null, '2013_1', 'DIP', null, '1');
 INSERT INTO `app_pelajar` VALUES ('6', 'P1310007', 'Student 4', '123456789015', '123456789015', '2012-12-06', 'M010502', '1', 'A04', '2039', '2', '1', '2, Taman Mutiara', '', '08000', 'M010202', '02', 'M01', '', '0162052420', 'email1@email.com', '1', '2012-12-06', '1', '2012-12-09', null, null, '2013_1', 'GL', '', '0');
 INSERT INTO `app_pelajar` VALUES ('7', 'P1310008', 'Student 5', '123456789016', '123456789016', '2012-12-06', 'M010701', '1', 'A12', '2022', '2', '1', '2, Taman Mutiara', '', '08000', 'M010218', '02', 'M01', '', '0162052420', 'email5@email.com', '1', '2012-12-06', null, null, null, null, '2013_1', 'DIP', null, '1');
 INSERT INTO `app_pelajar` VALUES ('8', 'P1310001', 'Student 2', '123456789017', '123456789017', '2012-12-06', 'M010701', '1', 'A01', '100', '1', '1', '72, Taman Keranji', '', '05400', 'M010201', '02', 'M01', '', '0162052420', 'email@email.com', '1', '2012-12-08', null, null, null, null, '2013_1', 'DIP', null, '1');
-INSERT INTO `app_pelajar` VALUES ('12', 'P1310009', 'Student 6', '123456789020', '-', '2012-12-09', 'M010232', '1', 'M01', '100', '1', '1', '7, Taman Mutiara', '', '08000', 'M010232', '02', 'M01', '', '0162052420', 'email6@email.com', '1', '2012-12-09', '1', '2012-12-09', null, null, null, 'DIP', null, '1');
+INSERT INTO `app_pelajar` VALUES ('12', 'P1310009', 'Student 6', '123456789020', '-', '2012-12-09', 'M010232', '1', 'M01', '100', '1', '1', '7, Taman Mutiara', '', '08000', 'M010232', '02', 'M01', '', '0162052420', 'email6@email.com', '1', '2012-12-09', '1', '2012-12-09', null, null, '2013_1', 'DIP', null, '1');
 
 -- ----------------------------
 -- Table structure for `app_progmohon`
@@ -148,13 +149,13 @@ CREATE TABLE `app_progmohon` (
 -- Records of app_progmohon
 -- ----------------------------
 INSERT INTO `app_progmohon` VALUES ('1', '1', 'P1310002', 'DQH', '1', 'TW', '1', '2012-12-09 03:04:58', 'Penawaran Program PST Ditawarkan Program Yang Lain Sbb Xdak Basic');
-INSERT INTO `app_progmohon` VALUES ('2', '2', 'P1310003', 'ST', '1', 'GL', '1', '2012-12-07 08:58:22', 'Penawaran Program Yang Lain');
-INSERT INTO `app_progmohon` VALUES ('3', '2', 'P1310003', 'PST', '2', 'GL', '1', '2012-12-07 08:58:22', 'Penawaran Program Yang Lain');
-INSERT INTO `app_progmohon` VALUES ('4', '3', 'P1310004', 'DSY', '1', 'GL', '1', '2012-12-07 09:03:59', 'Permohonan Gagal');
-INSERT INTO `app_progmohon` VALUES ('5', '3', 'P1310004', 'DQH', '2', 'GL', '1', '2012-12-07 09:03:59', 'Permohonan Gagal');
-INSERT INTO `app_progmohon` VALUES ('6', '3', 'P1310004', 'DUS', '3', 'GL', '1', '2012-12-07 09:03:59', 'Permohonan Gagal');
+INSERT INTO `app_progmohon` VALUES ('2', '2', 'P1310003', 'ST', '1', 'GL', '1', '2012-12-13 05:14:35', 'Penawaran Program Yang Lain');
+INSERT INTO `app_progmohon` VALUES ('3', '2', 'P1310003', 'PST', '2', 'GL', '1', '2012-12-13 05:14:35', 'Penawaran Program Yang Lain');
+INSERT INTO `app_progmohon` VALUES ('4', '3', 'P1310004', 'DSY', '1', 'TW', '1', '2012-12-12 14:04:02', 'Penawaran Program DSY Catatan : Permohonan Gagal');
+INSERT INTO `app_progmohon` VALUES ('5', '3', 'P1310004', 'DQH', '2', 'GL', '1', '2012-12-12 14:04:02', 'Penawaran Program Yang Lain');
+INSERT INTO `app_progmohon` VALUES ('6', '3', 'P1310004', 'DUS', '3', 'GL', '1', '2012-12-12 14:04:02', 'Penawaran Program Yang Lain');
 INSERT INTO `app_progmohon` VALUES ('7', '4', 'P1310002', 'DSY', '1', 'INC', '1', '2012-12-09 03:05:21', 'Maklumat Tidak Lengkap');
-INSERT INTO `app_progmohon` VALUES ('8', '2', 'P1310003', 'DQH', '1', 'TW', '1', '2012-12-07 08:58:22', 'Penawaran Program DQH Layak');
+INSERT INTO `app_progmohon` VALUES ('8', '2', 'P1310003', 'DQH', '1', 'TW', '1', '2012-12-13 05:14:35', 'Penawaran Program DQH Dapat Yang Ni');
 INSERT INTO `app_progmohon` VALUES ('9', '5', 'P1310006', 'DSY', '1', 'GL', '1', '2012-12-07 09:04:43', 'Permohonan Gagal');
 INSERT INTO `app_progmohon` VALUES ('10', '5', 'P1310006', 'DUS', '2', 'GL', '1', '2012-12-07 09:04:43', 'Permohonan Gagal');
 INSERT INTO `app_progmohon` VALUES ('11', '5', 'P1310006', 'ST', '3', 'GL', '1', '2012-12-07 09:04:43', 'Permohonan Gagal');
@@ -285,10 +286,9 @@ CREATE TABLE `ci_sessions` (
 -- ----------------------------
 -- Records of ci_sessions
 -- ----------------------------
-INSERT INTO `ci_sessions` VALUES ('2330da6090641d2c2ebdd061a6bf15bc', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:17.0) Gecko/20100101 Firefox/17.0', '1355131523', 'a:5:{s:7:\"id_user\";s:1:\"1\";s:8:\"username\";s:6:\"admin1\";s:8:\"password\";s:6:\"123123\";s:9:\"logged_in\";b:1;s:8:\"language\";N;}');
-INSERT INTO `ci_sessions` VALUES ('99ecc27eb89a778fa957c4fab97f0eb9', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:17.0) Gecko/20100101 Firefox/17.0', '1355130607', '');
-INSERT INTO `ci_sessions` VALUES ('b56181a95babccb776465e5b0d36e750', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1481359334', 'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"id_user\";s:1:\"1\";s:8:\"username\";s:6:\"admin1\";s:8:\"password\";s:6:\"123123\";s:9:\"logged_in\";b:1;}');
-INSERT INTO `ci_sessions` VALUES ('f5735724af2e6d9807f7be9b0aae6f02', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; rv:17.0) Gecko/20100101 Firefox/17.0', '1355131674', 'a:6:{s:9:\"user_data\";s:0:\"\";s:8:\"language\";N;s:7:\"id_user\";s:1:\"1\";s:8:\"username\";s:6:\"admin1\";s:8:\"password\";s:6:\"123123\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('749515a09eb830a7fdb65e417a97cac8', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1355347448', 'a:4:{s:7:\"id_user\";s:1:\"1\";s:8:\"username\";s:6:\"admin1\";s:8:\"password\";s:6:\"123123\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('b087196227fa943aa888325c9cd6ae75', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1355349512', 'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"id_user\";s:1:\"1\";s:8:\"username\";s:6:\"admin1\";s:8:\"password\";s:6:\"123123\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('b56181a95babccb776465e5b0d36e750', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1481359334', 'a:1:{s:9:\"user_data\";s:0:\"\";}');
 
 -- ----------------------------
 -- Table structure for `dept_func`
@@ -299,7 +299,7 @@ CREATE TABLE `dept_func` (
   `id_user_department` int(11) NOT NULL,
   `id_user_function` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of dept_func
@@ -329,6 +329,7 @@ INSERT INTO `dept_func` VALUES ('23', '5', '20');
 INSERT INTO `dept_func` VALUES ('24', '5', '21');
 INSERT INTO `dept_func` VALUES ('25', '1', '22');
 INSERT INTO `dept_func` VALUES ('26', '5', '23');
+INSERT INTO `dept_func` VALUES ('27', '5', '24');
 
 -- ----------------------------
 -- Table structure for `dept_jaw`
@@ -524,7 +525,7 @@ CREATE TABLE `pel_akademik` (
   `institusi` varchar(100) DEFAULT NULL,
   `tahun` year(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of pel_akademik
@@ -593,7 +594,7 @@ CREATE TABLE `pel_invois` (
   `id_edit` varchar(20) DEFAULT NULL,
   `dt_edit` datetime DEFAULT NULL,
   `aktif` tinyint(1) DEFAULT '1',
-  UNIQUE KEY `idx1` (`no_inv`)
+  UNIQUE KEY `no_inv` (`no_inv`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -648,7 +649,7 @@ CREATE TABLE `pel_resit` (
   `matrik` varchar(20) DEFAULT NULL,
   `ktr_bayaran` varchar(100) DEFAULT NULL,
   `tarikhmasa_resit` datetime DEFAULT NULL,
-  `jumlah` double(8,2) DEFAULT NULL,
+  `jumlah` decimal(8,2) DEFAULT NULL,
   `id_add` varchar(20) DEFAULT NULL,
   `dt_add` datetime DEFAULT NULL,
   `id_edit` varchar(20) DEFAULT NULL,
@@ -656,13 +657,14 @@ CREATE TABLE `pel_resit` (
   `aktif` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `idx1` (`noresit`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of pel_resit
 -- ----------------------------
-INSERT INTO `pel_resit` VALUES ('1', 'a123', 'P1310002', 'a123', '2012-12-07 05:50:53', '20.00', '1', '2012-12-07 00:00:00', null, null, '1');
-INSERT INTO `pel_resit` VALUES ('2', 'Q123', 'P1310002', 'Saja', '2012-12-09 04:14:55', '9000.00', '1', '2012-12-09 04:14:55', null, null, '1');
+INSERT INTO `pel_resit` VALUES ('3', 'Test 1', 'P1310004', 'Bayar Pendaftaran', '2012-12-12 14:18:55', '400.35', '1', '2012-12-12 14:18:55', null, null, '1');
+INSERT INTO `pel_resit` VALUES ('4', 'Tembakdulu001', 'P1310003', 'Tembak', '2012-12-13 05:16:00', '700.00', '1', '2012-12-13 05:16:00', null, null, '1');
+INSERT INTO `pel_resit` VALUES ('5', 'Tembakdulu002', 'P1310003', 'Tembak2', '2012-12-13 05:16:19', '0.01', '1', '2012-12-13 05:16:19', null, null, '1');
 
 -- ----------------------------
 -- Table structure for `pel_sem`
@@ -678,7 +680,7 @@ CREATE TABLE `pel_sem` (
   `aktif` tinyint(1) DEFAULT NULL,
   `terkini` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of pel_sem
@@ -689,12 +691,12 @@ CREATE TABLE `pel_sem` (
 -- ----------------------------
 DROP TABLE IF EXISTS `pel_subjek_akademik`;
 CREATE TABLE `pel_subjek_akademik` (
-  `id` bigint(20) NOT NULL DEFAULT '0',
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `akademik_id` bigint(20) DEFAULT NULL,
   `subjek` varchar(50) DEFAULT NULL,
   `gred` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of pel_subjek_akademik
@@ -714,7 +716,7 @@ CREATE TABLE `pel_waris` (
   `poskod` varchar(10) DEFAULT NULL,
   `no_telefon` varchar(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of pel_waris
@@ -754,7 +756,7 @@ CREATE TABLE `pelajar` (
   `id_edit` varchar(20) DEFAULT NULL,
   `dt_edit` date DEFAULT NULL,
   PRIMARY KEY (`id`,`matrik`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of pelajar
@@ -818,13 +820,17 @@ CREATE TABLE `ruj_intake` (
   `id_surat` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx1` (`id_intake`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ruj_intake
 -- ----------------------------
 INSERT INTO `ruj_intake` VALUES ('1', '2013_1', 'IPTIP 12/90 Jld.4', '91', '1', '00010', '1');
 INSERT INTO `ruj_intake` VALUES ('2', '2014_1', 'IPTIP 12/90 Jld.4', '91', '1', '00001', '1');
+INSERT INTO `ruj_intake` VALUES ('15', '2013_1', 'IPTIP 12/90 Jld. 4', '1', '2', '00001', '1');
+INSERT INTO `ruj_intake` VALUES ('16', '2013_1', 'IPTIP 12/90 Jld. 4', '1', '3', '00001', '1');
+INSERT INTO `ruj_intake` VALUES ('17', '2013_1', 'IPTIP 12/90 Jld. 4', '1', '4', '00001', '1');
+INSERT INTO `ruj_intake` VALUES ('18', '2013_1', 'IPTIP 12/90 Jld. 4', '1', '5', '00001', '1');
 
 -- ----------------------------
 -- Table structure for `sel_bandar`
@@ -3928,6 +3934,23 @@ INSERT INTO `sesi_taqwim` VALUES ('35', 'EXAM', '2013-11-05', '2013-11-23', '201
 INSERT INTO `sesi_taqwim` VALUES ('36', 'CUTI_AKHIR', '2013-11-24', '2014-01-04', '2013_2');
 
 -- ----------------------------
+-- Table structure for `siri_invois`
+-- ----------------------------
+DROP TABLE IF EXISTS `siri_invois`;
+CREATE TABLE `siri_invois` (
+  `kod_mula` varchar(4) NOT NULL DEFAULT '',
+  `siri` int(4) DEFAULT NULL,
+  `aktif` tinyint(1) DEFAULT '1',
+  PRIMARY KEY (`kod_mula`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of siri_invois
+-- ----------------------------
+INSERT INTO `siri_invois` VALUES ('2012', '1', '0');
+INSERT INTO `siri_invois` VALUES ('2013', '1', '1');
+
+-- ----------------------------
 -- Table structure for `siri_matrik`
 -- ----------------------------
 DROP TABLE IF EXISTS `siri_matrik`;
@@ -3940,6 +3963,7 @@ CREATE TABLE `siri_matrik` (
 -- ----------------------------
 -- Records of siri_matrik
 -- ----------------------------
+INSERT INTO `siri_matrik` VALUES ('2012', '1', '1');
 
 -- ----------------------------
 -- Table structure for `spm_gred_year`
@@ -4102,13 +4126,14 @@ CREATE TABLE `template_surat` (
   `footer` longtext,
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx1` (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of template_surat
 -- ----------------------------
-INSERT INTO `template_surat` VALUES ('1', 'DEFAULT_MY', 'MY', '<h3 align=\"center\">\"KEDAH SEJAHTERA\"</h3>\r\n\r\n  <table>\r\n  <tbody><tr>\r\n    <td>Rujukan<br></td>\r\n    <td>:</td>\r\n    <td>\'.$auto_generate_siri.\'</td></tr>\r\n  <tr>\r\n    <td>Tarikh</td>\r\n    <td>:</td>\r\n    <td>\'.$today.\' (\'.$tarikh_hijri.\')<br></td>\r\n  </tr>\r\n<tr><td>&nbsp;</td><td></td><td><br></td></tr>\r\n<tr><td colspan=\"3\">&nbsp;</td></tr></tbody></table>', '<table><tbody><tr><td>س</td></tr>\r\n<tr><td>\'.$siri_mohon.\'</td></tr>\r\n<tr><td>\'.$nama_pemohon.\' (\'.$ic_pemohon.\')</td></tr>\r\n<tr><td>\'.$alamat1_pemohon.\'</td></tr>\r\n<tr><td>\'.$alamat2_pemohon.\'</td></tr>\r\n<tr><td>\'.$poskod.\' \'.$bandar.\'</td></tr><tr><td>\'.$negeri.\', \'.$negara.\'</td></tr>\r\n<tr><td>&nbsp;</td></tr></tbody></table>', '<table><tbody><tr><td><strong>TAWARAN KEMASUKAN KE KOLEJ UNIVERSITI  INSANIAH (KUIN) SESI PENGAJIAN AKADEMIK \'.$sesi_intake.\'</strong></td></tr>\r\n<tr><td>&nbsp;</td></tr></tbody></table>', '<table><tbody><tr><td>Sekalung tahniah diucapkan kepada saudara/saudari kerana terpilih mengikuti program pengajian di Kolej Universiti INSANIAH, Alor Setar, Kedah Darulaman, Malaysia. Maklumat program pengajian adalah seperti berikut:<br></td>\r\n  </tr>\r\n<tr><td>&nbsp;</td></tr></tbody></table>\r\n', '<table id=\"jadual\" border=\"1\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n  <tbody><tr>\r\n    <td><strong>Program ditawarkan</strong></td>\r\n    <td colspan=\"3\">\'.$progTawar.\'</td>\r\n  </tr>\r\n   <tr>\r\n    <td><strong>Kulliyah</strong></td> <td colspan=\"3\">\'.$kulliyah.\'</td></tr>\r\n<tr>\r\n<td width=\"25%\"><strong>Tahun Pengajian<br></strong></td><td width=\"25%\">\'.$tahun.\'</td><td><strong>Tempoh Pengajian</strong></td><td>\'.$tempoh_ngaji.\'</td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>Tarikh Pendaftaran</strong></td><td>\'.$tarikh_daftar.\'</td>\r\n<td><strong>Masa</strong></td><td>\'.$masa_daftar.\'</td>\r\n  </tr>\r\n  <tr>\r\n    <td valign=\"top\"><strong>Tempat Pendaftaran</strong></td>\r\n    <td colspan=\"3\">\'.$tempat_daftar.\'</td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>Maklumat lanjut sila hubungi</strong></td>\r\n    <td colspan=\"3\">\'.$no_telefon.\'</td>\r\n  </tr>\r\n</tbody></table>', '<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n  <tbody><tr><td>&nbsp;</td></tr><tr>\r\n    <td><strong><u>Bayaran</u></strong></td>\r\n  </tr>\r\n  <tr>\r\n    <td>Anda hendaklah membuat bayaran sebanyak <strong>RM 2,755</strong> di kaunter kewangan semasa pendaftaran. Sila bawa bersama Surat Tawaran semasa membuat bayaran.</td>\r\n  </tr>\r\n<tr><td>&nbsp;</td></tr>\r\n<tr>\r\n    <td><strong>Kemudahan Asrama</strong> : Diwajibkan</td>\r\n  </tr>\r\n  <tr><td>&nbsp;</td></tr>\r\n<tr>\r\n    <td><strong>PENTING</strong>:</td>\r\n  </tr>\r\n  <tr>\r\n    <td>Anda dikehendaki mematuhi syarat-syarat tawaran seperti berikut:-</td>\r\n  </tr>\r\n</tbody></table>\r\n<table id=\"info\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n  <tbody><tr>\r\n    <td width=\"2%\">&nbsp;</td>\r\n    <td align=\"center\" width=\"4%\">1.</td>\r\n    <td width=\"94%\">Anda perlu menjawab tawaran ini melalui (http://ecampus.insaniah.my/frm/semak.php) selewat-lewatnya 10 hari sebelum hari pendaftaran. Jika tidak, pihak kami menganggap anda tidak berminat ke program yang ditawarkan dan surat tawaran ini akan terbatal.</td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">2.</td>\r\n    <td>Anda diwajibkan mencetak <strong>PANDUAN KEMASUKAN</strong> dari (http://ecampus.insaniah.my/frm/semak.php) yang menjadi sebahagian daripada Surat Tawaran ini, sila baca dengan teliti dan isikan borang-borang yang berkaitan.</td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">3.</td>\r\n    <td>Tawaran ini akan terbatal sekiranya jumlah pelajar yang mendaftar bagi program ini tidak mencukupi jumlah yang ditetapkan dan anda boleh memohon untuk mengikuti program lain yang anda layak.</td>\r\n  </tr>\r\n  <tr>\r\n    <td colspan=\"3\">Pihak universiti mengucapkan selamat datang dan mengalu-alukan kedatangan saudara/saudari ke KUIN.</td>\r\n  </tr>\r\n  <tr>\r\n    <td colspan=\"3\">Sekian, terima kasih</td>\r\n  </tr>\r\n</tbody></table>', '<table>\r\n  <tbody><tr><td><strong>\"PENEROKAAN KE ARAH KEBIJAKSANAAN\"</strong></td></tr>\r\n   <tr><td>&nbsp;</td></tr>\r\n  <tr><td><strong>PROF. MADYA DR. AHMAD FAUZI BIN IDRIS</strong></td></tr>\r\n  <tr><td>DEKAN KEMASUKAN DAN REKOD</td></tr>\r\n  <tr><td>JABATAN HAL EHWAL AKADEMIK</td></tr>\r\n</tbody></table>', '<table align=\"center\"><tbody><tr><td>Cetakan Komputer Tidak Memerlukan Tandatangan</td></tr></tbody></table>');
-INSERT INTO `template_surat` VALUES ('3', 'DEFAULT_ENG', 'ENG', '\r\n<h3 align=\"center\">\"KEDAH SEJAHTERA\"</h3>\r\n\r\n  <table>\r\n  <tbody><tr>\r\n    <td>Reference<br></td>\r\n    <td>:</td>\r\n    <td>\'.$auto_generate_siri .\'</td></tr>\r\n  <tr>\r\n    <td>Date</td>\r\n    <td>:</td>\r\n    <td>\'.$today.\' (\'.$tarikh_hijri.\')<br></td>\r\n  </tr>\r\n<tr><td>&nbsp;</td><td></td><td><br></td></tr>\r\n<tr><td colspan=\"3\">&nbsp;</td></tr></tbody></table>', '\r\n<table><tbody><tr><td>السلام عليكم و رحمة الله و بركاته</td></tr>\r\n<tr><td>\'.$siri_mohon.\'</td></tr>\r\n<tr><td>\'.$nama_pemohon.\' (\'.$ic_pemohon.\')</td></tr>\r\n<tr><td>\'.$alamat1_pemohon.\'</td></tr>\r\n<tr><td>\'.$alamat2_pemohon.\'</td></tr>\r\n<tr><td>\'.$poskod.\' \'.$bandar.\'</td></tr><tr><td>\'.$negeri.\', \'.$negara.\'</td></tr>\r\n<tr><td>&nbsp;</td></tr></tbody></table>', '<table><tbody><tr><td><strong>OFFER OF ADMISSION INTO INSANIAH UNIVERSITY COLLEGE (IUC) </strong><strong>\'.$sesi_intake.\'</strong><strong> IN THE FIRST ACADEMIC SESSION <br></strong></td></tr>\r\n<tr><td>&nbsp;</td></tr></tbody></table>', '<table><tbody><tr><td>Congratulations! You have been accepted to further your study at INSANIAH University College (IUC), Alor&nbsp; Setar, Kedah Darul Aman, Malaysia. You are accepted to undertake the following study programme:<br></td>\r\n  </tr>\r\n<tr><td>&nbsp;</td></tr></tbody></table>\r\n', '<table id=\"jadual\" border=\"1\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n  <tbody><tr>\r\n    <td><strong>Programme\r\n    </strong></td><td colspan=\"3\">\'.$progTawar.\'</td>\r\n  </tr>\r\n   <tr>\r\n    <td><strong>Kulliyah</strong></td> <td colspan=\"3\">\'.$kulliyah.\'</td></tr>\r\n<tr>\r\n<td width=\"25%\"><strong>Year</strong></td><td width=\"25%\">\'.$tahun.\'</td><td><strong>Duration</strong></td><td>\'.$tempoh_ngaji.\'</td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>Date of Registration<br></strong></td><td>\'.$tarikh_daftar.\'</td>\r\n<td><strong>Time of Registration<br></strong></td><td>\'.$masa_daftar.\'</td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>Venue of Registration</strong></td>\r\n    <td colspan=\"3\">\'.$tempat_daftar.\'</td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>For further enquiries, please&nbsp; contact</strong></td>\r\n    <td colspan=\"3\">\'.$no_telefon.\'</td>\r\n  </tr>\r\n</tbody></table>', '<table id=\"pay\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n  <tbody><tr>\r\n    <td><strong><u>PAYMENT</u></strong></td>\r\n  </tr>\r\n  <tr>\r\n    <td>a) You are required to make the full  payment for the first semester tuition fees including the registration fees  before the date of registration. <em>(Please refer Fees Structure Schedule and  Payment Guideline)</em></td>\r\n  </tr>\r\n  <tr>\r\n    <td>b) Please <strong>make ready a Personal Bond</strong> in USD or in RM (Ringgit Malaysia) (<em>Please  refer attachment for Personal Bond</em>) and to be paid to our officer immediately upon arrival at the Kuala  Lumpur International Airport (KLIA).</td>\r\n  </tr>\r\n  <tr>\r\n    <td>c) Failing to do so, we will not be able to release  you from the custody of the Malaysian Immigration authority.</td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>Facilities :&nbsp;</strong> Hostel will be provided</td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>IMPORTANT</strong>:</td>\r\n  </tr>\r\n  <tr>\r\n    <td>You are to abide to the following condition(s):</td>\r\n  </tr>\r\n</tbody></table>\r\n<table id=\"info\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n  <tbody><tr>\r\n    <td width=\"2%\">&nbsp;</td>\r\n    <td align=\"center\" width=\"4%\">1.</td>\r\n    <td width=\"94%\">Candidates must reply to the offer letter by accepting or rejecting the offer at least 10 days before the date of registration via website. (http://ecampus.insaniah.my/frm/semak.php)</td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">2.</td>\r\n    <td>This offer will be automatically null and void if you fail to register on the stipulated date or within 14 days after the registration date.</td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">3.</td>\r\n    <td>Please arrange your travel to arrive in Malaysia on any of the dates i.e. on the 17 June 2012 until 23 June 2012) and inform the University (7) days prior to your arrival via email (daftar@insaniah.edu.my).</td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">4.</td>\r\n    <td>If you fail to arrive on any of the specified dates, our officer will not be able to assist your release from the airport. </td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">5.</td>\r\n    <td>It is compulsory for you to print the ADMISSION GUIDELINES as part of the Letter Offer of Admission and you are also required to read carefully and fill in the relevant forms.</td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">6.</td>\r\n    <td>If the programme offered does not achieve the minimum number of students, the University has the right to withhold the programme for this semester without prior notice.</td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">&nbsp;</td>\r\n    <td>On behalf of the University, we would like to take this opportunity to congratulate and welcome you to INSANIAH University College (IUC).<br></td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">&nbsp;</td>\r\n    <td>Thank you.</td>\r\n  </tr>\r\n</tbody></table>', '<table>\r\n  <tbody><tr><td><strong>\"PAVING THE WAY TO WISDOM\"<strong></strong></strong></td></tr>\r\n  \r\n  <tr><td style=\"vertical-align: top;\">والسلام<br></td></tr>\r\n <tr><td>&nbsp;</td></tr>\r\n <tr><td><strong>PROF. MADYA DR. AHMAD FAUZI BIN IDRIS</strong></td></tr>\r\n  <tr><td>DEAN OF ADMISSIONS AND RECORDS</td></tr>\r\n  <tr><td>DEPARTMENT OF ACADEMIC AFFAIRS</td></tr>\r\n</tbody></table>', '<table align=\"center\"><tbody><tr><td>Computer Generated. No Signature Required</td></tr></tbody></table>');
+INSERT INTO `template_surat` VALUES ('1', 'DEFAULT_MY', 'MY', '<h3 align=\"center\">Institusi Pengajian Tinggi Perlis\"</h3>\r\n<h2 align=\"center\">\"Ke Arah Insan Rabbani Yang Khamil Dan Syamil\"</h2>\r\n\r\n  <table>\r\n  <tbody><tr>\r\n    <td>Rujukan<br></td>\r\n    <td>:</td>\r\n    <td>\'.$auto_generate_siri.\'</td></tr>\r\n  <tr>\r\n    <td>Tarikh</td>\r\n    <td>:</td>\r\n    <td>\'.$today.\' (\'.$tarikh_hijri.\')<br></td>\r\n  </tr>\r\n<tr><td>&nbsp;</td><td></td><td><br></td></tr>\r\n<tr><td colspan=\"3\">&nbsp;</td></tr></tbody></table>', '<table><tbody><tr><td>السلام عليكم و رحمة الله و بركاته</td></tr>\r\n<tr><td>\'.$siri_mohon.\'</td></tr>\r\n<tr><td>\'.$nama_pemohon.\' (\'.$ic_pemohon.\')</td></tr>\r\n<tr><td>\'.$alamat1_pemohon.\'</td></tr>\r\n<tr><td>\'.$alamat2_pemohon.\'</td></tr>\r\n<tr><td>\'.$poskod.\' \'.$bandar.\'</td></tr><tr><td>\'.$negeri.\', \'.$negara.\'</td></tr>\r\n<tr><td>&nbsp;</td></tr></tbody></table>', '<table><tbody><tr><td><strong>TAWARAN KEMASUKAN KE INSTITUSI PENGAJIAN TINGGI ISLAM PERLIS (IPTIP) SESI PENGAJIAN AKADEMIK \'.$sesi_intake.\'</strong></td></tr>\r\n<tr><td>&nbsp;</td></tr></tbody></table>', '<table><tbody><tr><td>Sekalung tahniah diucapkan kepada saudara/saudari kerana terpilih mengikuti program pengajian di Institusi Pengajian Tinggi Islam Perlis, Perlis Indera Kayangan, Malaysia. Maklumat program pengajian adalah seperti berikut:<br></td>\r\n  </tr>\r\n<tr><td>&nbsp;</td></tr></tbody></table>\r\n', '<table id=\"jadual\" border=\"1\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n  <tbody><tr>\r\n    <td><strong>Program ditawarkan</strong></td>\r\n    <td colspan=\"3\">\'.$progTawar.\'</td>\r\n  </tr>\r\n   <tr>\r\n    <td><strong>Kulliyah</strong></td> <td colspan=\"3\">\'.$kulliyah.\'</td></tr>\r\n<tr>\r\n<td width=\"25%\"><strong>Tahun Pengajian<br></strong></td><td width=\"25%\">\'.$tahun.\'</td><td><strong>Tempoh Pengajian</strong></td><td>\'.$tempoh_ngaji.\'</td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>Tarikh Pendaftaran</strong></td><td>\'.$tarikh_daftar.\'</td>\r\n<td><strong>Masa</strong></td><td>\'.$masa_daftar.\'</td>\r\n  </tr>\r\n  <tr>\r\n    <td valign=\"top\"><strong>Tempat Pendaftaran</strong></td>\r\n    <td colspan=\"3\">\'.$tempat_daftar.\'</td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>Maklumat lanjut sila hubungi</strong></td>\r\n    <td colspan=\"3\">\'.$no_telefon.\'</td>\r\n  </tr>\r\n</tbody></table>', '<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n  <tbody><tr><td>&nbsp;</td></tr><tr>\r\n    <td><strong><u>Bayaran</u></strong></td>\r\n  </tr>\r\n  <tr>\r\n    <td>Anda hendaklah membuat bayaran sebanyak <strong>RM 2,755</strong> di kaunter kewangan semasa pendaftaran. Sila bawa bersama Surat Tawaran semasa membuat bayaran.</td>\r\n  </tr>\r\n<tr><td>&nbsp;</td></tr>\r\n<tr>\r\n    <td><strong>Kemudahan Asrama</strong> : Diwajibkan</td>\r\n  </tr>\r\n  <tr><td>&nbsp;</td></tr>\r\n<tr>\r\n    <td><strong>PENTING</strong>:</td>\r\n  </tr>\r\n  <tr>\r\n    <td>Anda dikehendaki mematuhi syarat-syarat tawaran seperti berikut:-</td>\r\n  </tr>\r\n</tbody></table>\r\n<table id=\"info\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n  <tbody><tr>\r\n    <td width=\"2%\">&nbsp;</td>\r\n    <td align=\"center\" width=\"4%\">1.</td>\r\n    <td width=\"94%\">Anda perlu menjawab tawaran ini melalui (http://ecampus.insaniah.my/frm/semak.php) selewat-lewatnya 10 hari sebelum hari pendaftaran. Jika tidak, pihak kami menganggap anda tidak berminat ke program yang ditawarkan dan surat tawaran ini akan terbatal.</td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">2.</td>\r\n    <td>Anda diwajibkan mencetak <strong>PANDUAN KEMASUKAN</strong> dari (http://ecampus.insaniah.my/frm/semak.php) yang menjadi sebahagian daripada Surat Tawaran ini, sila baca dengan teliti dan isikan borang-borang yang berkaitan.</td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">3.</td>\r\n    <td>Tawaran ini akan terbatal sekiranya jumlah pelajar yang mendaftar bagi program ini tidak mencukupi jumlah yang ditetapkan dan anda boleh memohon untuk mengikuti program lain yang anda layak.</td>\r\n  </tr>\r\n  <tr>\r\n    <td colspan=\"3\">Pihak universiti mengucapkan selamat datang dan mengalu-alukan kedatangan saudara/saudari ke KUIN.</td>\r\n  </tr>\r\n  <tr>\r\n    <td colspan=\"3\">Sekian, terima kasih</td>\r\n  </tr>\r\n</tbody></table>', '<table>\r\n  <tbody><tr><td><strong>\"PENEROKAAN KE ARAH KEBIJAKSANAAN\"</strong></td></tr>\r\n   <tr><td>&nbsp;</td></tr>\r\n  <tr><td><strong>PROF. MADYA DR. AHMAD FAUZI BIN IDRIS</strong></td></tr>\r\n  <tr><td>DEKAN KEMASUKAN DAN REKOD</td></tr>\r\n  <tr><td>JABATAN HAL EHWAL AKADEMIK</td></tr>\r\n</tbody></table>', '<table align=\"center\"><tbody><tr><td>Cetakan Komputer Tidak Memerlukan Tandatangan</td></tr></tbody></table>');
+INSERT INTO `template_surat` VALUES ('2', 'DEFAULT_ENG', 'ENG', '\r\n<h3 align=\"center\">\"KEDAH SEJAHTERA\"</h3>\r\n\r\n  <table>\r\n  <tbody><tr>\r\n    <td>Reference<br></td>\r\n    <td>:</td>\r\n    <td>\'.$auto_generate_siri .\'</td></tr>\r\n  <tr>\r\n    <td>Date</td>\r\n    <td>:</td>\r\n    <td>\'.$today.\' (\'.$tarikh_hijri.\')<br></td>\r\n  </tr>\r\n<tr><td>&nbsp;</td><td></td><td><br></td></tr>\r\n<tr><td colspan=\"3\">&nbsp;</td></tr></tbody></table>', '\r\n<table><tbody><tr><td>السلام عليكم و رحمة الله و بركاته</td></tr>\r\n<tr><td>\'.$siri_mohon.\'</td></tr>\r\n<tr><td>\'.$nama_pemohon.\' (\'.$ic_pemohon.\')</td></tr>\r\n<tr><td>\'.$alamat1_pemohon.\'</td></tr>\r\n<tr><td>\'.$alamat2_pemohon.\'</td></tr>\r\n<tr><td>\'.$poskod.\' \'.$bandar.\'</td></tr><tr><td>\'.$negeri.\', \'.$negara.\'</td></tr>\r\n<tr><td>&nbsp;</td></tr></tbody></table>', '<table><tbody><tr><td><strong>OFFER OF ADMISSION INTO INSANIAH UNIVERSITY COLLEGE (IUC) </strong><strong>\'.$sesi_intake.\'</strong><strong> IN THE FIRST ACADEMIC SESSION <br></strong></td></tr>\r\n<tr><td>&nbsp;</td></tr></tbody></table>', '<table><tbody><tr><td>Congratulations! You have been accepted to further your study at INSANIAH University College (IUC), Alor&nbsp; Setar, Kedah Darul Aman, Malaysia. You are accepted to undertake the following study programme:<br></td>\r\n  </tr>\r\n<tr><td>&nbsp;</td></tr></tbody></table>\r\n', '<table id=\"jadual\" border=\"1\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n  <tbody><tr>\r\n    <td><strong>Programme\r\n    </strong></td><td colspan=\"3\">\'.$progTawar.\'</td>\r\n  </tr>\r\n   <tr>\r\n    <td><strong>Kulliyah</strong></td> <td colspan=\"3\">\'.$kulliyah.\'</td></tr>\r\n<tr>\r\n<td width=\"25%\"><strong>Year</strong></td><td width=\"25%\">\'.$tahun.\'</td><td><strong>Duration</strong></td><td>\'.$tempoh_ngaji.\'</td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>Date of Registration<br></strong></td><td>\'.$tarikh_daftar.\'</td>\r\n<td><strong>Time of Registration<br></strong></td><td>\'.$masa_daftar.\'</td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>Venue of Registration</strong></td>\r\n    <td colspan=\"3\">\'.$tempat_daftar.\'</td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>For further enquiries, please&nbsp; contact</strong></td>\r\n    <td colspan=\"3\">\'.$no_telefon.\'</td>\r\n  </tr>\r\n</tbody></table>', '<table id=\"pay\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n  <tbody><tr>\r\n    <td><strong><u>PAYMENT</u></strong></td>\r\n  </tr>\r\n  <tr>\r\n    <td>a) You are required to make the full  payment for the first semester tuition fees including the registration fees  before the date of registration. <em>(Please refer Fees Structure Schedule and  Payment Guideline)</em></td>\r\n  </tr>\r\n  <tr>\r\n    <td>b) Please <strong>make ready a Personal Bond</strong> in USD or in RM (Ringgit Malaysia) (<em>Please  refer attachment for Personal Bond</em>) and to be paid to our officer immediately upon arrival at the Kuala  Lumpur International Airport (KLIA).</td>\r\n  </tr>\r\n  <tr>\r\n    <td>c) Failing to do so, we will not be able to release  you from the custody of the Malaysian Immigration authority.</td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>Facilities :&nbsp;</strong> Hostel will be provided</td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>IMPORTANT</strong>:</td>\r\n  </tr>\r\n  <tr>\r\n    <td>You are to abide to the following condition(s):</td>\r\n  </tr>\r\n</tbody></table>\r\n<table id=\"info\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n  <tbody><tr>\r\n    <td width=\"2%\">&nbsp;</td>\r\n    <td align=\"center\" width=\"4%\">1.</td>\r\n    <td width=\"94%\">Candidates must reply to the offer letter by accepting or rejecting the offer at least 10 days before the date of registration via website. (http://ecampus.insaniah.my/frm/semak.php)</td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">2.</td>\r\n    <td>This offer will be automatically null and void if you fail to register on the stipulated date or within 14 days after the registration date.</td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">3.</td>\r\n    <td>Please arrange your travel to arrive in Malaysia on any of the dates i.e. on the 17 June 2012 until 23 June 2012) and inform the University (7) days prior to your arrival via email (daftar@insaniah.edu.my).</td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">4.</td>\r\n    <td>If you fail to arrive on any of the specified dates, our officer will not be able to assist your release from the airport. </td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">5.</td>\r\n    <td>It is compulsory for you to print the ADMISSION GUIDELINES as part of the Letter Offer of Admission and you are also required to read carefully and fill in the relevant forms.</td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">6.</td>\r\n    <td>If the programme offered does not achieve the minimum number of students, the University has the right to withhold the programme for this semester without prior notice.</td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">&nbsp;</td>\r\n    <td>On behalf of the University, we would like to take this opportunity to congratulate and welcome you to INSANIAH University College (IUC).<br></td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">&nbsp;</td>\r\n    <td>Thank you.</td>\r\n  </tr>\r\n</tbody></table>', '<table>\r\n  <tbody><tr><td><strong>\"PAVING THE WAY TO WISDOM\"<strong></strong></strong></td></tr>\r\n  \r\n  <tr><td style=\"vertical-align: top;\">والسلام<br></td></tr>\r\n <tr><td>&nbsp;</td></tr>\r\n <tr><td><strong>PROF. MADYA DR. AHMAD FAUZI BIN IDRIS</strong></td></tr>\r\n  <tr><td>DEAN OF ADMISSIONS AND RECORDS</td></tr>\r\n  <tr><td>DEPARTMENT OF ACADEMIC AFFAIRS</td></tr>\r\n</tbody></table>', '<table align=\"center\"><tbody><tr><td>Computer Generated. No Signature Required</td></tr></tbody></table>');
+INSERT INTO `template_surat` VALUES ('3', 'test_MY', 'MY', '<h3 align=\"center\">Institusi Pengajian Tinggi Perlis\"</h3>\r\n<h2 align=\"center\">\"Ke Arah Insan Rabbani Yang Khamil Dan Syamil\"</h2>\r\n\r\n  <table>\r\n  <tbody><tr>\r\n    <td>Rujukan<br></td>\r\n    <td>:</td>\r\n    <td>\'.$auto_generate_siri.\'</td></tr>\r\n  <tr>\r\n    <td>Tarikh</td>\r\n    <td>:</td>\r\n    <td>\'.$today.\' (\'.$tarikh_hijri.\')<br></td>\r\n  </tr>\r\n<tr><td>&nbsp;</td><td></td><td><br></td></tr>\r\n<tr><td colspan=\"3\">&nbsp;</td></tr></tbody></table><table><tbody><tr><td>السلام عليكم و رحمة الله و بركاته</td></tr>\r\n<tr><td>\'.$siri_mohon.\'</td></tr>\r\n<tr><td>\'.$nama_pemohon.\' (\'.$ic_pemohon.\')</td></tr>\r\n<tr><td>\'.$alamat1_pemohon.\'</td></tr>\r\n<tr><td>\'.$alamat2_pemohon.\'</td></tr>\r\n<tr><td>\'.$poskod.\' \'.$bandar.\'</td></tr><tr><td>\'.$negeri.\', \'.$negara.\'</td></tr>\r\n<tr><td>&nbsp;</td></tr></tbody></table><table><tbody><tr><td><strong>TAWARAN KEMASUKAN KE INSTITUSI PENGAJIAN TINGGI ISLAM PERLIS (IPTIP) SESI PENGAJIAN AKADEMIK \'.$sesi_intake.\'</strong></td></tr>\r\n<tr><td>&nbsp;</td></tr></tbody></table><table><tbody><tr><td><strong>TAWARAN KEMASUKAN KE INSTITUSI PENGAJIAN TINGGI ISLAM PERLIS (IPTIP) SESI PENGAJIAN AKADEMIK \'.$sesi_intake.\'</strong></td></tr>\r\n<tr><td>&nbsp;</td></tr></tbody></table><table><tbody><tr><td>Sekalung tahniah diucapkan kepada saudara/saudari kerana terpilih mengikuti program pengajian di Institusi Pengajian Tinggi Islam Perlis, Perlis Indera Kayangan, Malaysia. Maklumat program pengajian adalah seperti berikut:<br></td>\r\n  </tr>\r\n<tr><td>&nbsp;</td></tr></tbody></table>\r\n<table id=\"jadual\" border=\"1\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n  <tbody><tr>\r\n    <td><strong>Program ditawarkan</strong></td>\r\n    <td colspan=\"3\">\'.$progTawar.\'</td>\r\n  </tr>\r\n   <tr>\r\n    <td><strong>Kulliyah</strong></td> <td colspan=\"3\">\'.$kulliyah.\'</td></tr>\r\n<tr>\r\n<td width=\"25%\"><strong>Tahun Pengajian<br></strong></td><td width=\"25%\">\'.$tahun.\'</td><td><strong>Tempoh Pengajian</strong></td><td>\'.$tempoh_ngaji.\'</td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>Tarikh Pendaftaran</strong></td><td>\'.$tarikh_daftar.\'</td>\r\n<td><strong>Masa</strong></td><td>\'.$masa_daftar.\'</td>\r\n  </tr>\r\n  <tr>\r\n    <td valign=\"top\"><strong>Tempat Pendaftaran</strong></td>\r\n    <td colspan=\"3\">\'.$tempat_daftar.\'</td>\r\n  </tr>\r\n  <tr>\r\n    <td><strong>Maklumat lanjut sila hubungi</strong></td>\r\n    <td colspan=\"3\">\'.$no_telefon.\'</td>\r\n  </tr>\r\n</tbody></table><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n  <tbody><tr><td>&nbsp;</td></tr><tr>\r\n    <td><strong><u>Bayaran</u></strong></td>\r\n  </tr>\r\n  <tr>\r\n    <td>Anda hendaklah membuat bayaran sebanyak <strong>RM 2,755</strong> di kaunter kewangan semasa pendaftaran. Sila bawa bersama Surat Tawaran semasa membuat bayaran.</td>\r\n  </tr>\r\n<tr><td>&nbsp;</td></tr>\r\n<tr>\r\n    <td><strong>Kemudahan Asrama</strong> : Diwajibkan</td>\r\n  </tr>\r\n  <tr><td>&nbsp;</td></tr>\r\n<tr>\r\n    <td><strong>PENTING</strong>:</td>\r\n  </tr>\r\n  <tr>\r\n    <td>Anda dikehendaki mematuhi syarat-syarat tawaran seperti berikut:-</td>\r\n  </tr>\r\n</tbody></table>\r\n<table id=\"info\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n  <tbody><tr>\r\n    <td width=\"2%\">&nbsp;</td>\r\n    <td align=\"center\" width=\"4%\">1.</td>\r\n    <td width=\"94%\">Anda perlu menjawab tawaran ini melalui (http://ecampus.insaniah.my/frm/semak.php) selewat-lewatnya 10 hari sebelum hari pendaftaran. Jika tidak, pihak kami menganggap anda tidak berminat ke program yang ditawarkan dan surat tawaran ini akan terbatal.</td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">2.</td>\r\n    <td>Anda diwajibkan mencetak <strong>PANDUAN KEMASUKAN</strong> dari (http://ecampus.insaniah.my/frm/semak.php) yang menjadi sebahagian daripada Surat Tawaran ini, sila baca dengan teliti dan isikan borang-borang yang berkaitan.</td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td align=\"center\">3.</td>\r\n    <td>Tawaran ini akan terbatal sekiranya jumlah pelajar yang mendaftar bagi program ini tidak mencukupi jumlah yang ditetapkan dan anda boleh memohon untuk mengikuti program lain yang anda layak.</td>\r\n  </tr>\r\n  <tr>\r\n    <td colspan=\"3\">Pihak universiti mengucapkan selamat datang dan mengalu-alukan kedatangan saudara/saudari ke KUIN.</td>\r\n  </tr>\r\n  <tr>\r\n    <td colspan=\"3\">Sekian, terima kasih</td>\r\n  </tr>\r\n</tbody></table><table>\r\n  <tbody><tr><td><strong>\"PENEROKAAN KE ARAH KEBIJAKSANAAN\"</strong></td></tr>\r\n   <tr><td>&nbsp;</td></tr>\r\n  <tr><td><strong>PROF. MADYA DR. AHMAD FAUZI BIN IDRIS</strong></td></tr>\r\n  <tr><td>DEKAN KEMASUKAN DAN REKOD</td></tr>\r\n  <tr><td>JABATAN HAL EHWAL AKADEMIK</td></tr>\r\n</tbody></table><table align=\"center\"><tbody><tr><td>Cetakan Komputer Tidak Memerlukan Tandatangan</td></tr></tbody></table>', null, null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for `user_data`
@@ -4195,7 +4220,7 @@ CREATE TABLE `user_dept_func` (
   `active` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'weather its active for the user or not',
   PRIMARY KEY (`id`),
   KEY `unique` (`id_user_function`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user_dept_func
@@ -4210,9 +4235,6 @@ INSERT INTO `user_dept_func` VALUES ('8', '1', '1', '5', '1');
 INSERT INTO `user_dept_func` VALUES ('10', '1', '1', '6', '1');
 INSERT INTO `user_dept_func` VALUES ('11', '1', '1', '7', '1');
 INSERT INTO `user_dept_func` VALUES ('12', '1', '1', '8', '1');
-INSERT INTO `user_dept_func` VALUES ('13', '2', '2', '1', '1');
-INSERT INTO `user_dept_func` VALUES ('14', '2', '3', '1', '1');
-INSERT INTO `user_dept_func` VALUES ('15', '2', '4', '1', '1');
 INSERT INTO `user_dept_func` VALUES ('16', '1', '5', '9', '1');
 INSERT INTO `user_dept_func` VALUES ('17', '1', '1', '10', '1');
 INSERT INTO `user_dept_func` VALUES ('18', '1', '5', '11', '1');
@@ -4228,6 +4250,7 @@ INSERT INTO `user_dept_func` VALUES ('27', '1', '5', '20', '1');
 INSERT INTO `user_dept_func` VALUES ('28', '1', '5', '21', '1');
 INSERT INTO `user_dept_func` VALUES ('29', '1', '1', '22', '1');
 INSERT INTO `user_dept_func` VALUES ('30', '1', '5', '23', '1');
+INSERT INTO `user_dept_func` VALUES ('31', '1', '5', '24', '1');
 
 -- ----------------------------
 -- Table structure for `user_dept_jaw`
@@ -4261,7 +4284,7 @@ CREATE TABLE `user_function` (
   `posisi` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `Function` (`function`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user_function
@@ -4286,7 +4309,8 @@ INSERT INTO `user_function` VALUES ('19', 'pmhn_berjaya', 'Mencetak Surat Tawara
 INSERT INTO `user_function` VALUES ('20', 'permohonan', 'Fungsi Ini Adalah Untuk Menentukan Samada Pelajar Baru Atau Bekas Pelajar Memasuki Semula Pusat Pengajian', 'Permohonan', '1', '1');
 INSERT INTO `user_function` VALUES ('21', 'rayuan_permohonan', 'Fungsi Ini Digunakan Sekiranya Terdapat Pelajar Yang Tidak Berjaya Dalam Permohonan Ditimbangkan Semula Untuk Kemasukan Dalam Sesi Kemasukan', 'Rayuan Permohonan', '1', '7');
 INSERT INTO `user_function` VALUES ('22', 'truncate', 'Reset System', 'Truncate System', '1', '6');
-INSERT INTO `user_function` VALUES ('23', 'sesi_intake', 'Fungsi Ini Digunakan Untuk Menetapkan Sesi Permohonan Kemasukan Pelajar', 'Penetapan Sesi Permohonan Kemasukan', '1', '10');
+INSERT INTO `user_function` VALUES ('23', 'sesi_intake', 'Fungsi Ini Digunakan Untuk Menetapkan Sesi Permohonan Kemasukan Pelajar', 'Penetapan Sesi Kemasukan', '1', '10');
+INSERT INTO `user_function` VALUES ('24', 'template_surat', 'Untuk Tetapan Format Surat Tawaran.', 'Penetapan Format Surat', '1', '11');
 
 -- ----------------------------
 -- Table structure for `user_jawatan`
@@ -4319,61 +4343,196 @@ INSERT INTO `user_jawatan` VALUES ('14', 'Penolong Ketua Pustakawan', 'Penolong 
 INSERT INTO `user_jawatan` VALUES ('15', 'Pustakawan', 'Pustakawan');
 
 -- ----------------------------
+-- Table structure for `yuran_jadual`
+-- ----------------------------
+DROP TABLE IF EXISTS `yuran_jadual`;
+CREATE TABLE `yuran_jadual` (
+  `id` bigint(10) NOT NULL AUTO_INCREMENT,
+  `kod_prog` varchar(20) DEFAULT NULL,
+  `bulan` int(2) DEFAULT NULL,
+  `jum_ansuran` double(8,2) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of yuran_jadual
+-- ----------------------------
+INSERT INTO `yuran_jadual` VALUES ('1', 'DQH', '1', '700.00');
+INSERT INTO `yuran_jadual` VALUES ('2', 'DQH', '2', '200.00');
+INSERT INTO `yuran_jadual` VALUES ('3', 'DQH', '3', '200.00');
+INSERT INTO `yuran_jadual` VALUES ('4', 'DQH', '4', '200.00');
+INSERT INTO `yuran_jadual` VALUES ('5', 'DQH', '5', '150.00');
+INSERT INTO `yuran_jadual` VALUES ('6', 'DSY', '1', '700.00');
+INSERT INTO `yuran_jadual` VALUES ('7', 'DSY', '2', '200.00');
+INSERT INTO `yuran_jadual` VALUES ('8', 'DSY', '3', '200.00');
+INSERT INTO `yuran_jadual` VALUES ('9', 'DSY', '4', '200.00');
+INSERT INTO `yuran_jadual` VALUES ('10', 'DSY', '5', '200.00');
+INSERT INTO `yuran_jadual` VALUES ('11', 'DUS', '1', '700.00');
+INSERT INTO `yuran_jadual` VALUES ('12', 'DUS', '2', '200.00');
+INSERT INTO `yuran_jadual` VALUES ('13', 'DUS', '3', '200.00');
+INSERT INTO `yuran_jadual` VALUES ('14', 'DUS', '4', '200.00');
+INSERT INTO `yuran_jadual` VALUES ('15', 'DUS', '5', '150.00');
+INSERT INTO `yuran_jadual` VALUES ('16', 'PST', '1', '700.00');
+INSERT INTO `yuran_jadual` VALUES ('17', 'PST', '2', '200.00');
+INSERT INTO `yuran_jadual` VALUES ('18', 'PST', '3', '200.00');
+INSERT INTO `yuran_jadual` VALUES ('19', 'PST', '4', '200.00');
+INSERT INTO `yuran_jadual` VALUES ('20', 'PST', '5', '150.00');
+INSERT INTO `yuran_jadual` VALUES ('21', 'ST', '1', '740.00');
+INSERT INTO `yuran_jadual` VALUES ('22', 'ST', '2', '230.00');
+INSERT INTO `yuran_jadual` VALUES ('23', 'ST', '3', '230.00');
+INSERT INTO `yuran_jadual` VALUES ('24', 'ST', '4', '230.00');
+INSERT INTO `yuran_jadual` VALUES ('25', 'ST', '5', '230.00');
+INSERT INTO `yuran_jadual` VALUES ('26', 'ST', '6', '230.00');
+INSERT INTO `yuran_jadual` VALUES ('27', 'ST', '7', '230.00');
+INSERT INTO `yuran_jadual` VALUES ('28', 'ST', '8', '230.00');
+INSERT INTO `yuran_jadual` VALUES ('29', 'ST', '9', '190.00');
+
+-- ----------------------------
+-- Table structure for `yuran_prog`
+-- ----------------------------
+DROP TABLE IF EXISTS `yuran_prog`;
+CREATE TABLE `yuran_prog` (
+  `id` bigint(10) NOT NULL AUTO_INCREMENT,
+  `kod_akaun` varchar(10) DEFAULT NULL,
+  `kategori` varchar(10) DEFAULT NULL,
+  `kod_prog` varchar(10) DEFAULT NULL,
+  `jumlah` double(8,2) DEFAULT NULL,
+  `aktif` tinyint(1) DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of yuran_prog
+-- ----------------------------
+INSERT INTO `yuran_prog` VALUES ('1', '40001', 'TETAP', 'DQH', '30.00', '1');
+INSERT INTO `yuran_prog` VALUES ('2', '40002', 'TETAP', 'DQH', '30.00', '1');
+INSERT INTO `yuran_prog` VALUES ('3', '40003', 'TETAP', 'DQH', '50.00', '1');
+INSERT INTO `yuran_prog` VALUES ('4', '40004', 'TETAP', 'DQH', '20.00', '1');
+INSERT INTO `yuran_prog` VALUES ('5', '40005', 'DAFTAR', 'DQH', '15.00', '1');
+INSERT INTO `yuran_prog` VALUES ('6', '40006', 'TETAP', 'DQH', '30.00', '1');
+INSERT INTO `yuran_prog` VALUES ('7', '40007', 'DAFTAR', 'DQH', '15.00', '1');
+INSERT INTO `yuran_prog` VALUES ('8', '40008', 'TETAP', 'DQH', '10.00', '1');
+INSERT INTO `yuran_prog` VALUES ('9', '40009', 'DAFTAR', 'DQH', '50.00', '1');
+INSERT INTO `yuran_prog` VALUES ('10', '40010', 'TETAP', 'DQH', '150.00', '1');
+INSERT INTO `yuran_prog` VALUES ('11', '40011', 'TETAP', 'DQH', '250.00', '1');
+INSERT INTO `yuran_prog` VALUES ('12', '40012', 'TETAP', 'DQH', '750.00', '1');
+INSERT INTO `yuran_prog` VALUES ('13', '20001', 'DAFTAR', 'DQH', '50.00', '1');
+INSERT INTO `yuran_prog` VALUES ('14', '40001', 'TETAP', 'DSY', '30.00', '1');
+INSERT INTO `yuran_prog` VALUES ('15', '40002', 'TETAP', 'DSY', '30.00', '1');
+INSERT INTO `yuran_prog` VALUES ('16', '40003', 'TETAP', 'DSY', '50.00', '1');
+INSERT INTO `yuran_prog` VALUES ('17', '40004', 'TETAP', 'DSY', '20.00', '1');
+INSERT INTO `yuran_prog` VALUES ('18', '40005', 'DAFTAR', 'DSY', '15.00', '1');
+INSERT INTO `yuran_prog` VALUES ('19', '40006', 'TETAP', 'DSY', '30.00', '1');
+INSERT INTO `yuran_prog` VALUES ('20', '40007', 'DAFTAR', 'DSY', '15.00', '1');
+INSERT INTO `yuran_prog` VALUES ('21', '40008', 'TETAP', 'DSY', '10.00', '1');
+INSERT INTO `yuran_prog` VALUES ('22', '40009', 'DAFTAR', 'DSY', '50.00', '1');
+INSERT INTO `yuran_prog` VALUES ('23', '40010', 'TETAP', 'DSY', '150.00', '1');
+INSERT INTO `yuran_prog` VALUES ('24', '40011', 'TETAP', 'DSY', '250.00', '1');
+INSERT INTO `yuran_prog` VALUES ('25', '40012', 'TETAP', 'DSY', '750.00', '1');
+INSERT INTO `yuran_prog` VALUES ('26', '20001', 'DAFTAR', 'DSY', '50.00', '1');
+INSERT INTO `yuran_prog` VALUES ('27', '40001', 'TETAP', 'DUS', '30.00', '1');
+INSERT INTO `yuran_prog` VALUES ('28', '40002', 'TETAP', 'DUS', '30.00', '1');
+INSERT INTO `yuran_prog` VALUES ('29', '40003', 'TETAP', 'DUS', '50.00', '1');
+INSERT INTO `yuran_prog` VALUES ('30', '40004', 'TETAP', 'DUS', '20.00', '1');
+INSERT INTO `yuran_prog` VALUES ('31', '40005', 'DAFTAR', 'DUS', '15.00', '1');
+INSERT INTO `yuran_prog` VALUES ('32', '40006', 'TETAP', 'DUS', '30.00', '1');
+INSERT INTO `yuran_prog` VALUES ('33', '40007', 'DAFTAR', 'DUS', '15.00', '1');
+INSERT INTO `yuran_prog` VALUES ('34', '40008', 'TETAP', 'DUS', '10.00', '1');
+INSERT INTO `yuran_prog` VALUES ('35', '40009', 'DAFTAR', 'DUS', '50.00', '1');
+INSERT INTO `yuran_prog` VALUES ('36', '40010', 'TETAP', 'DUS', '150.00', '1');
+INSERT INTO `yuran_prog` VALUES ('37', '40011', 'TETAP', 'DUS', '250.00', '1');
+INSERT INTO `yuran_prog` VALUES ('38', '40012', 'TETAP', 'DUS', '750.00', '1');
+INSERT INTO `yuran_prog` VALUES ('39', '20001', 'DAFTAR', 'DUS', '50.00', '1');
+INSERT INTO `yuran_prog` VALUES ('40', '40001', 'TETAP', 'PST', '30.00', '1');
+INSERT INTO `yuran_prog` VALUES ('41', '40002', 'TETAP', 'PST', '30.00', '1');
+INSERT INTO `yuran_prog` VALUES ('42', '40003', 'TETAP', 'PST', '50.00', '1');
+INSERT INTO `yuran_prog` VALUES ('43', '40004', 'TETAP', 'PST', '20.00', '1');
+INSERT INTO `yuran_prog` VALUES ('44', '40005', 'DAFTAR', 'PST', '15.00', '1');
+INSERT INTO `yuran_prog` VALUES ('45', '40006', 'TETAP', 'PST', '30.00', '1');
+INSERT INTO `yuran_prog` VALUES ('46', '40007', 'DAFTAR', 'PST', '15.00', '1');
+INSERT INTO `yuran_prog` VALUES ('47', '40008', 'TETAP', 'PST', '10.00', '1');
+INSERT INTO `yuran_prog` VALUES ('48', '40009', 'DAFTAR', 'PST', '50.00', '1');
+INSERT INTO `yuran_prog` VALUES ('49', '40010', 'TETAP', 'PST', '150.00', '1');
+INSERT INTO `yuran_prog` VALUES ('50', '40011', 'TETAP', 'PST', '250.00', '1');
+INSERT INTO `yuran_prog` VALUES ('51', '40012', 'TETAP', 'PST', '750.00', '1');
+INSERT INTO `yuran_prog` VALUES ('52', '20001', 'DAFTAR', 'PST', '50.00', '1');
+INSERT INTO `yuran_prog` VALUES ('53', '40001', 'TETAP', 'ST', '30.00', '1');
+INSERT INTO `yuran_prog` VALUES ('54', '40002', 'TETAP', 'ST', '60.00', '1');
+INSERT INTO `yuran_prog` VALUES ('55', '40003', 'TETAP', 'ST', '100.00', '1');
+INSERT INTO `yuran_prog` VALUES ('56', '40004', 'TETAP', 'ST', '40.00', '1');
+INSERT INTO `yuran_prog` VALUES ('57', '40005', 'DAFTAR', 'ST', '15.00', '1');
+INSERT INTO `yuran_prog` VALUES ('58', '40006', 'TETAP', 'ST', '60.00', '1');
+INSERT INTO `yuran_prog` VALUES ('59', '40007', 'DAFTAR', 'ST', '15.00', '1');
+INSERT INTO `yuran_prog` VALUES ('60', '40008', 'TETAP', 'ST', '20.00', '1');
+INSERT INTO `yuran_prog` VALUES ('61', '40009', 'DAFTAR', 'ST', '50.00', '1');
+INSERT INTO `yuran_prog` VALUES ('62', '40010', 'TETAP', 'ST', '300.00', '1');
+INSERT INTO `yuran_prog` VALUES ('63', '40011', 'TETAP', 'ST', '500.00', '1');
+INSERT INTO `yuran_prog` VALUES ('64', '40012', 'TETAP', 'ST', '1000.00', '1');
+INSERT INTO `yuran_prog` VALUES ('65', '40013', 'TETAP', 'ST', '300.00', '1');
+INSERT INTO `yuran_prog` VALUES ('66', '20001', 'DAFTAR', 'ST', '50.00', '1');
+
+-- ----------------------------
 -- View structure for `view_app_pelajar`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_app_pelajar`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_app_pelajar` AS select `app_pelajar`.`id` AS `id`,`app_pelajar`.`nama` AS `nama`,`sel_negara`.`namanegara` AS `namanegara`,`app_akademik`.`institusi` AS `institusi`,`app_akademik`.`tahun` AS `tahun`,`sel_level`.`tahap_MY` AS `tahap_MY`,`sel_subjek`.`subjek_MY` AS `subjek_MY`,`app_subjek_akademik`.`gred` AS `gred`,`program`.`namaprog_MY` AS `namaprog_MY`,`app_progmohon`.`pilihan` AS `pilihan`,`app_progmohon`.`catatan` AS `catatan`,`sel_statusmohon`.`status_MY` AS `status_MY` from ((((((((`app_pelajar` left join `app_akademik` on((`app_pelajar`.`id` = `app_akademik`.`id_mohon`))) left join `app_progmohon` on((`app_pelajar`.`id` = `app_progmohon`.`id_mohon`))) left join `app_subjek_akademik` on((`app_subjek_akademik`.`akademik_id` = `app_akademik`.`id`))) left join `sel_level` on((`sel_level`.`kodtahap` = `app_akademik`.`level`))) left join `sel_subjek` on((`sel_subjek`.`kodsubjek` = `app_subjek_akademik`.`subjek`))) left join `program` on(((`program`.`kod_prog` = `app_progmohon`.`kod_prog`) and (`app_pelajar`.`progTawar` = `program`.`kod_prog`)))) left join `sel_statusmohon` on(((`sel_statusmohon`.`kodstatus` = `app_progmohon`.`status_mohon`) and (`app_pelajar`.`status_mohon` = `sel_statusmohon`.`kodstatus`)))) join `sel_negara` on((`sel_negara`.`kodnegara` = `app_pelajar`.`warganegara`))) where (`app_progmohon`.`status_mohon` = 'DIP') ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_app_pelajar` AS select `app_pelajar`.`id` AS `id`,`app_pelajar`.`nama` AS `nama`,`sel_negara`.`namanegara` AS `namanegara`,`app_akademik`.`institusi` AS `institusi`,`app_akademik`.`tahun` AS `tahun`,`sel_level`.`tahap_MY` AS `tahap_MY`,`sel_subjek`.`subjek_MY` AS `subjek_MY`,`app_subjek_akademik`.`gred` AS `gred`,`program`.`namaprog_MY` AS `namaprog_MY`,`app_progmohon`.`pilihan` AS `pilihan`,`app_progmohon`.`catatan` AS `catatan`,`sel_statusmohon`.`status_MY` AS `status_MY` from ((((((((`app_pelajar` left join `app_akademik` on((`app_pelajar`.`id` = `app_akademik`.`id_mohon`))) left join `app_progmohon` on((`app_pelajar`.`id` = `app_progmohon`.`id_mohon`))) left join `app_subjek_akademik` on((`app_subjek_akademik`.`akademik_id` = `app_akademik`.`id`))) left join `sel_level` on((`sel_level`.`kodtahap` = `app_akademik`.`level`))) left join `sel_subjek` on((`sel_subjek`.`kodsubjek` = `app_subjek_akademik`.`subjek`))) left join `program` on(((`program`.`kod_prog` = `app_progmohon`.`kod_prog`) and (`app_pelajar`.`progTawar` = `program`.`kod_prog`)))) left join `sel_statusmohon` on(((`sel_statusmohon`.`kodstatus` = `app_progmohon`.`status_mohon`) and (`app_pelajar`.`status_mohon` = `sel_statusmohon`.`kodstatus`)))) join `sel_negara` on((`sel_negara`.`kodnegara` = `app_pelajar`.`warganegara`))) where (`app_progmohon`.`status_mohon` = 'DIP') ;
 
 -- ----------------------------
 -- View structure for `view_apppelajar_pelresit`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_apppelajar_pelresit`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_apppelajar_pelresit` AS select `app_pelajar`.`nama` AS `nama`,`pel_resit`.`matrik` AS `matrik`,`pel_resit`.`jumlah` AS `jumlah` from (`pel_resit` join `app_pelajar` on((`app_pelajar`.`siri_mohon` = `pel_resit`.`matrik`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_apppelajar_pelresit` AS select `app_pelajar`.`nama` AS `nama`,`pel_resit`.`matrik` AS `matrik`,`pel_resit`.`jumlah` AS `jumlah` from (`pel_resit` join `app_pelajar` on((`app_pelajar`.`siri_mohon` = `pel_resit`.`matrik`))) ;
 
 -- ----------------------------
 -- View structure for `view_department_function`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_department_function`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_department_function` AS select `dept_func`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept`,`dept_func`.`id_user_function` AS `id_user_function`,`user_function`.`function` AS `function`,`user_function`.`remarks` AS `remarks`,`user_function`.`menu` AS `menu`,`user_function`.`menu_display` AS `menu_display`,`user_function`.`posisi` AS `posisi` from ((`dept_func` join `user_department` on((`dept_func`.`id_user_department` = `user_department`.`id`))) join `user_function` on((`dept_func`.`id_user_function` = `user_function`.`id`))) order by `dept_func`.`id_user_department`,`user_function`.`posisi` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_department_function` AS select `dept_func`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept`,`dept_func`.`id_user_function` AS `id_user_function`,`user_function`.`function` AS `function`,`user_function`.`remarks` AS `remarks`,`user_function`.`menu` AS `menu`,`user_function`.`menu_display` AS `menu_display`,`user_function`.`posisi` AS `posisi` from ((`dept_func` join `user_department` on((`dept_func`.`id_user_department` = `user_department`.`id`))) join `user_function` on((`dept_func`.`id_user_function` = `user_function`.`id`))) order by `dept_func`.`id_user_department`,`user_function`.`posisi` ;
 
 -- ----------------------------
 -- View structure for `view_department_jawatan`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_department_jawatan`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_department_jawatan` AS select `dept_jaw`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept`,`dept_jaw`.`id_jawatan` AS `id_jawatan`,`user_jawatan`.`jawatan` AS `jawatan` from ((`dept_jaw` join `user_jawatan` on((`dept_jaw`.`id_jawatan` = `user_jawatan`.`id`))) join `user_department` on((`user_department`.`id` = `dept_jaw`.`id_user_department`))) order by `dept_jaw`.`id_user_department`,`dept_jaw`.`id_jawatan` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_department_jawatan` AS select `dept_jaw`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept`,`dept_jaw`.`id_jawatan` AS `id_jawatan`,`user_jawatan`.`jawatan` AS `jawatan` from ((`dept_jaw` join `user_jawatan` on((`dept_jaw`.`id_jawatan` = `user_jawatan`.`id`))) join `user_department` on((`user_department`.`id` = `dept_jaw`.`id_user_department`))) order by `dept_jaw`.`id_user_department`,`dept_jaw`.`id_jawatan` ;
 
 -- ----------------------------
 -- View structure for `view_sel_negara_negeri_bandar`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_sel_negara_negeri_bandar`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_sel_negara_negeri_bandar` AS select `sel_negeri`.`kodnegara` AS `kodnegara`,`sel_negara`.`namanegara` AS `namanegara`,`sel_negara`.`prefix` AS `prefix`,`sel_negeri`.`kodnegeri` AS `kodnegeri`,`sel_negeri`.`namanegeri` AS `namanegeri`,`sel_bandar`.`kodbandar` AS `kodbandar`,`sel_bandar`.`namabandar` AS `namabandar` from ((`sel_negara` join `sel_negeri` on((`sel_negara`.`kodnegara` = `sel_negeri`.`kodnegara`))) join `sel_bandar` on(((`sel_negeri`.`kodnegeri` = `sel_bandar`.`kodnegeri`) and (`sel_negara`.`kodnegara` = `sel_bandar`.`kodnegara`)))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_sel_negara_negeri_bandar` AS select `sel_negeri`.`kodnegara` AS `kodnegara`,`sel_negara`.`namanegara` AS `namanegara`,`sel_negara`.`prefix` AS `prefix`,`sel_negeri`.`kodnegeri` AS `kodnegeri`,`sel_negeri`.`namanegeri` AS `namanegeri`,`sel_bandar`.`kodbandar` AS `kodbandar`,`sel_bandar`.`namabandar` AS `namabandar` from ((`sel_negara` join `sel_negeri` on((`sel_negara`.`kodnegara` = `sel_negeri`.`kodnegara`))) join `sel_bandar` on(((`sel_negeri`.`kodnegeri` = `sel_bandar`.`kodnegeri`) and (`sel_negara`.`kodnegara` = `sel_bandar`.`kodnegara`)))) ;
 
 -- ----------------------------
 -- View structure for `view_sesi_taqwim`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_sesi_taqwim`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_sesi_taqwim` AS select `item_taqwim`.`kod_item` AS `kod_item`,`item_taqwim`.`item_MY` AS `item_MY`,`sesi_taqwim`.`sesi` AS `sesi`,`sesi_taqwim`.`tarikh_mula` AS `tarikh_mula`,`sesi_taqwim`.`tarikh_tamat` AS `tarikh_tamat`,`item_taqwim`.`posisi` AS `posisi` from (`item_taqwim` join `sesi_taqwim` on((`item_taqwim`.`kod_item` = `sesi_taqwim`.`kod_item`))) order by `item_taqwim`.`posisi`,`sesi_taqwim`.`sesi` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_sesi_taqwim` AS select `item_taqwim`.`kod_item` AS `kod_item`,`item_taqwim`.`item_MY` AS `item_MY`,`sesi_taqwim`.`sesi` AS `sesi`,`sesi_taqwim`.`tarikh_mula` AS `tarikh_mula`,`sesi_taqwim`.`tarikh_tamat` AS `tarikh_tamat`,`item_taqwim`.`posisi` AS `posisi` from (`item_taqwim` join `sesi_taqwim` on((`item_taqwim`.`kod_item` = `sesi_taqwim`.`kod_item`))) order by `item_taqwim`.`posisi`,`sesi_taqwim`.`sesi` ;
 
 -- ----------------------------
 -- View structure for `view_taqwim`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_taqwim`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_taqwim` AS select ((to_days(`sesi_taqwim`.`tarikh_tamat`) - to_days(`sesi_taqwim`.`tarikh_mula`)) + 1) AS `tempoh`,`item_taqwim`.`item_MY` AS `item_MY`,`sesi_taqwim`.`tarikh_mula` AS `t_mula`,`sesi_taqwim`.`tarikh_tamat` AS `t_tamat`,`sesi_taqwim`.`sesi` AS `sesi`,`sesi_akademik`.`namasesi_MY` AS `namasesi_MY`,`sesi_akademik`.`tahun` AS `tahun`,`sesi_akademik`.`tarikh_mula` AS `tarikh_mula`,`sesi_akademik`.`tarikh_tamat` AS `tarikh_tamat` from ((`sesi_akademik` join `sesi_taqwim` on((`sesi_taqwim`.`sesi` = `sesi_akademik`.`kodsesi`))) join `item_taqwim` on((`sesi_taqwim`.`kod_item` = `item_taqwim`.`kod_item`))) order by `sesi_taqwim`.`tarikh_mula`,`item_taqwim`.`posisi` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_taqwim` AS select ((to_days(`sesi_taqwim`.`tarikh_tamat`) - to_days(`sesi_taqwim`.`tarikh_mula`)) + 1) AS `tempoh`,`item_taqwim`.`item_MY` AS `item_MY`,`sesi_taqwim`.`tarikh_mula` AS `t_mula`,`sesi_taqwim`.`tarikh_tamat` AS `t_tamat`,`sesi_taqwim`.`sesi` AS `sesi`,`sesi_akademik`.`namasesi_MY` AS `namasesi_MY`,`sesi_akademik`.`tahun` AS `tahun`,`sesi_akademik`.`tarikh_mula` AS `tarikh_mula`,`sesi_akademik`.`tarikh_tamat` AS `tarikh_tamat` from ((`sesi_akademik` join `sesi_taqwim` on((`sesi_taqwim`.`sesi` = `sesi_akademik`.`kodsesi`))) join `item_taqwim` on((`sesi_taqwim`.`kod_item` = `item_taqwim`.`kod_item`))) order by `sesi_taqwim`.`tarikh_mula`,`item_taqwim`.`posisi` ;
 
 -- ----------------------------
 -- View structure for `view_user_department`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_user_department`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_user_department` AS select `user_dept`.`id_user_data` AS `id_user_data`,`user_data`.`username` AS `username`,`user_data`.`password` AS `password`,`user_data`.`name` AS `name`,`user_dept`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept` from ((`user_data` join `user_dept` on((`user_dept`.`id_user_data` = `user_data`.`id`))) join `user_department` on((`user_dept`.`id_user_department` = `user_department`.`id`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_user_department` AS select `user_dept`.`id_user_data` AS `id_user_data`,`user_data`.`username` AS `username`,`user_data`.`password` AS `password`,`user_data`.`name` AS `name`,`user_dept`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept` from ((`user_data` join `user_dept` on((`user_dept`.`id_user_data` = `user_data`.`id`))) join `user_department` on((`user_dept`.`id_user_department` = `user_department`.`id`))) ;
 
 -- ----------------------------
 -- View structure for `view_user_dept_func_level`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_user_dept_func_level`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_user_dept_func_level` AS select `user_dept_func`.`id` AS `id`,`user_dept_func`.`id_user_data` AS `id_user_data`,`user_data`.`name` AS `name`,`user_dept_func`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept`,`user_dept_func`.`id_user_function` AS `id_user_function`,`user_function`.`function` AS `function`,`user_function`.`remarks` AS `remarks`,`user_dept_func`.`active` AS `active` from (((`user_data` join `user_department`) join `user_dept_func` on(((`user_dept_func`.`id_user_data` = `user_data`.`id`) and (`user_dept_func`.`id_user_department` = `user_department`.`id`)))) join `user_function` on((`user_dept_func`.`id_user_function` = `user_function`.`id`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_user_dept_func_level` AS select `user_dept_func`.`id` AS `id`,`user_dept_func`.`id_user_data` AS `id_user_data`,`user_data`.`name` AS `name`,`user_dept_func`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept`,`user_dept_func`.`id_user_function` AS `id_user_function`,`user_function`.`function` AS `function`,`user_function`.`remarks` AS `remarks`,`user_dept_func`.`active` AS `active` from (((`user_data` join `user_department`) join `user_dept_func` on(((`user_dept_func`.`id_user_data` = `user_data`.`id`) and (`user_dept_func`.`id_user_department` = `user_department`.`id`)))) join `user_function` on((`user_dept_func`.`id_user_function` = `user_function`.`id`))) ;
 
 -- ----------------------------
 -- View structure for `view_user_dept_jaw`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_user_dept_jaw`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_user_dept_jaw` AS select `user_dept_jaw`.`id` AS `id`,`user_dept_jaw`.`id_user_data` AS `id_user_data`,`user_data`.`name` AS `name`,`user_dept_jaw`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept`,`user_dept_jaw`.`id_user_jawatan` AS `id_user_jawatan`,`user_jawatan`.`jawatan` AS `jawatan`,`user_jawatan`.`remarks` AS `remarks` from (((`user_dept_jaw` join `user_data` on((`user_dept_jaw`.`id_user_data` = `user_data`.`id`))) join `user_department` on((`user_dept_jaw`.`id_user_department` = `user_department`.`id`))) join `user_jawatan` on((`user_dept_jaw`.`id_user_jawatan` = `user_jawatan`.`id`))) order by `user_data`.`name`,`user_dept_jaw`.`id_user_department`,`user_dept_jaw`.`id_user_jawatan` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_user_dept_jaw` AS select `user_dept_jaw`.`id` AS `id`,`user_dept_jaw`.`id_user_data` AS `id_user_data`,`user_data`.`name` AS `name`,`user_dept_jaw`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept`,`user_dept_jaw`.`id_user_jawatan` AS `id_user_jawatan`,`user_jawatan`.`jawatan` AS `jawatan`,`user_jawatan`.`remarks` AS `remarks` from (((`user_dept_jaw` join `user_data` on((`user_dept_jaw`.`id_user_data` = `user_data`.`id`))) join `user_department` on((`user_dept_jaw`.`id_user_department` = `user_department`.`id`))) join `user_jawatan` on((`user_dept_jaw`.`id_user_jawatan` = `user_jawatan`.`id`))) order by `user_data`.`name`,`user_dept_jaw`.`id_user_department`,`user_dept_jaw`.`id_user_jawatan` ;
+
+-- ----------------------------
+-- View structure for `view_yuran_program`
+-- ----------------------------
+DROP VIEW IF EXISTS `view_yuran_program`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY INVOKER VIEW `view_yuran_program` AS select `program`.`namaprog_MY` AS `namaprog_MY`,`akaun`.`keterangan_MY` AS `keterangan_MY`,`yuran_prog`.`jumlah` AS `jumlah`,`yuran_prog`.`kategori` AS `kategori`,`akaun`.`kod_akaun` AS `kod_akaun`,`yuran_prog`.`kod_prog` AS `kod_prog` from ((`akaun` join `yuran_prog` on((`akaun`.`kod_akaun` = `yuran_prog`.`kod_akaun`))) join `program` on((`yuran_prog`.`kod_prog` = `program`.`kod_prog`))) ;
