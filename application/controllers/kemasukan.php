@@ -19,9 +19,10 @@ class Kemasukan extends CI_Controller
 				$this->load->model('jabatan');					//load table jabatan surat tawaran
 				$this->load->model('sel_statusmohon');			//load table sel_statusmohon surat tawaran
 				$this->load->model('pel_resit');					//load table tamplate surat tawaran
-				$this->load->model('pelajar');					//load table tamplate surat tawaran
+				$this->load->model('pelajar');					//load table pelajar
 				$this->load->model('pel_waris');					//load table tamplate surat tawaran
 				
+				$this->lang->load('form_validation', 'melayu');
 				
 	        	//$this->load->helper('hijri');
 
@@ -684,7 +685,7 @@ class Kemasukan extends CI_Controller
 							);
 				$g = $this->sesi_intake->GetWhere($where);
 
-				//hanya nak tgk status permohonan dlm bejaya sahaja dan belum daftar...
+				//hanya nak tgk status permohonan dlm bejaya sahaja...
 				$whe = array
 							(
 								'status_mohon' => 'TW',
@@ -693,7 +694,7 @@ class Kemasukan extends CI_Controller
 							);
 
 				$this->load->library('pagination');
-				$config['base_url'] = base_url().'kemasukan/mohon_pelajar';
+				$config['base_url'] = base_url().'kemasukan/pmhn_berjaya';
 				$config['total_rows'] = $this->app_pelajar->GetWhere($whe)->num_rows();
 				$config['per_page'] = 5;
 				$config['suffix'] = '.exe';
@@ -1162,7 +1163,53 @@ class Kemasukan extends CI_Controller
 						redirect ('kemasukan/sesi_intake', 'location');
 					}
 			}
+			
+		//template surat
+		public function template_surat(){
+			$data['title'] = 'Senarai Template';
+			
+			$this->load->library('pagination');
+			$this->load->library('ckeditor');
+			
+			$config['base_url'] = base_url().'kemasukan/template_surat';
+			$config['total_rows'] = $this->template_surat->get()->num_rows();
+			$config['per_page'] = 5;
+			$config['suffix'] = '.exe';
 
+			//ckeditor
+			$path = base_url().'js/ckeditor/';
+			$data['CKEditor'] = new CKEditor5($path);
+			/*
+			 * 
+			 
+			$data['config']['toolbar'] = array(
+	 			array( 'Source', '-', 'Bold', 'Italic', 'Underline', 'Strike' ),
+	 			array( 'Image', 'Link', 'Unlink', 'Anchor' )
+	 			);
+	 		$data['events']['instanceReady'] = 'function (ev) {
+	 			lert("Loaded: " + ev.editor.name);
+	 		}';
+	 		
+	 		*/
+	 		$data['CKEditor']->replaceAll('ck');
+	 		//$CKEditor->editor("field1", "<p>Initial value.</p>", $config, $events);
+	 		//$CKEditor->editor("field1", "<p>Initial value.</p>");
+	 		
+	 		//baru
+			$data['baru'] = $this->template_surat->get(array('id'=>1)); //get defaut valu bahasa melayu
+			$data['btnSubmit'] = 'Simpan';
+			if($this->input->post('lang', TRUE)){
+				$data['baru'] = $this->template_surat->get(array('lang'=>$this->input->post('lang')));
+			}
+			
+			$this->pagination->initialize($config);
+			$data['template'] = $this->db->limit(5, $this->uri->segment(3,0));
+			$data['template'] = $this->template_surat->get();
+			
+			$data['paginate'] =$this->pagination->create_links();
+			
+			$this->load->view('kemasukan/template_surat', $data);
+		}
 #############################################################################################################################
 	}
 
