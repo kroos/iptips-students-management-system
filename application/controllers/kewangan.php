@@ -36,7 +36,7 @@ class Kewangan extends CI_Controller
 				//cari pelajar dulu <= harap2 cara ni tidak melambatkan proses mysql...
 				//cari dulu sesi_mohon dari sesi_intake
 				$data['h'] = $this->sesi_intake->GetWhere(array('aktif' => 1));
-				$where = array('status_mohon' => 'TW', 'sesi_mohon' => $data['h']->row()->kodsesi);
+				$where = array('status_mohon' => 'TW', 'dt_transfer' => NULL, 'sesi_mohon' => $data['h']->row()->kodsesi);
 				$data['u'] = $this->app_pelajar->GetWhere($where);
 
 				$this->load->library('pagination');
@@ -55,7 +55,7 @@ class Kewangan extends CI_Controller
 						if($this->input->post('cari', TRUE))
 							{
 								$nama = $this->input->post('carian', TRUE);
-								$s = "status_mohon = 'TW' AND sesi_mohon = '".$data['h']->row()->kodsesi."' AND (ic LIKE '%$nama%' OR nama LIKE '%$nama%' OR passport LIKE '%$nama%')";
+								$s = "status_mohon = 'TW' AND dt_transfer IS NULL AND sesi_mohon = '".$data['h']->row()->kodsesi."' AND (ic LIKE '%$nama%' OR nama LIKE '%$nama%' OR passport LIKE '%$nama%')";
 								$data['r'] = $this->app_pelajar->GetWherePage($s, $config['per_page'], $this->uri->segment(3, 0));
 								//echo $this->db->last_query();
 							}

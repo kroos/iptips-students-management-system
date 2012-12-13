@@ -11,14 +11,6 @@
 
 			<div class="info"><?=@$info?></div>
 
-				<?if ($r->num_rows() < 1) :?>
-					<div class="info">
-					<p>Carian tidak dijumpai</p>
-					<p>Proses penawaran kursus masih lagi belum dibuat kepada pelajar untk sesi kemasukan <?=$h->row()->kodsesi?></p>
-					<p>Sila dapatkan maklumat dari Jabatan Hal Ehwal Akademik</p>
-					</div>
-				<?else:?>
-
 		<div class="form_settings">
 		  <?=form_open()?>
             <p><span><label for="carian">Masukkan Nama/ No Kad Pengenalan/ No Passport : </label></span>
@@ -29,7 +21,11 @@
             <p style="padding-top: 15px"><span>&nbsp;</span><?=form_submit('cari', 'Cari', 'class="submit"')?></p>
 		<?=form_close()?>
 		</div>
-
+				<?if ($r->num_rows() < 1) :?>
+					<div class="info">
+					<p>Carian tidak dijumpai</p>
+					</div>
+				<?else:?>
 					<?if ($this->form_validation->run() == FALSE):?>
 					<div class="demo"><?=$paginate?></div>
 						<table style="width:100%; border-spacing:0;">

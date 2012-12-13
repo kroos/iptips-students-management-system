@@ -8,6 +8,7 @@ class Hea extends CI_Controller
 				parent::__construct();
 
 				$this->load->model('subjek');					//nak tau controller ni pakai model mana 1...
+				$this->load->model('pelajar');					//nak tau controller ni pakai model mana 1...
 
 				//mesti ikut peraturan ni..
 				//user mesti log on kalau tidak redirect to index
@@ -83,6 +84,25 @@ class Hea extends CI_Controller
 				$this->load->view('hea/subj_mgmt', $data);
 			}
 
+		public function info_pelajar()
+			{
+				//pagination process
+				$this->load->library('pagination');
+				$config['base_url'] = base_url().'hea/info_pelajar';
+				$config['total_rows'] = $this->pelajar->GetAll(NULL, NULL)->num_rows();
+				$config['per_page'] = 5;
+				$config['suffix'] = '.exe';
+				$this->pagination->initialize($config);
+
+				$data['all'] = $this->pelajar->GetAllPage($config['per_page'], $this->uri->segment(3, 0));
+
+				$data['paginate'] = $this->pagination->create_links();
+				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+				if ($this->form_validation->run() == TRUE)
+					{
+					
+					}
+			}
 
 #############################################################################################################################
 	}
