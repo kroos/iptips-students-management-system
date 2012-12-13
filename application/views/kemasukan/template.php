@@ -44,12 +44,13 @@
 						<?php echo form_radio('lang', 'En', set_radio('lang', 'EN', False), 'id="lang" class="lang"').' Inggeris';?></p>
 						
 				<p><span><?php echo form_label('Nama Template', 'nama_template');?></span>
-					<?php echo form_input(array('name'=>'nama_template', 'value'=>set_value('nama_template', @$baru->row()->nama_template)));?></p>
+					<?php echo form_input(array('name'=>'nama_template', 'value'=>set_value('nama_template', @$baru->row()->nama_template), 'id'=>'nama_template'));?></p>
 		</div>
 		<div class="form_setting">		
 				<p><span><?php echo form_label('Kepala Surat', 'header');?></span>
 					<?php echo $CKEditor->editor('header', set_value('header', @$baru->row()->header));
-					//echo form_textarea(array('name'=>'header', 'value'=>set_value('header', @$baru->row()->header), 'id'=>'header', 'class'=>'ck'))?>
+					//echo form_textarea(array('name'=>'header', 'value'=>set_value('header', @$baru->row()->header), 'id'=>'header', 'class'=>'ck'));
+					//echo nic_display($nicedit);?>
 					
 				<p><span><?php echo form_label('Alamat', 'address')?></span>
 					<?php echo form_textarea(array('name'=>'address', 'value'=>set_value('address', @$baru->row()->address), 'id'=>'addres', 'class'=>'ck'));?></p>
@@ -74,19 +75,17 @@
 					
 				<p class="form_settings"><?php echo form_submit('simpan', $btnSubmit, 'id="submit" class="submit"')?></p>
 				
-			<?php echo form_close()?>
+			<?php echo form_close();?>
 		</div>
 	<?php endblock()?>
 	
 	<?php startblock('jscript')?>
 		<?php get_extended_block()?>
+		<?php echo $CKEditor->replaceAll('.ck');?>
 		<script>
-		$(document).ready(function(){
-			$(".lang").change(function(){
-				//alert('oi');
-				$("#template").submit();
-			});
-		});
+				//bkLib.onDomLoaded(function() { nicEditors.allTextAreas({fullPanel : true})});
+		
 		</script>
 	<?php endblock()?>
+	
 <?php end_extend()?>
