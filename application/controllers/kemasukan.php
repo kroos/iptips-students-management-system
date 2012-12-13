@@ -30,6 +30,7 @@ class Kemasukan extends CI_Controller
 				$this->load->model('yuran_jadual');				//load table tamplate surat tawaran
 				$this->load->model('yuran_prog');				//load table tamplate surat tawaran
 				$this->load->model('prog_subjek');				//load table tamplate surat tawaran
+				$this->load->model('pel_item_invois');				//load table tamplate surat tawaran
 				
 				$this->lang->load('form_validation', 'melayu');
 				
@@ -1028,7 +1029,6 @@ class Kemasukan extends CI_Controller
 										$siri_mohon = $this->input->post('siri_mohon', TRUE);
 										$matrik = strtoupper(strtolower($this->input->post('nomatriks', TRUE)));
 										$id_mohon = $this->input->post('id_mohon', TRUE);
-										//echo $siri_mohon.' siri mohon<br />'.$matrik.' matriks<br />'.$id_mohon.' id_mohon<br />';
 
 										//proses copy data
 										$pel = $this->app_pelajar->GetWhere(array('id' => $id_mohon));
@@ -1061,11 +1061,11 @@ class Kemasukan extends CI_Controller
 															'dt_add' => date_db(now())
 														);
 										//insert table pelajar
-										/* $reg = $this->pelajar->insert($insert); */
-
+/* 										$reg = $this->pelajar->insert($insert);
+ */
 										//update table app_pelajar
-										/* $uap = $this->app_pelajar->update(array('dt_transfer' => date_db(now()), 'id_transfer' => $this->session->userdata('id_user')), array('id' => $id_mohon)); */
-
+/* 										$uap = $this->app_pelajar->update(array('dt_transfer' => date_db(now()), 'id_transfer' => $this->session->userdata('id_user')), array('id' => $id_mohon));
+ */
 										//insert to pel_sem
 										$insertsem = array
 															(
@@ -1077,8 +1077,8 @@ class Kemasukan extends CI_Controller
 																'aktif' => 1,
 																'terkini' => 1
 															);
-										/* $pel_sem = $this->pel_sem->insert($insertsem); */
-
+/* 										$pel_sem = $this->pel_sem->insert($insertsem);
+ */
 										//insert table pel_waris
 										$war = $this->app_waris->GetWhere(array('id_mohon' => $id_mohon));
 										$waris = array
@@ -1091,8 +1091,8 @@ class Kemasukan extends CI_Controller
 															'poskod' => $war->row()->poskod,
 															'no_telefon' => $war->row()->nohp,
 														);
-										/* $regwar = $this->pel_waris->insert($waris); */
-
+/* 										$regwar = $this->pel_waris->insert($waris);
+ */
 										//insert pel_akademik
 										$app_akad = $this->app_akademik->get_where(array('id_mohon' => $id_mohon));
 /* 										foreach ($app_akad->result() as $f)
@@ -1142,20 +1142,49 @@ class Kemasukan extends CI_Controller
 														'no_inv' => $no_inv,
 														'tarikh_inv' => date_db(now()),
 														'matrik' => $matrik,
-														'ktr_invois' => NULL,
+														'ktr_invois' => 'INVOIS PENDAFTARAN',
 														'jumlah' => $jumlah1,
 														'id_add' => $this->session->userdata('id_user'),
 														'dt_add' => datetime_db(now()),
 														'aktif' => 1
 													);
-										/* $yu = $this->pel_invois->insert($inv); */
-										//update $siri_invois
-										/* $tp = $this->siri_invois->update(array('aktif' => 1), array('' => ($siri_invois->row()->siri + 1))); */
-
+/* 										$yu = $this->pel_invois->insert($inv);
+ */										//update $siri_invois
+/* 										$tp = $this->siri_invois->update(array('aktif' => 1), array('siri' => ($siri_invois->row()->siri + 1)));
+ */
 										//update pel_resit
-										/* $per = $this->pel_resit->update(array('matrik' => $siri_mohon), array('matrik' => $matrik)); */
+/* 										$per = $this->pel_resit->update(array('matrik' => $siri_mohon), array('matrik' => $matrik));
+ */
+										//insert pel_item_invois
+/*  										foreach ($yuran_prog->result() as $yp1)
+											{
+												$tarray = array
+																(
+																	'no_inv' => $no_inv,
+																	'kod_akaun' => $yp1->kod_akaun,
+																	'jumlah' => $yp1->jumlah,
+																	'aktif' => 1,
+																	'id_add' => $this->session->userdata('id_user'),
+																	'dt_add' => datetime_db(now())
+																);
+												$pii[] = $this->pel_item_invois->insert($tarray);
+											}
+ */
 
 
+
+/* 										if($reg && $uap && $pel_sem && $regwar && $dat && $tad && $tda && $yu && $tp && $per && $pii)
+											{
+												$data['info'] = 'Tahniah!!<br />Pelajr berjaya didaftar<br />Selamat datang ke '.$this->config->item('instl');
+												$data['u'] = $this->app_pelajar->GetWherePage($whe, $config['per_page'], $this->uri->segment(3, 0));
+											}
+											else
+											{
+												$data['info'] = 'Rekod tidak berjaya diproses, Sila cuba sebentar lagi';
+											}
+ */
+											
+											
 
 										//try pakai transaction, boleh rollback kalau salah satu group fails.....
 										$this->db->trans_start();
@@ -1196,7 +1225,22 @@ class Kemasukan extends CI_Controller
 										//update pel_resit
 										$per = $this->pel_resit->update(array('matrik' => $siri_mohon), array('matrik' => $matrik));
 										$this->db->trans_complete();
-										
+
+										//insert pel_item_invois
+ 										foreach ($yuran_prog->result() as $yp1)
+											{
+												$tarray = array
+																(
+																	'no_inv' => $no_inv,
+																	'kod_akaun' => $yp1->kod_akaun,
+																	'jumlah' => $yp1->jumlah,
+																	'aktif' => 1,
+																	'id_add' => $this->session->userdata('id_user'),
+																	'dt_add' => datetime_db(now())
+																);
+												$pii[] = $this->pel_item_invois->insert($tarray);
+											}
+
 										if ($this->db->trans_status() === FALSE)
 											{
 												$data['info'] = 'Rekod tidak berjaya diproses, Sila cuba sebentar lagi';
