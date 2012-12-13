@@ -791,9 +791,8 @@ $config = array	(
 								'rules' => 'trim|required|alpha_dash|is_unique[sesi_intake.tarikh_daftar]|xss_clean'
 							),
 					),
-					
-					'kemasukan/edit_template' => array(
-						
+					'kemasukan/edit_template' => array
+					(
 						array
 							(
 								'field' => 'lang',
@@ -818,6 +817,15 @@ $config = array	(
 								'label' => 'Alamat',
 								'rules' => 'trim|required'
 							),
+					),
+					'hea/info_pelajar' => array
+					(
+						array
+							(
+								'field' => 'ic',
+								'label' => 'Nama / Nombor Kad Pengenalan / No Passport / No Matrik',
+								'rules' => 'trim|required|min_length[2]|xss_clean'
+							)
 					),
 
 				);
