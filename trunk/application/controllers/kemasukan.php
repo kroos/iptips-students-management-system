@@ -1353,6 +1353,22 @@ class Kemasukan extends CI_Controller
 			$path = base_url().'js/ckeditor/';
 			$data['CKEditor'] = new CKEditor5($path);
 	 		
+			//nice edit
+			/*
+			$this->load->helper('nicEdit');
+			$data['nicedit'] = array
+			(
+			    'path'    =>    'js/nicedit',
+			    'id' => 'header',
+			    
+			    'config' => array
+			    (
+			        'iconsPath'    => "'".base_url()."js/nicedit/nicEditorIcons.gif'",
+			        'fullPanel' => true
+			    )
+			);
+			*/
+			
 	 		//baru
 			$data['baru'] = $this->template_surat->get(array('id'=>1)); //get defaut valu bahasa melayu
 			$data['btnSubmit'] = 'Simpan';
@@ -1390,12 +1406,13 @@ class Kemasukan extends CI_Controller
 			$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
 			if ($this->form_validation->run() == TRUE)
 			{
-				if($this->input->post('simpan', TRUE) && $this->input->post('simpan')=='Simpan')
+				if($this->input->post('simpan', TRUE))
 				{
 					foreach($this->input->post() as $key => $val){
 						$$key = $val;
-						if ($key != 'Update' && $key != 'id_template'){
-							$update[$key] = htmlspecialchars( stripslashes($val));
+						if ($key != 'simpan' && $key != 'id' && !empty($val)){
+							$update[$key] = html_entity_decode(html_entity_decode($val));//htmlspecialchars( stripslashes($val));
+							echo $key.' '.$val;
 						}
 						if($key == 'id'){
 							$where['id'] = $val;
