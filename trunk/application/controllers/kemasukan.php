@@ -731,22 +731,11 @@ class Kemasukan extends CI_Controller
 			if($this->input->post('surat', TRUE)){
 				foreach ($this->input->post() as $key => $val){
 					$$key = $val;
-					//echo $key.' : '.$$key.' = '.$val.'<br>';
 				}
 			}
 			
 			if($this->input->post('pdf_v', TRUE)){
 					$id_mohon = $this->input->post('id_mohon');
-					/*$data['html_open'] = '<!DOCTYPE HTML>
-						<html>
-							<head>
-								<title></title>
-								<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-								<link rel="stylesheet" type="text/css" href="'.base_url().'css/surat.css" />
-							</head>
-							<body>
-								<div id="content">';
-					$data['html_close'] = '</div></body></html>';*/
 			}
 			
 			if($this->input->post('cetak', TRUE)){
@@ -796,7 +785,7 @@ class Kemasukan extends CI_Controller
 	
 				$progTawar = $pelajar->row()->progTawar;
 				$sesiMohon = $pelajar->row()->sesi_mohon;
-				$progTawar;
+				//$progTawar;
 				//maklumat pgrogram
 				$program = $this->program->GetWhere(array('kod_prog' => $progTawar));
 				$tahap = $program->row()->kod_tahap;
@@ -806,6 +795,9 @@ class Kemasukan extends CI_Controller
 				
 				//maklumat rujukan surat
 				$rujukan = $this->ruj_intake->get(array('kod_tahap' => $tahap, 'id_intake' => $sesiMohon));
+				if ($rujukan->num_rows()==0){
+					$rujukan = $this->ruj_intake->get(array('id_intake' => $sesiMohon));
+				}
 				
 				$id_surat = $rujukan->row()->id_surat;
 				$intake = $rujukan->row()->id_intake;
@@ -1297,9 +1289,9 @@ class Kemasukan extends CI_Controller
 			}
 			
 		//template surat
-		public function template_surat(){
+		public function template($id_template = '1', $buatapa = NULL){
 			$data['title'] = 'Senarai Template';
-			
+			$data['hidden_field'] =  '';
 			$this->load->library('pagination');
 			$this->load->library('ckeditor');
 			
@@ -1307,16 +1299,8 @@ class Kemasukan extends CI_Controller
 			 * /
 			 *  
 			 * */
-			$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
-			if ($this->form_validation->run() == TRUE)
-			{
-				if($this->input->post('simpan', TRUE) && $this->input->post('simpan')=='Simpan')
-				{
-					
-				}
-			}
-			
-			$config['base_url'] = base_url().'kemasukan/template_surat';
+						
+			$config['base_url'] = base_url().'kemasukan/template';
 			$config['total_rows'] = $this->template_surat->get()->num_rows();
 			$config['per_page'] = 5;
 			$config['suffix'] = '.exe';
@@ -1324,21 +1308,6 @@ class Kemasukan extends CI_Controller
 			//ckeditor
 			$path = base_url().'js/ckeditor/';
 			$data['CKEditor'] = new CKEditor5($path);
-			/*
-			 * 
-			 
-			$data['config']['toolbar'] = array(
-	 			array( 'Source', '-', 'Bold', 'Italic', 'Underline', 'Strike' ),
-	 			array( 'Image', 'Link', 'Unlink', 'Anchor' )
-	 			);
-	 		$data['events']['instanceReady'] = 'function (ev) {
-	 			lert("Loaded: " + ev.editor.name);
-	 		}';
-	 		
-	 		*/
-	 		$data['CKEditor']->replaceAll('ck');
-	 		//$CKEditor->editor("field1", "<p>Initial value.</p>", $config, $events);
-	 		//$CKEditor->editor("field1", "<p>Initial value.</p>");
 	 		
 	 		//baru
 			$data['baru'] = $this->template_surat->get(array('id'=>1)); //get defaut valu bahasa melayu
@@ -1346,8 +1315,11 @@ class Kemasukan extends CI_Controller
 			if($this->input->post('lang', TRUE)){
 				$data['baru'] = $this->template_surat->get(array('lang'=>$this->input->post('lang')));
 			}
-			if($this->input->post('edit', TRUE)){
-				$data['baru'] = $this->template_surat->get(array('id'=>$this->input->post('id')));
+			
+			if($buatapa == 'edit'){
+				$data['btnSubmit'] = 'Kemaskini';
+				$data['baru'] = $this->template_surat->get(array('id'=>$id_template));
+				$data['hidden_field'] = array('id' => $id_template);
 			}
 			
 			$this->pagination->initialize($config);
@@ -1356,7 +1328,40 @@ class Kemasukan extends CI_Controller
 			
 			$data['paginate'] =$this->pagination->create_links();
 			
-			$this->load->view('kemasukan/template_surat', $data);
+			$this->load->view('kemasukan/template', $data);
+		}
+		
+		public function new_template(){
+			if($this->input->post('baru', TRUE)){
+				$this->template('1', 'baru');
+			}
+		}
+		
+		public function edit_template(){
+		
+			if($this->input->post('edit', TRUE) || $this->form_validation->run() == FALSE){
+				$this->template($this->input->post('id'), 'edit');
+			}
+			
+			$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+			if ($this->form_validation->run() == TRUE)
+			{
+				if($this->input->post('simpan', TRUE) && $this->input->post('simpan')=='Simpan')
+				{
+					foreach($this->input->post() as $key => $val){
+						$$key = $val;
+						if ($key != 'Update' && $key != 'id_template'){
+							$update[$key] = htmlspecialchars( stripslashes($val));
+						}
+						if($key == 'id'){
+							$where['id'] = $val;
+						}
+					}
+					
+					$this->template_surat->edit($update, $where);
+					redirect ('kemasukan/template', 'location');
+				}
+			}
 		}
 #############################################################################################################################
 	}
