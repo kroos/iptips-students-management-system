@@ -792,11 +792,11 @@ $config = array	(
 							),
 					),
 					
-					'kemasukan/template_surat' => array(
+					'kemasukan/edit_template' => array(
 						
 						array
 							(
-								'field' => 'bahasa',
+								'field' => 'lang',
 								'label' => 'Bahasa',
 								'rules' => 'trim|required|xss_clean'
 							),
@@ -810,13 +810,13 @@ $config = array	(
 							(
 								'field' => 'header',
 								'label' => 'Kepala Surat',
-								'rules' => 'trim|required|xss_clean'
+								'rules' => 'trim|required'
 							),
 						array
 							(
 								'field' => 'address',
 								'label' => 'Alamat',
-								'rules' => 'trim|required|xss_clean'
+								'rules' => 'trim|required'
 							),
 					),
 
