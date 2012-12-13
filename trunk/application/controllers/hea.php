@@ -9,6 +9,7 @@ class Hea extends CI_Controller
 
 				$this->load->model('subjek');					//nak tau controller ni pakai model mana 1...
 				$this->load->model('pelajar');					//nak tau controller ni pakai model mana 1...
+				$this->load->model('pel_sem');					//nak tau controller ni pakai model mana 1...
 
 				//mesti ikut peraturan ni..
 				//user mesti log on kalau tidak redirect to index
@@ -94,14 +95,21 @@ class Hea extends CI_Controller
 				$config['suffix'] = '.exe';
 				$this->pagination->initialize($config);
 
-				$data['all'] = $this->pelajar->GetAllPage($config['per_page'], $this->uri->segment(3, 0));
+				$data['all'] = $this->pelajar->GetAll($config['per_page'], $this->uri->segment(3, 0));
 
 				$data['paginate'] = $this->pagination->create_links();
 				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
 				if ($this->form_validation->run() == TRUE)
 					{
-					
+						if($this->input->post('check', TRUE))
+							{
+								$ic = $this->input->post('ic', TRUE);
+								$array = 'nama LIKE \'%'.$ic.'%\' OR matrik LIKE \'%'.$ic.'%\' OR ic LIKE \'%'.$ic.'%\' OR passport LIKE \'%'.$ic.'%\'';
+								$data['all'] = $this->pelajar->GetWhere($array, $config['per_page'], $this->uri->segment(3, 0));
+								//echo $this->db->last_query();
+							}
 					}
+				$this->load->view('hea/info_pelajar', $data);
 			}
 
 #############################################################################################################################

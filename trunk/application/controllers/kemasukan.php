@@ -1002,7 +1002,7 @@ class Kemasukan extends CI_Controller
 					{
 						if($this->input->post('reg', TRUE))
 							{
-								$this->form_validation->set_rules('nomatriks', 'No Matriks', 'trim|required|is_unique[pelajar.matrik]|xss_clean');
+								$this->form_validation->set_rules('nomatriks', 'No Matriks', 'trim|required|alpha_dash|is_unique[pelajar.matrik]|xss_clean');
 							}
 					}
 
@@ -1337,7 +1337,7 @@ class Kemasukan extends CI_Controller
 			$data['title'] = 'Senarai Template';
 			$data['hidden_field'] =  '';
 			$this->load->library('pagination');
-			$this->load->library('ckeditor');
+			#$this->load->library('ckeditor');
 			
 			/*
 			 * /
@@ -1386,7 +1386,7 @@ class Kemasukan extends CI_Controller
 			$data['template'] = $this->db->limit(5, $this->uri->segment(3,0));
 			$data['template'] = $this->template_surat->get();
 			
-			$data['paginate'] =$this->pagination->create_links();
+			$data['paginate'] = $this->pagination->create_links();
 			
 			$this->load->view('kemasukan/template', $data);
 		}
