@@ -1,23 +1,37 @@
 @CHARSET "ISO-8859-1";
+@media print {
+	@page {
+		margin: 0.5in;
+		size: A4 landscape;
+		counter-increment: page;
+	}
 
-body{
-	font-family: arial;
-	font-size: 12;
-	color: #000000;
-	background: #FFFFFF url("../images/iptip.png") no-repeat center;
+	html{
+		margin:0;
+	}
 }
 
-#content{
-	width: auto;
-	}
 
-#jadual, #jadual td{
-	border: thin solid;
-	padding: 5px !important;
-	border-collapse: collapse;
+@media all{
+	body{
+		font-family: arial;
+		font-size: 12;
+		color: #000000;
+		background: #FFFFFF url("../images/iptip.png") no-repeat center;		
 	}
 	
-.surat{
-	background: url("../images/iptip.png") no-repeat center;
-	}
+	#content{
+		width: auto;
+		}
+	
+	#jadual, #jadual td{
+		border: thin solid;
+		padding: 5px !important;
+		border-collapse: collapse;
+		}
+		
+	.surat{
+		background: url("../images/iptip.png") no-repeat center;
+		}
+}
                  
