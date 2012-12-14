@@ -1424,6 +1424,18 @@ class Kemasukan extends CI_Controller
 				}
 			}
 		}
+		
+		public function check_matrik(){
+			if($this->input->post('matrik', TRUE)){
+				$check = $this->db->select('matrik');
+				$check = $this->pelajar->get_where(array('matrik' => $this->input->post('matrik')));
+				if($check->num_rows()==0){
+					echo 'No matrik ini tiada dalam rekod.';
+				}else{
+					echo 'No matrik ini sudah ada dalam rekod. Sila pilih nombor yang lain.';
+				}
+			}
+		}
 #############################################################################################################################
 	}
 
