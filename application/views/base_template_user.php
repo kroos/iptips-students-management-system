@@ -7,7 +7,7 @@
 		<meta name="keywords" content="Students Management, system, students management system, iptips, islam" />
 		<meta name="author" content="Zaugola" />
 		<link rel="shortcut icon" href="<?=base_url()?>images/favicon.ico" type="image/x-icon" />
-		<link href="<?=base_url()?>css/jquery/jquery-ui-1.9.0.custom.css" rel="stylesheet">
+		<link href="<?=base_url()?>css/jquery/jquery-ui-1.9.1.custom.css" rel="stylesheet">
 	<? endblock() ?>
 
 	<? startblock('top_nav') ?>
