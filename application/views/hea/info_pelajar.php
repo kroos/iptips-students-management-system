@@ -35,8 +35,7 @@
 						<th>Sesi Daftar</th>
 						<th>Program</th>
 						<th>Nama</th>
-						<th>IC</th>
-						<th>Passport</th>
+						<th>IC / Passport</th>
 						<th>Status</th>
 						<th>Warganegara</th>
 						<th>Bangsa</th>
@@ -52,8 +51,7 @@
 							<td><?=$v->sesi_daftar?></td>
 							<td><?=$this->program->GetWhere(array('kod_prog' => $this->pel_sem->GetWhere(array('matrik' => $v->matrik, 'sesi' => $v->sesi_daftar), NULL, NULL)->row()->kod_prog), NULL, NULL)->row()->namaprog_MY?></td>
 							<td><?=$v->nama?></td>
-							<td><?=$v->ic?></td>
-							<td><?=$v->passport?></td>
+							<td><?=$v->ic?> / <?=$v->passport?></td>
 							<td><?=$this->sel_status->GetWhere(array('kodstatus' => $v->status_pljr), NULL, NULL)->row()->status_MY?></td>
 							<td><?=$this->sel_negara->get($v->warganegara)->row()->namanegara?></td>
 							<td><?=$this->sel_race->get($v->bangsa)->row()->bangsa_MY?></td>

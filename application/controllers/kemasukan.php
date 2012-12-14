@@ -1424,11 +1424,13 @@ class Kemasukan extends CI_Controller
 				}
 			}
 		}
-		
+
+		//bro... tak payah buat lagu ni...sbb kita ada form_validation...tgk line 1005 dalam file ni jugak...
+		//tp kalau hang nak confirmkan untuk jquery tu...takpa laa...
 		public function check_matrik(){
 			if($this->input->post('matrik', TRUE)){
 				$check = $this->db->select('matrik');
-				$check = $this->pelajar->get_where(array('matrik' => $this->input->post('matrik')));
+				$check = $this->pelajar->GetAll(array('matrik' => $this->input->post('matrik')));
 				if($check->num_rows()==0){
 					echo 'No matrik ini tiada dalam rekod.';
 				}else{
