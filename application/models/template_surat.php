@@ -25,12 +25,12 @@ class Template_surat extends CI_Model
 	}
 	
 	//insert
-	function set_template($array){
+	function set($array){
 		return $this->db->insert('template_surat', $array);
 	}
 	
 	//update
-	function edit_template($set, $where){
+	function edit($set, $where){
 		return $this->db->update('template_surat', $set, $where);
 	}
 }
