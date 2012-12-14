@@ -811,12 +811,12 @@ $config = array	(
 								'label' => 'Kepala Surat',
 								'rules' => 'trim|required'
 							),
-						array
+						/*array
 							(
 								'field' => 'address',
 								'label' => 'Alamat',
 								'rules' => 'trim|required'
-							),
+							),*/
 					),
 					'hea/info_pelajar' => array
 					(
