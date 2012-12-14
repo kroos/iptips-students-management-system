@@ -79,13 +79,13 @@
 						Tiada Rekod Pembayaran. Sila ke Jabatan Kewangan.
 					<?else:?>
 						<?$fg = $this->yuran_jadual->GetWhere(array('kod_prog' => $r->progTawar, 'bulan' => 1), NULL, NULL)?>
-						<?if($c <= $fg->row()->jum_ansuran):?>
+						<?if($c < $fg->row()->jum_ansuran):?>
 							Pembayaran minimum adalah RM <?=$fg->row()->jum_ansuran?>, baki RM<?=($fg->row()->jum_ansuran - $c)?> perlu dijelaskan.
 						<?else:?>
 							<?=form_open('', '', array('siri_mohon' => $r->siri_mohon, 'id_mohon' => $r->id))?>
 							<?=form_label('No Matriks', 'nomatr')?>
-							<div class="form_settings"><?=form_input(array('name' => 'nomatriks', 'value' => set_value('nomatriks'), 'id' => 'nomatr'))?>
-							<br /><?=form_error('nomatriks')?></div>
+							<div class="form_settings"><?=form_input(array('name' => 'nomatriks', 'value' => set_value('nomatriks'), 'id' => 'nomatr', 'class'=>'nomatriks'))?>
+							<br /><div class="info"><?=form_error('nomatriks')?></div></div>
 							<div class="demo"><?=form_submit('reg', 'Daftar', 'class="submit"')?></div>
 							<?=form_close()?>
 						<?endif?>
@@ -97,5 +97,30 @@
 		</table>
 <?endif?>
 	<? endblock() ?>
+	
+	<?php startblock('jscript')?>
+		<?php get_extended_block()?>
+		<script type="text/javascript" src="<?php echo base_url()?>js/jquery/jquery.cookies.2.2.0.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$(".nomatriks").on('blur', function(){
+					$.post("<?php echo base_url();?>kemasukan/check_matrik",
+						{
+							<?php echo $this->config->item('csrf_token_name'); ?>: $.cookies.get("<?php echo $this->config->item('csrf_cookie_name'); ?>"),
+							matrik: $(this).val()
+						},
+						function(data){
+							$(".info")
+								.html(data);
+						}
+					);
+				});
+			});
+		</script>
+<!--
+
+//-->
+</script>
+	<?php endblock()?>
 	
 <? end_extend() ?>
