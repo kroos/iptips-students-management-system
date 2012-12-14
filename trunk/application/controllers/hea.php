@@ -112,6 +112,16 @@ class Hea extends CI_Controller
 				$this->load->view('hea/info_pelajar', $data);
 			}
 
+		public function edit()
+			{
+				$matrik = $this->uri->segment(3, 0);
+				echo $matrik;
+				$data['t'] = $this->pelajar->GetWhere(array('matrik' => $matrik), NULL ,NULL);
+				if($data['t']->num_rows() == 1)
+					{
+						$this->load->view('hea/edit_pelajar', $data);
+					}
+			}
 #############################################################################################################################
 	}
 
