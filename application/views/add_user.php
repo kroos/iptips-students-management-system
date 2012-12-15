@@ -113,6 +113,7 @@
 		<script src="<?=base_url()?>js/jquery/jquery-ui-1.9.1.custom.js"></script>
 		<script type="text/javascript" src="<?=base_url()?>js/jquery/jquery-ui-timepicker-addon.js"></script>
 		<script language="JavaScript" type="text/javascript" src="<?=base_url()?>js/jquery.chainedSelects.js"></script>
+		<script type="text/javascript" src="<?=base_url()?>js/jquery/ucwords.js"></script>
 		<script>
 			$(function() {
 				$( "input[type=submit], a, button", ".demo" )
@@ -121,6 +122,11 @@
 
 				// Datepicker
 				$('#datepicker1').datetimepicker({dateFormat: "yy-mm-dd", timeFormat: "hh:mm:ss", showSecond: true, showMillisec: false, ampm: false, stepHour: 1, stepMinute: 1, stepSecond: 5});
+
+				//ucwords
+				$("input").keyup(function() {
+					toUpper(this);
+				});
 
 				$('#jabatan').chainSelect('#jawatan','<?=site_url().'isms/combobox'?>',
 					{ 
