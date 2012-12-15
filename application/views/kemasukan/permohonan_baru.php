@@ -134,7 +134,7 @@
 
 			<p><span><?=form_label('No Telefon Bimbit', 'nohp')?></span>
 			<?=form_input(array('name' => 'nohp', 'value' => ($id != 0 ? $z->row()->nohp : set_value('nohp')), 'maxlength' => '50', 'size' => '30', 'id' => 'nohp'))?>
-			<br /><?=form_error('nama')?></p>
+			<br /><?=form_error('nohp')?></p>
 
 			<p><span><?=form_label('Email', 'emel')?></span>
 			<?=form_input(array('name' => 'emel', 'value' => ($id != 0 ? $z->row()->emel : set_value('emel')), 'maxlength' => '50', 'size' => '30', 'id' => 'emel'))?>

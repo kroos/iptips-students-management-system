@@ -9,6 +9,7 @@ class Hea extends CI_Controller
 
 				$this->load->model('subjek');					//nak tau controller ni pakai model mana 1...
 				$this->load->model('pelajar');					//nak tau controller ni pakai model mana 1...
+				$this->load->model('pel_waris');					//nak tau controller ni pakai model mana 1...
 				$this->load->model('pel_sem');					//nak tau controller ni pakai model mana 1...
 
 				//mesti ikut peraturan ni..
@@ -115,13 +116,116 @@ class Hea extends CI_Controller
 		public function edit()
 			{
 				$matrik = $this->uri->segment(3, 0);
-				echo $matrik;
-				$data['t'] = $this->pelajar->GetWhere(array('matrik' => $matrik), NULL ,NULL);
-				if($data['t']->num_rows() == 1)
+				$data['v'] = $this->sel_negara->get();
+				$data['vq'] = $this->sel_gender->get();
+				$data['vw'] = $this->sel_marital->get();
+				$data['bandar'] = $this->sel_bandar->get();
+				$data['warga'] = $this->sel_warga->get();
+				$data['bangsa'] = $this->sel_race->get();
+
+				$data['ses'] = $this->sesi_intake->GetAllPage('tarikh_mula', NULL, NULL);
+
+				$data['z'] = $this->pelajar->GetWhere(array('matrik' => $matrik), NULL ,NULL);
+
+				if($data['z']->num_rows() == 1)
 					{
+						$data['title'] = 'Kemaskini Pelajar '.$data['z']->row()->nama;
+
+						$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+						if ($this->form_validation->run() == TRUE)
+							{
+								if($this->input->post('simpan', TRUE))
+									{
+										$insert = array(
+															'nama' => ucwords(strtolower($this->input->post('nama', TRUE))),
+															'ic' => $this->input->post('ic', TRUE),
+															'passport' => $this->input->post('passport', TRUE),
+															'dt_lahir' => $this->input->post('dt_lahir', TRUE),
+															'tempat_lahir' => ucwords(strtolower($this->input->post('tempat_lahir', TRUE))),
+															'status_warga' => $this->input->post('status_warga', TRUE),
+															'warganegara' => ucwords(strtolower($this->input->post('warganegara', TRUE))),
+															'bangsa' => ucwords(strtolower($this->input->post('bangsa', TRUE))),
+															'jantina' => $this->input->post('jantina', TRUE),
+															'status_kahwin' => ucwords(strtolower($this->input->post('status_kahwin', TRUE))),
+															'alamat1' => ucwords(strtolower($this->input->post('alamat1', TRUE))),
+															'alamat2' => ucwords(strtolower($this->input->post('alamat2', TRUE))),
+															'poskod' => $this->input->post('poskod', TRUE),
+															'bandar' => $this->input->post('bandar', TRUE),
+															'negeri' => $this->input->post('negeri', TRUE),
+															'negara' => $this->input->post('negara', TRUE),
+															'id_edit' => $this->session->userdata('id_user'),
+															'dt_edit' => date_db(now()),
+															'sesi_daftar' => $this->input->post('sesi_daftar', TRUE),
+															'notel' => $this->input->post('notel', TRUE),
+															'nohp' => $this->input->post('nohp', TRUE),
+															'emel' => $this->input->post('emel', TRUE)
+														);
+										$d = $this->pelajar->update(array('matrik' => $matrik), $insert);
+										if ($d)
+											{
+												redirect('hea/edit_waris/'.$matrik, 'location');
+											}
+											else
+											{
+												$data['info'] = 'Data tidak berjaya disimpan. Sila cuba sebentar lagi';
+											}
+									}
+							}
 						$this->load->view('hea/edit_pelajar', $data);
 					}
 			}
+
+		public function edit_waris()
+			{
+				$matrik = $this->uri->segment(3, 0);
+				$data['c'] = $this->pel_waris->GetWhere(array('matrik' => $matrik), NULL ,NULL);
+				if($data['c']->num_rows() == 1)
+					{
+						$data['info'] = '';
+						$data['h'] = $this->sel_hubungan->GetAll();
+						$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+						if ($this->form_validation->run() == TRUE)
+							{
+								if($this->input->post('waris', TRUE))
+									{
+										$insert = array
+														(
+															'nama' => ucwords(strtolower($this->input->post('nama', TRUE))),
+															'hubungan' => $this->input->post('hubungan', TRUE),
+															'alamat1' => ucwords(strtolower($this->input->post('alamat1', TRUE))),
+															'alamat2' => ucwords(strtolower($this->input->post('alamat2', TRUE))),
+															'poskod' => $this->input->post('poskod', TRUE),
+															'no_telefon' => $this->input->post('no_telefon', TRUE)
+														);
+										$v = $this->pel_waris->update(array('matrik' => $matrik), $insert);
+										if($v)
+											{
+												redirect ('/hea/edit_akademik/'.$matrik, 'location');
+											}
+											else
+											{
+												$data['info'] = 'Data tidak berjaya disimpan. Sila cuba sebentar lagi';
+											}
+									}
+							}
+						$this->load->view('hea/edit_waris', $data);
+					}
+					else
+					{
+						redirect('/hea/index', 'location');
+					}
+			}
+
+		public function edit_akademik()
+			{
+			
+			}
+
+
+
+
+
+
 #############################################################################################################################
 	}
 

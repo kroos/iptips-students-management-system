@@ -257,7 +257,7 @@ class Kemasukan extends CI_Controller
 				$id = $this->uri->segment(3, 0);
 				if(is_numeric($id))
 					{
-					$data['z'] = $this->app_pelajar->get_app_pelajar($id);
+						$data['z'] = $this->app_pelajar->get_app_pelajar($id);
 					}
 				$data['title'] = 'Proses Permohonan';
 				$data['v'] = $this->sel_negara->get();
@@ -275,7 +275,7 @@ class Kemasukan extends CI_Controller
 							{
 								//kena cari siri_mohon dulu dari sesi_intake
 								//dapatkan siri_mohon dari sesi_intake
-								$semo = $this->input->post('sesi_mohon');
+								$semo = $this->input->post('sesi_mohon', TRUE);
 								$kodmula = $this->sesi_intake->GetWhere(array('kodsesi' => $semo))->row()->kodmula;
 								$siri = $this->sesi_intake->GetWhere(array('kodsesi' => $semo))->row()->siri;
 								//SIRI MMG AKAN JADI 4 digit SBB DISET DI DATABASE
@@ -299,7 +299,7 @@ class Kemasukan extends CI_Controller
 													'negeri' => $this->input->post('negeri', TRUE),
 													'negara' => $this->input->post('negara', TRUE),
 													'id_add' => $this->session->userdata('id_user'),
-													'dt_add' => date_db($date),
+													'dt_add' => date_db(now()),
 													'sesi_mohon' => $semo,
 													'siri_mohon' => $siri_mohon,
 													'status_mohon' => 'DIP',
