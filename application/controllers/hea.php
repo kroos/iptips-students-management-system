@@ -319,7 +319,13 @@ class Hea extends CI_Controller
 					}
 			}
 
-
+		public function daftar_subjek()
+			{
+				//tak tau nak start dari mana niiii..........hentam sajalah labuuuu...
+				//papar student, program dan subjek? kendian boleh edit?
+				//mbik terus dari pel_sem?
+				
+			}
 
 
 
