@@ -1,6 +1,7 @@
 <? extend('base_template_user') ?>
 
-	<? startblock('content') ?>		
+	<? startblock('content') ?>
+<?$id = $this->uri->segment(3, 0)?>
 		<h2><?=$title?></h2>                
 			<div id="accordion">
 			<h3>Bantuan</h3>
@@ -10,16 +11,34 @@
 			<div class="info"><p><?=@$info?></p></div>
 		<div class="demo">
 		
-			<?php if($akademik->num_rows>0) {?>
+			<?php if($akademik->num_rows > 0) {?>
 			
 			<div id="info_akademik">
 				<?php foreach ($akademik->result() as $a){?>
-					<h4><?php echo $a->level;?></h4>
+					<h4><?=$this->sel_level->get_where(array('kodtahap' => $a->level))->row()->tahap_MY?></h4>
 					<table>
-						<tr><td>Institusi Pengajian</td>
-							<td><?=$a->institusi;?></td></tr>
-						<tr><td>Tahun Tamat Pengajian</td>
-							<td><?=$a->tahun?></td></tr>
+						<tr>
+							<td>Institusi Pengajian</td>
+							<td><?=$a->institusi?></td>
+						</tr>
+						<tr>
+							<td>Tahun Tamat Pengajian</td>
+							<td><?=$a->tahun?></td>
+						</tr>
+						<tr>
+							<td>Kelayakan</td>
+							<td>
+								<table>
+									<?$r = $this->pel_subjek_akademik->GetWhere(array('akademik_id' => $a->id), NULL, NULL)?>
+									<?foreach($r->result() as $x):?>
+									<tr>
+										<td><?=$this->sel_subjek->get_where(array('kodsubjek' => $x->subjek))->row()->subjek_MY?></td>
+										<td><?=$x->gred?></td>
+									</tr>
+									<?endforeach?>
+								</table>
+							</td>
+						</tr>
 					</table>
 				<?php }?>
 			</div>

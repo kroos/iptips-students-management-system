@@ -56,7 +56,12 @@
 							<td><?=$this->sel_negara->get($v->warganegara)->row()->namanegara?></td>
 							<td><?=$this->sel_race->get($v->bangsa)->row()->bangsa_MY?></td>
 							<td><?=$this->sel_marital->get($v->status_kahwin)->row()->marital_MY?></td>
-							<td><?=$v->alamat1.'<br />'.$v->alamat2.'<br />'.$v->poskod.'<br />'.$this->sel_bandar->get(array('kodbandar' => $v->bandar))->row()->namabandar.'<br />'.$this->sel_negeri->get($v->negeri)->row()->namanegeri.'<br />'.$this->sel_negara->get($v->negara)->row()->namanegara?></td>
+							<td><?=$v->alamat1
+							.'<br />'.$v->alamat2
+							.'<br />'.$v->poskod
+							.'<br />'.$this->sel_bandar->get(array('kodbandar' => $v->bandar))->row()->namabandar
+							.'<br />'.$this->sel_negeri->get($v->negeri)->row()->namanegeri
+							.'<br />'.$this->sel_negara->get($v->negara)->row()->namanegara?></td>
 							<td><?=$v->notel?></td>
 							<td><?=$v->nohp?></td>
 							<td><?=$v->emel?></td>
