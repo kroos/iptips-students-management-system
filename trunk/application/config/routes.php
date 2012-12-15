@@ -49,6 +49,8 @@ $route['kemasukan/edit_permohonan/(:num)'] = 'kemasukan/edit_permohonan';
 $route['kemasukan/mohon_pelajar/(:num)'] = 'kemasukan/mohon_pelajar';
 $route['kewangan/bayar_prmhnn/(:any)'] = 'kewangan/bayar_prmhnn';
 $route['hea/edit/(:any)'] = 'hea/edit';
+$route['hea/edit_waris/(:any)'] = 'hea/edit_waris';
+$route['hea/edit_akademik/(:any)'] = 'hea/edit_akademik';
 
 
 /* End of file routes.php */
