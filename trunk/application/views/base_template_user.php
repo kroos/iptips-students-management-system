@@ -93,6 +93,7 @@
 	<? startblock('jscript') ?>
 		<script src="<?=base_url()?>js/jquery/jquery-ui-1.9.1.custom.js"></script>
 		<script type="text/javascript" src="<?=base_url()?>js/jquery/jquery-ui-timepicker-addon.js"></script>
+		<script type="text/javascript" src="<?=base_url()?>js/jquery/ucwords.js"></script>
 		<script>
 			$(function() {
 				$( "input[type=submit], a, button", ".demo" )
@@ -104,6 +105,11 @@
 			
 				$( "#accordion" ).accordion({
 					collapsible: true
+				});
+
+				//ucwords
+				$("input").keyup(function() {
+					toUpper(this);
 				});
 			});
 		</script>

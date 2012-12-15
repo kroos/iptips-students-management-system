@@ -324,7 +324,30 @@ class Hea extends CI_Controller
 				//tak tau nak start dari mana niiii..........hentam sajalah labuuuu...
 				//papar student, program dan subjek? kendian boleh edit?
 				//mbik terus dari pel_sem?
-				
+
+				//pagination process
+				$this->load->library('pagination');
+				$config['base_url'] = base_url().'hea/daftar_subjek';
+				$config['total_rows'] = $this->pelajar->GetAll(NULL, NULL)->num_rows();
+				$config['per_page'] = 5;
+				$config['suffix'] = '.exe';
+				$this->pagination->initialize($config);
+
+				$data['all'] = $this->pelajar->GetAll($config['per_page'], $this->uri->segment(3, 0));
+
+				$data['paginate'] = $this->pagination->create_links();
+				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+				if ($this->form_validation->run() == TRUE)
+					{
+						if($this->input->post('check', TRUE))
+							{
+								$ic = $this->input->post('ic', TRUE);
+								$array = 'nama LIKE \'%'.$ic.'%\' OR matrik LIKE \'%'.$ic.'%\' OR ic LIKE \'%'.$ic.'%\' OR passport LIKE \'%'.$ic.'%\'';
+								$data['all'] = $this->pelajar->GetWhere($array, $config['per_page'], $this->uri->segment(3, 0));
+								//echo $this->db->last_query();
+							}
+					}
+				$this->load->view('hea/daftar_subjek', $data);
 			}
 
 

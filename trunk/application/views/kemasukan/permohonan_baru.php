@@ -207,16 +207,6 @@
 		            changeYear: true
 		        });
 
-		        $('input').each(function(index){
-					
-					if($(this).attr('id')!='emel'){
-						$(this).blur(function(){
-								val = $(this).val()
-								$(this).val(val.toUpperCase());
-						});
-					}
-		        });
-				
 				$("#negara").change(function(){
 					negeri();
 					bandar();
