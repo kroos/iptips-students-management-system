@@ -11,6 +11,8 @@ class Hea extends CI_Controller
 				$this->load->model('pelajar');					//nak tau controller ni pakai model mana 1...
 				$this->load->model('pel_waris');					//nak tau controller ni pakai model mana 1...
 				$this->load->model('pel_sem');					//nak tau controller ni pakai model mana 1...
+				$this->load->model('pel_akademik');					//nak tau controller ni pakai model mana 1...
+				$this->load->model('pel_subjek_akademik');					//nak tau controller ni pakai model mana 1...
 
 				//mesti ikut peraturan ni..
 				//user mesti log on kalau tidak redirect to index
@@ -218,7 +220,103 @@ class Hea extends CI_Controller
 
 		public function edit_akademik()
 			{
-			
+				$data['title'] = 'Kelayakan Akademik';
+				$matrik = $this->uri->segment(3, 0);
+
+				$data['lev'] = $this->sel_level->GetAktif(1);
+				
+				//dapatkan maklumat akademik
+				$data['akademik'] = $this->pel_akademik->GetWhere(array('matrik' => $matrik), NULL, NULL);
+				
+				if ($data['akademik']->num_rows() > 0)
+					{
+						$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+						if ($this->form_validation->run() == TRUE)
+							{
+								if($this->input->post('simpan', TRUE))
+									{
+										$y = $this->pel_akademik->GetWhere(array('matrik' => $matrik, 'level' => $this->input->post('level', TRUE), 'institusi' => ucwords(strtolower($this->input->post('institusi', TRUE)))));
+										if($y->num_rows() < 1)
+											{
+												//app_akademik dulu
+												$insert = array
+																(
+																	'id_mohon' => $id,
+																	'level' => $this->input->post('level', TRUE),
+																	'institusi' => ucwords(strtolower($this->input->post('institusi', TRUE))),
+																	'tahun' => $this->input->post('tahun', TRUE)
+																);
+												$r = $this->pel_akademik->set_app_akademik($insert);
+												$akademik_id = $this->db->insert_id();
+
+												//masukkan dalam app_subjek_akademik
+												$c = array_combine($this->input->post('subjek', TRUE), $this->input->post('gred', TRUE));
+
+												foreach($c as $s => $g)
+													{
+														$dat[] = $this->app_subjek_akademik->set_app_akademik(array('akademik_id' => $akademik_id, 'subjek' => ucwords(strtolower($s)), 'gred' => ucwords(strtolower($g))));
+													}
+
+												if($r && $dat)
+													{
+														$data['info'] = 'Data telah berjaya disimpan';
+														redirect('kemasukan/permohonan', 'location');
+													}
+													else
+													{
+														$data['info'] = 'Data tidak berjaya disimpan. Sila cuba sebentar lagi';
+													}
+											}
+											else
+											{
+												$data['info'] = 'Data yang anda masukkan sudah pun direkodkan';
+											}
+									}
+									else
+									{
+										if($this->input->post('simpanTam', TRUE))
+											{
+												$y = $this->app_akademik->get_where(array('id_mohon' => $id, 'level' => $this->input->post('level', TRUE), 'institusi' => ucwords(strtolower($this->input->post('institusi', TRUE)))));
+												if($y->num_rows() < 1)
+													{
+														//app_akademik dulu
+														$insert = array
+																		(
+																			'id_mohon' => $id,
+																			'level' => $this->input->post('level', TRUE),
+																			'institusi' => ucwords(strtolower($this->input->post('institusi', TRUE))),
+																			'tahun' => $this->input->post('tahun', TRUE)
+																		);
+														$r = $this->app_akademik->set_app_akademik($insert);
+														$akademik_id = $this->db->insert_id();
+
+														//masukkan dalam app_subjek_akademik
+														$c = array_combine($this->input->post('subjek', TRUE), $this->input->post('gred', TRUE));
+
+														foreach($c as $s => $g)
+															{
+																$dat[] = $this->app_subjek_akademik->set_app_akademik(array('akademik_id' => $akademik_id, 'subjek' => ucwords(strtolower($s)), 'gred' => ucwords(strtolower($g))));
+															}
+
+														if($r && $dat)
+															{
+																$data['info'] = 'Data telah berjaya disimpan';
+																redirect('kemasukan/akademik/'.$id, 'location');
+															}
+															else
+															{
+																$data['info'] = 'Data tidak berjaya disimpan. Sila cuba sebentar lagi';
+															}
+													}
+													else
+													{
+														$data['info'] = 'Data yang anda masukkan sudah pun direkodkan';
+													}
+											}
+									}
+							}
+						$this->load->view('hea/edit_akademik', $data);
+					}
 			}
 
 
