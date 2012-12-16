@@ -807,8 +807,8 @@ $config = array	(
 						array
 							(
 								'field' => 'header',
-								'label' => 'Kepala Surat',
-								'rules' => 'trim|required'
+								'label' => 'Template',
+								'rules' => 'trim|required|xss_clean'
 							),
 						/*array
 							(
