@@ -40,52 +40,56 @@
 		<div class="form_settings">
 			<?php echo form_open('','', $hidden_field)?>
 				<p><span><?php echo form_label('Bahasa', 'lang');?></span>
-					<?php echo form_radio('lang', 'MY', set_radio('lang', 'MY', TRUE), 'id="lang" class="lang"').form_label('Melayu', 'lang1');?> 
-						<?php echo form_radio('lang', 'En', set_radio('lang', 'EN', False), 'id="lang" class="lang"').' Inggeris';?></p>
+					<?php echo form_radio('lang', 'MY', set_radio('lang', 'MY', TRUE), 'id="lang" class="radio"').form_label('Melayu', 'lang1');?> 
+						<?php echo form_radio('lang', 'En', set_radio('lang', 'EN', False), 'id="lang" class="radio"').' Inggeris';?></p>
 						
 				<p><span><?php echo form_label('Nama Template', 'nama_template');?></span>
 					<?php echo form_input(array('name'=>'nama_template', 'value'=>set_value('nama_template', @$baru->row()->nama_template), 'id'=>'nama_template'));?></p>
 		</div>
-		<div class="form_setting">		
+		<div class="form_setting">	
+		<!-- 
 				<p><span><?php echo form_label('Kepala Surat', 'header');?></span>
-					<?php echo $CKEditor->editor('header', set_value('header', @$baru->row()->header));
-					//echo form_textarea(array('name'=>'header', 'value'=>set_value('header', @$baru->row()->header), 'id'=>'header', 'class'=>'ck'));
+					<?php echo $CKEditor->editor('header', @$baru->row()->header ? @$baru->row()->header : set_value('header'));
+					//echo form_textarea(array('name'=>'header', 'value'=> @$baru->row()->header ? @$baru->row()->header : set_value('header'), 'id'=>'header', 'class'=>'editor'));
 					//echo nic_display($nicedit);?>
-					
+				 -->	
 				<p><span><?php echo form_label('Alamat', 'address')?></span>
-					<?php echo form_textarea(array('name'=>'address', 'value'=>set_value('address', @$baru->row()->address), 'id'=>'addres', 'class'=>'ck'));?></p>
-					
+					<?php echo $CKEditor->editor('address', @$baru->row()->address ? @$baru->row()->address:set_value('address'));
+					//form_textarea(array('name'=>'address', 'value'=> @$baru->row()->address ? @$baru->row()->address:set_value('address'), 'id'=>'addres', 'class'=>'ck'));?></p>
+				<!-- 	
 				<p><span><?php echo form_label('Tajuk Surat', 'title')?></span>
-					<?php echo form_textarea(array('name'=>'title', 'value'=>set_value('title', @$baru->row()->title), 'id'=>'title', 'class'=>'ck'));?></p>
+					<?php echo form_textarea(array('name'=>'title', 'value'=>@$baru->row()->title ? @$baru->row()->title:set_value('title'), 'id'=>'title', 'class'=>'ck'));?></p>
 					
 				<p><span><?php echo form_label('Isi Surat 1', 'content1')?></span>
-					<?php echo form_textarea(array('name'=>'content1', 'value'=>set_value('content1', @$baru->row()->content1), 'id'=>'content1', 'class'=>'ck'));?></p>
+					<?php echo form_textarea(array('name'=>'content1', 'value'=> @$baru->row()->content1 ? @$baru->row()->content1 : set_value('content1'), 'id'=>'content1', 'class'=>'ck'));?></p>
 					
 				<p><span><?php echo form_label('Isi Surat 2', 'content2')?></span>
-					<?php echo form_textarea(array('name'=>'content2', 'value'=>set_value('content2', @$baru->row()->content2), 'id'=>'content2', 'class'=>'ck'));?></p>
+					<?php echo form_textarea(array('name'=>'content2', 'value'=> @$baru->row()->content2 ? @$baru->row()->content2 : set_value('content2'), 'id'=>'content2', 'class'=>'ck'));?></p>
 					
 				<p><span><?php echo form_label('Isi Surat 3', 'content3')?></span>
-					<?php echo form_textarea(array('name'=>'content3', 'value'=>set_value('content3', @$baru->row()->content3), 'id'=>'content3', 'class'=>'ck'));?></p>
+					<?php echo form_textarea(array('name'=>'content3', 'value'=> @$baru->row()->content3 ? @$baru->row()->content3 : set_value('content3'), 'id'=>'content3', 'class'=>'ck'));?></p>
 					
 				<p><span><?php echo form_label('Tandatangan', 'signiture')?></span>
-					<?php echo form_textarea(array('name'=>'signiture', 'value'=>set_value('signiture', @$baru->row()->signiture), 'id'=>'signiture', 'class'=>'ck'));?></p>
+					<?php echo form_textarea(array('name'=>'signiture', 'value'=> @$baru->row()->signiture ? @$baru->row()->signiture : set_value('signiture'), 'id'=>'signiture', 'class'=>'ck'));?></p>
 					
 				<p><span><?php echo form_label('Nota Kaki', 'footer')?></span>
-					<?php echo form_textarea(array('name'=>'footer', 'value'=>set_value('footer', @$baru->row()->footer), 'id'=>'footer', 'class'=>'ck'));?></p>
-					
+					<?php echo form_textarea(array('name'=>'footer', 'value'=> @$baru->row()->footer ? @$baru->row()->footer : set_value('footer'), 'id'=>'footer', 'class'=>'ck'));?></p>
+				//-->	
 				<p class="form_settings"><?php echo form_submit('simpan', $btnSubmit, 'id="submit" class="submit"')?></p>
 				
 			<?php echo form_close();?>
 		</div>
 	<?php endblock()?>
-	
 	<?php startblock('jscript')?>
 		<?php get_extended_block()?>
-		<?php echo $CKEditor->replaceAll('.ck');?>
+		<!-- <script type="text/javascript" src="<?php echo base_url();?>js/jwysiwyg/jquery.wysiwyg.js"></script>
+		<script type="text/javascript" src="<?php echo base_url();?>js/nicedit/nicEdit.js"></script>
 		<script>
-				//bkLib.onDomLoaded(function() { nicEditors.allTextAreas({fullPanel : true})});
-		
-		</script>
+		//bkLib.onDomLoaded(function() { nicEditors.allTextAreas({fullPanel : true})});
+		$(document).ready(function(){
+			//$('.ck').wysiwyg();
+		});
+		</script> -->
 	<?php endblock()?>
 	
 <?php end_extend()?>
