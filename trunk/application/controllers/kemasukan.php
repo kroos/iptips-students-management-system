@@ -1352,8 +1352,9 @@ class Kemasukan extends CI_Controller
 			//ckeditor
 			$path = base_url().'js/ckeditor/';
 			$data['CKEditor'] = new CKEditor5($path);
-	 		
-			//nice edit
+	 		$data['CKEditor']->replaceAll();
+			
+	 		//nice edit
 			/*
 			$this->load->helper('nicEdit');
 			$data['nicedit'] = array
@@ -1411,7 +1412,7 @@ class Kemasukan extends CI_Controller
 					foreach($this->input->post() as $key => $val){
 						$$key = $val;
 						if ($key != 'simpan' && $key != 'id' && !empty($val)){
-							$update[$key] = html_entity_decode(html_entity_decode($val));//htmlspecialchars( stripslashes($val));
+							$update[$key] = htmlspecialchars_decode(html_entity_decode(htmlspecialchars_decode($val)));//htmlspecialchars( stripslashes($val));
 							echo $key.' '.$val;
 						}
 						if($key == 'id'){
