@@ -344,7 +344,14 @@ class Hea extends CI_Controller
 								$ic = $this->input->post('ic', TRUE);
 								$array = 'nama LIKE \'%'.$ic.'%\' OR matrik LIKE \'%'.$ic.'%\' OR ic LIKE \'%'.$ic.'%\' OR passport LIKE \'%'.$ic.'%\'';
 								$data['all'] = $this->pelajar->GetWhere($array, $config['per_page'], $this->uri->segment(3, 0));
-								//echo $this->db->last_query();
+								if($data['all'])
+									{
+										$data['info'] = 'Carian berjaya dilakukan';
+									}
+									else
+									{
+										$data['info'] = 'Carian tidak berjaya';
+									}
 							}
 					}
 				$this->load->view('hea/daftar_subjek', $data);
