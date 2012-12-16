@@ -988,7 +988,15 @@ $config = array	(
 								'rules' => 'trim|max_length[12]|xss_clean'
 							)
 					),
-
+					'hea/daftar_subjek' => array
+					(
+						array
+							(
+								'field' => 'ic',
+								'label' => 'Nama / Nombor Kad Pengenalan / No Passport / No Matrik',
+								'rules' => 'trim|required|min_length[2]|xss_clean'
+							)
+					),
 
 
 				);
