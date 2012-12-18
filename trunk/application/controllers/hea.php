@@ -357,7 +357,10 @@ class Hea extends CI_Controller
 				$this->load->view('hea/daftar_subjek', $data);
 			}
 
-
+		public function urus_subjek()
+			{
+				
+			}
 
 
 #############################################################################################################################

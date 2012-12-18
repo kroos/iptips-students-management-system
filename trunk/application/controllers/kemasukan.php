@@ -30,7 +30,8 @@ class Kemasukan extends CI_Controller
 				$this->load->model('yuran_jadual');				//load table tamplate surat tawaran
 				$this->load->model('yuran_prog');				//load table tamplate surat tawaran
 				$this->load->model('prog_subjek');				//load table tamplate surat tawaran
-				$this->load->model('pel_item_invois');				//load table tamplate surat tawaran
+				$this->load->model('pel_item_invois');			//load table tamplate surat tawaran
+				$this->load->model('subjek');					//load table tamplate surat tawaran
 				
 				$this->lang->load('form_validation', 'melayu');
 				
@@ -514,7 +515,7 @@ class Kemasukan extends CI_Controller
 											}
 									}
 							}
-						$this->load->view('kemasukan/waris', $data);
+						$this->load->view('kemasukan/mohon_waris', $data);
 					}
 					else
 					{
@@ -1109,15 +1110,18 @@ class Kemasukan extends CI_Controller
  */
 										//insert to pel_daftarsubjek
 										$prog_subjek = $this->prog_subjek->GetWhere(array('kod_prog' => $pel->row()->progTawar, 'sem' => 1), NULL, NULL);
+										//echo $pel->row()->progTawar.' = prog tawar<br />';
 /* 										foreach ($prog_subjek->result() as $ps)
 											{
+												//echo $ps->kodsubjek.' = kod subjek<br />';
+												$nb = $this->subjek->GetWhere(array('kodsubjek' => $ps->kodsubjek));
 												$array = array
 															(
 																'matrik' => $matrik,
 																'kodsubjek' => $ps->kodsubjek,
 																'sesi' => $pel->row()->sesi_mohon,
 																'sem' => 1,
-																'kredit' => $this->subjek->GetWhere(array('kodsubjek' => $ps->kodsubjek))->row()->kredit,
+																'kredit' => $nb->row()->kredit,
 																'id_add' => $this->session->userdata('id_user'),
 																'dt_add' => datetime_db(now()),
 																'aktif' => 1
@@ -1187,7 +1191,9 @@ class Kemasukan extends CI_Controller
 											
 
 										//try pakai transaction, boleh rollback kalau salah satu group fails.....
+										//pastikan table pakai engine innodb...kalau tidak mmg sangkut...
 										$this->db->trans_start();
+
 										$reg = $this->pelajar->insert($insert);
 										$uap = $this->app_pelajar->update(array('dt_transfer' => date_db(now()), 'id_transfer' => $this->session->userdata('id_user')), array('id' => $id_mohon));
 										$pel_sem = $this->pel_sem->insert($insertsem);
@@ -1205,13 +1211,16 @@ class Kemasukan extends CI_Controller
 											}
 										foreach ($prog_subjek->result() as $ps)
 											{
+												echo $ps->kodsubjek.' = kod subjek<br />';
+												$nb = $this->subjek->GetWherePage(array('kodsubjek' => $ps->kodsubjek), NULL, NULL)->row()->kredit;
+												echo $nb.' = kredit<br />';
 												$array = array
 															(
 																'matrik' => $matrik,
 																'kodsubjek' => $ps->kodsubjek,
 																'sesi' => $pel->row()->sesi_mohon,
 																'sem' => 1,
-																'kredit' => $this->subjek->GetWhere(array('kodsubjek' => $ps->kodsubjek))->row()->kredit,
+																'kredit' => $nb,
 																'id_add' => $this->session->userdata('id_user'),
 																'dt_add' => datetime_db(now()),
 																'aktif' => 1
@@ -1224,7 +1233,6 @@ class Kemasukan extends CI_Controller
 
 										//update pel_resit
 										$per = $this->pel_resit->update(array('matrik' => $siri_mohon), array('matrik' => $matrik));
-										$this->db->trans_complete();
 
 										//insert pel_item_invois
  										foreach ($yuran_prog->result() as $yp1)
@@ -1240,6 +1248,8 @@ class Kemasukan extends CI_Controller
 																);
 												$pii[] = $this->pel_item_invois->insert($tarray);
 											}
+
+										$this->db->trans_complete();
 
 										if ($this->db->trans_status() === FALSE)
 											{

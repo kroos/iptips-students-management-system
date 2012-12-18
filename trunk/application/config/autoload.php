@@ -109,7 +109,34 @@ $autoload['language'] = array();
 |
 */
 
-$autoload['model'] = array('month', 'spm_gred_year', 'dept_func', 'program', 'sel_bandar', 'sel_gender', 'sel_hubungan', 'sel_level', 'sel_marital', 'sel_negara', 'sel_negeri', 'sel_race', 'sel_statusmohon', 'sel_subjek', 'sel_gred', 'sel_warga', 'sel_status', 'sesi_intake', 'user_data', 'user_department', 'user_dept', 'user_dept_func', 'user_dept_jaw', 'user_function', 'view');
+$autoload['model'] = array
+							(
+								'month',
+								'spm_gred_year',
+								'dept_func',
+								'program',
+								'sel_bandar',
+								'sel_gender',
+								'sel_hubungan',
+								'sel_level',
+								'sel_marital',
+								'sel_negara',
+								'sel_negeri',
+								'sel_race',
+								'sel_statusmohon',
+								'sel_subjek',
+								'sel_gred',
+								'sel_warga',
+								'sel_status',
+								'sesi_intake',
+								'user_data',
+								'user_department',
+								'user_dept',
+								'user_dept_func',
+								'user_dept_jaw',
+								'user_function',
+								'view'
+							);
 
 
 /* End of file autoload.php */
