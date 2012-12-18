@@ -2,6 +2,7 @@
 
 	<? startblock('content') ?>
 	<?$id = $this->uri->segment(3, 0)?>
+	<?$id = $this->uri->segment(3, 0)?>
 		<h2>Maklumat Waris</h2>
 		<p>Sila masukkan data untuk waris kepada pelajar</p>
 		<p><font color="#FF0000"><?=@$info?></font></p>

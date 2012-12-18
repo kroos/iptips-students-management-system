@@ -269,7 +269,7 @@ class Isms extends CI_Controller
 
 												//masukkan dalam table function
 												//nak kena dapatkan dulu posisi
-												$mn = $this->view->menu($ctrlr)->num_rows();
+												$mn = $this->view->menu1($ctrlr)->num_rows();
 												//echo $mn;
 												//tambah 1
 												$mnb = $mn + 1;

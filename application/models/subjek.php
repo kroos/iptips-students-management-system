@@ -1,6 +1,6 @@
 <?php
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class Subjek extends CI_Model
+class Subjek extends CI_Model 
 	{
 		function __construct()
 			{
