@@ -224,5 +224,23 @@ class View extends CI_Model
 											(`app_progmohon`.`status_mohon` = 'DIP')
 										");
 			}
+
+		function view_prog_subj($kod_prog, $sem)
+			{
+				return $this->db->query("
+											select
+											`subjek`.`namasubjek_MY` AS `namasubjek_MY`,
+											`prog_subjek`.`kod_prog` AS `kod_prog`,
+											`program`.`namaprog_MY` AS `namaprog_MY`,
+											`prog_subjek`.`sem` AS `sem`,`prog_subjek`.`kodsubjek`
+											AS `kodsubjek`,`subjek`.`kredit` AS `kredit`
+											from ((`prog_subjek`
+											INNER JOIN `program` on((`prog_subjek`.`kod_prog` = `program`.`kod_prog`))) 
+											inner join `subjek` on((`prog_subjek`.`kodsubjek` = `subjek`.`kodsubjek`)))
+											WHERE
+											prog_subjek.kod_prog = '$kod_prog' AND
+											prog_subjek.sem = $sem
+										");
+			}
 	}
 ?>

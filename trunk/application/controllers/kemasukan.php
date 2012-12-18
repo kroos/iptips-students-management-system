@@ -1109,19 +1109,17 @@ class Kemasukan extends CI_Controller
 											}
  */
 										//insert to pel_daftarsubjek
-										$prog_subjek = $this->prog_subjek->GetWhere(array('kod_prog' => $pel->row()->progTawar, 'sem' => 1), NULL, NULL);
+										$prog_subjek = $this->view->view_prog_subj($pel->row()->progTawar, 1);
 										//echo $pel->row()->progTawar.' = prog tawar<br />';
 /* 										foreach ($prog_subjek->result() as $ps)
 											{
-												//echo $ps->kodsubjek.' = kod subjek<br />';
-												$nb = $this->subjek->GetWhere(array('kodsubjek' => $ps->kodsubjek));
 												$array = array
 															(
 																'matrik' => $matrik,
 																'kodsubjek' => $ps->kodsubjek,
 																'sesi' => $pel->row()->sesi_mohon,
 																'sem' => 1,
-																'kredit' => $nb->row()->kredit,
+																'kredit' => $ps->kredit,
 																'id_add' => $this->session->userdata('id_user'),
 																'dt_add' => datetime_db(now()),
 																'aktif' => 1
@@ -1211,16 +1209,16 @@ class Kemasukan extends CI_Controller
 											}
 										foreach ($prog_subjek->result() as $ps)
 											{
-												echo $ps->kodsubjek.' = kod subjek<br />';
-												$nb = $this->subjek->GetWherePage(array('kodsubjek' => $ps->kodsubjek), NULL, NULL)->row()->kredit;
-												echo $nb.' = kredit<br />';
+												//echo $ps->kodsubjek.' = kod subjek<br />';
+												$nb = $ps->kredit;
+												//echo $nb.' = kredit<br />';
 												$array = array
 															(
 																'matrik' => $matrik,
 																'kodsubjek' => $ps->kodsubjek,
 																'sesi' => $pel->row()->sesi_mohon,
 																'sem' => 1,
-																'kredit' => $nb,
+																'kredit' => $ps->kredit,
 																'id_add' => $this->session->userdata('id_user'),
 																'dt_add' => datetime_db(now()),
 																'aktif' => 1
