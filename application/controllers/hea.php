@@ -359,7 +359,13 @@ class Hea extends CI_Controller
 
 		public function urus_subjek()
 			{
-				
+				$matrik = $this->uri->segment(3, 0);
+				$m = $this->pelajar->GetWhere(array('matrik' => $matrik), NULL, NULL);
+				if($m->num_rows() == 1)
+					{
+						
+						$this->load->view('hea/urus_subjek', $data);
+					}
 			}
 
 
