@@ -51,6 +51,7 @@ $route['kewangan/bayar_prmhnn/(:any)'] = 'kewangan/bayar_prmhnn';
 $route['hea/edit/(:any)'] = 'hea/edit';
 $route['hea/edit_waris/(:any)'] = 'hea/edit_waris';
 $route['hea/edit_akademik/(:any)'] = 'hea/edit_akademik';
+$route['hea/urus_subjek/(:any)'] = 'hea/urus_subjek';
 
 
 /* End of file routes.php */

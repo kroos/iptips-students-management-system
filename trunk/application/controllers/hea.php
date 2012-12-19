@@ -14,6 +14,7 @@ class Hea extends CI_Controller
 				$this->load->model('pel_akademik');					//nak tau controller ni pakai model mana 1...
 				$this->load->model('pel_subjek_akademik');					//nak tau controller ni pakai model mana 1...
 				$this->load->model('pel_daftarsubjek');					//nak tau controller ni pakai model mana 1...
+				$this->load->model('prog_subjek');					//nak tau controller ni pakai model mana 1...
 
 				//mesti ikut peraturan ni..
 				//user mesti log on kalau tidak redirect to index
@@ -334,7 +335,7 @@ class Hea extends CI_Controller
 				$config['suffix'] = '.exe';
 				$this->pagination->initialize($config);
 
-				$data['all'] = $this->pelajar->GetAll($config['per_page'], $this->uri->segment(3, 0));
+				$data['all'] = $this->pelajar->GetWhere(array('status_pljr' => 'A'), $config['per_page'], $this->uri->segment(3, 0));
 
 				$data['paginate'] = $this->pagination->create_links();
 				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
@@ -343,7 +344,7 @@ class Hea extends CI_Controller
 						if($this->input->post('check', TRUE))
 							{
 								$ic = $this->input->post('ic', TRUE);
-								$array = 'nama LIKE \'%'.$ic.'%\' OR matrik LIKE \'%'.$ic.'%\' OR ic LIKE \'%'.$ic.'%\' OR passport LIKE \'%'.$ic.'%\'';
+								$array = 'status_pljr = \'A\' AND (nama LIKE \'%'.$ic.'%\' OR matrik LIKE \'%'.$ic.'%\' OR ic LIKE \'%'.$ic.'%\' OR passport LIKE \'%'.$ic.'%\')';
 								$data['all'] = $this->pelajar->GetWhere($array, $config['per_page'], $this->uri->segment(3, 0));
 								if($data['all'])
 									{
@@ -364,10 +365,82 @@ class Hea extends CI_Controller
 				$m = $this->pelajar->GetWhere(array('matrik' => $matrik), NULL, NULL);
 				if($m->num_rows() == 1)
 					{
-						$data['m'] = $this->pel_daftarsubjek->GetWhere(array('matrik' => $matrik), NULL, NULL);
-						$this->load->view('hea/urus_subjek', $data);
+						$data['m'] = $this->pel_daftarsubjek->GetWhere(array('matrik' => $matrik, 'aktif' => 1), NULL, NULL);
+						$pelsem = $this->pel_sem->GetWhere(array('matrik' => $matrik, 'aktif' => 1), NULL, NULL);
+						$data['sub'] = $this->prog_subjek->GetWhereOrder(array('kod_prog' => $pelsem->row()->kod_prog) , 'sem ASC, kodsubjek ASC', NULL, NULL);
+
+						if($pelsem->row()->status_pel == '01')
+							{
+								$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+								if ($this->form_validation->run() == TRUE)
+									{
+										if($this->input->post('save', TRUE))
+											{
+												$h = $this->input->post('subjek', TRUE);
+												$matrik = $this->input->post('matrik', TRUE);
+												//echo $h.$matrik;
+												$erray = array
+																(
+																	'matrik' => $matrik,
+																	'kodsubjek' => $h,
+																	'sesi' => $pelsem->row()->sesi,
+																	'sem' => $pelsem->row()->sem,
+																	'kredit' => $this->subjek->GetWhere(array('kodsubjek' => $h))->row()->kredit,
+																	'id_add' => $this->session->userdata('id_user'),
+																	'dt_add' => datetime_db(now()),
+																	'aktif' => 1
+																);
+												$erray1 = array
+																(
+																	'matrik' => $matrik,
+																	'kodsubjek' => $h,
+																	'sesi' => $pelsem->row()->sesi,
+																	'sem' => $pelsem->row()->sem,
+																	'kredit' => $this->subjek->GetWhere(array('kodsubjek' => $h))->row()->kredit,
+																	'aktif' => 1
+																);
+												$vm = $this->pel_daftarsubjek->GetWhere($erray1, NULL, NULL);
+												if($vm->num_rows == 1)
+													{
+														$data['info'] = 'Matapelajaran ini sudah pun didaftarkan';
+													}
+													else
+													{
+														$gh = $this->pel_daftarsubjek->insert($erray);
+														if($gh)
+															{
+																$data['info'] = 'Penambahan matapelajaran berjaya dilakukan';
+																$data['m'] = $this->pel_daftarsubjek->GetWhere(array('matrik' => $matrik, 'aktif' => 1), NULL, NULL);
+															}
+															else
+															{
+																$data['info'] = 'Sila cuba sebentar lagi. Penambahan tidak berjaya';
+																$data['m'] = $this->pel_daftarsubjek->GetWhere(array('matrik' => $matrik, 'aktif' => 1), NULL, NULL);
+															}
+													}
+											}
+									}
+								$this->load->view('hea/urus_subjek', $data);
+							}
 					}
 			}
+
+		public function drop_subj()
+			{
+				$id = $this->uri->segment(4, 0);
+				$drp = $this->pel_daftarsubjek->update(array('id' => $id), array('aktif' => 0));
+				if($drp)
+					{
+						redirect('hea/urus_subjek/'.$matrik, 'location');
+					}
+					else
+					{
+						redirect('hea/urus_subjek/'.$matrik, 'location');
+					}
+			}
+
+
+
 
 
 #############################################################################################################################

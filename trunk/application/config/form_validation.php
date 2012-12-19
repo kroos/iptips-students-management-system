@@ -997,6 +997,21 @@ $config = array	(
 								'rules' => 'trim|required|min_length[2]|xss_clean'
 							)
 					),
+					'hea/urus_subjek' => array
+					(
+						array
+							(
+								'field' => 'subjek',
+								'label' => 'Matapelajaran',
+								'rules' => 'trim|required|min_length[2]|xss_clean'
+							),
+						array
+							(
+								'field' => 'matrik',
+								'label' => 'No Matrik',
+								'rules' => 'trim|required|min_length[2]|xss_clean'
+							)
+					),
 
 
 				);
