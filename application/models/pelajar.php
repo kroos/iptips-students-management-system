@@ -12,12 +12,12 @@ class Pelajar extends CI_Model
 			{
 				return $this->db->get('pelajar', $limit, $offset);
 			}
-	
+
 		function GetWhere($where , $limit, $offset)
 			{
 				return $this->db->get_where('pelajar', $where ,$limit, $offset);
 			}
-		
+
 		function get_where($where)
 			{
 				return $this->db->get_where('pelajar', $where);
@@ -28,6 +28,7 @@ class Pelajar extends CI_Model
 			{
 				return $this->db->insert('pelajar', $insert);
 			}
+
 //UPDATE
 		function update($where, $update)
 			{

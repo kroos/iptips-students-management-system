@@ -13,6 +13,7 @@ class Hea extends CI_Controller
 				$this->load->model('pel_sem');					//nak tau controller ni pakai model mana 1...
 				$this->load->model('pel_akademik');					//nak tau controller ni pakai model mana 1...
 				$this->load->model('pel_subjek_akademik');					//nak tau controller ni pakai model mana 1...
+				$this->load->model('pel_daftarsubjek');					//nak tau controller ni pakai model mana 1...
 
 				//mesti ikut peraturan ni..
 				//user mesti log on kalau tidak redirect to index
@@ -363,7 +364,7 @@ class Hea extends CI_Controller
 				$m = $this->pelajar->GetWhere(array('matrik' => $matrik), NULL, NULL);
 				if($m->num_rows() == 1)
 					{
-						
+						$data['m'] = $this->pel_daftarsubjek->GetWhere(array('matrik' => $matrik), NULL, NULL);
 						$this->load->view('hea/urus_subjek', $data);
 					}
 			}
