@@ -20,12 +20,12 @@ class Subjek extends CI_Model
 
 		function GetWhere($where)
 			{
-				$this->db->get_where('subjek', $where);
+				return $this->db->get_where('subjek', $where);
 			}
 
 		function GetWherePage($where, $limit, $offset)
 			{
-				$this->db->get_where('subjek', $where, $limit, $offset);
+				return $this->db->get_where('subjek', $where, $limit, $offset);
 			}
 
 		function get_subj($id = NULL)
