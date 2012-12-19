@@ -84,21 +84,22 @@ class Select_list extends CI_Controller{
 		}
 	
 	//select list subjek
-	public function ajax_select_subjek(){
-		if($this->input->post('level',TRUE)){
-			$get = array('level'=>$this->input->post('level'),
-				'aktif'=>'1');
-			$subjek = $this->sel_subjek->GetWhere($get);
-		}else {
-			$get = array('aktif'=>'1');
-			$subjek = $this->sel_subjek->GetWhere($get);
+	public function ajax_select_subjek()
+	{
+		if($this->input->post('level',TRUE))
+		{
+			$get = array('level'=>$this->input->post('level'), 'aktif'=>'1');
 		}
-		foreach($subjek->result() as $sub){
+		else
+		{
+			$get = array('aktif'=>'1');
+		}
+		$subjek = $this->sel_subjek->GetWhere($get);
+		foreach($subjek->result() as $sub)
+		{
 			$optionsubjek[$sub->kodsubjek] = $sub->subjek_MY;
 			echo '<option value="'.$sub->kodsubjek.'">'.$sub->subjek_MY.'</option>';
 		}
-		//echo form_dropdown('subjek[]', $optionsubjek, set_select('subjek[]'), 'id="subjek"');
-		//echo 'oi';
 	}
 	
 	//ajax select gred
@@ -194,4 +195,22 @@ class Select_list extends CI_Controller{
 		echo '<select>'.$option.'</select>';
 		return $optionLevel;
 	}
+
+	//select sem
+	public function select_sem()
+	{
+		$this->load->model('prog_subjek');
+		$this->load->model('subjek');
+		$option = '';
+		$level = $this->prog_subjek->GetAll(NULL, NULL);
+		foreach($level->result() as $l)
+		{
+			$optionLevel[$l->kodsubjek] = $this->subjek->GetWhere(array('kodsubjek' => $l->kodsubjek))->row()->namasubjek_MY;
+			$option .= '<option value="'.$l->kodsubjek.'"/>'.$this->subjek->GetWhere(array('kodsubjek' => $l->kodsubjek))->row()->namasubjek_MY.'</option>';
+		}
+		//echo form_dropdown('level', $option, 'id="level"');
+		echo '<select>'.$option.'</select>';
+		return $optionLevel;
+	}
+
 }

@@ -18,6 +18,11 @@ class Prog_subjek extends CI_Model
 				return $this->db->get_where('prog_subjek', $where ,$limit, $offset);
 			}
 
+		function GetWhereOrder($where , $sem, $limit, $offset)
+			{
+				return $this->db->order_by($sem)->get_where('prog_subjek', $where ,$limit, $offset);
+			}
+
 //INSERT
 		function insert($insert)
 			{

@@ -72,10 +72,9 @@
 		</div>
 	<? endblock() ?>
 	
-	<?php startblock('jscript')?>
+	<?startblock('jscript')?>
 	<?=get_extended_block() ?>
 	<script type="text/javascript" src="<?php echo base_url()?>js/jquery/jquery.table.addrow.js"></script>
-	<script language="JavaScript" type="text/javascript" src="<?=base_url()?>js/jquery.chainedSelects.js"></script>
 	<script type="text/javascript" src="<?php echo base_url()?>js/jquery/jquery.cookies.2.2.0.js"></script>
 	<script>
 				<?/*$('#level').chainSelect('#subjek','<?=site_url().'select_list/sel_subjek'?>',

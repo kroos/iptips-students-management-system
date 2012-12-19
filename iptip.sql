@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50523
 File Encoding         : 65001
 
-Date: 2012-12-17 02:49:15
+Date: 2012-12-20 06:07:44
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -129,7 +129,7 @@ INSERT INTO `app_pelajar` VALUES ('6', 'P1310007', 'Student 4', '123456789015', 
 INSERT INTO `app_pelajar` VALUES ('7', 'P1310008', 'Student 5', '123456789016', '123456789016', '2012-12-06', 'M010701', '1', 'A12', '2022', '2', '1', '2, Taman Mutiara', '', '08000', 'M010218', '02', 'M01', '', '0162052420', 'email5@email.com', '1', '2012-12-06', null, null, null, null, '2013_1', 'DIP', null, '1');
 INSERT INTO `app_pelajar` VALUES ('8', 'P1310001', 'Student 2', '123456789017', '123456789017', '2012-12-06', 'M010701', '1', 'A01', '100', '1', '1', '72, Taman Keranji', '', '05400', 'M010201', '02', 'M01', '', '0162052420', 'email@email.com', '1', '2012-12-08', null, null, null, null, '2013_1', 'DIP', null, '1');
 INSERT INTO `app_pelajar` VALUES ('12', 'P1310009', 'Student 6', '123456789020', '-', '2012-12-09', 'M010232', '1', 'M01', '100', '1', '1', '7, Taman Mutiara', '', '08000', 'M010232', '02', 'M01', '', '0162052420', 'email6@email.com', '1', '2012-12-09', '1', '2012-12-09', null, null, '2013_1', 'DIP', null, '1');
-INSERT INTO `app_pelajar` VALUES ('13', 'P1310010', 'Student Tadi', '123456789009', '--', '1982-12-14', 'T036511', '3', 'C15', '2061', '1', '1', '1, Taman Mutiara', '', '08000', 'M011110', '11', 'M01', '', '0162052420', 'stud8@gmail.com', '1', '2012-12-16', '1', '2012-12-16', null, null, '2013_1', 'TW', 'DSY', '1');
+INSERT INTO `app_pelajar` VALUES ('13', 'P1310010', 'Student Tadi', '123456789009', '--', '1982-12-14', 'T036511', '3', 'C15', '2061', '1', '1', '1, Taman Mutiara', '', '08000', 'M011110', '11', 'M01', '', '0162052420', 'stud8@gmail.com', '1', '2012-12-16', '1', '2012-12-16', '2012-12-19 00:00:00', '1', '2013_1', 'TW', 'DSY', '1');
 
 -- ----------------------------
 -- Table structure for `app_progmohon`
@@ -298,6 +298,15 @@ CREATE TABLE `ci_sessions` (
 -- ----------------------------
 -- Records of ci_sessions
 -- ----------------------------
+INSERT INTO `ci_sessions` VALUES ('0c1587ff2b4a3082aa365dc76a2ee76d', '175.141.20.111', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1355951979', 'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"id_user\";s:1:\"1\";s:8:\"username\";s:6:\"admin1\";s:8:\"password\";s:6:\"123123\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('1dd92ccee4cd0c8ad7ed5288e7b16381', '175.141.20.111', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1355949544', '');
+INSERT INTO `ci_sessions` VALUES ('334cdb28bacf8c98540e4cdb9273508e', '175.141.20.111', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1355949644', '');
+INSERT INTO `ci_sessions` VALUES ('3bf37c6cf93c528ae26a2bf6b681133f', '175.141.20.111', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1355952108', '');
+INSERT INTO `ci_sessions` VALUES ('8f82fccb6c842d0c03a8954dbb4af230', '175.141.20.111', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1355951988', '');
+INSERT INTO `ci_sessions` VALUES ('ca5fa96fa43d9f6b0ed4d0fd813a70f4', '175.141.20.111', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1355953369', 'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"id_user\";s:1:\"1\";s:8:\"username\";s:6:\"admin1\";s:8:\"password\";s:6:\"123123\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('cfa9ba689097ff9ab1889bc135e2aab0', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1355954562', 'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"id_user\";s:1:\"1\";s:8:\"username\";s:6:\"admin1\";s:8:\"password\";s:6:\"123123\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('dfcf2a769a2d26d61ec746a483b967dd', '175.141.20.111', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1355952107', 'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"id_user\";s:1:\"1\";s:8:\"username\";s:6:\"admin1\";s:8:\"password\";s:6:\"123123\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('e1317d57a0d65641022ad8d5333ce963', '175.141.20.111', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1355953364', 'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"id_user\";s:1:\"1\";s:8:\"username\";s:6:\"admin1\";s:8:\"password\";s:6:\"123123\";s:9:\"logged_in\";b:1;}');
 
 -- ----------------------------
 -- Table structure for `dept_func`
@@ -308,7 +317,7 @@ CREATE TABLE `dept_func` (
   `id_user_department` int(11) NOT NULL,
   `id_user_function` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of dept_func
@@ -345,6 +354,7 @@ INSERT INTO `dept_func` VALUES ('31', '2', '28');
 INSERT INTO `dept_func` VALUES ('32', '2', '29');
 INSERT INTO `dept_func` VALUES ('33', '2', '30');
 INSERT INTO `dept_func` VALUES ('34', '2', '31');
+INSERT INTO `dept_func` VALUES ('35', '2', '32');
 
 -- ----------------------------
 -- Table structure for `dept_jaw`
@@ -540,7 +550,7 @@ CREATE TABLE `pel_akademik` (
   `institusi` varchar(100) DEFAULT NULL,
   `tahun` year(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of pel_akademik
@@ -548,6 +558,8 @@ CREATE TABLE `pel_akademik` (
 INSERT INTO `pel_akademik` VALUES ('1', 'DSY1', 'SPM', 'Maahad Mahmud', '1995');
 INSERT INTO `pel_akademik` VALUES ('2', 'DSY1', 'MATRIK', 'Universiti Malaya, Kuala Lumpur', '1998');
 INSERT INTO `pel_akademik` VALUES ('3', 'HEM001', 'SPM', 'Smk Bapak Ku', '2006');
+INSERT INTO `pel_akademik` VALUES ('6', 'HURRAH1', 'SPM', 'Maahad Mahmud', '1998');
+INSERT INTO `pel_akademik` VALUES ('7', 'HURRAH1', 'MATRIK', 'Universiti Islam Antarabangsa', '1995');
 
 -- ----------------------------
 -- Table structure for `pel_dafhostel`
@@ -591,11 +603,32 @@ CREATE TABLE `pel_daftarsubjek` (
   `sbb_batal` varchar(10) DEFAULT NULL,
   `aktif` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of pel_daftarsubjek
 -- ----------------------------
+INSERT INTO `pel_daftarsubjek` VALUES ('1', 'HURRAH1', 'MPW1113', '2013_1', '1.0', '3', '1', '2012-12-19 16:17:31', null, null, null, null, null, '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('2', 'HURRAH1', 'MPW1123', '2013_1', '1.0', '3', '1', '2012-12-19 16:17:33', null, null, null, null, null, '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('3', 'HURRAH1', 'WI1101', '2013_1', '1.0', '2', '1', '2012-12-19 16:17:34', null, null, null, null, null, '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('4', 'HURRAH1', 'WI1104', '2013_1', '1.0', '2', '1', '2012-12-19 16:17:35', null, null, null, null, null, '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('5', 'HURRAH1', 'US1201', '2013_1', '1.0', '3', '1', '2012-12-19 16:17:37', null, null, null, null, null, '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('6', 'HURRAH1', 'US1211', '2013_1', '1.0', '3', '1', '2012-12-19 16:17:38', null, null, null, null, null, '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('7', 'HURRAH1', 'SY1206', '2013_1', '1.0', '3', '1', '2012-12-19 16:17:40', null, null, null, null, null, '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('12', 'HEM001', 'PS0001', '2013_1', '1.0', '0', '1', '2012-12-20 05:19:14', null, null, null, null, null, '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('13', 'HEM001', 'PS0002', '2013_1', '1.0', '0', '1', '2012-12-20 05:19:22', null, null, null, null, null, '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('14', 'HEM001', 'PS0003', '2013_1', '1.0', '0', '1', '2012-12-20 05:19:29', null, null, null, null, null, '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('15', 'HEM001', 'PS0004', '2013_1', '1.0', '0', '1', '2012-12-20 05:19:36', null, null, null, null, null, '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('16', 'HEM001', 'PS0005', '2013_1', '1.0', '0', '1', '2012-12-20 05:19:47', null, null, null, null, null, '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('17', 'HEM001', 'PS0006', '2013_1', '1.0', '0', '1', '2012-12-20 05:20:02', null, null, null, null, null, '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('18', 'HEM001', 'PS0007', '2013_1', '1.0', '0', '1', '2012-12-20 05:20:10', null, null, null, null, null, '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('19', 'DSY1', 'MPW1113', '2013_1', '1.0', '3', '1', '2012-12-20 05:20:46', null, null, null, null, null, '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('20', 'DSY1', 'MPW1123', '2013_1', '1.0', '3', '1', '2012-12-20 05:20:57', null, null, null, null, null, '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('21', 'DSY1', 'PS1501', '2013_1', '1.0', '0', '1', '2012-12-20 05:21:09', null, null, null, null, null, '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('22', 'DSY1', 'QH1201', '2013_1', '1.0', '3', '1', '2012-12-20 05:21:23', null, null, null, null, null, '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('23', 'DSY1', 'SY1206', '2013_1', '1.0', '3', '1', '2012-12-20 05:21:38', null, null, null, null, null, '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('24', 'DSY1', 'WI1101', '2013_1', '1.0', '2', '1', '2012-12-20 05:21:52', null, null, null, null, null, '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('25', 'DSY1', 'WI1104', '2013_1', '1.0', '2', '1', '2012-12-20 05:22:05', null, null, null, null, null, '1');
 
 -- ----------------------------
 -- Table structure for `pel_invois`
@@ -621,6 +654,7 @@ CREATE TABLE `pel_invois` (
 -- ----------------------------
 INSERT INTO `pel_invois` VALUES ('20130001', '2012-12-13', 'DSY1', 'INVOIS PENDAFTARAN', '1450.00', '1', '2012-12-13 16:53:49', null, null, '1');
 INSERT INTO `pel_invois` VALUES ('20130002', '2012-12-16', 'HEM001', 'INVOIS PENDAFTARAN', '1450.00', '1', '2012-12-16 22:01:12', null, null, '1');
+INSERT INTO `pel_invois` VALUES ('20130003', '2012-12-19', 'HURRAH1', 'INVOIS PENDAFTARAN', '1450.00', '1', '2012-12-19 16:17:11', null, null, '1');
 
 -- ----------------------------
 -- Table structure for `pel_item_invois`
@@ -637,7 +671,7 @@ CREATE TABLE `pel_item_invois` (
   `id_edit` varchar(20) DEFAULT NULL,
   `dt_edit` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of pel_item_invois
@@ -668,6 +702,19 @@ INSERT INTO `pel_item_invois` VALUES ('23', '20130002', '40010', '150.00', '1', 
 INSERT INTO `pel_item_invois` VALUES ('24', '20130002', '40011', '250.00', '1', '1', '2012-12-16 22:01:14', null, null);
 INSERT INTO `pel_item_invois` VALUES ('25', '20130002', '40012', '750.00', '1', '1', '2012-12-16 22:01:14', null, null);
 INSERT INTO `pel_item_invois` VALUES ('26', '20130002', '20001', '50.00', '1', '1', '2012-12-16 22:01:14', null, null);
+INSERT INTO `pel_item_invois` VALUES ('27', '20130003', '40001', '30.00', '1', '1', '2012-12-19 16:17:48', null, null);
+INSERT INTO `pel_item_invois` VALUES ('28', '20130003', '40002', '30.00', '1', '1', '2012-12-19 16:17:50', null, null);
+INSERT INTO `pel_item_invois` VALUES ('29', '20130003', '40003', '50.00', '1', '1', '2012-12-19 16:17:53', null, null);
+INSERT INTO `pel_item_invois` VALUES ('30', '20130003', '40004', '20.00', '1', '1', '2012-12-19 16:17:55', null, null);
+INSERT INTO `pel_item_invois` VALUES ('31', '20130003', '40005', '15.00', '1', '1', '2012-12-19 16:17:58', null, null);
+INSERT INTO `pel_item_invois` VALUES ('32', '20130003', '40006', '30.00', '1', '1', '2012-12-19 16:18:00', null, null);
+INSERT INTO `pel_item_invois` VALUES ('33', '20130003', '40007', '15.00', '1', '1', '2012-12-19 16:18:02', null, null);
+INSERT INTO `pel_item_invois` VALUES ('34', '20130003', '40008', '10.00', '1', '1', '2012-12-19 16:18:05', null, null);
+INSERT INTO `pel_item_invois` VALUES ('35', '20130003', '40009', '50.00', '1', '1', '2012-12-19 16:18:07', null, null);
+INSERT INTO `pel_item_invois` VALUES ('36', '20130003', '40010', '150.00', '1', '1', '2012-12-19 16:18:09', null, null);
+INSERT INTO `pel_item_invois` VALUES ('37', '20130003', '40011', '250.00', '1', '1', '2012-12-19 16:18:11', null, null);
+INSERT INTO `pel_item_invois` VALUES ('38', '20130003', '40012', '750.00', '1', '1', '2012-12-19 16:18:13', null, null);
+INSERT INTO `pel_item_invois` VALUES ('39', '20130003', '20001', '50.00', '1', '1', '2012-12-19 16:18:14', null, null);
 
 -- ----------------------------
 -- Table structure for `pel_lib`
@@ -713,8 +760,8 @@ INSERT INTO `pel_resit` VALUES ('3', 'Test 1', 'P1310004', 'Bayar Pendaftaran', 
 INSERT INTO `pel_resit` VALUES ('4', 'Tembakdulu001', 'DSY1', 'Tembak', '2012-12-13 05:16:00', '700.00', '1', '2012-12-13 05:16:00', null, null, '1');
 INSERT INTO `pel_resit` VALUES ('5', 'Tembakdulu002', 'DSY1', 'Tembak2', '2012-12-13 05:16:19', '0.01', '1', '2012-12-13 05:16:19', null, null, '1');
 INSERT INTO `pel_resit` VALUES ('6', '2', 'HEM001', 'Bayaq Jangan X Bayaq', '2012-12-14 01:45:44', '700.00', '1', '2012-12-14 01:45:44', null, null, '1');
-INSERT INTO `pel_resit` VALUES ('7', 'Bayar La Weii', 'P1310010', 'Takkan Tak Tau Kot', '2012-12-17 00:43:54', '699.99', '1', '2012-12-17 00:43:54', null, null, '1');
-INSERT INTO `pel_resit` VALUES ('8', 'Watchaa', 'P1310010', 'Huh', '2012-12-17 00:47:42', '0.01', '1', '2012-12-17 00:47:42', null, null, '1');
+INSERT INTO `pel_resit` VALUES ('7', 'Bayar La Weii', 'HURRAH1', 'Takkan Tak Tau Kot', '2012-12-17 00:43:54', '699.99', '1', '2012-12-17 00:43:54', null, null, '1');
+INSERT INTO `pel_resit` VALUES ('8', 'Watchaa', 'HURRAH1', 'Huh', '2012-12-17 00:47:42', '0.01', '1', '2012-12-17 00:47:42', null, null, '1');
 
 -- ----------------------------
 -- Table structure for `pel_sem`
@@ -730,13 +777,14 @@ CREATE TABLE `pel_sem` (
   `aktif` tinyint(1) DEFAULT NULL,
   `terkini` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of pel_sem
 -- ----------------------------
 INSERT INTO `pel_sem` VALUES ('1', 'DSY1', '2013_1', '1.0', '01', 'DQH', '1', '1');
 INSERT INTO `pel_sem` VALUES ('2', 'HEM001', '2013_1', '1.0', '01', 'PST', '1', '1');
+INSERT INTO `pel_sem` VALUES ('4', 'HURRAH1', '2013_1', '1.0', '01', 'DSY', '1', '1');
 
 -- ----------------------------
 -- Table structure for `pel_subjek_akademik`
@@ -748,7 +796,7 @@ CREATE TABLE `pel_subjek_akademik` (
   `subjek` varchar(50) DEFAULT NULL,
   `gred` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of pel_subjek_akademik
@@ -769,6 +817,11 @@ INSERT INTO `pel_subjek_akademik` VALUES ('13', '2', 'Sub261', 'Lulus');
 INSERT INTO `pel_subjek_akademik` VALUES ('14', '5', 'Sub45', '9.00');
 INSERT INTO `pel_subjek_akademik` VALUES ('15', '5', 'Sub194', '5.00');
 INSERT INTO `pel_subjek_akademik` VALUES ('16', '5', 'Sub56', '8.00');
+INSERT INTO `pel_subjek_akademik` VALUES ('22', '12', 'Sub31', '9.00');
+INSERT INTO `pel_subjek_akademik` VALUES ('23', '13', 'Sub261', '4.00');
+INSERT INTO `pel_subjek_akademik` VALUES ('24', '13', 'Sub260', '4.00');
+INSERT INTO `pel_subjek_akademik` VALUES ('25', '13', 'Sub259', '4.00');
+INSERT INTO `pel_subjek_akademik` VALUES ('26', '13', 'Sub258', '4.00');
 
 -- ----------------------------
 -- Table structure for `pel_waris`
@@ -784,13 +837,14 @@ CREATE TABLE `pel_waris` (
   `poskod` varchar(10) DEFAULT NULL,
   `no_telefon` varchar(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of pel_waris
 -- ----------------------------
 INSERT INTO `pel_waris` VALUES ('1', 'DSY1', 'Parent 1', 'H04', '1, Taman Mutiara', '', '08000', '0162052420');
 INSERT INTO `pel_waris` VALUES ('2', 'HEM001', 'Parent 3', 'H04', 'Ntah La Haih', '', '00000', '0162172420');
+INSERT INTO `pel_waris` VALUES ('4', 'HURRAH1', 'Parent 8', 'H06', '1, Taman Mutiara', '', '08000', '0162052420');
 
 -- ----------------------------
 -- Table structure for `pelajar`
@@ -826,13 +880,14 @@ CREATE TABLE `pelajar` (
   `id_edit` varchar(20) DEFAULT NULL,
   `dt_edit` date DEFAULT NULL,
   PRIMARY KEY (`id`,`matrik`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of pelajar
 -- ----------------------------
 INSERT INTO `pelajar` VALUES ('1', 'DSY1', 'Student 1', '800101025555', '111234', 'A', '2012-12-03', 'M010701', '2', 'A09', '1230', '1', '1', 'Tmn Peruda', '', '05300', 'M010218', '02', 'M01', '0', '0', 'stud1@mail.com', '2012-12-13', '2013_1', '1', '2012-12-13', '1', '2012-12-16');
 INSERT INTO `pelajar` VALUES ('2', 'HEM001', 'Ahmad', '900101025556', '1113', 'A', '2012-12-03', 'M010701', '1', 'A12', '2022', '2', '1', 'Tmn Peruda', '', '05300', 'M010403', '04', 'M01', '0', '0', 'stud3@gmail.com', '2012-12-16', '2013_1', '1', '2012-12-16', '1', '2012-12-16');
+INSERT INTO `pelajar` VALUES ('4', 'HURRAH1', 'Student Tadi', '123456789009', '--', 'A', '1982-12-14', 'T036511', '3', 'C15', '2061', '1', '1', '1, Taman Mutiara', '', '08000', 'M011110', '11', 'M01', '', '0162052420', 'stud8@gmail.com', '2012-12-19', '2013_1', '1', '2012-12-19', null, null);
 
 -- ----------------------------
 -- Table structure for `prog_subjek`
@@ -845,146 +900,163 @@ CREATE TABLE `prog_subjek` (
   `sem` double(2,1) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `idx1` (`kod_prog`,`kodsubjek`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=139 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=158 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of prog_subjek
 -- ----------------------------
-INSERT INTO `prog_subjek` VALUES ('1', 'DSY', 'WI 1104', '1.0');
-INSERT INTO `prog_subjek` VALUES ('2', 'DSY', 'MPW 1113', '1.0');
-INSERT INTO `prog_subjek` VALUES ('3', 'DSY', 'MPW 1123', '1.0');
-INSERT INTO `prog_subjek` VALUES ('4', 'DSY', 'WI 1101', '1.0');
-INSERT INTO `prog_subjek` VALUES ('5', 'DSY', 'US 1201', '1.0');
-INSERT INTO `prog_subjek` VALUES ('6', 'DSY', 'SY 1206', '1.0');
-INSERT INTO `prog_subjek` VALUES ('7', 'DSY', 'US 1211', '1.0');
-INSERT INTO `prog_subjek` VALUES ('8', 'DSY', 'PS 1501', '1.0');
-INSERT INTO `prog_subjek` VALUES ('9', 'DSY', 'WI 1102', '2.0');
-INSERT INTO `prog_subjek` VALUES ('10', 'DSY', 'WI 1105', '2.0');
-INSERT INTO `prog_subjek` VALUES ('11', 'DSY', 'WI 1106', '2.0');
-INSERT INTO `prog_subjek` VALUES ('12', 'DSY', 'SY 1202', '2.0');
-INSERT INTO `prog_subjek` VALUES ('13', 'DSY', 'SY 1207', '2.0');
-INSERT INTO `prog_subjek` VALUES ('14', 'DSY', 'US 1212', '2.0');
-INSERT INTO `prog_subjek` VALUES ('15', 'DSY', 'PS 1502', '2.0');
-INSERT INTO `prog_subjek` VALUES ('16', 'DSY', 'SY 1203', '3.0');
-INSERT INTO `prog_subjek` VALUES ('17', 'DSY', 'MPW 1143', '3.0');
-INSERT INTO `prog_subjek` VALUES ('18', 'DSY', 'WI 1103', '3.0');
-INSERT INTO `prog_subjek` VALUES ('19', 'DSY', 'MPW 1133', '3.0');
-INSERT INTO `prog_subjek` VALUES ('21', 'DSY', 'US 1213', '3.0');
-INSERT INTO `prog_subjek` VALUES ('22', 'DSY', 'PS 1503', '3.0');
-INSERT INTO `prog_subjek` VALUES ('25', 'DSY', 'WI 1107', '4.0');
-INSERT INTO `prog_subjek` VALUES ('26', 'DSY', 'SY 1204', '4.0');
-INSERT INTO `prog_subjek` VALUES ('27', 'DSY', 'SY 1208', '4.0');
-INSERT INTO `prog_subjek` VALUES ('28', 'DSY', 'EL 1402', '3.0');
-INSERT INTO `prog_subjek` VALUES ('29', 'DSY', 'EL 1404', '3.0');
-INSERT INTO `prog_subjek` VALUES ('30', 'DSY', 'PS 1801', '4.0');
-INSERT INTO `prog_subjek` VALUES ('31', 'DSY', 'SY 1205', '5.0');
-INSERT INTO `prog_subjek` VALUES ('32', 'DSY', 'SY 1209', '5.0');
-INSERT INTO `prog_subjek` VALUES ('33', 'DSY', 'SY 1211', '5.0');
-INSERT INTO `prog_subjek` VALUES ('34', 'DSY', 'SY 1213', '5.0');
-INSERT INTO `prog_subjek` VALUES ('35', 'DSY', 'SY 1218', '5.0');
-INSERT INTO `prog_subjek` VALUES ('36', 'DSY', 'EL 1401', '5.0');
-INSERT INTO `prog_subjek` VALUES ('37', 'DSY', 'PS 1802', '5.0');
-INSERT INTO `prog_subjek` VALUES ('38', 'DSY', 'EL 1403', '5.0');
-INSERT INTO `prog_subjek` VALUES ('39', 'DSY', 'SY 1214', '6.0');
-INSERT INTO `prog_subjek` VALUES ('40', 'DSY', 'SY 1215', '6.0');
-INSERT INTO `prog_subjek` VALUES ('41', 'DSY', 'SY 1216', '6.0');
-INSERT INTO `prog_subjek` VALUES ('42', 'DSY', 'SY 1217', '6.0');
-INSERT INTO `prog_subjek` VALUES ('43', 'DSY', 'PS 1506', '6.0');
-INSERT INTO `prog_subjek` VALUES ('44', 'DSY', 'WI 1108', '6.0');
-INSERT INTO `prog_subjek` VALUES ('45', 'DSY', 'PS 1803', '6.0');
-INSERT INTO `prog_subjek` VALUES ('46', 'DUS', 'MPW 1113', '1.0');
-INSERT INTO `prog_subjek` VALUES ('47', 'DUS', 'MPW 1123', '1.0');
-INSERT INTO `prog_subjek` VALUES ('48', 'DUS ', 'WI 1101', '1.0');
-INSERT INTO `prog_subjek` VALUES ('49', 'DUS', 'WI 1104', '1.0');
-INSERT INTO `prog_subjek` VALUES ('50', 'DUS', 'US 1201', '1.0');
-INSERT INTO `prog_subjek` VALUES ('51', 'DUS', 'SY 1206', '1.0');
-INSERT INTO `prog_subjek` VALUES ('52', 'DUS', 'US 1211', '1.0');
-INSERT INTO `prog_subjek` VALUES ('53', 'DUS', 'PS 1501', '1.0');
-INSERT INTO `prog_subjek` VALUES ('54', 'DUS', 'WI 1102', '2.0');
-INSERT INTO `prog_subjek` VALUES ('55', 'DUS', 'WI 1105', '2.0');
-INSERT INTO `prog_subjek` VALUES ('56', 'DUS', 'WI 1106', '2.0');
-INSERT INTO `prog_subjek` VALUES ('57', 'DUS', 'US 1212', '2.0');
-INSERT INTO `prog_subjek` VALUES ('58', 'DUS', 'QH 1203', '2.0');
-INSERT INTO `prog_subjek` VALUES ('59', 'DUS', 'PS 1502', '2.0');
-INSERT INTO `prog_subjek` VALUES ('60', 'DUS', 'MPW 1133', '3.0');
-INSERT INTO `prog_subjek` VALUES ('61', 'DUS', 'MPW 1143', '3.0');
-INSERT INTO `prog_subjek` VALUES ('62', 'DUS', 'WI 1103', '3.0');
-INSERT INTO `prog_subjek` VALUES ('63', 'DUS', 'US 1213', '3.0');
-INSERT INTO `prog_subjek` VALUES ('64', 'DUS', 'QH 1205', '3.0');
-INSERT INTO `prog_subjek` VALUES ('65', 'DUS', 'EL 1402', '3.0');
-INSERT INTO `prog_subjek` VALUES ('66', 'DUS', 'EL 1404', '3.0');
-INSERT INTO `prog_subjek` VALUES ('67', 'DUS', 'PS 1503', '3.0');
-INSERT INTO `prog_subjek` VALUES ('68', 'DUS ', 'WI 1107', '4.0');
-INSERT INTO `prog_subjek` VALUES ('69', 'DUS', 'US 1202', '4.0');
-INSERT INTO `prog_subjek` VALUES ('70', 'DUS', 'US 1203', '4.0');
-INSERT INTO `prog_subjek` VALUES ('71', 'DUS', 'QH 1204', '4.0');
-INSERT INTO `prog_subjek` VALUES ('72', 'DUS', 'SY 1208', '4.0');
-INSERT INTO `prog_subjek` VALUES ('73', 'DUS', 'PS 1504', '4.0');
-INSERT INTO `prog_subjek` VALUES ('74', 'DUS', 'PS 1801', '4.0');
-INSERT INTO `prog_subjek` VALUES ('75', 'DUS', 'US 1204', '5.0');
-INSERT INTO `prog_subjek` VALUES ('76', 'DUS', 'US 1205', '5.0');
-INSERT INTO `prog_subjek` VALUES ('77', 'DUS', 'US 1206', '5.0');
-INSERT INTO `prog_subjek` VALUES ('78', 'DUS', 'US 1207', '5.0');
-INSERT INTO `prog_subjek` VALUES ('79', 'DUS', 'US 1209', '5.0');
-INSERT INTO `prog_subjek` VALUES ('80', 'DUS', 'EL 1401', '5.0');
-INSERT INTO `prog_subjek` VALUES ('81', 'DUS', 'EL 1403', '5.0');
-INSERT INTO `prog_subjek` VALUES ('82', 'DUS', 'PS 1505', '5.0');
-INSERT INTO `prog_subjek` VALUES ('83', 'DUS', 'PS 1802', '5.0');
-INSERT INTO `prog_subjek` VALUES ('84', 'DUS', 'US 1208', '6.0');
-INSERT INTO `prog_subjek` VALUES ('85', 'DUS', 'US 1210', '6.0');
-INSERT INTO `prog_subjek` VALUES ('86', 'DUS', 'US 1301', '6.0');
-INSERT INTO `prog_subjek` VALUES ('87', 'DUS', 'US 1303', '6.0');
-INSERT INTO `prog_subjek` VALUES ('88', 'DUS', 'US 1302', '6.0');
-INSERT INTO `prog_subjek` VALUES ('89', 'DUS ', 'US 1304', '6.0');
-INSERT INTO `prog_subjek` VALUES ('90', 'DUS', 'WI 1108', '6.0');
-INSERT INTO `prog_subjek` VALUES ('91', 'DUS', 'OS 1506', '6.0');
-INSERT INTO `prog_subjek` VALUES ('92', 'DUS', 'OS 1803', '6.0');
-INSERT INTO `prog_subjek` VALUES ('93', 'DQH', 'MPW 1113', '1.0');
-INSERT INTO `prog_subjek` VALUES ('94', 'DQH', 'MPW 1123', '1.0');
-INSERT INTO `prog_subjek` VALUES ('95', 'DQH', 'WI 1101', '1.0');
-INSERT INTO `prog_subjek` VALUES ('96', 'DQH', 'WI 1104', '1.0');
-INSERT INTO `prog_subjek` VALUES ('97', 'DQH', 'QH 1201', '1.0');
-INSERT INTO `prog_subjek` VALUES ('98', 'DQH', 'SY 1206', '1.0');
-INSERT INTO `prog_subjek` VALUES ('99', 'DQH', 'PS 1501', '1.0');
-INSERT INTO `prog_subjek` VALUES ('100', 'DQH', 'WI 1102', '2.0');
-INSERT INTO `prog_subjek` VALUES ('101', 'DQH', 'WI 1105', '2.0');
-INSERT INTO `prog_subjek` VALUES ('102', 'DQH', 'WI 1106', '2.0');
-INSERT INTO `prog_subjek` VALUES ('103', 'DQH', 'QH 1202', '2.0');
-INSERT INTO `prog_subjek` VALUES ('104', 'DQH ', 'US 1212', '2.0');
-INSERT INTO `prog_subjek` VALUES ('105', 'DQH ', 'PS 1502', '2.0');
-INSERT INTO `prog_subjek` VALUES ('106', 'DQH', 'MPW 1133', '3.0');
-INSERT INTO `prog_subjek` VALUES ('107', 'DQH', 'MPW 1143', '3.0');
-INSERT INTO `prog_subjek` VALUES ('108', 'DQH', 'WI 1103', '3.0');
-INSERT INTO `prog_subjek` VALUES ('109', 'DQH', 'QH 1203', '3.0');
-INSERT INTO `prog_subjek` VALUES ('110', 'DQH', 'QH 1205', '3.0');
-INSERT INTO `prog_subjek` VALUES ('111', 'DQH', 'US 1213', '3.0');
-INSERT INTO `prog_subjek` VALUES ('112', 'DQH', 'PS 1503', '3.0');
-INSERT INTO `prog_subjek` VALUES ('113', 'DQH', 'WI 1107', '4.0');
-INSERT INTO `prog_subjek` VALUES ('114', 'DQH', 'QH 1204', '4.0');
-INSERT INTO `prog_subjek` VALUES ('115', 'DQH', 'QH 1206', '4.0');
-INSERT INTO `prog_subjek` VALUES ('116', 'DQH', 'SY 1204', '4.0');
-INSERT INTO `prog_subjek` VALUES ('117', 'DQH', 'SY 1208', '4.0');
-INSERT INTO `prog_subjek` VALUES ('118', 'DQH', 'EL 1402', '4.0');
-INSERT INTO `prog_subjek` VALUES ('119', 'DQH', 'EL 1404', '4.0');
-INSERT INTO `prog_subjek` VALUES ('120', 'DQH', 'PS 1801', '4.0');
-INSERT INTO `prog_subjek` VALUES ('121', 'DQH', 'US 1202', '5.0');
-INSERT INTO `prog_subjek` VALUES ('122', 'DQH', 'US 1204', '5.0');
-INSERT INTO `prog_subjek` VALUES ('123', 'DQH', 'US 1206', '5.0');
-INSERT INTO `prog_subjek` VALUES ('124', 'DQH', 'US 1207', '5.0');
-INSERT INTO `prog_subjek` VALUES ('125', 'DQH', 'US 1209', '5.0');
-INSERT INTO `prog_subjek` VALUES ('126', 'DQH', 'EL 1401', '5.0');
-INSERT INTO `prog_subjek` VALUES ('127', 'DQH', 'PS 1802', '5.0');
-INSERT INTO `prog_subjek` VALUES ('128', 'DQH', 'EL 1403', '5.0');
-INSERT INTO `prog_subjek` VALUES ('129', 'DQH', 'QH 1301', '6.0');
-INSERT INTO `prog_subjek` VALUES ('130', 'DQH', 'QH 1303', '6.0');
-INSERT INTO `prog_subjek` VALUES ('131', 'DQH', 'QH 1302', '6.0');
-INSERT INTO `prog_subjek` VALUES ('132', 'DQH', 'QH 1304', '6.0');
-INSERT INTO `prog_subjek` VALUES ('133', 'DQH', 'US 1208', '6.0');
-INSERT INTO `prog_subjek` VALUES ('134', 'DQH', 'PS 1506', '6.0');
-INSERT INTO `prog_subjek` VALUES ('135', 'DQH', 'WI 1108', '6.0');
-INSERT INTO `prog_subjek` VALUES ('136', 'DSY', 'SY 1210', '4.0');
-INSERT INTO `prog_subjek` VALUES ('137', 'DSY', 'SY 1212', '4.0');
-INSERT INTO `prog_subjek` VALUES ('138', 'DSY', 'PS 1504', '4.0');
+INSERT INTO `prog_subjek` VALUES ('1', 'DSY', 'WI1104', '1.0');
+INSERT INTO `prog_subjek` VALUES ('2', 'DSY', 'MPW1113', '1.0');
+INSERT INTO `prog_subjek` VALUES ('3', 'DSY', 'MPW1123', '1.0');
+INSERT INTO `prog_subjek` VALUES ('4', 'DSY', 'WI1101', '1.0');
+INSERT INTO `prog_subjek` VALUES ('5', 'DSY', 'US1201', '1.0');
+INSERT INTO `prog_subjek` VALUES ('6', 'DSY', 'SY1206', '1.0');
+INSERT INTO `prog_subjek` VALUES ('7', 'DSY', 'US1211', '1.0');
+INSERT INTO `prog_subjek` VALUES ('8', 'DSY', 'PS1501', '1.0');
+INSERT INTO `prog_subjek` VALUES ('9', 'DSY', 'WI1102', '2.0');
+INSERT INTO `prog_subjek` VALUES ('10', 'DSY', 'WI1105', '2.0');
+INSERT INTO `prog_subjek` VALUES ('11', 'DSY', 'WI1106', '2.0');
+INSERT INTO `prog_subjek` VALUES ('12', 'DSY', 'SY1202', '2.0');
+INSERT INTO `prog_subjek` VALUES ('13', 'DSY', 'SY1207', '2.0');
+INSERT INTO `prog_subjek` VALUES ('14', 'DSY', 'US1212', '2.0');
+INSERT INTO `prog_subjek` VALUES ('15', 'DSY', 'PS1502', '2.0');
+INSERT INTO `prog_subjek` VALUES ('16', 'DSY', 'SY1203', '3.0');
+INSERT INTO `prog_subjek` VALUES ('17', 'DSY', 'MPW1143', '3.0');
+INSERT INTO `prog_subjek` VALUES ('18', 'DSY', 'WI1103', '3.0');
+INSERT INTO `prog_subjek` VALUES ('19', 'DSY', 'MPW1133', '3.0');
+INSERT INTO `prog_subjek` VALUES ('21', 'DSY', 'US1213', '3.0');
+INSERT INTO `prog_subjek` VALUES ('22', 'DSY', 'PS1503', '3.0');
+INSERT INTO `prog_subjek` VALUES ('25', 'DSY', 'WI1107', '4.0');
+INSERT INTO `prog_subjek` VALUES ('26', 'DSY', 'SY1204', '4.0');
+INSERT INTO `prog_subjek` VALUES ('27', 'DSY', 'SY1208', '4.0');
+INSERT INTO `prog_subjek` VALUES ('28', 'DSY', 'EL1402', '3.0');
+INSERT INTO `prog_subjek` VALUES ('29', 'DSY', 'EL1404', '3.0');
+INSERT INTO `prog_subjek` VALUES ('30', 'DSY', 'PS1801', '4.0');
+INSERT INTO `prog_subjek` VALUES ('31', 'DSY', 'SY1205', '5.0');
+INSERT INTO `prog_subjek` VALUES ('32', 'DSY', 'SY1209', '5.0');
+INSERT INTO `prog_subjek` VALUES ('33', 'DSY', 'SY1211', '5.0');
+INSERT INTO `prog_subjek` VALUES ('34', 'DSY', 'SY1213', '5.0');
+INSERT INTO `prog_subjek` VALUES ('35', 'DSY', 'SY1218', '5.0');
+INSERT INTO `prog_subjek` VALUES ('36', 'DSY', 'EL1401', '5.0');
+INSERT INTO `prog_subjek` VALUES ('37', 'DSY', 'PS1802', '5.0');
+INSERT INTO `prog_subjek` VALUES ('38', 'DSY', 'EL1403', '5.0');
+INSERT INTO `prog_subjek` VALUES ('39', 'DSY', 'SY1214', '6.0');
+INSERT INTO `prog_subjek` VALUES ('40', 'DSY', 'SY1215', '6.0');
+INSERT INTO `prog_subjek` VALUES ('41', 'DSY', 'SY1216', '6.0');
+INSERT INTO `prog_subjek` VALUES ('42', 'DSY', 'SY1217', '6.0');
+INSERT INTO `prog_subjek` VALUES ('43', 'DSY', 'PS1506', '6.0');
+INSERT INTO `prog_subjek` VALUES ('44', 'DSY', 'WI1108', '6.0');
+INSERT INTO `prog_subjek` VALUES ('45', 'DSY', 'PS1803', '6.0');
+INSERT INTO `prog_subjek` VALUES ('46', 'DUS', 'MPW1113', '1.0');
+INSERT INTO `prog_subjek` VALUES ('47', 'DUS', 'MPW1123', '1.0');
+INSERT INTO `prog_subjek` VALUES ('48', 'DUS ', 'WI1101', '1.0');
+INSERT INTO `prog_subjek` VALUES ('49', 'DUS', 'WI1104', '1.0');
+INSERT INTO `prog_subjek` VALUES ('50', 'DUS', 'US1201', '1.0');
+INSERT INTO `prog_subjek` VALUES ('51', 'DUS', 'SY1206', '1.0');
+INSERT INTO `prog_subjek` VALUES ('52', 'DUS', 'US1211', '1.0');
+INSERT INTO `prog_subjek` VALUES ('53', 'DUS', 'PS1501', '1.0');
+INSERT INTO `prog_subjek` VALUES ('54', 'DUS', 'WI1102', '2.0');
+INSERT INTO `prog_subjek` VALUES ('55', 'DUS', 'WI1105', '2.0');
+INSERT INTO `prog_subjek` VALUES ('56', 'DUS', 'WI1106', '2.0');
+INSERT INTO `prog_subjek` VALUES ('57', 'DUS', 'US1212', '2.0');
+INSERT INTO `prog_subjek` VALUES ('58', 'DUS', 'QH1203', '2.0');
+INSERT INTO `prog_subjek` VALUES ('59', 'DUS', 'PS1502', '2.0');
+INSERT INTO `prog_subjek` VALUES ('60', 'DUS', 'MPW1133', '3.0');
+INSERT INTO `prog_subjek` VALUES ('61', 'DUS', 'MPW1143', '3.0');
+INSERT INTO `prog_subjek` VALUES ('62', 'DUS', 'WI1103', '3.0');
+INSERT INTO `prog_subjek` VALUES ('63', 'DUS', 'US1213', '3.0');
+INSERT INTO `prog_subjek` VALUES ('64', 'DUS', 'QH1205', '3.0');
+INSERT INTO `prog_subjek` VALUES ('65', 'DUS', 'EL1402', '3.0');
+INSERT INTO `prog_subjek` VALUES ('66', 'DUS', 'EL1404', '3.0');
+INSERT INTO `prog_subjek` VALUES ('67', 'DUS', 'PS1503', '3.0');
+INSERT INTO `prog_subjek` VALUES ('68', 'DUS ', 'WI1107', '4.0');
+INSERT INTO `prog_subjek` VALUES ('69', 'DUS', 'US1202', '4.0');
+INSERT INTO `prog_subjek` VALUES ('70', 'DUS', 'US1203', '4.0');
+INSERT INTO `prog_subjek` VALUES ('71', 'DUS', 'QH1204', '4.0');
+INSERT INTO `prog_subjek` VALUES ('72', 'DUS', 'SY1208', '4.0');
+INSERT INTO `prog_subjek` VALUES ('73', 'DUS', 'PS1504', '4.0');
+INSERT INTO `prog_subjek` VALUES ('74', 'DUS', 'PS1801', '4.0');
+INSERT INTO `prog_subjek` VALUES ('75', 'DUS', 'US1204', '5.0');
+INSERT INTO `prog_subjek` VALUES ('76', 'DUS', 'US1205', '5.0');
+INSERT INTO `prog_subjek` VALUES ('77', 'DUS', 'US1206', '5.0');
+INSERT INTO `prog_subjek` VALUES ('78', 'DUS', 'US1207', '5.0');
+INSERT INTO `prog_subjek` VALUES ('79', 'DUS', 'US1209', '5.0');
+INSERT INTO `prog_subjek` VALUES ('80', 'DUS', 'EL1401', '5.0');
+INSERT INTO `prog_subjek` VALUES ('81', 'DUS', 'EL1403', '5.0');
+INSERT INTO `prog_subjek` VALUES ('82', 'DUS', 'PS1505', '5.0');
+INSERT INTO `prog_subjek` VALUES ('83', 'DUS', 'PS1802', '5.0');
+INSERT INTO `prog_subjek` VALUES ('84', 'DUS', 'US1208', '6.0');
+INSERT INTO `prog_subjek` VALUES ('85', 'DUS', 'US1210', '6.0');
+INSERT INTO `prog_subjek` VALUES ('86', 'DUS', 'US1301', '6.0');
+INSERT INTO `prog_subjek` VALUES ('87', 'DUS', 'US1303', '6.0');
+INSERT INTO `prog_subjek` VALUES ('88', 'DUS', 'US1302', '6.0');
+INSERT INTO `prog_subjek` VALUES ('89', 'DUS ', 'US1304', '6.0');
+INSERT INTO `prog_subjek` VALUES ('90', 'DUS', 'WI1108', '6.0');
+INSERT INTO `prog_subjek` VALUES ('91', 'DUS', 'OS1506', '6.0');
+INSERT INTO `prog_subjek` VALUES ('92', 'DUS', 'OS1803', '6.0');
+INSERT INTO `prog_subjek` VALUES ('93', 'DQH', 'MPW1113', '1.0');
+INSERT INTO `prog_subjek` VALUES ('94', 'DQH', 'MPW1123', '1.0');
+INSERT INTO `prog_subjek` VALUES ('95', 'DQH', 'WI1101', '1.0');
+INSERT INTO `prog_subjek` VALUES ('96', 'DQH', 'WI1104', '1.0');
+INSERT INTO `prog_subjek` VALUES ('97', 'DQH', 'QH1201', '1.0');
+INSERT INTO `prog_subjek` VALUES ('98', 'DQH', 'SY1206', '1.0');
+INSERT INTO `prog_subjek` VALUES ('99', 'DQH', 'PS1501', '1.0');
+INSERT INTO `prog_subjek` VALUES ('100', 'DQH', 'WI1102', '2.0');
+INSERT INTO `prog_subjek` VALUES ('101', 'DQH', 'WI1105', '2.0');
+INSERT INTO `prog_subjek` VALUES ('102', 'DQH', 'WI1106', '2.0');
+INSERT INTO `prog_subjek` VALUES ('103', 'DQH', 'QH1202', '2.0');
+INSERT INTO `prog_subjek` VALUES ('104', 'DQH ', 'US1212', '2.0');
+INSERT INTO `prog_subjek` VALUES ('105', 'DQH ', 'PS1502', '2.0');
+INSERT INTO `prog_subjek` VALUES ('106', 'DQH', 'MPW1133', '3.0');
+INSERT INTO `prog_subjek` VALUES ('107', 'DQH', 'MPW1143', '3.0');
+INSERT INTO `prog_subjek` VALUES ('108', 'DQH', 'WI1103', '3.0');
+INSERT INTO `prog_subjek` VALUES ('109', 'DQH', 'QH1203', '3.0');
+INSERT INTO `prog_subjek` VALUES ('110', 'DQH', 'QH1205', '3.0');
+INSERT INTO `prog_subjek` VALUES ('111', 'DQH', 'US1213', '3.0');
+INSERT INTO `prog_subjek` VALUES ('112', 'DQH', 'PS1503', '3.0');
+INSERT INTO `prog_subjek` VALUES ('113', 'DQH', 'WI1107', '4.0');
+INSERT INTO `prog_subjek` VALUES ('114', 'DQH', 'QH1204', '4.0');
+INSERT INTO `prog_subjek` VALUES ('115', 'DQH', 'QH1206', '4.0');
+INSERT INTO `prog_subjek` VALUES ('116', 'DQH', 'SY1204', '4.0');
+INSERT INTO `prog_subjek` VALUES ('117', 'DQH', 'SY1208', '4.0');
+INSERT INTO `prog_subjek` VALUES ('118', 'DQH', 'EL1402', '4.0');
+INSERT INTO `prog_subjek` VALUES ('119', 'DQH', 'EL1404', '4.0');
+INSERT INTO `prog_subjek` VALUES ('120', 'DQH', 'PS1801', '4.0');
+INSERT INTO `prog_subjek` VALUES ('121', 'DQH', 'US1202', '5.0');
+INSERT INTO `prog_subjek` VALUES ('122', 'DQH', 'US1204', '5.0');
+INSERT INTO `prog_subjek` VALUES ('123', 'DQH', 'US1206', '5.0');
+INSERT INTO `prog_subjek` VALUES ('124', 'DQH', 'US1207', '5.0');
+INSERT INTO `prog_subjek` VALUES ('125', 'DQH', 'US1209', '5.0');
+INSERT INTO `prog_subjek` VALUES ('126', 'DQH', 'EL1401', '5.0');
+INSERT INTO `prog_subjek` VALUES ('127', 'DQH', 'PS1802', '5.0');
+INSERT INTO `prog_subjek` VALUES ('128', 'DQH', 'EL1403', '5.0');
+INSERT INTO `prog_subjek` VALUES ('129', 'DQH', 'QH1301', '6.0');
+INSERT INTO `prog_subjek` VALUES ('130', 'DQH', 'QH1303', '6.0');
+INSERT INTO `prog_subjek` VALUES ('131', 'DQH', 'QH1302', '6.0');
+INSERT INTO `prog_subjek` VALUES ('132', 'DQH', 'QH1304', '6.0');
+INSERT INTO `prog_subjek` VALUES ('133', 'DQH', 'US1208', '6.0');
+INSERT INTO `prog_subjek` VALUES ('134', 'DQH', 'PS1506', '6.0');
+INSERT INTO `prog_subjek` VALUES ('135', 'DQH', 'WI1108', '6.0');
+INSERT INTO `prog_subjek` VALUES ('136', 'DSY', 'SY1210', '4.0');
+INSERT INTO `prog_subjek` VALUES ('137', 'DSY', 'SY1212', '4.0');
+INSERT INTO `prog_subjek` VALUES ('138', 'DSY', 'PS1504', '4.0');
+INSERT INTO `prog_subjek` VALUES ('139', 'PST', 'PS0001', '1.0');
+INSERT INTO `prog_subjek` VALUES ('140', 'PST', 'PS0002', '1.0');
+INSERT INTO `prog_subjek` VALUES ('141', 'PST', 'PS0003', '1.0');
+INSERT INTO `prog_subjek` VALUES ('142', 'PST', 'PS0004', '1.0');
+INSERT INTO `prog_subjek` VALUES ('143', 'PST', 'PS0005', '1.0');
+INSERT INTO `prog_subjek` VALUES ('144', 'PST', 'PS0006', '1.0');
+INSERT INTO `prog_subjek` VALUES ('145', 'PST', 'PS0007', '1.0');
+INSERT INTO `prog_subjek` VALUES ('148', 'ST', 'S101', '1.0');
+INSERT INTO `prog_subjek` VALUES ('149', 'ST', 'S102', '1.0');
+INSERT INTO `prog_subjek` VALUES ('150', 'ST', 'S103', '1.0');
+INSERT INTO `prog_subjek` VALUES ('151', 'ST', 'S104', '1.0');
+INSERT INTO `prog_subjek` VALUES ('152', 'ST', 'S105', '1.0');
+INSERT INTO `prog_subjek` VALUES ('153', 'ST', 'S106', '1.0');
+INSERT INTO `prog_subjek` VALUES ('154', 'ST', 'S107', '1.0');
+INSERT INTO `prog_subjek` VALUES ('155', 'ST', 'S108', '1.0');
+INSERT INTO `prog_subjek` VALUES ('156', 'ST', 'S109', '1.0');
+INSERT INTO `prog_subjek` VALUES ('157', 'ST', 'S110', '1.0');
 
 -- ----------------------------
 -- Table structure for `program`
@@ -4151,7 +4223,7 @@ CREATE TABLE `siri_invois` (
 -- Records of siri_invois
 -- ----------------------------
 INSERT INTO `siri_invois` VALUES ('2012', '0001', '0');
-INSERT INTO `siri_invois` VALUES ('2013', '0003', '1');
+INSERT INTO `siri_invois` VALUES ('2013', '0004', '1');
 
 -- ----------------------------
 -- Table structure for `siri_matrik`
@@ -4198,83 +4270,101 @@ CREATE TABLE `subjek` (
   `namasubjek_EN` varchar(100) DEFAULT NULL,
   `namasubjek_AR` varchar(100) DEFAULT NULL,
   `kredit` int(2) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx1` (`kodsubjek`)
+) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of subjek
 -- ----------------------------
-INSERT INTO `subjek` VALUES ('1', 'MPW 1113', 'BAHASA KEBANGSAAN A', null, null, '3');
-INSERT INTO `subjek` VALUES ('2', 'MPW 1123', 'BAHASA KEBANGSAAN B', null, null, '3');
-INSERT INTO `subjek` VALUES ('3', 'MPW 1133', 'PENGAJIAN MALAYSIA', null, null, '3');
-INSERT INTO `subjek` VALUES ('4', 'MPW 1143', 'PENGAJIAN ISLAM', null, null, '3');
-INSERT INTO `subjek` VALUES ('5', 'WI 1101', 'BAHASA INGGERIS 1', null, null, '2');
-INSERT INTO `subjek` VALUES ('6', 'WI 1102', 'BAHASA INGGERIS 2', null, null, '2');
-INSERT INTO `subjek` VALUES ('7', 'WI 1103', 'BAHASA INGGERIS 3', null, null, '2');
-INSERT INTO `subjek` VALUES ('8', 'WI 1104', 'BAHASA ARAB (PENGENALAN BAHASA ARAB)', null, null, '2');
-INSERT INTO `subjek` VALUES ('9', 'WI 1105', 'BAHASA ARAB 2 (ASAS BAHASA ARAB)', null, null, '2');
-INSERT INTO `subjek` VALUES ('10', 'WI 1106', 'TEKNOLOGI MAKLUMAT', null, null, '2');
-INSERT INTO `subjek` VALUES ('11', 'WI 1107', 'TEKNOLOGI MAKLUMAT', null, null, '2');
-INSERT INTO `subjek` VALUES ('12', 'WI 1108', 'KERJA KURSUS & METODOLOGINYA', null, null, '4');
-INSERT INTO `subjek` VALUES ('13', 'US 1201', 'AL-QURAN & AYAT ALAM 1', null, null, '3');
-INSERT INTO `subjek` VALUES ('14', 'US 1202', 'PENGANTAR PEMIKIRAN ISLAM', null, null, '3');
-INSERT INTO `subjek` VALUES ('15', 'US 1203', 'TASAWWUF', null, null, '3');
-INSERT INTO `subjek` VALUES ('16', 'US 1204', 'MANTIQ', null, null, '3');
-INSERT INTO `subjek` VALUES ('17', 'US 1205', 'DAKWAH & PENDAKWAH', null, null, '3');
-INSERT INTO `subjek` VALUES ('18', 'US 1206', 'SENI PIDATO', null, null, '3');
-INSERT INTO `subjek` VALUES ('19', 'US 1207', 'FALSAFAH & ALIRAN PEMIKIRAN', null, null, '3');
-INSERT INTO `subjek` VALUES ('20', 'US 1208', 'PERBANDINGAN AGAMA', null, null, '3');
-INSERT INTO `subjek` VALUES ('21', 'US 1209', 'INSTITUSI KEKELUARGAAN ISLAM', null, null, '3');
-INSERT INTO `subjek` VALUES ('22', 'US 1210', 'FIRAQ DALAM ISLAM', null, null, '3');
-INSERT INTO `subjek` VALUES ('23', 'US 1211', 'AQIDAH ISLAMIAH 1 (ILAHIYAT)', null, null, '3');
-INSERT INTO `subjek` VALUES ('24', 'US 1212', 'AQIDAH ISLAMIYAH 2', null, null, '3');
-INSERT INTO `subjek` VALUES ('25', 'US 1213', 'AQIDAH ISLAMIYAH 3', null, null, '3');
-INSERT INTO `subjek` VALUES ('26', 'US 1301', 'DUNIA ISLAM MASA KINI', null, null, '3');
-INSERT INTO `subjek` VALUES ('27', 'US 1302', 'PSIKOLOGI', null, null, '3');
-INSERT INTO `subjek` VALUES ('28', 'US 1303', 'FALSAFAH ISLAM', null, null, '3');
-INSERT INTO `subjek` VALUES ('29', 'US 1304', 'SOSIOLOGI', null, null, '3');
-INSERT INTO `subjek` VALUES ('30', 'SY 1202', 'AL-QURAN & AYAT HUKUM 2', null, null, '3');
-INSERT INTO `subjek` VALUES ('31', 'SY 1203', 'AL-QURAN & AYAT HUKUM 3', null, null, '3');
-INSERT INTO `subjek` VALUES ('32', 'SY 1204', 'HADIS HUKUM 1', null, null, '3');
-INSERT INTO `subjek` VALUES ('33', 'SY 1205', 'HADIS HUKUM 2', null, null, '3');
-INSERT INTO `subjek` VALUES ('34', 'SY 1206', 'FIQH 1 (IBADAT &MUAMALAT)', null, null, '3');
-INSERT INTO `subjek` VALUES ('35', 'SY 1207', 'FIQH 2 (MUNAKAHAT & JINAYAT)', null, null, '3');
-INSERT INTO `subjek` VALUES ('36', 'SY 1208', 'USUL FIQH (PENGANTAR)', null, null, '3');
-INSERT INTO `subjek` VALUES ('37', 'SY 1209', 'USUL FIQH 2', null, null, '3');
-INSERT INTO `subjek` VALUES ('38', 'SY 1210', 'SEJARAH PERUNDANGAN ISLAM', null, null, '3');
-INSERT INTO `subjek` VALUES ('39', 'SY 1211', 'KAEDAH-KAEDAH FIQH', null, null, '3');
-INSERT INTO `subjek` VALUES ('40', 'SY 1212', 'FIQH PERBANDINGAN', null, null, '3');
-INSERT INTO `subjek` VALUES ('41', 'SY 1213', 'FARAID', null, null, '3');
-INSERT INTO `subjek` VALUES ('42', 'SY 1214', 'SIASAH SYAR\'IYYAH', null, null, '3');
-INSERT INTO `subjek` VALUES ('43', 'SY 1215', 'FIQH SEMASA', null, null, '3');
-INSERT INTO `subjek` VALUES ('44', 'SY 1216', 'EKONOMI ISLAM', null, null, '3');
-INSERT INTO `subjek` VALUES ('45', 'SY 1217', 'UNDANG-UNDANG KEKELUARGAAN ISLAM', null, null, '3');
-INSERT INTO `subjek` VALUES ('46', 'SY 1218', 'FIQH KEUTAMAAN', null, null, '3');
-INSERT INTO `subjek` VALUES ('47', 'PS 1501', 'AL-QURAN BACAAN & HAFALAN 1', null, null, '0');
-INSERT INTO `subjek` VALUES ('48', 'PS 1502', 'AL-QURAN BACAAN & HAFALAN 2', null, null, '0');
-INSERT INTO `subjek` VALUES ('49', 'PS 1503', 'AL-QURAN BACAAN & HAFALAN 3', null, null, '0');
-INSERT INTO `subjek` VALUES ('50', 'PS 1504', 'AL-QURAN BACAAN & HAFALAN 4', null, null, '0');
-INSERT INTO `subjek` VALUES ('51', 'PS 1506', 'AL-QURAN BACAAN & HAFALAN 6', null, null, '0');
-INSERT INTO `subjek` VALUES ('52', 'PS 1801', 'BAHASA INGGERIS 4', null, null, '0');
-INSERT INTO `subjek` VALUES ('53', 'PS 1802', 'BAHASA INGGERIS 5', null, null, '0');
-INSERT INTO `subjek` VALUES ('54', 'EL 1401', 'KEFAHAMAN SEJARAH NABI', null, null, '2');
-INSERT INTO `subjek` VALUES ('55', 'EL 1402', 'AKHLAK', null, null, '2');
-INSERT INTO `subjek` VALUES ('56', 'EL 1403', 'PENDIDIKAN ANAK-ANAK', null, null, '2');
-INSERT INTO `subjek` VALUES ('57', 'EL 1404', 'KAEDAH PENGAJARAN', null, null, '2');
-INSERT INTO `subjek` VALUES ('58', 'QH 1201', 'TAFSIR AL-QURAN 1', null, null, '3');
-INSERT INTO `subjek` VALUES ('59', 'QH 1202', 'TAFSIR AL-QURAN 2', null, null, '3');
-INSERT INTO `subjek` VALUES ('60', 'QH 1203', 'AL-QURAN DAN ILMUNYA', null, null, '3');
-INSERT INTO `subjek` VALUES ('61', 'QH 1204', 'AS-SUNNAH & ILMUNYA', null, null, '3');
-INSERT INTO `subjek` VALUES ('62', 'QH 1205', 'AS-SUNNAH KAJIAN & HAFALAN 1', null, null, '3');
-INSERT INTO `subjek` VALUES ('63', 'QH 1206', 'AS-SUNNAH KAJIAN & HAFALAN 2', null, null, '3');
-INSERT INTO `subjek` VALUES ('64', 'QH 1301', 'TAFSIR MAUDHU\'I', null, null, '3');
-INSERT INTO `subjek` VALUES ('65', 'QH 1302', 'METODOLOGI AHLI TAFSIR', null, null, '3');
-INSERT INTO `subjek` VALUES ('66', 'QH 1303', 'TAKHRIJ AL-HADIS', null, null, null);
-INSERT INTO `subjek` VALUES ('67', 'QH 1304', 'KRITIKAN PERAWI', null, null, null);
-INSERT INTO `subjek` VALUES ('68', 'PS 1803', 'BAHASA INGGERIS 6', null, null, null);
-INSERT INTO `subjek` VALUES ('69', 'PS 1505', 'AL-QURAN & HAFALAN 5', null, null, null);
-INSERT INTO `subjek` VALUES ('70', 'OS 1506', 'AL-QURAN & HAFALAN 6', null, null, null);
-INSERT INTO `subjek` VALUES ('71', 'OS 1803', 'BAHASA INGGERIS 6', null, null, null);
+INSERT INTO `subjek` VALUES ('1', 'MPW1113', 'BAHASA KEBANGSAAN A', null, null, '3');
+INSERT INTO `subjek` VALUES ('2', 'MPW1123', 'BAHASA KEBANGSAAN B', null, null, '3');
+INSERT INTO `subjek` VALUES ('3', 'MPW1133', 'PENGAJIAN MALAYSIA', null, null, '3');
+INSERT INTO `subjek` VALUES ('4', 'MPW1143', 'PENGAJIAN ISLAM', null, null, '3');
+INSERT INTO `subjek` VALUES ('5', 'WI1101', 'BAHASA INGGERIS 1', null, null, '2');
+INSERT INTO `subjek` VALUES ('6', 'WI1102', 'BAHASA INGGERIS 2', null, null, '2');
+INSERT INTO `subjek` VALUES ('7', 'WI1103', 'BAHASA INGGERIS 3', null, null, '2');
+INSERT INTO `subjek` VALUES ('8', 'WI1104', 'BAHASA ARAB (PENGENALAN BAHASA ARAB)', null, null, '2');
+INSERT INTO `subjek` VALUES ('9', 'WI1105', 'BAHASA ARAB 2 (ASAS BAHASA ARAB)', null, null, '2');
+INSERT INTO `subjek` VALUES ('10', 'WI1106', 'TEKNOLOGI MAKLUMAT', null, null, '2');
+INSERT INTO `subjek` VALUES ('11', 'WI1107', 'TEKNOLOGI MAKLUMAT', null, null, '2');
+INSERT INTO `subjek` VALUES ('12', 'WI1108', 'KERJA KURSUS & METODOLOGINYA', null, null, '4');
+INSERT INTO `subjek` VALUES ('13', 'US1201', 'AL-QURAN & AYAT ALAM 1', null, null, '3');
+INSERT INTO `subjek` VALUES ('14', 'US1202', 'PENGANTAR PEMIKIRAN ISLAM', null, null, '3');
+INSERT INTO `subjek` VALUES ('15', 'US1203', 'TASAWWUF', null, null, '3');
+INSERT INTO `subjek` VALUES ('16', 'US1204', 'MANTIQ', null, null, '3');
+INSERT INTO `subjek` VALUES ('17', 'US1205', 'DAKWAH & PENDAKWAH', null, null, '3');
+INSERT INTO `subjek` VALUES ('18', 'US1206', 'SENI PIDATO', null, null, '3');
+INSERT INTO `subjek` VALUES ('19', 'US1207', 'FALSAFAH & ALIRAN PEMIKIRAN', null, null, '3');
+INSERT INTO `subjek` VALUES ('20', 'US1208', 'PERBANDINGAN AGAMA', null, null, '3');
+INSERT INTO `subjek` VALUES ('21', 'US1209', 'INSTITUSI KEKELUARGAAN ISLAM', null, null, '3');
+INSERT INTO `subjek` VALUES ('22', 'US1210', 'FIRAQ DALAM ISLAM', null, null, '3');
+INSERT INTO `subjek` VALUES ('23', 'US1211', 'AQIDAH ISLAMIAH 1 (ILAHIYAT)', null, null, '3');
+INSERT INTO `subjek` VALUES ('24', 'US1212', 'AQIDAH ISLAMIYAH 2', null, null, '3');
+INSERT INTO `subjek` VALUES ('25', 'US1213', 'AQIDAH ISLAMIYAH 3', null, null, '3');
+INSERT INTO `subjek` VALUES ('26', 'US1301', 'DUNIA ISLAM MASA KINI', null, null, '3');
+INSERT INTO `subjek` VALUES ('27', 'US1302', 'PSIKOLOGI', null, null, '3');
+INSERT INTO `subjek` VALUES ('28', 'US1303', 'FALSAFAH ISLAM', null, null, '3');
+INSERT INTO `subjek` VALUES ('29', 'US1304', 'SOSIOLOGI', null, null, '3');
+INSERT INTO `subjek` VALUES ('30', 'SY1202', 'AL-QURAN & AYAT HUKUM 2', null, null, '3');
+INSERT INTO `subjek` VALUES ('31', 'SY1203', 'AL-QURAN & AYAT HUKUM 3', null, null, '3');
+INSERT INTO `subjek` VALUES ('32', 'SY1204', 'HADIS HUKUM 1', null, null, '3');
+INSERT INTO `subjek` VALUES ('33', 'SY1205', 'HADIS HUKUM 2', null, null, '3');
+INSERT INTO `subjek` VALUES ('34', 'SY1206', 'FIQH 1 (IBADAT & MUAMALAT)', null, null, '3');
+INSERT INTO `subjek` VALUES ('35', 'SY1207', 'FIQH 2 (MUNAKAHAT & JINAYAT)', null, null, '3');
+INSERT INTO `subjek` VALUES ('36', 'SY1208', 'USUL FIQH (PENGANTAR)', null, null, '3');
+INSERT INTO `subjek` VALUES ('37', 'SY1209', 'USUL FIQH 2', null, null, '3');
+INSERT INTO `subjek` VALUES ('38', 'SY1210', 'SEJARAH PERUNDANGAN ISLAM', null, null, '3');
+INSERT INTO `subjek` VALUES ('39', 'SY1211', 'KAEDAH-KAEDAH FIQH', null, null, '3');
+INSERT INTO `subjek` VALUES ('40', 'SY1212', 'FIQH PERBANDINGAN', null, null, '3');
+INSERT INTO `subjek` VALUES ('41', 'SY1213', 'FARAID', null, null, '3');
+INSERT INTO `subjek` VALUES ('42', 'SY1214', 'SIASAH SYAR\'IYYAH', null, null, '3');
+INSERT INTO `subjek` VALUES ('43', 'SY1215', 'FIQH SEMASA', null, null, '3');
+INSERT INTO `subjek` VALUES ('44', 'SY1216', 'EKONOMI ISLAM', null, null, '3');
+INSERT INTO `subjek` VALUES ('45', 'SY1217', 'UNDANG-UNDANG KEKELUARGAAN ISLAM', null, null, '3');
+INSERT INTO `subjek` VALUES ('46', 'SY1218', 'FIQH KEUTAMAAN', null, null, '3');
+INSERT INTO `subjek` VALUES ('47', 'PS1501', 'AL-QURAN BACAAN & HAFALAN 1', null, null, '0');
+INSERT INTO `subjek` VALUES ('48', 'PS1502', 'AL-QURAN BACAAN & HAFALAN 2', null, null, '0');
+INSERT INTO `subjek` VALUES ('49', 'PS1503', 'AL-QURAN BACAAN & HAFALAN 3', null, null, '0');
+INSERT INTO `subjek` VALUES ('50', 'PS1504', 'AL-QURAN BACAAN & HAFALAN 4', null, null, '0');
+INSERT INTO `subjek` VALUES ('51', 'PS1506', 'AL-QURAN BACAAN & HAFALAN 6', null, null, '0');
+INSERT INTO `subjek` VALUES ('52', 'PS1801', 'BAHASA INGGERIS 4', null, null, '0');
+INSERT INTO `subjek` VALUES ('53', 'PS1802', 'BAHASA INGGERIS 5', null, null, '0');
+INSERT INTO `subjek` VALUES ('54', 'EL1401', 'KEFAHAMAN SEJARAH NABI', null, null, '2');
+INSERT INTO `subjek` VALUES ('55', 'EL1402', 'AKHLAK', null, null, '2');
+INSERT INTO `subjek` VALUES ('56', 'EL1403', 'PENDIDIKAN ANAK-ANAK', null, null, '2');
+INSERT INTO `subjek` VALUES ('57', 'EL1404', 'KAEDAH PENGAJARAN', null, null, '2');
+INSERT INTO `subjek` VALUES ('58', 'QH1201', 'TAFSIR AL-QURAN 1', null, null, '3');
+INSERT INTO `subjek` VALUES ('59', 'QH1202', 'TAFSIR AL-QURAN 2', null, null, '3');
+INSERT INTO `subjek` VALUES ('60', 'QH1203', 'AL-QURAN DAN ILMUNYA', null, null, '3');
+INSERT INTO `subjek` VALUES ('61', 'QH1204', 'AS-SUNNAH & ILMUNYA', null, null, '3');
+INSERT INTO `subjek` VALUES ('62', 'QH1205', 'AS-SUNNAH KAJIAN & HAFALAN 1', null, null, '3');
+INSERT INTO `subjek` VALUES ('63', 'QH1206', 'AS-SUNNAH KAJIAN & HAFALAN 2', null, null, '3');
+INSERT INTO `subjek` VALUES ('64', 'QH1301', 'TAFSIR MAUDHU\'I', null, null, '3');
+INSERT INTO `subjek` VALUES ('65', 'QH1302', 'METODOLOGI AHLI TAFSIR', null, null, '3');
+INSERT INTO `subjek` VALUES ('66', 'QH1303', 'TAKHRIJ AL-HADIS', null, null, '0');
+INSERT INTO `subjek` VALUES ('67', 'QH1304', 'KRITIKAN PERAWI', null, null, '0');
+INSERT INTO `subjek` VALUES ('68', 'PS1803', 'BAHASA INGGERIS 6', null, null, '0');
+INSERT INTO `subjek` VALUES ('69', 'PS1505', 'AL-QURAN & HAFALAN 5', null, null, '0');
+INSERT INTO `subjek` VALUES ('70', 'OS1506', 'AL-QURAN & HAFALAN 6', null, null, '0');
+INSERT INTO `subjek` VALUES ('71', 'OS1803', 'BAHASA INGGERIS 6', null, null, '0');
+INSERT INTO `subjek` VALUES ('72', 'PS0001', 'ASAS AL-LUGHAH AL-ARABIAH', null, null, '0');
+INSERT INTO `subjek` VALUES ('73', 'PS0002', 'ASAS KITABAH', null, null, '0');
+INSERT INTO `subjek` VALUES ('74', 'PS0003', 'ASASUL QIRAAH', null, null, '0');
+INSERT INTO `subjek` VALUES ('75', 'PS0004', 'AL-QURAN BACAAN DAN HAFALAN', null, null, '0');
+INSERT INTO `subjek` VALUES ('76', 'PS0005', 'BAHASA INGGERIS', null, null, '0');
+INSERT INTO `subjek` VALUES ('77', 'PS0006', 'BAHASA MALAYSIA', null, null, '0');
+INSERT INTO `subjek` VALUES ('78', 'PS0007', 'AL-ASAS FIL MUHADATHAH', null, null, '0');
+INSERT INTO `subjek` VALUES ('79', 'S101', 'HIFZ AL-QURAN DAN TAJWID', null, null, '0');
+INSERT INTO `subjek` VALUES ('80', 'S102', 'FIQH', null, null, '0');
+INSERT INTO `subjek` VALUES ('81', 'S103', 'TAUHID DAN MANTIQ', null, null, '0');
+INSERT INTO `subjek` VALUES ('82', 'S104', 'TAFSIR DAN ULUMUHU', null, null, '0');
+INSERT INTO `subjek` VALUES ('83', 'S105', 'HADITH DAN MUSTOLAH', null, null, '0');
+INSERT INTO `subjek` VALUES ('84', 'S106', 'NAHU DAN SARF', null, null, '0');
+INSERT INTO `subjek` VALUES ('85', 'S107', 'INSYA\' DAN MUTALA\'AH', null, null, '0');
+INSERT INTO `subjek` VALUES ('86', 'S108', 'ADAB DAN NUSUS', null, null, '0');
+INSERT INTO `subjek` VALUES ('87', 'S109', '\'ARUDH DAN QAFIYAH', null, null, '0');
+INSERT INTO `subjek` VALUES ('88', 'S110', 'BALAGHAH', null, null, '0');
 
 -- ----------------------------
 -- Table structure for `surat_cetak`
@@ -4427,7 +4517,7 @@ CREATE TABLE `user_dept_func` (
   `active` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'weather its active for the user or not',
   PRIMARY KEY (`id`),
   KEY `unique` (`id_user_function`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user_dept_func
@@ -4464,6 +4554,7 @@ INSERT INTO `user_dept_func` VALUES ('35', '1', '2', '28', '1');
 INSERT INTO `user_dept_func` VALUES ('36', '1', '2', '29', '1');
 INSERT INTO `user_dept_func` VALUES ('37', '1', '2', '30', '1');
 INSERT INTO `user_dept_func` VALUES ('38', '1', '2', '31', '1');
+INSERT INTO `user_dept_func` VALUES ('39', '1', '2', '32', '1');
 
 -- ----------------------------
 -- Table structure for `user_dept_jaw`
@@ -4497,7 +4588,7 @@ CREATE TABLE `user_function` (
   `posisi` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `Function` (`function`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user_function
@@ -4530,6 +4621,7 @@ INSERT INTO `user_function` VALUES ('28', 'edit_waris', 'Mengemaskini Profail Wa
 INSERT INTO `user_function` VALUES ('29', 'edit_akademik', 'Mengemaskini Kelayakan Pelajar', 'Kemaskini Kelayakan', '0', '4');
 INSERT INTO `user_function` VALUES ('30', 'daftar_subjek', 'Pendaftaran Subjek Untuk Pelajar', 'Daftar Subjek', '1', '5');
 INSERT INTO `user_function` VALUES ('31', 'urus_subjek', 'Kemaskini Subjek Bagi Pelajar', 'Kemaskini Subjek', '0', '6');
+INSERT INTO `user_function` VALUES ('32', 'drop_subj', 'Digunakan Untuk Menggugurkan Subjek Pelajar', 'Drop Subjek', '0', '8');
 
 -- ----------------------------
 -- Table structure for `user_jawatan`
