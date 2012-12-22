@@ -330,7 +330,7 @@ class Hea extends CI_Controller
 				//pagination process
 				$this->load->library('pagination');
 				$config['base_url'] = base_url().'hea/daftar_subjek';
-				$config['total_rows'] = $this->pelajar->GetAll(NULL, NULL)->num_rows();
+				$config['total_rows'] = $this->pelajar->GetWhere(array('status_pljr' => 'A'), NULL, NULL)->num_rows();
 				$config['per_page'] = 5;
 				$config['suffix'] = '.exe';
 				$this->pagination->initialize($config);
@@ -428,7 +428,7 @@ class Hea extends CI_Controller
 		public function drop_subj()
 			{
 				$id = $this->uri->segment(4, 0);
-				$drp = $this->pel_daftarsubjek->update(array('id' => $id), array('aktif' => 0));
+				$drp = $this->pel_daftarsubjek->update(array('id' => $id), array('aktif' => 0, 'id_drop' => $this->session->userdata(''), 'dt_drop' => datetime_db(now())));
 				if($drp)
 					{
 						redirect('hea/urus_subjek/'.$matrik, 'location');
@@ -438,6 +438,168 @@ class Hea extends CI_Controller
 						redirect('hea/urus_subjek/'.$matrik, 'location');
 					}
 			}
+
+		public function status_pelajar()
+			{
+				//pagination process
+				$this->load->library('pagination');
+				$config['base_url'] = base_url().'hea/status_pelajar';
+				$config['total_rows'] = $this->pelajar->GetAll(NULL, NULL)->num_rows();
+				$config['per_page'] = 5;
+				$config['suffix'] = '.exe';
+				$this->pagination->initialize($config);
+
+				$data['all'] = $this->pelajar->GetAll($config['per_page'], $this->uri->segment(3, 0));
+				$data['paginate'] = $this->pagination->create_links();
+
+				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+				if ($this->form_validation->run() == TRUE)
+					{
+						if($this->input->post('cari', TRUE))
+							{
+								$matrik = $this->input->post('ic', TRUE);
+								$d = $this->pelajar->GetWhere(array('matrik' => $matrik), NULL, NULL);
+								if ($d)
+									{
+										$data['info'] = 'Carian berjaya dilakukan';
+										$data['all'] = $this->pelajar->GetWhere(array('matrik' => $matrik), $config['per_page'], $this->uri->segment(3, 0));
+									}
+									else
+									{
+										$data['info'] = 'Sila cuba sebentar lagi';
+									}
+							}
+					}
+				$this->load->view('hea/status_pelajar', $data);
+			}
+
+		public function urus_status()
+			{
+				
+				$this->load->view('hea/urus_status', $data);
+			}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
