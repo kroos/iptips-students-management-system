@@ -147,7 +147,7 @@ $config = array	(
 							(
 								'field' => 'passport',
 								'label' => 'Nombor Pasport',
-								'rules' => 'trim|required|min_length[1]|max_length[30]|is_unique[app_pelajar.passport]|xss_clean'
+								'rules' => 'trim|min_length[1]|max_length[30]|is_unique[app_pelajar.passport]|xss_clean'
 							),
 						array
 							(
@@ -586,7 +586,7 @@ $config = array	(
 							(
 								'field' => 'passport',
 								'label' => 'Nombor Pasport',
-								'rules' => 'trim|required|min_length[1]|max_length[30]|xss_clean'
+								'rules' => 'trim|min_length[1]|max_length[30]|xss_clean'
 							),
 						array
 							(
@@ -844,7 +844,7 @@ $config = array	(
 							(
 								'field' => 'passport',
 								'label' => 'Nombor Pasport',
-								'rules' => 'trim|required|min_length[1]|max_length[30]|xss_clean'
+								'rules' => 'trim|min_length[1]|max_length[30]|xss_clean'
 							),
 						array
 							(
@@ -994,6 +994,15 @@ $config = array	(
 							(
 								'field' => 'ic',
 								'label' => 'Nama / Nombor Kad Pengenalan / No Passport / No Matrik',
+								'rules' => 'trim|required|min_length[2]|xss_clean'
+							)
+					),
+					'hea/status_pelajar' => array
+					(
+						array
+							(
+								'field' => 'ic',
+								'label' => 'No Matrik',
 								'rules' => 'trim|required|min_length[2]|xss_clean'
 							)
 					),

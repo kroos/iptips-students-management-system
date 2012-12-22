@@ -193,7 +193,7 @@ class Select_list extends CI_Controller{
 		}
 		//echo form_dropdown('level', $option, 'id="level"');
 		echo '<select>'.$option.'</select>';
-		return $optionLevel;
+		//return $optionLevel;
 	}
 
 	//select sem
