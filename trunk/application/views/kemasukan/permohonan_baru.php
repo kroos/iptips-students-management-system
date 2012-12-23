@@ -163,37 +163,6 @@
 				$( "#accordion" ).accordion({
 					collapsible: true
 				});
-
-				//chain select 3 level
-				<?php /* $('#negara').chainSelect('#negeri','<?=base_url()?>select_list/sel_negara',
-				{ 
-					before:function (target) //before request hide the target combobox and display the loading message
-					{ 
-						$("#loading").css("display","block");
-						$(target).css("display","none");
-					},
-					after:function (target) //after request show the target combobox and hide the loading message
-					{ 
-						$("#loading").css("display","none");
-						$(target).css("display","inline");
-					}
-				});
-				
-				$('#negeri').chainSelect('#bandar','<?=base_url()?>select_list/sel_negara',
-				{ 
-					before:function (target) 
-					{ 
-						$("#loading").css("display","block");
-						$(target).css("display","none");
-					},
-					after:function (target) 
-					{ 
-						$("#loading").css("display","none");
-						$(target).css("display","inline");
-					}
-				}); 
-				*/?>
-				
 			});
 		</script>
 

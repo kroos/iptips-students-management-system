@@ -10,17 +10,30 @@
         <div class="info"><?=@$info?></div>
 
 <?php
-foreach($sub->result() AS $s)
+/* foreach($sub->result() AS $s)
 	{
 		$sbj = $this->subjek->GetWhere(array('kodsubjek' => $s->kodsubjek));
 		$subjek[$s->kodsubjek] = $s->kodsubjek.'&nbsp;||&nbsp;'.$sbj->row()->namasubjek_MY.'&nbsp;||&nbsp;Sem '.$s->sem.'&nbsp;||&nbsp;'.$sbj->row()->kredit.' jam kredit';
-	}
+	} */
+$sem = array(
+				1 => 'Semester 1',
+				2 => 'Semester 2',
+				3 => 'Semester 3',
+				4 => 'Semester 4',
+				5 => 'Semester 5',
+				6 => 'Semester 6'
+			);
 ?>
         <div class="form_settings">
             <?=form_open('', '', array('matrik' => $this->uri->segment(3, 0)))?>
 
+			<p><span><?=form_label('Semester', 'sem')?></span>
+			<?=form_dropdown('sem', $sem, set_value('sem'), 'id="sem"')?>
+			<br /><?=form_error('sem')?></p>
+
 			<p><span><?=form_label('Matapelajaran', 'subjek')?></span>
-			<?=form_dropdown('subjek', $subjek, set_value('subjek'), array('id' => 'subjek'))?>
+			<?//=form_dropdown('subjek', $subjek, set_value('subjek'), array('id' => 'subjek'))?>
+			<select name="subjek" id="subjek"></select>
 			<br /><?=form_error('subjek')?></p>
 
 			<p><span>&nbsp;</span><?=form_submit('save', 'Tambah', 'class="submit"')?></p>
@@ -62,6 +75,53 @@ foreach($sub->result() AS $s)
 				</table>
 			</div>
 		<?endif?>
+	<?php endblock()?>
+
+	<?php startblock('jscript')?>
+		<script src="<?=base_url()?>js/jquery/jquery-ui-1.9.1.custom.js"></script>
+		<script type="text/javascript" src="<?=base_url()?>js/jquery/jquery-ui-timepicker-addon.js"></script>
+		<script type="text/javascript" src="<?php echo base_url()?>js/jquery/jquery.cookies.2.2.0.js"></script>
+		<script>
+			$(function() {
+				$( "input[type=submit], a, button", ".demo" )
+					.button();
+				$( "#radioone" ).buttonset();
+				$( "#radiotwo" ).buttonset();
+
+				// Datepicker
+				$('#datepicker').datetimepicker({dateFormat: "yy-mm-dd", timeFormat: "hh:mm:ss", showSecond: true, showMillisec: false, ampm: false, stepHour: 1, stepMinute: 1, stepSecond: 5});
+
+				$( "#accordion" ).accordion({
+					collapsible: true
+				});
+			});
+		</script>
+
+
+		<script>
+			$(document).ready(function() {
+	
+				$("#sem").change(function(){
+					subjek();
+				});
+				
+				function subjek(){
+					$.post('<?=base_url().'select_list/select_sem/'.$this->uri->segment(3, 0)?>',
+						{	
+							<?=$this->config->item('csrf_token_name'); ?>: $.cookies.get("<?=$this->config->item('csrf_cookie_name')?>"), //pass token cookie name klu x ajax xjln
+							sem: $("#sem").val(),
+							subjek: $('#subjek').val()
+						},
+						function(data){
+							$('#subjek').html(data);
+						}
+					);
+				}
+
+				setTimeout(function(){subjek()}, 100);
+
+		    });
+	    </script>
 	<?php endblock()?>
 
 <?php end_extend() ?>

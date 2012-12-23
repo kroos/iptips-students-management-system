@@ -1016,6 +1016,12 @@ $config = array	(
 							),
 						array
 							(
+								'field' => 'sem',
+								'label' => 'Matapelajaran',
+								'rules' => 'trim|required|min_length[2]|xss_clean'
+							),
+						array
+							(
 								'field' => 'matrik',
 								'label' => 'No Matrik',
 								'rules' => 'trim|required|min_length[2]|xss_clean'
