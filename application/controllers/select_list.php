@@ -198,19 +198,27 @@ class Select_list extends CI_Controller{
 
 	//select sem
 	public function select_sem()
-	{
-		$this->load->model('prog_subjek');
-		$this->load->model('subjek');
-		$option = '';
-		$level = $this->prog_subjek->GetAll(NULL, NULL);
-		foreach($level->result() as $l)
 		{
-			$optionLevel[$l->kodsubjek] = $this->subjek->GetWhere(array('kodsubjek' => $l->kodsubjek))->row()->namasubjek_MY;
-			$option .= '<option value="'.$l->kodsubjek.'"/>'.$this->subjek->GetWhere(array('kodsubjek' => $l->kodsubjek))->row()->namasubjek_MY.'</option>';
+			$this->load->model('prog_subjek');
+			$this->load->model('pel_sem');
+			$this->load->model('subjek');
+
+			$matrik = $this->uri->segment(3, 0);
+
+			$pelsem = $this->pel_sem->GetWhere(array('matrik' => $matrik, 'aktif' => 1), NULL, NULL);
+
+			if($this->input->post('sem',TRUE))
+				{
+					$sem = $this->input->post('sem',TRUE);
+					$get = array('kod_prog' => $pelsem->row()->kod_prog, 'sem' => $sem);
+				}
+
+			$sub = $this->prog_subjek->GetWhereOrder($get , 'sem ASC, kodsubjek ASC', NULL, NULL);
+
+			foreach($sub->result() as $k)
+				{
+					echo '<option value="'.$k->kodsubjek.'">'.$k->kodsubjek.' '.$k->sem.'</option>';
+				}
 		}
-		//echo form_dropdown('level', $option, 'id="level"');
-		echo '<select>'.$option.'</select>';
-		return $optionLevel;
-	}
 
 }
