@@ -23,6 +23,7 @@ class Kemasukan extends CI_Controller
 				$this->load->model('pel_akademik');				//load table tamplate surat tawaran
 				$this->load->model('pel_daftarsubjek');			//load table tamplate surat tawaran
 				$this->load->model('pel_subjek_akademik');		//load table tamplate surat tawaran
+				$this->load->model('pel_subjek_gred');		//load table tamplate surat tawaran
 				$this->load->model('pel_sem');					//load table tamplate surat tawaran
 				$this->load->model('siri_invois');				//load table tamplate surat tawaran
 				$this->load->model('pelajar');					//load table pelajar
@@ -1109,7 +1110,8 @@ class Kemasukan extends CI_Controller
 											}
  */
 										//insert to pel_daftarsubjek
-										$prog_subjek = $this->view->view_prog_subj($pel->row()->progTawar, 1);
+										$prog_subjek = $this->view->view_prog_subj($pel->row()->progTawar);
+										$prog_subjek1 = $this->view->view_prog_subj1($pel->row()->progTawar, 1);
 										//echo $pel->row()->progTawar.' = prog tawar<br />';
 /* 										foreach ($prog_subjek->result() as $ps)
 											{
@@ -1185,15 +1187,12 @@ class Kemasukan extends CI_Controller
 												$data['info'] = 'Rekod tidak berjaya diproses, Sila cuba sebentar lagi';
 											}
  */
-											
-											
-
 										//try pakai transaction, boleh rollback kalau salah satu group fails.....
 										//pastikan table pakai engine innodb...kalau tidak mmg sangkut...
 										$this->db->trans_start();
 
 										$reg = $this->pelajar->insert($insert);
-										$uap = $this->app_pelajar->update(array('dt_transfer' => date_db(now()), 'id_transfer' => $this->session->userdata('id_user')), array('id' => $id_mohon));
+										$uap = $this->app_pelajar->update(array('dt_transfer' => datetime_db(now()), 'id_transfer' => $this->session->userdata('id_user')), array('id' => $id_mohon));
 										$pel_sem = $this->pel_sem->insert($insertsem);
 										$regwar = $this->pel_waris->insert($waris);
 										foreach ($app_akad->result() as $f)
@@ -1216,14 +1215,29 @@ class Kemasukan extends CI_Controller
 															(
 																'matrik' => $matrik,
 																'kodsubjek' => $ps->kodsubjek,
-																'sesi' => $pel->row()->sesi_mohon,
-																'sem' => 1,
+																'sesi' => ($pel->row()->sesi_mohon == $this->sesi_intake->GetWhere(array('aktif' => 1))->row()->kodsesi ? $pel->row()->sesi_mohon : NULL),
+																'sem' => $ps->sem,
 																'kredit' => $ps->kredit,
 																'id_add' => $this->session->userdata('id_user'),
 																'dt_add' => datetime_db(now()),
-																'aktif' => 1
+																'aktif' => ($ps->sem == 1 ? 1 : 0),
+																'prog_struct' => 1
 															);
 												$tda[] = $this->pel_daftarsubjek->insert($array);
+											}
+										foreach ($prog_subjek1->result() as $ps1)
+											{
+												$array = array
+															(
+																'matrik' => $matrik,
+																'kodsubjek' => $ps1->kodsubjek,
+																'sesi' => $pel->row()->sesi_mohon,
+																'sem' => $ps1->sem,
+																'kredit' => $ps1->kredit,
+																'id_add' => $this->session->userdata('id_user'),
+																'dt_add' => datetime_db(now())
+															);
+												$tda1[] = $this->pel_subjek_gred->insert($array);
 											}
 										$yu = $this->pel_invois->insert($inv);
 										//update $siri_invois
@@ -1255,7 +1269,7 @@ class Kemasukan extends CI_Controller
 											}
 											else
 											{
-												$data['info'] = 'Tahniah!!<br />Pelajr berjaya didaftar<br />Selamat datang ke '.$this->config->item('instl');
+												$data['info'] = 'Tahniah!!<br />Pelajar berjaya didaftar<br />Selamat datang ke '.$this->config->item('instl');
 												$data['u'] = $this->app_pelajar->GetWherePage($whe, $config['per_page'], $this->uri->segment(3, 0));
 											}
 									}
@@ -1438,9 +1452,8 @@ class Kemasukan extends CI_Controller
 		//tp kalau hang nak confirmkan untuk jquery tu...takpa laa...
 		public function check_matrik(){
 			if($this->input->post('matrik', TRUE)){
-				$check = $this->db->select('matrik');
-				$check = $this->pelajar->GetAll(array('matrik' => $this->input->post('matrik')));
-				if($check->num_rows()==0){
+				$check = $this->pelajar->GetWhere(array('matrik' => $this->input->post('matrik')), NULL, NULL);
+				if($check->num_rows() < 1){
 					echo 'No matrik ini tiada dalam rekod.';
 				}else{
 					echo 'No matrik ini sudah ada dalam rekod. Sila pilih nombor yang lain.';

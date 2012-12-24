@@ -225,21 +225,44 @@ class View extends CI_Model
 										");
 			}
 
-		function view_prog_subj($kod_prog, $sem)
+		function view_prog_subj($kod_prog)
 			{
 				return $this->db->query("
-											select
+											SELECT
 											`subjek`.`namasubjek_MY` AS `namasubjek_MY`,
 											`prog_subjek`.`kod_prog` AS `kod_prog`,
 											`program`.`namaprog_MY` AS `namaprog_MY`,
 											`prog_subjek`.`sem` AS `sem`,`prog_subjek`.`kodsubjek`
 											AS `kodsubjek`,`subjek`.`kredit` AS `kredit`
-											from ((`prog_subjek`
-											INNER JOIN `program` on((`prog_subjek`.`kod_prog` = `program`.`kod_prog`))) 
-											inner join `subjek` on((`prog_subjek`.`kodsubjek` = `subjek`.`kodsubjek`)))
+											FROM ((`prog_subjek`
+											INNER JOIN `program` ON((`prog_subjek`.`kod_prog` = `program`.`kod_prog`))) 
+											INNER JOIN `subjek` on((`prog_subjek`.`kodsubjek` = `subjek`.`kodsubjek`)))
+											WHERE
+											prog_subjek.kod_prog = '$kod_prog'
+											ORDER BY
+											sem ASC,
+											kredit ASC
+										");
+			}
+
+		function view_prog_subj1($kod_prog, $sem)
+			{
+				return $this->db->query("
+											SELECT
+											`subjek`.`namasubjek_MY` AS `namasubjek_MY`,
+											`prog_subjek`.`kod_prog` AS `kod_prog`,
+											`program`.`namaprog_MY` AS `namaprog_MY`,
+											`prog_subjek`.`sem` AS `sem`,`prog_subjek`.`kodsubjek`
+											AS `kodsubjek`,`subjek`.`kredit` AS `kredit`
+											FROM ((`prog_subjek`
+											INNER JOIN `program` ON((`prog_subjek`.`kod_prog` = `program`.`kod_prog`))) 
+											INNER JOIN `subjek` on((`prog_subjek`.`kodsubjek` = `subjek`.`kodsubjek`)))
 											WHERE
 											prog_subjek.kod_prog = '$kod_prog' AND
-											prog_subjek.sem = $sem
+											prog_subjek.sem = '$sem'
+											ORDER BY
+											sem ASC,
+											kredit ASC
 										");
 			}
 	}

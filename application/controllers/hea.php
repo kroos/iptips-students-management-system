@@ -14,6 +14,7 @@ class Hea extends CI_Controller
 				$this->load->model('pel_akademik');					//nak tau controller ni pakai model mana 1...
 				$this->load->model('pel_subjek_akademik');					//nak tau controller ni pakai model mana 1...
 				$this->load->model('pel_daftarsubjek');					//nak tau controller ni pakai model mana 1...
+				$this->load->model('pel_subjek_gred');					//nak tau controller ni pakai model mana 1...
 				$this->load->model('prog_subjek');					//nak tau controller ni pakai model mana 1...
 
 				//mesti ikut peraturan ni..
@@ -363,11 +364,12 @@ class Hea extends CI_Controller
 			{
 				$matrik = $this->uri->segment(3, 0);
 				$m = $this->pelajar->GetWhere(array('matrik' => $matrik), NULL, NULL);
+				$pelsem = $this->pel_sem->GetWhere(array('matrik' => $matrik, 'aktif' => 1), NULL, NULL);
+
 				if($m->num_rows() == 1)
 					{
-						$data['m'] = $this->pel_daftarsubjek->GetWhere(array('matrik' => $matrik, 'aktif' => 1), NULL, NULL);
-						$pelsem = $this->pel_sem->GetWhere(array('matrik' => $matrik, 'aktif' => 1), NULL, NULL);
-						$data['sub'] = $this->prog_subjek->GetWhereOrder(array('kod_prog' => $pelsem->row()->kod_prog) , 'sem ASC, kodsubjek ASC', NULL, NULL);
+						$data['m'] = $this->pel_subjek_gred->GetWhere(array('matrik' => $matrik, 'sesi' => $pelsem->row()->sesi, 'sem' => $pelsem->row()->sem, 'id_drop IS NULL' => NULL, 'id_ign IS NULL' => NULL), NULL, NULL);
+						//echo $this->db->last_query();
 
 						if($pelsem->row()->status_pel == '01')
 							{
@@ -378,7 +380,6 @@ class Hea extends CI_Controller
 											{
 												$h = $this->input->post('subjek', TRUE);
 												$matrik = $this->input->post('matrik', TRUE);
-												//echo $h.$matrik;
 												$erray = array
 																(
 																	'matrik' => $matrik,
@@ -387,8 +388,7 @@ class Hea extends CI_Controller
 																	'sem' => $pelsem->row()->sem,
 																	'kredit' => $this->subjek->GetWhere(array('kodsubjek' => $h))->row()->kredit,
 																	'id_add' => $this->session->userdata('id_user'),
-																	'dt_add' => datetime_db(now()),
-																	'aktif' => 1
+																	'dt_add' => datetime_db(now())
 																);
 												$erray1 = array
 																(
@@ -397,38 +397,44 @@ class Hea extends CI_Controller
 																	'sesi' => $pelsem->row()->sesi,
 																	'sem' => $pelsem->row()->sem,
 																	'kredit' => $this->subjek->GetWhere(array('kodsubjek' => $h))->row()->kredit,
-																	'aktif' => 1
+																	'id_drop IS NULL' => NULL,
+																	'id_ign IS NULL' => NULL
 																);
-												$vm = $this->pel_daftarsubjek->GetWhere($erray1, NULL, NULL);
+												$vm = $this->pel_subjek_gred->GetWhere($erray1, NULL, NULL);
 												if($vm->num_rows == 1)
 													{
 														$data['info'] = 'Matapelajaran ini sudah pun didaftarkan';
 													}
 													else
 													{
-														$gh = $this->pel_daftarsubjek->insert($erray);
+														$gh = $this->pel_subjek_gred->insert($erray);
 														if($gh)
 															{
 																$data['info'] = 'Penambahan matapelajaran berjaya dilakukan';
-																$data['m'] = $this->pel_daftarsubjek->GetWhere(array('matrik' => $matrik, 'aktif' => 1), NULL, NULL);
+																$data['m'] = $this->pel_subjek_gred->GetWhere(array('matrik' => $matrik, 'sesi' => $pelsem->row()->sesi, 'sem' => $pelsem->row()->sem, 'id_drop IS NULL' => NULL, 'id_ign IS NULL' => NULL), NULL, NULL);
 															}
 															else
 															{
 																$data['info'] = 'Sila cuba sebentar lagi. Penambahan tidak berjaya';
-																$data['m'] = $this->pel_daftarsubjek->GetWhere(array('matrik' => $matrik, 'aktif' => 1), NULL, NULL);
+																$data['m'] = $this->pel_subjek_gred->GetWhere(array('matrik' => $matrik, 'sesi' => $pelsem->row()->sesi, 'sem' => $pelsem->row()->sem, 'id_drop IS NULL' => NULL, 'id_ign IS NULL' => NULL), NULL, NULL);
 															}
 													}
 											}
 									}
-								$this->load->view('hea/urus_subjek', $data);
 							}
+							else
+							{
+								$data['info'] = 'Pelajar berstatus selain dari aktif';
+							}
+						$this->load->view('hea/urus_subjek', $data);
 					}
 			}
 
 		public function drop_subj()
 			{
+				$matrik = $this->uri->segment(3, 0);
 				$id = $this->uri->segment(4, 0);
-				$drp = $this->pel_daftarsubjek->update(array('id' => $id), array('aktif' => 0, 'id_drop' => $this->session->userdata(''), 'dt_drop' => datetime_db(now())));
+				$drp = $this->pel_subjek_gred->update(array('id' => $id), array('id_drop' => $this->session->userdata('id_user'), 'dt_drop' => datetime_db(now())));
 				if($drp)
 					{
 						redirect('hea/urus_subjek/'.$matrik, 'location');

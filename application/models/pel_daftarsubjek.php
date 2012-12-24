@@ -13,8 +13,15 @@ class Pel_daftarsubjek extends CI_Model
 				return $this->db->get('pel_daftarsubjek', $limit, $offset);
 			}
 
-		function GetWhere($where , $limit, $offset)
+		function GetWhere($where, $limit, $offset)
 			{
+				return $this->db->get_where('pel_daftarsubjek', $where ,$limit, $offset);
+			}
+
+		function GetWhereCustom($where, $limit, $offset)
+			{
+				$this->db->group_by('kodsubjek');
+				$this->db->order_by('sem', 'kredit');
 				return $this->db->get_where('pel_daftarsubjek', $where ,$limit, $offset);
 			}
 
