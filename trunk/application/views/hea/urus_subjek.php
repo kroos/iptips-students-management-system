@@ -4,17 +4,16 @@
         <h2>Kemaskini Matapelajaran Pelajar</h2>
         <div id="accordion">
 	        <h3>Bantuan</h3>
-	        <p>Kemaskini matapelajaran pelajar</p>
+	        <p>Kemaskini matapelajaran pelajar<br />
+			Format bagi matapelajaran adalah seperti berikut :<br />
+			KOD SUBJEK | SUBJEK | JAM KREDIT
+			</p>
         </div>
 
         <div class="info"><?=@$info?></div>
 
 <?php
-/* foreach($sub->result() AS $s)
-	{
-		$sbj = $this->subjek->GetWhere(array('kodsubjek' => $s->kodsubjek));
-		$subjek[$s->kodsubjek] = $s->kodsubjek.'&nbsp;||&nbsp;'.$sbj->row()->namasubjek_MY.'&nbsp;||&nbsp;Sem '.$s->sem.'&nbsp;||&nbsp;'.$sbj->row()->kredit.' jam kredit';
-	} */
+$pelsem = $this->pel_sem->GetWhere(array('matrik' => $this->uri->segment(3, 0), 'aktif' => 1), NULL, NULL);
 $sem = array(
 				1 => 'Semester 1',
 				2 => 'Semester 2',
@@ -118,7 +117,7 @@ $sem = array(
 					);
 				}
 
-				setTimeout(function(){subjek()}, 100);
+				setTimeout(function(){subjek()}, 0);
 
 		    });
 	    </script>

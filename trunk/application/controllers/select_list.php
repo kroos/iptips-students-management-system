@@ -1,8 +1,20 @@
 <?php
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Select_list extends CI_Controller{
-	
+class Select_list extends CI_Controller
+{
+		//contructor => default utk semua function dlm controller nih...
+		public function __construct()
+			{
+				parent::__construct();
+				//mesti ikut peraturan ni..
+				//user mesti log on kalau tidak redirect to index
+				if ($this->session->userdata('logged_in') === FALSE)
+					{
+						redirect('/isms/index', 'location');
+					}
+			}
+
 	public function json_select_negara($id = false){
 		$this->load->model('sel_negara');
 		if ($id === FALSE)
@@ -199,7 +211,7 @@ class Select_list extends CI_Controller{
 	//select sem
 	public function select_sem()
 		{
-			$this->load->model('prog_subjek');
+			$this->load->model('pel_daftarsubjek');
 			$this->load->model('pel_sem');
 			$this->load->model('subjek');
 
@@ -209,15 +221,25 @@ class Select_list extends CI_Controller{
 
 			if($this->input->post('sem',TRUE))
 				{
-					$sem = $this->input->post('sem',TRUE);
-					$get = array('kod_prog' => $pelsem->row()->kod_prog, 'sem' => $sem);
+					$get = array('matrik' => $matrik, 'sem' => $this->input->post('sem',TRUE), 'prog_struct' => 1);
+				}
+				else
+				{
+					$get = array('matrik' => $matrik, 'prog_struct' => 1);
 				}
 
-			$sub = $this->prog_subjek->GetWhereOrder($get , 'sem ASC, kodsubjek ASC', NULL, NULL);
+			$sub = $this->pel_daftarsubjek->GetWhereCustom($get, NULL, NULL);
 
-			foreach($sub->result() as $k)
+			if($sub->num_rows() > 0)
 				{
-					echo '<option value="'.$k->kodsubjek.'">'.$k->kodsubjek.' '.$k->sem.'</option>';
+					foreach($sub->result() as $k)
+						{
+							echo '<option value="'.$k->kodsubjek.'">'.$k->kodsubjek.' | '.$this->subjek->GetWhere(array('kodsubjek' => $k->kodsubjek), NULL, NULL)->row()->namasubjek_MY.' | '.$k->kredit.'</option>';
+						}
+				}
+				else
+				{
+					echo '<option value=\'\'>TIADA SUBJEK</option>';
 				}
 		}
 

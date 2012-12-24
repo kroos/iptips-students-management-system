@@ -77,7 +77,7 @@ class Isms extends CI_Controller
 										if ($g->num_rows() == 1)		//->num_rows() = mysql_num_rows()
 											{
 												$message = "
-																<h1>IPTIPs Student Management System</h1>
+																<h1>".$this->config->item('insts')." Student Management System</h1>
 																<h2>System Pemerolehan Kata Laluan untuk pengguna ".$g->row()->name."</h2>
 																<p>Berikut adalah Kata Laluan anda untuk sistem ini :</p>
 																<p>Kata Laluan : <strong>".$g->row()->password."</strong></p>
@@ -101,7 +101,7 @@ class Isms extends CI_Controller
 												$this->phpmailer->AddAddress($g->row()->email, $g->row()->name);											//recipient
 
 												$this->phpmailer->IsHTML(TRUE);
-												$this->phpmailer->Subject = 'IPTIPs Student Management System Pemerolehan Kata Laluan';
+												$this->phpmailer->Subject = $this->config->item('insts').' Student Management System Pemerolehan Kata Laluan';
 												$this->phpmailer->MsgHTML($message);
 												$this->phpmailer->AltBody    = "To view the message, please use an HTML compatible email viewer!";		// optional, comment out and test
 
@@ -604,7 +604,8 @@ class Isms extends CI_Controller
 								$r[] = $this->pel_subjek_akademik->truncate();
 								$r[] = $this->pel_daftarsubjek->truncate();
 								$r[] = $this->pel_invois->truncate();
-								$r[] = $this->pelajar->truncate(); */
+								$r[] = $this->pelajar->truncate();
+								$r[] = $this->pel_subjek_gred->truncate(); */
 								if($r)
 									{
 										$data['info'] = 'System kosong';

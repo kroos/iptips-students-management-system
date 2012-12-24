@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50523
 File Encoding         : 65001
 
-Date: 2012-12-20 06:07:44
+Date: 2012-12-25 00:52:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -58,7 +58,7 @@ CREATE TABLE `app_akademik` (
   `institusi` varchar(100) DEFAULT NULL,
   `tahun` year(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of app_akademik
@@ -76,6 +76,8 @@ INSERT INTO `app_akademik` VALUES ('10', '12', 'SPM', 'Smk Bapak Aku', '1998');
 INSERT INTO `app_akademik` VALUES ('11', '12', 'STAM', 'Universiti Islam Antarabangsa', '2003');
 INSERT INTO `app_akademik` VALUES ('12', '13', 'SPM', 'Maahad Mahmud', '1998');
 INSERT INTO `app_akademik` VALUES ('13', '13', 'MATRIK', 'Universiti Islam Antarabangsa', '1995');
+INSERT INTO `app_akademik` VALUES ('14', '14', 'MATRIK', 'Universiti Islam Antarabangsa', '1995');
+INSERT INTO `app_akademik` VALUES ('15', '15', 'MATRIK', 'Maahad Mahmud', '1998');
 
 -- ----------------------------
 -- Table structure for `app_pelajar`
@@ -115,7 +117,7 @@ CREATE TABLE `app_pelajar` (
   `aktif` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `siri_mohon` (`siri_mohon`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of app_pelajar
@@ -130,6 +132,8 @@ INSERT INTO `app_pelajar` VALUES ('7', 'P1310008', 'Student 5', '123456789016', 
 INSERT INTO `app_pelajar` VALUES ('8', 'P1310001', 'Student 2', '123456789017', '123456789017', '2012-12-06', 'M010701', '1', 'A01', '100', '1', '1', '72, Taman Keranji', '', '05400', 'M010201', '02', 'M01', '', '0162052420', 'email@email.com', '1', '2012-12-08', null, null, null, null, '2013_1', 'DIP', null, '1');
 INSERT INTO `app_pelajar` VALUES ('12', 'P1310009', 'Student 6', '123456789020', '-', '2012-12-09', 'M010232', '1', 'M01', '100', '1', '1', '7, Taman Mutiara', '', '08000', 'M010232', '02', 'M01', '', '0162052420', 'email6@email.com', '1', '2012-12-09', '1', '2012-12-09', null, null, '2013_1', 'DIP', null, '1');
 INSERT INTO `app_pelajar` VALUES ('13', 'P1310010', 'Student Tadi', '123456789009', '--', '1982-12-14', 'T036511', '3', 'C15', '2061', '1', '1', '1, Taman Mutiara', '', '08000', 'M011110', '11', 'M01', '', '0162052420', 'stud8@gmail.com', '1', '2012-12-16', '1', '2012-12-16', '2012-12-19 00:00:00', '1', '2013_1', 'TW', 'DSY', '1');
+INSERT INTO `app_pelajar` VALUES ('14', 'P1310011', 'Student 50', '900101025557', 'TIADA', '2012-12-24', 'M010232', '1', 'B05', '904', '1', '1', '2, Taman Mutiara', '', '08000', 'M010513', '05', 'M01', '', '0162052420', 'stud50@gmail.com', '1', '2012-12-24', '1', '2012-12-24', '2012-12-24 00:00:00', '1', '2013_1', 'TW', 'DQH', '1');
+INSERT INTO `app_pelajar` VALUES ('15', 'P1310012', 'Student 51', '800101025551', 'none', '2012-12-25', 'M010701', '1', 'B05', '1103', '1', '1', '1, Taman Mutiara', '', '05400', 'M010321', '03', 'M01', '', '0162052420', 'stud51@gmail.com', '1', '2012-12-25', '1', '2012-12-25', null, null, '2013_1', 'TW', 'DUS', '1');
 
 -- ----------------------------
 -- Table structure for `app_progmohon`
@@ -146,7 +150,7 @@ CREATE TABLE `app_progmohon` (
   `dt_edit` datetime DEFAULT NULL,
   `catatan` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of app_progmohon
@@ -174,6 +178,12 @@ INSERT INTO `app_progmohon` VALUES ('20', '12', 'P1310009', 'PST', '2', 'DIP', '
 INSERT INTO `app_progmohon` VALUES ('21', '13', 'P1310010', 'DQH', '1', 'GL', '1', '2012-12-16 22:23:30', 'Penawaran Program Yang Lain');
 INSERT INTO `app_progmohon` VALUES ('22', '13', 'P1310010', 'DSY', '2', 'TW', '1', '2012-12-16 22:23:30', 'Penawaran Program DSY Catatan : Qwe');
 INSERT INTO `app_progmohon` VALUES ('23', '13', 'P1310010', 'DUS', '3', 'GL', '1', '2012-12-16 22:23:30', 'Penawaran Program Yang Lain');
+INSERT INTO `app_progmohon` VALUES ('24', '14', 'P1310011', 'DQH', '1', 'TW', '1', '2012-12-24 21:50:34', 'Penawaran Program DQH Catatan :');
+INSERT INTO `app_progmohon` VALUES ('25', '14', 'P1310011', 'DSY', '2', 'GL', '1', '2012-12-24 21:50:34', 'Penawaran Program Yang Lain');
+INSERT INTO `app_progmohon` VALUES ('26', '14', 'P1310011', 'DUS', '3', 'GL', '1', '2012-12-24 21:50:34', 'Penawaran Program Yang Lain');
+INSERT INTO `app_progmohon` VALUES ('27', '15', 'P1310012', 'DQH', '1', 'GL', '1', '2012-12-25 00:38:33', 'Penawaran Program Yang Lain');
+INSERT INTO `app_progmohon` VALUES ('28', '15', 'P1310012', 'DSY', '2', 'GL', '1', '2012-12-25 00:38:33', 'Penawaran Program Yang Lain');
+INSERT INTO `app_progmohon` VALUES ('29', '15', 'P1310012', 'DUS', '3', 'TW', '1', '2012-12-25 00:38:33', 'Penawaran Program DUS Catatan :');
 
 -- ----------------------------
 -- Table structure for `app_subjek_akademik`
@@ -185,7 +195,7 @@ CREATE TABLE `app_subjek_akademik` (
   `subjek` varchar(50) DEFAULT NULL,
   `gred` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of app_subjek_akademik
@@ -246,6 +256,14 @@ INSERT INTO `app_subjek_akademik` VALUES ('53', '13', 'Sub261', '4.00');
 INSERT INTO `app_subjek_akademik` VALUES ('54', '13', 'Sub260', '4.00');
 INSERT INTO `app_subjek_akademik` VALUES ('55', '13', 'Sub259', '4.00');
 INSERT INTO `app_subjek_akademik` VALUES ('56', '13', 'Sub258', '4.00');
+INSERT INTO `app_subjek_akademik` VALUES ('57', '14', 'Sub261', '4.00');
+INSERT INTO `app_subjek_akademik` VALUES ('58', '14', 'Sub260', '4.00');
+INSERT INTO `app_subjek_akademik` VALUES ('59', '14', 'Sub259', '4.00');
+INSERT INTO `app_subjek_akademik` VALUES ('60', '14', 'Sub258', '4.00');
+INSERT INTO `app_subjek_akademik` VALUES ('61', '15', 'Sub261', '4.00');
+INSERT INTO `app_subjek_akademik` VALUES ('62', '15', 'Sub260', '4.00');
+INSERT INTO `app_subjek_akademik` VALUES ('63', '15', 'Sub259', '4.00');
+INSERT INTO `app_subjek_akademik` VALUES ('64', '15', 'Sub258', '4.00');
 
 -- ----------------------------
 -- Table structure for `app_waris`
@@ -264,7 +282,7 @@ CREATE TABLE `app_waris` (
   `nohp` varchar(20) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of app_waris
@@ -280,6 +298,8 @@ INSERT INTO `app_waris` VALUES ('8', '5', 'Parent 7', 'H04', 'huwaicchhhh', null
 INSERT INTO `app_waris` VALUES ('9', '12', 'Spouse 6', 'H02', '72, Jalan Keranji 11,\r\nTaman Keranji,\r\nJalan Alor Mengkudu,', '', '05400', '', '', '0162052420', 'parent6@email.com');
 INSERT INTO `app_waris` VALUES ('10', '12', 'Spouse 6', 'H02', '72, Jalan Keranji 11,\r\nTaman Keranji,\r\nJalan Alor Mengkudu,', '', '05400', '', '', '0162052420', 'parent6@email.com');
 INSERT INTO `app_waris` VALUES ('11', '13', 'Parent 8', 'H06', '1, Taman Mutiara', '', '08000', '', '', '0162052420', 'Parent8@email.com');
+INSERT INTO `app_waris` VALUES ('12', '14', 'Parent 50', 'H04', '123,asd Asd', '', '08000', '', '', '0162052420', 'Parent50@email.com');
+INSERT INTO `app_waris` VALUES ('13', '15', 'Parent 51', 'H06', 'Qwe Asd', '', '05400', '', '', '0162052420', 'Parent51@email.com');
 
 -- ----------------------------
 -- Table structure for `ci_sessions`
@@ -298,15 +318,9 @@ CREATE TABLE `ci_sessions` (
 -- ----------------------------
 -- Records of ci_sessions
 -- ----------------------------
-INSERT INTO `ci_sessions` VALUES ('0c1587ff2b4a3082aa365dc76a2ee76d', '175.141.20.111', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1355951979', 'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"id_user\";s:1:\"1\";s:8:\"username\";s:6:\"admin1\";s:8:\"password\";s:6:\"123123\";s:9:\"logged_in\";b:1;}');
-INSERT INTO `ci_sessions` VALUES ('1dd92ccee4cd0c8ad7ed5288e7b16381', '175.141.20.111', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1355949544', '');
-INSERT INTO `ci_sessions` VALUES ('334cdb28bacf8c98540e4cdb9273508e', '175.141.20.111', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1355949644', '');
-INSERT INTO `ci_sessions` VALUES ('3bf37c6cf93c528ae26a2bf6b681133f', '175.141.20.111', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1355952108', '');
-INSERT INTO `ci_sessions` VALUES ('8f82fccb6c842d0c03a8954dbb4af230', '175.141.20.111', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1355951988', '');
-INSERT INTO `ci_sessions` VALUES ('ca5fa96fa43d9f6b0ed4d0fd813a70f4', '175.141.20.111', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1355953369', 'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"id_user\";s:1:\"1\";s:8:\"username\";s:6:\"admin1\";s:8:\"password\";s:6:\"123123\";s:9:\"logged_in\";b:1;}');
-INSERT INTO `ci_sessions` VALUES ('cfa9ba689097ff9ab1889bc135e2aab0', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1355954562', 'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"id_user\";s:1:\"1\";s:8:\"username\";s:6:\"admin1\";s:8:\"password\";s:6:\"123123\";s:9:\"logged_in\";b:1;}');
-INSERT INTO `ci_sessions` VALUES ('dfcf2a769a2d26d61ec746a483b967dd', '175.141.20.111', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1355952107', 'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"id_user\";s:1:\"1\";s:8:\"username\";s:6:\"admin1\";s:8:\"password\";s:6:\"123123\";s:9:\"logged_in\";b:1;}');
-INSERT INTO `ci_sessions` VALUES ('e1317d57a0d65641022ad8d5333ce963', '175.141.20.111', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1355953364', 'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"id_user\";s:1:\"1\";s:8:\"username\";s:6:\"admin1\";s:8:\"password\";s:6:\"123123\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('a59e1009809a86b2d5a476cabd4b2b6b', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1356367914', 'a:4:{s:7:\"id_user\";s:1:\"1\";s:8:\"username\";s:6:\"admin1\";s:8:\"password\";s:6:\"123123\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('b954db8b588e4124b1845fa816a3463f', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1356363072', 'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"id_user\";s:1:\"1\";s:8:\"username\";s:6:\"admin1\";s:8:\"password\";s:6:\"123123\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('d4a05ea624cf89b9a03ce114de9da3bb', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1356362780', '');
 
 -- ----------------------------
 -- Table structure for `dept_func`
@@ -317,7 +331,7 @@ CREATE TABLE `dept_func` (
   `id_user_department` int(11) NOT NULL,
   `id_user_function` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of dept_func
@@ -355,6 +369,8 @@ INSERT INTO `dept_func` VALUES ('32', '2', '29');
 INSERT INTO `dept_func` VALUES ('33', '2', '30');
 INSERT INTO `dept_func` VALUES ('34', '2', '31');
 INSERT INTO `dept_func` VALUES ('35', '2', '32');
+INSERT INTO `dept_func` VALUES ('36', '2', '33');
+INSERT INTO `dept_func` VALUES ('37', '2', '34');
 
 -- ----------------------------
 -- Table structure for `dept_jaw`
@@ -550,7 +566,7 @@ CREATE TABLE `pel_akademik` (
   `institusi` varchar(100) DEFAULT NULL,
   `tahun` year(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of pel_akademik
@@ -560,6 +576,7 @@ INSERT INTO `pel_akademik` VALUES ('2', 'DSY1', 'MATRIK', 'Universiti Malaya, Ku
 INSERT INTO `pel_akademik` VALUES ('3', 'HEM001', 'SPM', 'Smk Bapak Ku', '2006');
 INSERT INTO `pel_akademik` VALUES ('6', 'HURRAH1', 'SPM', 'Maahad Mahmud', '1998');
 INSERT INTO `pel_akademik` VALUES ('7', 'HURRAH1', 'MATRIK', 'Universiti Islam Antarabangsa', '1995');
+INSERT INTO `pel_akademik` VALUES ('8', 'HURRAH2', 'MATRIK', 'Universiti Islam Antarabangsa', '1995');
 
 -- ----------------------------
 -- Table structure for `pel_dafhostel`
@@ -602,33 +619,78 @@ CREATE TABLE `pel_daftarsubjek` (
   `dt_drop` datetime DEFAULT NULL,
   `sbb_batal` varchar(10) DEFAULT NULL,
   `aktif` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+  `prog_struct` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx1` (`matrik`,`kodsubjek`,`sesi`,`sem`)
+) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of pel_daftarsubjek
 -- ----------------------------
-INSERT INTO `pel_daftarsubjek` VALUES ('1', 'HURRAH1', 'MPW1113', '2013_1', '1.0', '3', '1', '2012-12-19 16:17:31', null, null, null, null, null, '1');
-INSERT INTO `pel_daftarsubjek` VALUES ('2', 'HURRAH1', 'MPW1123', '2013_1', '1.0', '3', '1', '2012-12-19 16:17:33', null, null, null, null, null, '1');
-INSERT INTO `pel_daftarsubjek` VALUES ('3', 'HURRAH1', 'WI1101', '2013_1', '1.0', '2', '1', '2012-12-19 16:17:34', null, null, null, null, null, '1');
-INSERT INTO `pel_daftarsubjek` VALUES ('4', 'HURRAH1', 'WI1104', '2013_1', '1.0', '2', '1', '2012-12-19 16:17:35', null, null, null, null, null, '1');
-INSERT INTO `pel_daftarsubjek` VALUES ('5', 'HURRAH1', 'US1201', '2013_1', '1.0', '3', '1', '2012-12-19 16:17:37', null, null, null, null, null, '1');
-INSERT INTO `pel_daftarsubjek` VALUES ('6', 'HURRAH1', 'US1211', '2013_1', '1.0', '3', '1', '2012-12-19 16:17:38', null, null, null, null, null, '1');
-INSERT INTO `pel_daftarsubjek` VALUES ('7', 'HURRAH1', 'SY1206', '2013_1', '1.0', '3', '1', '2012-12-19 16:17:40', null, null, null, null, null, '1');
-INSERT INTO `pel_daftarsubjek` VALUES ('12', 'HEM001', 'PS0001', '2013_1', '1.0', '0', '1', '2012-12-20 05:19:14', null, null, null, null, null, '1');
-INSERT INTO `pel_daftarsubjek` VALUES ('13', 'HEM001', 'PS0002', '2013_1', '1.0', '0', '1', '2012-12-20 05:19:22', null, null, null, null, null, '1');
-INSERT INTO `pel_daftarsubjek` VALUES ('14', 'HEM001', 'PS0003', '2013_1', '1.0', '0', '1', '2012-12-20 05:19:29', null, null, null, null, null, '1');
-INSERT INTO `pel_daftarsubjek` VALUES ('15', 'HEM001', 'PS0004', '2013_1', '1.0', '0', '1', '2012-12-20 05:19:36', null, null, null, null, null, '1');
-INSERT INTO `pel_daftarsubjek` VALUES ('16', 'HEM001', 'PS0005', '2013_1', '1.0', '0', '1', '2012-12-20 05:19:47', null, null, null, null, null, '1');
-INSERT INTO `pel_daftarsubjek` VALUES ('17', 'HEM001', 'PS0006', '2013_1', '1.0', '0', '1', '2012-12-20 05:20:02', null, null, null, null, null, '1');
-INSERT INTO `pel_daftarsubjek` VALUES ('18', 'HEM001', 'PS0007', '2013_1', '1.0', '0', '1', '2012-12-20 05:20:10', null, null, null, null, null, '1');
-INSERT INTO `pel_daftarsubjek` VALUES ('19', 'DSY1', 'MPW1113', '2013_1', '1.0', '3', '1', '2012-12-20 05:20:46', null, null, null, null, null, '1');
-INSERT INTO `pel_daftarsubjek` VALUES ('20', 'DSY1', 'MPW1123', '2013_1', '1.0', '3', '1', '2012-12-20 05:20:57', null, null, null, null, null, '1');
-INSERT INTO `pel_daftarsubjek` VALUES ('21', 'DSY1', 'PS1501', '2013_1', '1.0', '0', '1', '2012-12-20 05:21:09', null, null, null, null, null, '1');
-INSERT INTO `pel_daftarsubjek` VALUES ('22', 'DSY1', 'QH1201', '2013_1', '1.0', '3', '1', '2012-12-20 05:21:23', null, null, null, null, null, '1');
-INSERT INTO `pel_daftarsubjek` VALUES ('23', 'DSY1', 'SY1206', '2013_1', '1.0', '3', '1', '2012-12-20 05:21:38', null, null, null, null, null, '1');
-INSERT INTO `pel_daftarsubjek` VALUES ('24', 'DSY1', 'WI1101', '2013_1', '1.0', '2', '1', '2012-12-20 05:21:52', null, null, null, null, null, '1');
-INSERT INTO `pel_daftarsubjek` VALUES ('25', 'DSY1', 'WI1104', '2013_1', '1.0', '2', '1', '2012-12-20 05:22:05', null, null, null, null, null, '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('1', 'HURRAH1', 'MPW1113', '2013_1', '1.0', '3', '1', '2012-12-19 16:17:31', null, null, null, null, null, '1', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('2', 'HURRAH1', 'MPW1123', '2013_1', '1.0', '3', '1', '2012-12-19 16:17:33', null, null, null, null, null, '1', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('3', 'HURRAH1', 'WI1101', '2013_1', '1.0', '2', '1', '2012-12-19 16:17:34', null, null, null, null, null, '1', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('4', 'HURRAH1', 'WI1104', '2013_1', '1.0', '2', '1', '2012-12-19 16:17:35', null, null, null, null, null, '1', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('5', 'HURRAH1', 'US1201', '2013_1', '1.0', '3', '1', '2012-12-19 16:17:37', null, null, null, null, null, '1', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('6', 'HURRAH1', 'US1211', '2013_1', '1.0', '3', '1', '2012-12-19 16:17:38', null, null, null, null, null, '1', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('7', 'HURRAH1', 'SY1206', '2013_1', '1.0', '3', '1', '2012-12-19 16:17:40', null, null, null, null, null, '1', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('12', 'HEM001', 'PS0001', '2013_1', '1.0', '0', '1', '2012-12-20 05:19:14', null, null, null, null, null, '1', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('13', 'HEM001', 'PS0002', '2013_1', '1.0', '0', '1', '2012-12-20 05:19:22', null, null, null, null, null, '1', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('14', 'HEM001', 'PS0003', '2013_1', '1.0', '0', '1', '2012-12-20 05:19:29', null, null, null, null, null, '1', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('15', 'HEM001', 'PS0004', '2013_1', '1.0', '0', '1', '2012-12-20 05:19:36', null, null, null, null, null, '1', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('16', 'HEM001', 'PS0005', '2013_1', '1.0', '0', '1', '2012-12-20 05:19:47', null, null, null, null, null, '1', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('17', 'HEM001', 'PS0006', '2013_1', '1.0', '0', '1', '2012-12-20 05:20:02', null, null, null, null, null, '1', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('18', 'HEM001', 'PS0007', '2013_1', '1.0', '0', '1', '2012-12-20 05:20:10', null, null, null, null, null, '1', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('19', 'DSY1', 'MPW1113', '2013_1', '1.0', '3', '1', '2012-12-20 05:20:46', null, null, null, null, null, '1', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('20', 'DSY1', 'MPW1123', '2013_1', '1.0', '3', '1', '2012-12-20 05:20:57', null, null, null, null, null, '1', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('21', 'DSY1', 'PS1501', '2013_1', '1.0', '0', '1', '2012-12-20 05:21:09', null, null, null, null, null, '1', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('22', 'DSY1', 'QH1201', '2013_1', '1.0', '3', '1', '2012-12-20 05:21:23', null, null, null, null, null, '1', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('23', 'DSY1', 'SY1206', '2013_1', '1.0', '3', '1', '2012-12-20 05:21:38', null, null, null, null, null, '1', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('24', 'DSY1', 'WI1101', '2013_1', '1.0', '2', '1', '2012-12-20 05:21:52', null, null, null, null, null, '1', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('25', 'DSY1', 'WI1104', '2013_1', '1.0', '2', '1', '2012-12-20 05:22:05', null, null, null, null, null, '1', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('26', 'HURRAH2', 'PS1501', '2013_1', '1.0', '0', '1', '2012-12-24 21:57:25', null, null, null, null, null, '1', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('27', 'HURRAH2', 'WI1101', '2013_1', '1.0', '2', '1', '2012-12-24 21:57:25', null, null, null, null, null, '1', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('28', 'HURRAH2', 'WI1104', '2013_1', '1.0', '2', '1', '2012-12-24 21:57:25', null, null, null, null, null, '1', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('29', 'HURRAH2', 'QH1201', '2013_1', '1.0', '3', '1', '2012-12-24 21:57:25', null, null, null, null, null, '1', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('30', 'HURRAH2', 'MPW1113', '2013_1', '1.0', '3', '1', '2012-12-24 21:57:25', null, null, null, null, null, '1', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('31', 'HURRAH2', 'SY1206', '2013_1', '1.0', '3', '1', '2012-12-24 21:57:25', null, null, null, null, null, '1', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('32', 'HURRAH2', 'MPW1123', '2013_1', '1.0', '3', '1', '2012-12-24 21:57:25', null, null, null, null, null, '1', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('33', 'HURRAH2', 'PS1502', '2013_1', '2.0', '0', '1', '2012-12-24 21:57:25', null, null, null, null, null, '0', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('34', 'HURRAH2', 'WI1105', '2013_1', '2.0', '2', '1', '2012-12-24 21:57:25', null, null, null, null, null, '0', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('35', 'HURRAH2', 'WI1106', '2013_1', '2.0', '2', '1', '2012-12-24 21:57:25', null, null, null, null, null, '0', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('36', 'HURRAH2', 'WI1102', '2013_1', '2.0', '2', '1', '2012-12-24 21:57:25', null, null, null, null, null, '0', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('37', 'HURRAH2', 'US1212', '2013_1', '2.0', '3', '1', '2012-12-24 21:57:25', null, null, null, null, null, '0', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('38', 'HURRAH2', 'QH1202', '2013_1', '2.0', '3', '1', '2012-12-24 21:57:25', null, null, null, null, null, '0', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('39', 'HURRAH2', 'PS1503', '2013_1', '3.0', '0', '1', '2012-12-24 21:57:25', null, null, null, null, null, '0', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('40', 'HURRAH2', 'WI1103', '2013_1', '3.0', '2', '1', '2012-12-24 21:57:25', null, null, null, null, null, '0', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('41', 'HURRAH2', 'QH1205', '2013_1', '3.0', '3', '1', '2012-12-24 21:57:25', null, null, null, null, null, '0', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('42', 'HURRAH2', 'QH1203', '2013_1', '3.0', '3', '1', '2012-12-24 21:57:25', null, null, null, null, null, '0', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('43', 'HURRAH2', 'MPW1133', '2013_1', '3.0', '3', '1', '2012-12-24 21:57:26', null, null, null, null, null, '0', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('44', 'HURRAH2', 'MPW1143', '2013_1', '3.0', '3', '1', '2012-12-24 21:57:26', null, null, null, null, null, '0', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('45', 'HURRAH2', 'US1213', '2013_1', '3.0', '3', '1', '2012-12-24 21:57:26', null, null, null, null, null, '0', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('46', 'HURRAH2', 'PS1801', '2013_1', '4.0', '0', '1', '2012-12-24 21:57:26', null, null, null, null, null, '0', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('47', 'HURRAH2', 'WI1107', '2013_1', '4.0', '2', '1', '2012-12-24 21:57:26', null, null, null, null, null, '0', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('48', 'HURRAH2', 'EL1404', '2013_1', '4.0', '2', '1', '2012-12-24 21:57:26', null, null, null, null, null, '0', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('49', 'HURRAH2', 'EL1402', '2013_1', '4.0', '2', '1', '2012-12-24 21:57:26', null, null, null, null, null, '0', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('50', 'HURRAH2', 'QH1206', '2013_1', '4.0', '3', '1', '2012-12-24 21:57:26', null, null, null, null, null, '0', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('51', 'HURRAH2', 'QH1204', '2013_1', '4.0', '3', '1', '2012-12-24 21:57:26', null, null, null, null, null, '0', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('52', 'HURRAH2', 'SY1208', '2013_1', '4.0', '3', '1', '2012-12-24 21:57:26', null, null, null, null, null, '0', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('53', 'HURRAH2', 'SY1204', '2013_1', '4.0', '3', '1', '2012-12-24 21:57:26', null, null, null, null, null, '0', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('54', 'HURRAH2', 'PS1802', '2013_1', '5.0', '0', '1', '2012-12-24 21:57:26', null, null, null, null, null, '0', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('55', 'HURRAH2', 'EL1403', '2013_1', '5.0', '2', '1', '2012-12-24 21:57:26', null, null, null, null, null, '0', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('56', 'HURRAH2', 'EL1401', '2013_1', '5.0', '2', '1', '2012-12-24 21:57:26', null, null, null, null, null, '0', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('57', 'HURRAH2', 'US1206', '2013_1', '5.0', '3', '1', '2012-12-24 21:57:26', null, null, null, null, null, '0', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('58', 'HURRAH2', 'US1202', '2013_1', '5.0', '3', '1', '2012-12-24 21:57:26', null, null, null, null, null, '0', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('59', 'HURRAH2', 'US1209', '2013_1', '5.0', '3', '1', '2012-12-24 21:57:26', null, null, null, null, null, '0', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('60', 'HURRAH2', 'US1207', '2013_1', '5.0', '3', '1', '2012-12-24 21:57:26', null, null, null, null, null, '0', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('61', 'HURRAH2', 'US1204', '2013_1', '5.0', '3', '1', '2012-12-24 21:57:27', null, null, null, null, null, '0', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('62', 'HURRAH2', 'QH1304', '2013_1', '6.0', '0', '1', '2012-12-24 21:57:27', null, null, null, null, null, '0', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('63', 'HURRAH2', 'PS1506', '2013_1', '6.0', '0', '1', '2012-12-24 21:57:27', null, null, null, null, null, '0', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('64', 'HURRAH2', 'QH1303', '2013_1', '6.0', '0', '1', '2012-12-24 21:57:27', null, null, null, null, null, '0', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('65', 'HURRAH2', 'QH1301', '2013_1', '6.0', '3', '1', '2012-12-24 21:57:27', null, null, null, null, null, '0', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('66', 'HURRAH2', 'US1208', '2013_1', '6.0', '3', '1', '2012-12-24 21:57:27', null, null, null, null, null, '0', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('67', 'HURRAH2', 'QH1302', '2013_1', '6.0', '3', '1', '2012-12-24 21:57:27', null, null, null, null, null, '0', '1');
+INSERT INTO `pel_daftarsubjek` VALUES ('68', 'HURRAH2', 'WI1108', '2013_1', '6.0', '4', '1', '2012-12-24 21:57:27', null, null, null, null, null, '0', '1');
 
 -- ----------------------------
 -- Table structure for `pel_invois`
@@ -655,6 +717,7 @@ CREATE TABLE `pel_invois` (
 INSERT INTO `pel_invois` VALUES ('20130001', '2012-12-13', 'DSY1', 'INVOIS PENDAFTARAN', '1450.00', '1', '2012-12-13 16:53:49', null, null, '1');
 INSERT INTO `pel_invois` VALUES ('20130002', '2012-12-16', 'HEM001', 'INVOIS PENDAFTARAN', '1450.00', '1', '2012-12-16 22:01:12', null, null, '1');
 INSERT INTO `pel_invois` VALUES ('20130003', '2012-12-19', 'HURRAH1', 'INVOIS PENDAFTARAN', '1450.00', '1', '2012-12-19 16:17:11', null, null, '1');
+INSERT INTO `pel_invois` VALUES ('20130004', '2012-12-24', 'HURRAH2', 'INVOIS PENDAFTARAN', '1450.00', '1', '2012-12-24 21:57:24', null, null, '1');
 
 -- ----------------------------
 -- Table structure for `pel_item_invois`
@@ -671,7 +734,7 @@ CREATE TABLE `pel_item_invois` (
   `id_edit` varchar(20) DEFAULT NULL,
   `dt_edit` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of pel_item_invois
@@ -715,6 +778,19 @@ INSERT INTO `pel_item_invois` VALUES ('36', '20130003', '40010', '150.00', '1', 
 INSERT INTO `pel_item_invois` VALUES ('37', '20130003', '40011', '250.00', '1', '1', '2012-12-19 16:18:11', null, null);
 INSERT INTO `pel_item_invois` VALUES ('38', '20130003', '40012', '750.00', '1', '1', '2012-12-19 16:18:13', null, null);
 INSERT INTO `pel_item_invois` VALUES ('39', '20130003', '20001', '50.00', '1', '1', '2012-12-19 16:18:14', null, null);
+INSERT INTO `pel_item_invois` VALUES ('40', '20130004', '40001', '30.00', '1', '1', '2012-12-24 21:57:27', null, null);
+INSERT INTO `pel_item_invois` VALUES ('41', '20130004', '40002', '30.00', '1', '1', '2012-12-24 21:57:27', null, null);
+INSERT INTO `pel_item_invois` VALUES ('42', '20130004', '40003', '50.00', '1', '1', '2012-12-24 21:57:27', null, null);
+INSERT INTO `pel_item_invois` VALUES ('43', '20130004', '40004', '20.00', '1', '1', '2012-12-24 21:57:27', null, null);
+INSERT INTO `pel_item_invois` VALUES ('44', '20130004', '40005', '15.00', '1', '1', '2012-12-24 21:57:27', null, null);
+INSERT INTO `pel_item_invois` VALUES ('45', '20130004', '40006', '30.00', '1', '1', '2012-12-24 21:57:27', null, null);
+INSERT INTO `pel_item_invois` VALUES ('46', '20130004', '40007', '15.00', '1', '1', '2012-12-24 21:57:27', null, null);
+INSERT INTO `pel_item_invois` VALUES ('47', '20130004', '40008', '10.00', '1', '1', '2012-12-24 21:57:28', null, null);
+INSERT INTO `pel_item_invois` VALUES ('48', '20130004', '40009', '50.00', '1', '1', '2012-12-24 21:57:28', null, null);
+INSERT INTO `pel_item_invois` VALUES ('49', '20130004', '40010', '150.00', '1', '1', '2012-12-24 21:57:28', null, null);
+INSERT INTO `pel_item_invois` VALUES ('50', '20130004', '40011', '250.00', '1', '1', '2012-12-24 21:57:28', null, null);
+INSERT INTO `pel_item_invois` VALUES ('51', '20130004', '40012', '750.00', '1', '1', '2012-12-24 21:57:28', null, null);
+INSERT INTO `pel_item_invois` VALUES ('52', '20130004', '20001', '50.00', '1', '1', '2012-12-24 21:57:28', null, null);
 
 -- ----------------------------
 -- Table structure for `pel_lib`
@@ -751,7 +827,7 @@ CREATE TABLE `pel_resit` (
   `aktif` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `idx1` (`noresit`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of pel_resit
@@ -762,6 +838,8 @@ INSERT INTO `pel_resit` VALUES ('5', 'Tembakdulu002', 'DSY1', 'Tembak2', '2012-1
 INSERT INTO `pel_resit` VALUES ('6', '2', 'HEM001', 'Bayaq Jangan X Bayaq', '2012-12-14 01:45:44', '700.00', '1', '2012-12-14 01:45:44', null, null, '1');
 INSERT INTO `pel_resit` VALUES ('7', 'Bayar La Weii', 'HURRAH1', 'Takkan Tak Tau Kot', '2012-12-17 00:43:54', '699.99', '1', '2012-12-17 00:43:54', null, null, '1');
 INSERT INTO `pel_resit` VALUES ('8', 'Watchaa', 'HURRAH1', 'Huh', '2012-12-17 00:47:42', '0.01', '1', '2012-12-17 00:47:42', null, null, '1');
+INSERT INTO `pel_resit` VALUES ('9', 'Watchaa1', 'HURRAH2', 'Huh', '2012-12-24 21:51:41', '700.00', '1', '2012-12-24 21:51:41', null, null, '1');
+INSERT INTO `pel_resit` VALUES ('10', 'Bayar La Weii1', 'P1310012', 'Huh', '2012-12-25 00:39:41', '700.00', '1', '2012-12-25 00:39:41', null, null, '1');
 
 -- ----------------------------
 -- Table structure for `pel_sem`
@@ -777,7 +855,7 @@ CREATE TABLE `pel_sem` (
   `aktif` tinyint(1) DEFAULT NULL,
   `terkini` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of pel_sem
@@ -785,6 +863,7 @@ CREATE TABLE `pel_sem` (
 INSERT INTO `pel_sem` VALUES ('1', 'DSY1', '2013_1', '1.0', '01', 'DQH', '1', '1');
 INSERT INTO `pel_sem` VALUES ('2', 'HEM001', '2013_1', '1.0', '01', 'PST', '1', '1');
 INSERT INTO `pel_sem` VALUES ('4', 'HURRAH1', '2013_1', '1.0', '01', 'DSY', '1', '1');
+INSERT INTO `pel_sem` VALUES ('5', 'HURRAH2', '2013_1', '1.0', '01', 'DQH', '1', '1');
 
 -- ----------------------------
 -- Table structure for `pel_subjek_akademik`
@@ -796,7 +875,7 @@ CREATE TABLE `pel_subjek_akademik` (
   `subjek` varchar(50) DEFAULT NULL,
   `gred` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of pel_subjek_akademik
@@ -822,6 +901,35 @@ INSERT INTO `pel_subjek_akademik` VALUES ('23', '13', 'Sub261', '4.00');
 INSERT INTO `pel_subjek_akademik` VALUES ('24', '13', 'Sub260', '4.00');
 INSERT INTO `pel_subjek_akademik` VALUES ('25', '13', 'Sub259', '4.00');
 INSERT INTO `pel_subjek_akademik` VALUES ('26', '13', 'Sub258', '4.00');
+INSERT INTO `pel_subjek_akademik` VALUES ('27', '14', 'Sub261', '4.00');
+INSERT INTO `pel_subjek_akademik` VALUES ('28', '14', 'Sub260', '4.00');
+INSERT INTO `pel_subjek_akademik` VALUES ('29', '14', 'Sub259', '4.00');
+INSERT INTO `pel_subjek_akademik` VALUES ('30', '14', 'Sub258', '4.00');
+
+-- ----------------------------
+-- Table structure for `pel_subjek_gred`
+-- ----------------------------
+DROP TABLE IF EXISTS `pel_subjek_gred`;
+CREATE TABLE `pel_subjek_gred` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `matrik` varchar(255) DEFAULT NULL,
+  `kodsubjek` varchar(255) DEFAULT NULL,
+  `sesi` varchar(255) DEFAULT NULL,
+  `sem` varchar(255) DEFAULT NULL,
+  `kredit` int(11) DEFAULT NULL,
+  `id_add` int(11) DEFAULT NULL,
+  `dt_add` datetime DEFAULT NULL,
+  `id_drop` int(11) DEFAULT NULL,
+  `dt_drop` datetime DEFAULT NULL,
+  `id_ign` int(11) DEFAULT NULL,
+  `dt_ign` datetime DEFAULT NULL,
+  `gred` decimal(10,0) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of pel_subjek_gred
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `pel_waris`
@@ -837,7 +945,7 @@ CREATE TABLE `pel_waris` (
   `poskod` varchar(10) DEFAULT NULL,
   `no_telefon` varchar(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of pel_waris
@@ -845,6 +953,7 @@ CREATE TABLE `pel_waris` (
 INSERT INTO `pel_waris` VALUES ('1', 'DSY1', 'Parent 1', 'H04', '1, Taman Mutiara', '', '08000', '0162052420');
 INSERT INTO `pel_waris` VALUES ('2', 'HEM001', 'Parent 3', 'H04', 'Ntah La Haih', '', '00000', '0162172420');
 INSERT INTO `pel_waris` VALUES ('4', 'HURRAH1', 'Parent 8', 'H06', '1, Taman Mutiara', '', '08000', '0162052420');
+INSERT INTO `pel_waris` VALUES ('5', 'HURRAH2', 'Parent 50', 'H04', '123,asd Asd', '', '08000', '0162052420');
 
 -- ----------------------------
 -- Table structure for `pelajar`
@@ -880,7 +989,7 @@ CREATE TABLE `pelajar` (
   `id_edit` varchar(20) DEFAULT NULL,
   `dt_edit` date DEFAULT NULL,
   PRIMARY KEY (`id`,`matrik`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of pelajar
@@ -888,6 +997,7 @@ CREATE TABLE `pelajar` (
 INSERT INTO `pelajar` VALUES ('1', 'DSY1', 'Student 1', '800101025555', '111234', 'A', '2012-12-03', 'M010701', '2', 'A09', '1230', '1', '1', 'Tmn Peruda', '', '05300', 'M010218', '02', 'M01', '0', '0', 'stud1@mail.com', '2012-12-13', '2013_1', '1', '2012-12-13', '1', '2012-12-16');
 INSERT INTO `pelajar` VALUES ('2', 'HEM001', 'Ahmad', '900101025556', '1113', 'A', '2012-12-03', 'M010701', '1', 'A12', '2022', '2', '1', 'Tmn Peruda', '', '05300', 'M010403', '04', 'M01', '0', '0', 'stud3@gmail.com', '2012-12-16', '2013_1', '1', '2012-12-16', '1', '2012-12-16');
 INSERT INTO `pelajar` VALUES ('4', 'HURRAH1', 'Student Tadi', '123456789009', '--', 'A', '1982-12-14', 'T036511', '3', 'C15', '2061', '1', '1', '1, Taman Mutiara', '', '08000', 'M011110', '11', 'M01', '', '0162052420', 'stud8@gmail.com', '2012-12-19', '2013_1', '1', '2012-12-19', null, null);
+INSERT INTO `pelajar` VALUES ('5', 'HURRAH2', 'Student 50', '900101025557', 'TIADA', 'A', '2012-12-24', 'M010232', '1', 'B05', '904', '1', '1', '2, Taman Mutiara', '', '08000', 'M010513', '05', 'M01', '', '0162052420', 'stud50@gmail.com', '2012-12-24', '2013_1', '1', '2012-12-24', null, null);
 
 -- ----------------------------
 -- Table structure for `prog_subjek`
@@ -3669,6 +3779,7 @@ INSERT INTO `sel_status` VALUES ('G', 'GRADUAT', 'GRADUATED', '07', '0', '1');
 INSERT INTO `sel_status` VALUES ('GB', 'GAGAL DIBERHENTIKAN', 'GAGAL DIBERHENTIKAN', '05', '0', '0');
 INSERT INTO `sel_status` VALUES ('P', 'PASIF', 'PASSIVE', '02', '1', '0');
 INSERT INTO `sel_status` VALUES ('T', 'TANGGUH', 'POSTPONED', '03', '1', '0');
+INSERT INTO `sel_status` VALUES ('TN', 'TIDAK DINYATAKAN', 'NOT KNOWN', '-1', '0', '0');
 INSERT INTO `sel_status` VALUES ('US', 'ULANG SEMESTER', 'REPEAT SEMESTER', '04', '1', '0');
 INSERT INTO `sel_status` VALUES ('X', 'GUGUR NAMA (BERHENTI)', 'WITHDRAWED', '06', '0', '0');
 
@@ -4122,16 +4233,17 @@ CREATE TABLE `sesi_akademik` (
   `tahun` year(4) DEFAULT NULL,
   `tarikh_mula` date DEFAULT NULL,
   `tarikh_tamat` date DEFAULT NULL,
+  `aktif` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sesi_akademik
 -- ----------------------------
-INSERT INTO `sesi_akademik` VALUES ('1', '2012_1', 'JANUARI-JUN 2012', '2012', '2011-12-31', '2012-06-29');
-INSERT INTO `sesi_akademik` VALUES ('2', '2012_2', 'JULAI-DISEMBER 2012', '2012', '2012-06-30', '2013-01-04');
-INSERT INTO `sesi_akademik` VALUES ('3', '2013_1', 'JANUARI-JUN 2013', '2013', '2013-01-06', '2013-06-30');
-INSERT INTO `sesi_akademik` VALUES ('4', '2013_2', 'JULAI-DISEMBER 2013', '2013', '2012-06-30', '2013-01-04');
+INSERT INTO `sesi_akademik` VALUES ('1', '2012_1', 'JANUARI-JUN 2012', '2012', '2011-12-31', '2012-06-29', '0');
+INSERT INTO `sesi_akademik` VALUES ('2', '2012_2', 'JULAI-DISEMBER 2012', '2012', '2012-06-30', '2013-01-04', '0');
+INSERT INTO `sesi_akademik` VALUES ('3', '2013_1', 'JANUARI-JUN 2013', '2013', '2013-01-06', '2013-06-30', '1');
+INSERT INTO `sesi_akademik` VALUES ('4', '2013_2', 'JULAI-DISEMBER 2013', '2013', '2012-06-30', '2013-01-04', '0');
 
 -- ----------------------------
 -- Table structure for `sesi_intake`
@@ -4151,7 +4263,7 @@ CREATE TABLE `sesi_intake` (
 -- ----------------------------
 -- Records of sesi_intake
 -- ----------------------------
-INSERT INTO `sesi_intake` VALUES ('2013_1', 'P131', '0011', '2012-06-01', '2012-12-31', '2012-12-31', '1');
+INSERT INTO `sesi_intake` VALUES ('2013_1', 'P131', '0013', '2012-06-01', '2012-12-31', '2012-12-31', '1');
 INSERT INTO `sesi_intake` VALUES ('2014_1', 'P141', '0001', '2013-06-01', '2013-12-31', '2013-12-31', '0');
 INSERT INTO `sesi_intake` VALUES ('2015_1', 'P151', '0001', '2014-06-01', '2014-12-31', '2015-01-05', '0');
 
@@ -4223,7 +4335,7 @@ CREATE TABLE `siri_invois` (
 -- Records of siri_invois
 -- ----------------------------
 INSERT INTO `siri_invois` VALUES ('2012', '0001', '0');
-INSERT INTO `siri_invois` VALUES ('2013', '0004', '1');
+INSERT INTO `siri_invois` VALUES ('2013', '0005', '1');
 
 -- ----------------------------
 -- Table structure for `siri_matrik`
@@ -4380,7 +4492,7 @@ CREATE TABLE `surat_cetak` (
   `status_mohon` varchar(20) DEFAULT NULL,
   `admin_cetak` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=153 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of surat_cetak
@@ -4423,7 +4535,7 @@ CREATE TABLE `template_surat` (
   `footer` longtext,
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx1` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of template_surat
@@ -4458,7 +4570,6 @@ CREATE TABLE `user_data` (
 -- Records of user_data
 -- ----------------------------
 INSERT INTO `user_data` VALUES ('1', 'admin1', '123123', '760505026479', 'Admin', '1, Taman Mutiara', 'Sungai Petani', 'Kedah', '08000', '0162172420', '', 'dhiauddin@gmail.com', '2012-11-13 09:16:19');
-INSERT INTO `user_data` VALUES ('2', 'azaliha', '123123', '123456789012', 'Azaliha Abdullah', '1, Taman Mutiara', 'Sungai Petani', 'Kedah', '05400', '0162052420', '', 'azaliha@gmail.com', '2012-11-24 00:52:22');
 
 -- ----------------------------
 -- Table structure for `user_department`
@@ -4501,9 +4612,6 @@ INSERT INTO `user_dept` VALUES ('3', '1', '3');
 INSERT INTO `user_dept` VALUES ('4', '1', '4');
 INSERT INTO `user_dept` VALUES ('5', '1', '5');
 INSERT INTO `user_dept` VALUES ('6', '1', '6');
-INSERT INTO `user_dept` VALUES ('8', '2', '2');
-INSERT INTO `user_dept` VALUES ('9', '2', '3');
-INSERT INTO `user_dept` VALUES ('10', '2', '4');
 
 -- ----------------------------
 -- Table structure for `user_dept_func`
@@ -4517,7 +4625,7 @@ CREATE TABLE `user_dept_func` (
   `active` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'weather its active for the user or not',
   PRIMARY KEY (`id`),
   KEY `unique` (`id_user_function`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user_dept_func
@@ -4555,6 +4663,8 @@ INSERT INTO `user_dept_func` VALUES ('36', '1', '2', '29', '1');
 INSERT INTO `user_dept_func` VALUES ('37', '1', '2', '30', '1');
 INSERT INTO `user_dept_func` VALUES ('38', '1', '2', '31', '1');
 INSERT INTO `user_dept_func` VALUES ('39', '1', '2', '32', '1');
+INSERT INTO `user_dept_func` VALUES ('40', '1', '2', '33', '1');
+INSERT INTO `user_dept_func` VALUES ('41', '1', '2', '34', '1');
 
 -- ----------------------------
 -- Table structure for `user_dept_jaw`
@@ -4588,7 +4698,7 @@ CREATE TABLE `user_function` (
   `posisi` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `Function` (`function`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user_function
@@ -4622,6 +4732,8 @@ INSERT INTO `user_function` VALUES ('29', 'edit_akademik', 'Mengemaskini Kelayak
 INSERT INTO `user_function` VALUES ('30', 'daftar_subjek', 'Pendaftaran Subjek Untuk Pelajar', 'Daftar Subjek', '1', '5');
 INSERT INTO `user_function` VALUES ('31', 'urus_subjek', 'Kemaskini Subjek Bagi Pelajar', 'Kemaskini Subjek', '0', '6');
 INSERT INTO `user_function` VALUES ('32', 'drop_subj', 'Digunakan Untuk Menggugurkan Subjek Pelajar', 'Drop Subjek', '0', '8');
+INSERT INTO `user_function` VALUES ('33', 'status_pelajar', 'Carian Pelajar Untuk Megemaskini Status', 'Status Pelajar', '1', '9');
+INSERT INTO `user_function` VALUES ('34', 'urus_status', 'Mengemaskini Status Pelajar', 'Kemaskini Status', '0', '10');
 
 -- ----------------------------
 -- Table structure for `user_jawatan`
@@ -4786,7 +4898,7 @@ INSERT INTO `yuran_prog` VALUES ('66', '20001', 'DAFTAR', 'ST', '50.00', '1');
 -- View structure for `view_akaun`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_akaun`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_akaun` AS select `akaun`.`keterangan_MY` AS `keterangan_MY`,`jenis_akaun`.`nama_jenis` AS `nama_jenis` from (`akaun` join `jenis_akaun` on((`akaun`.`kod_jenis` = `jenis_akaun`.`kod_jenis`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_akaun` AS select `akaun`.`kod_akaun` AS `kod_akaun`,`akaun`.`keterangan_MY` AS `keterangan_MY`,`jenis_akaun`.`kod_jenis` AS `kod_jenis`,`jenis_akaun`.`nama_jenis` AS `nama_jenis` from (`akaun` join `jenis_akaun` on((`akaun`.`kod_jenis` = `jenis_akaun`.`kod_jenis`))) ;
 
 -- ----------------------------
 -- View structure for `view_app_pelajar`
@@ -4837,6 +4949,12 @@ DROP VIEW IF EXISTS `view_sesi_taqwim`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_sesi_taqwim` AS select `item_taqwim`.`kod_item` AS `kod_item`,`item_taqwim`.`item_MY` AS `item_MY`,`sesi_taqwim`.`sesi` AS `sesi`,`sesi_taqwim`.`tarikh_mula` AS `tarikh_mula`,`sesi_taqwim`.`tarikh_tamat` AS `tarikh_tamat`,`item_taqwim`.`posisi` AS `posisi` from (`item_taqwim` join `sesi_taqwim` on((`item_taqwim`.`kod_item` = `sesi_taqwim`.`kod_item`))) order by `item_taqwim`.`posisi`,`sesi_taqwim`.`sesi` ;
 
 -- ----------------------------
+-- View structure for `view_status`
+-- ----------------------------
+DROP VIEW IF EXISTS `view_status`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_status` AS select `sel_status`.`kodstatus` AS `kodstatus`,`sel_status`.`status_MY` AS `status_MY`,`sel_status`.`stud` AS `stud`,`sel_status`.`grad` AS `grad`,`sel_statusDtl`.`kod_sem` AS `kod_sem`,`sel_statusDtl`.`kod_detail` AS `kod_detail`,`sel_statusDtl`.`keterangan` AS `keterangan` from (`sel_status` join `sel_statusDtl` on((`sel_status`.`kod_sem` = `sel_statusDtl`.`kod_sem`))) ;
+
+-- ----------------------------
 -- View structure for `view_taqwim`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_taqwim`;
@@ -4859,6 +4977,12 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_us
 -- ----------------------------
 DROP VIEW IF EXISTS `view_user_dept_jaw`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_user_dept_jaw` AS select `user_dept_jaw`.`id` AS `id`,`user_dept_jaw`.`id_user_data` AS `id_user_data`,`user_data`.`name` AS `name`,`user_dept_jaw`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept`,`user_dept_jaw`.`id_user_jawatan` AS `id_user_jawatan`,`user_jawatan`.`jawatan` AS `jawatan`,`user_jawatan`.`remarks` AS `remarks` from (((`user_dept_jaw` join `user_data` on((`user_dept_jaw`.`id_user_data` = `user_data`.`id`))) join `user_department` on((`user_dept_jaw`.`id_user_department` = `user_department`.`id`))) join `user_jawatan` on((`user_dept_jaw`.`id_user_jawatan` = `user_jawatan`.`id`))) order by `user_data`.`name`,`user_dept_jaw`.`id_user_department`,`user_dept_jaw`.`id_user_jawatan` ;
+
+-- ----------------------------
+-- View structure for `view_view_user_access`
+-- ----------------------------
+DROP VIEW IF EXISTS `view_view_user_access`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_view_user_access` AS select `user_dept_func`.`id` AS `id`,`user_dept_func`.`id_user_data` AS `id_user_data`,`user_data`.`name` AS `name`,`user_dept_func`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept`,`user_dept_func`.`id_user_function` AS `id_user_function`,`user_function`.`function` AS `function`,`user_function`.`remarks` AS `remarks`,`user_dept_func`.`active` AS `active` from (((`user_data` join `user_department`) join `user_dept_func` on(((`user_dept_func`.`id_user_data` = `user_data`.`id`) and (`user_dept_func`.`id_user_department` = `user_department`.`id`)))) join `user_function` on((`user_dept_func`.`id_user_function` = `user_function`.`id`))) order by `user_dept_func`.`id_user_department`,`user_dept_func`.`id_user_function` ;
 
 -- ----------------------------
 -- View structure for `view_yuran_program`

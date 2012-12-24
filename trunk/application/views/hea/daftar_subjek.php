@@ -1,10 +1,10 @@
 <?php extend('base_template_user') ?>
     
     <?php startblock('content') ?>
-        <h2>Maklumat Pelajar</h2>
+        <h2>Kemaskini Matapelajaran</h2>
         <div id="accordion">
 	        <h3>Bantuan</h3>
-	        <p>Masukkan nama atau nombor kad pengenalan atau nombor passport atau nombor matrik untuk pencarian pelajar</p>
+	        <p>Masukkan nombor matrik untuk pencarian pelajar</p>
         </div>
 
         <div class="info"><?=@$info?></div>
@@ -12,7 +12,7 @@
         <div class="form_settings">
             <?=form_open()?>
 
-			<p><span><?=form_label('Nama / Nombor Kad Pengenalan / No Passport / No Matrik', 'ic')?></span>
+			<p><span><?=form_label('No Matrik', 'ic')?></span>
 			<?=form_input(array('name' => 'ic', 'value' => set_value('ic'), 'id' => 'ic'))?>
 			<br /><?=form_error('ic')?></p>
 
