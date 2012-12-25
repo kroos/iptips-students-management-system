@@ -52,7 +52,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('database', 'encrypt', 'session', 'form_validation', 'tcpdf/Tcpdf', 'phpmailer/Phpmailer', 'ckeditor/Ckeditor5', 'fpdf/Fpdf');
+$autoload['libraries'] = array('database', 'encrypt', 'session', 'form_validation');
 
 
 /*
