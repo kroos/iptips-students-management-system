@@ -450,12 +450,12 @@ class Hea extends CI_Controller
 				//pagination process
 				$this->load->library('pagination');
 				$config['base_url'] = base_url().'hea/status_pelajar';
-				$config['total_rows'] = $this->pelajar->GetAll(NULL, NULL)->num_rows();
+				$config['total_rows'] = $this->pelajar->GetWhere(array('status_pljr' => 'A'), NULL, NULL)->num_rows();
 				$config['per_page'] = 5;
 				$config['suffix'] = '.exe';
 				$this->pagination->initialize($config);
 
-				$data['all'] = $this->pelajar->GetAll($config['per_page'], $this->uri->segment(3, 0));
+				$data['all'] = $this->pelajar->GetWhere(array('status_pljr' => 'A'), $config['per_page'], $this->uri->segment(3, 0));
 				$data['paginate'] = $this->pagination->create_links();
 
 				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
@@ -464,11 +464,11 @@ class Hea extends CI_Controller
 						if($this->input->post('cari', TRUE))
 							{
 								$matrik = $this->input->post('ic', TRUE);
-								$d = $this->pelajar->GetWhere(array('matrik' => $matrik), NULL, NULL);
+								$d = $this->pelajar->GetWhere(array('matrik LIKE \'%'.$matrik.'%\'' => NULL), NULL, NULL);
 								if ($d)
 									{
 										$data['info'] = 'Carian berjaya dilakukan';
-										$data['all'] = $this->pelajar->GetWhere(array('matrik' => $matrik), $config['per_page'], $this->uri->segment(3, 0));
+										$data['all'] = $this->pelajar->GetWhere(array('matrik LIKE \'%'.$matrik.'%\'' => NULL, 'status_pljr' => 'A'), NULL, NULL);
 									}
 									else
 									{
@@ -481,7 +481,16 @@ class Hea extends CI_Controller
 
 		public function urus_status()
 			{
-				
+				$matrik = $this->uri->segment(3, 0);
+				$data['st'] = $this->sel_status->GetWhere(array('kodstatus = "T" OR kodstatus = "US"' => NULL), NULL, NULL);
+				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+				if ($this->form_validation->run() == TRUE)
+					{
+						if($this->input->post('cari', TRUE))
+							{
+							
+							}
+					}
 				$this->load->view('hea/urus_status', $data);
 			}
 

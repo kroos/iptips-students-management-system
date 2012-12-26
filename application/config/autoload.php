@@ -128,6 +128,7 @@ $autoload['model'] = array
 								'sel_gred',
 								'sel_warga',
 								'sel_status',
+								'sel_statusDtl',
 								'sesi_intake',
 								'user_data',
 								'user_department',

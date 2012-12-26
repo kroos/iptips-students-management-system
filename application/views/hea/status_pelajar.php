@@ -4,7 +4,7 @@
         <h2>Status Pelajar</h2>
         <div id="accordion">
 	        <h3>Bantuan</h3>
-	        <p>Masukkan nombor matrik untuk pencarian pelajar</p>
+	        <p>Masukkan nombor matrik untuk pencarian pelajar bagu tujuan proses penangguhan belajar</p>
         </div>
 
         <div class="info"><?=@$info?></div>
