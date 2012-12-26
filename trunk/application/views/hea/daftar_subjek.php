@@ -21,6 +21,7 @@
 		<?=form_close()?>
 
 
+		<?if($this->form_validation->run() == TRUE):?>
 		<?if($all->num_rows() < 1):?>
 
 			<div class="info">Tiada pelajar dijumpai</div>
@@ -28,7 +29,6 @@
 		<?else:?>
 
 			<div class="demo">
-			<p><?=$paginate?></p>
 				<table style="width:100%; border-spacing:0;">
 					<tr>
 						<th>No Matrik</th>
@@ -51,6 +51,7 @@
 				</table>
 			</div>
 
+		<?endif?>
 		<?endif?>
 
 	<?php endblock()?>

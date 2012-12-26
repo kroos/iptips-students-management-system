@@ -993,8 +993,8 @@ $config = array	(
 						array
 							(
 								'field' => 'ic',
-								'label' => 'Nama / Nombor Kad Pengenalan / No Passport / No Matrik',
-								'rules' => 'trim|required|min_length[2]|xss_clean'
+								'label' => 'No Matrik',
+								'rules' => 'trim|xss_clean'
 							)
 					),
 					'hea/status_pelajar' => array
@@ -1003,7 +1003,7 @@ $config = array	(
 							(
 								'field' => 'ic',
 								'label' => 'No Matrik',
-								'rules' => 'trim|required|min_length[2]|xss_clean'
+								'rules' => 'trim|xss_clean'
 							)
 					),
 					'hea/urus_subjek' => array
@@ -1037,11 +1037,22 @@ $config = array	(
 							),
 						array
 							(
-								'field' => 'stat1',
+								'field' => 'statDtl',
 								'label' => 'Status Detail',
 								'rules' => 'trim|required|xss_clean'
 							)
 					),
+					'kewangan/invoice_pelajar' => array
+					(
+						array
+							(
+								'field' => 'ic',
+								'label' => 'No Matrik',
+								'rules' => 'trim|xss_clean'
+							),
+					),
+
+
 
 
 				);

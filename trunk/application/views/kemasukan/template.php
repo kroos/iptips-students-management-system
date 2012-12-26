@@ -1,6 +1,7 @@
 <?php extend('base_template_user')?>
 	
 	<?php startblock('content')?>
+
 	<h3><?php echo $title;?></h3>
 	<div id="accordion">
 	        <h3>Bantuan</h3>
@@ -12,7 +13,7 @@
 				5.&nbsp;<strong>Anda dinasihatkan agar tidak klik pada button "TIDAK LENGKAP" dan "GAGAL" sehingga pada hari selepas pendaftaran, kerana jika sekiranya ada pemohon yang ingin membuat rayuan terhadap permohonannya, rayuan permohonan tersebut boleh ditimbang daripada page ini</strong></p>
 	</div>
 		<div class="demo">
-		<?=$paginate?>
+		<?//=$paginate?>
 			<table>
 				<thead>
 					<tr>
@@ -52,9 +53,10 @@
 					<?php //echo $CKEditor->editor('header', @$baru->row()->header ? @$baru->row()->header : set_value('header'));
 					echo form_textarea(array('name'=>'header', 'value'=> @$baru->row()->header ? @$baru->row()->header : set_value('header'), 'id'=>'header', 'class'=>'editor'));
 					//echo nic_display($nicedit);?>
-		<!-- 			
+		<!--<?$this->ckeditor5->basePath = base_url().'js/ckeditor/'?>
+		$this->ckeditor5->editor('editor', set_value('editor'));
 				<p><span><?php echo form_label('Alamat', 'address')?></span>
-					<?php echo $CKEditor->editor('address', @$baru->row()->address ? @$baru->row()->address:set_value('address'));
+					<?php echo $this->ckeditor5->editor('address', @$baru->row()->address ? @$baru->row()->address:set_value('address'));
 					//form_textarea(array('name'=>'address', 'value'=> @$baru->row()->address ? @$baru->row()->address:set_value('address'), 'id'=>'addres', 'class'=>'ck'));?></p>
 				 	
 				<p><span><?php echo form_label('Tajuk Surat', 'title')?></span>
