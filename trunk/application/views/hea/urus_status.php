@@ -8,48 +8,56 @@
         </div>
 
         <div class="info"><?=@$info?></div>
-
+<?php
+foreach($st->result() as $m)
+	{
+		$stat[$m->kodstatus] = $m->status_MY;
+	}
+?>
         <div class="form_settings">
             <?=form_open('', '', array('matrik' => $this->uri->segment(3, 0)))?>
 
-			<p><span><?=form_label('Matapelajaran', 'subjek')?></span>
-			<?=form_dropdown('subjek', $subjek, set_value('subjek'), array('id' => 'subjek'))?>
-			<br /><?=form_error('subjek')?></p>
+			<p><span><?=form_label('Status', 'stat')?></span>
+			<?=form_dropdown('stat', $stat, set_value('stat'), 'id="stat"')?>
+			<br /><?=form_error('stat')?></p>
 
-			<p><span>&nbsp;</span><?=form_submit('save', 'Tambah', 'class="submit"')?></p>
+			<p><span><?=form_label('Status Detail', 'stat1')?></span>
+			<?//=form_dropdown('stat', $stat, set_value('stat'), array('id' => 'stat'))?>
+			<select name="statDtl" id="stat1"></select>
+			<br /><?=form_error('stat1')?></p>
+
+			<p><span>&nbsp;</span><?=form_submit('save', 'Simpan', 'class="submit"')?></p>
 		</div>
 		<?=form_close()?>
+	<?php endblock()?>
 
-		<?if($m->num_rows() < 1):?>
+	<?php startblock('jscript')?>
+		<?=get_extended_block()?>
+		<script type="text/javascript" src="<?php echo base_url()?>js/jquery/jquery.cookies.2.2.0.js"></script>
+		<script>
+			$(document).ready(function() {
+	
+				$("#stat").change(function(){
+					stat1();
+				});
+				
+				function stat1(){
+					$.post('<?=base_url().'select_list/select_status'?>',
+						{	
+							<?=$this->config->item('csrf_token_name'); ?>: $.cookies.get("<?=$this->config->item('csrf_cookie_name')?>"), //pass token cookie name klu x ajax xjln
+							stat: $("#stat").val(),
+							stat1: $('#stat1').val()
+						},
+						function(data){
+							$('#stat1').html(data);
+						}
+					);
+				}
 
-			<div class="info">Tiada subjek didaftarkan</div>
+				setTimeout(function(){stat1()}, 0);
 
-		<?else:?>
-
-			<div class="demo">
-				<table style="width:100%; border-spacing:0;">
-					<tr>
-						<th>Kod Subjek</th>
-						<th>Subjek</th>
-						<th>Semester</th>
-						<th>Sesi</th>
-						<th>Kredit</th>
-						<th>&nbsp;</th>
-					</tr>
-					<?$i = 0?>
-					<?foreach($m->result() AS $v):?>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-					<?endforeach?>
-				</table>
-			</div>
-		<?endif?>
+		    });
+	    </script>
 	<?php endblock()?>
 
 <?php end_extend() ?>

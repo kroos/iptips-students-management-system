@@ -1027,6 +1027,21 @@ $config = array	(
 								'rules' => 'trim|required|min_length[2]|xss_clean'
 							)
 					),
+					'hea/urus_status' => array
+					(
+						array
+							(
+								'field' => 'stat',
+								'label' => 'Status',
+								'rules' => 'trim|required|xss_clean'
+							),
+						array
+							(
+								'field' => 'stat1',
+								'label' => 'Status Detail',
+								'rules' => 'trim|required|xss_clean'
+							)
+					),
 
 
 				);

@@ -243,4 +243,22 @@ class Select_list extends CI_Controller
 				}
 		}
 
+	public function select_status()
+		{
+			//$this->load->model('sel_status');
+			//$this->load->model('sel_statusDtl');
+			$d = $this->sel_status->GetWhere(array('kodstatus' => $this->input->post('stat',TRUE)), NULL, NULL)->row()->kod_sem;
+			$t = $this->sel_statusDtl->GetWhere(array('kod_sem' => $d), NULL, NULL);
+			if($t->num_rows() > 0)
+				{
+					foreach($t->result() as $k)
+						{
+							echo '<option value="'.$k->kod_detail.'">'.$k->keterangan.'</option>';
+						}
+				}
+				else
+				{
+					echo '<option value=\'\'>TIADA STATUS</option>';
+				}
+		}
 }

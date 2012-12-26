@@ -52,6 +52,8 @@ $route['hea/edit/(:any)'] = 'hea/edit';
 $route['hea/edit_waris/(:any)'] = 'hea/edit_waris';
 $route['hea/edit_akademik/(:any)'] = 'hea/edit_akademik';
 $route['hea/urus_subjek/(:any)'] = 'hea/urus_subjek';
+$route['hea/daftar_subjek/(:num)'] = 'hea/daftar_subjek';
+$route['hea/status_pelajar/(:num)'] = 'hea/status_pelajar';
 
 
 /* End of file routes.php */
