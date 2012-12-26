@@ -1,10 +1,16 @@
 <?php extend('base_template_user') ?>
     
     <?php startblock('content') ?>
+	<?$l = $this->pelajar->GetWhere(array('matrik' => $this->uri->segment(3, 0)), NULL, NULL)?>
+	<?$p = $this->pel_sem->GetWhere(array('matrik' => $this->uri->segment(3, 0)), NULL, NULL)?>
+	<?$h = $this->program->GetWhere(array('kod_prog' => $p->row()->kod_prog))?>
         <h2>Kemaskini Status Pelajar</h2>
         <div id="accordion">
 	        <h3>Bantuan</h3>
-	        <p>sat</p>
+	        <p>Penukaran status dari AKTIF ke Penangguhan atau Ulang Semester bagi pelajar :<br />
+			<?=$l->row()->nama?><br />
+			<?=$h->row()->namaprog_MY?>
+			</p>
         </div>
 
         <div class="info"><?=@$info?></div>
@@ -24,7 +30,7 @@ foreach($st->result() as $m)
 			<p><span><?=form_label('Status Detail', 'stat1')?></span>
 			<?//=form_dropdown('stat', $stat, set_value('stat'), array('id' => 'stat'))?>
 			<select name="statDtl" id="stat1"></select>
-			<br /><?=form_error('stat1')?></p>
+			<br /><?=form_error('statDtl')?></p>
 
 			<p><span>&nbsp;</span><?=form_submit('save', 'Simpan', 'class="submit"')?></p>
 		</div>

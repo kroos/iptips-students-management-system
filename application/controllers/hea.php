@@ -328,17 +328,7 @@ class Hea extends CI_Controller
 				//papar student, program dan subjek? kendian boleh edit?
 				//mbik terus dari pel_sem?
 
-				//pagination process
-				$this->load->library('pagination');
-				$config['base_url'] = base_url().'hea/daftar_subjek';
-				$config['total_rows'] = $this->pelajar->GetWhere(array('status_pljr' => 'A'), NULL, NULL)->num_rows();
-				$config['per_page'] = 5;
-				$config['suffix'] = '.exe';
-				$this->pagination->initialize($config);
-
-				$data['all'] = $this->pelajar->GetWhere(array('status_pljr' => 'A'), $config['per_page'], $this->uri->segment(3, 0));
-
-				$data['paginate'] = $this->pagination->create_links();
+				$data['info'] = '';
 				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
 				if ($this->form_validation->run() == TRUE)
 					{
@@ -346,7 +336,7 @@ class Hea extends CI_Controller
 							{
 								$ic = $this->input->post('ic', TRUE);
 								$array = 'status_pljr = \'A\' AND (nama LIKE \'%'.$ic.'%\' OR matrik LIKE \'%'.$ic.'%\' OR ic LIKE \'%'.$ic.'%\' OR passport LIKE \'%'.$ic.'%\')';
-								$data['all'] = $this->pelajar->GetWhere($array, $config['per_page'], $this->uri->segment(3, 0));
+								$data['all'] = $this->pelajar->GetWhere($array, NULL, NULL);
 								if($data['all'])
 									{
 										$data['info'] = 'Carian berjaya dilakukan';
@@ -447,24 +437,14 @@ class Hea extends CI_Controller
 
 		public function status_pelajar()
 			{
-				//pagination process
-				$this->load->library('pagination');
-				$config['base_url'] = base_url().'hea/status_pelajar';
-				$config['total_rows'] = $this->pelajar->GetWhere(array('status_pljr' => 'A'), NULL, NULL)->num_rows();
-				$config['per_page'] = 5;
-				$config['suffix'] = '.exe';
-				$this->pagination->initialize($config);
-
-				$data['all'] = $this->pelajar->GetWhere(array('status_pljr' => 'A'), $config['per_page'], $this->uri->segment(3, 0));
-				$data['paginate'] = $this->pagination->create_links();
-
+				$data['info'] = '';
 				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
 				if ($this->form_validation->run() == TRUE)
 					{
 						if($this->input->post('cari', TRUE))
 							{
 								$matrik = $this->input->post('ic', TRUE);
-								$d = $this->pelajar->GetWhere(array('matrik LIKE \'%'.$matrik.'%\'' => NULL), NULL, NULL);
+								$d = $this->pelajar->GetWhere(array('matrik LIKE \'%'.$matrik.'%\'' => NULL, 'status_pljr' => 'A'), NULL, NULL);
 								if ($d)
 									{
 										$data['info'] = 'Carian berjaya dilakukan';
@@ -486,9 +466,14 @@ class Hea extends CI_Controller
 				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
 				if ($this->form_validation->run() == TRUE)
 					{
-						if($this->input->post('cari', TRUE))
+						if($this->input->post('save', TRUE))
 							{
-							
+								$st = $this->input->post('stat', TRUE);
+								$std = $this->input->post('statDtl', TRUE);
+								echo $st.$std;
+
+								//byk benda kena check..
+								//pelajr, pel_sem, pel_lib, pel_inovice, pel_subjek_gred, pel_dafhostel, 
 							}
 					}
 				$this->load->view('hea/urus_status', $data);

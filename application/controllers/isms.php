@@ -86,6 +86,7 @@ class Isms extends CI_Controller
 												$this->load->library('phpmailer/Pop3');
 												$this->pop3->Authorise($this->config->item('pop3_server'), $this->config->item('pop3_port'), 30, $this->config->item('username'), $this->config->item('password'), 1);
 
+												$this->load->library('phpmailer/Phpmailer');
 												$this->phpmailer->IsSMTP();
 												$this->phpmailer->SMTPDebug  = 0;											//debug = 0 (no debug), 1 = errors and messages, 2 = messages only
 												$this->phpmailer->SMTPAuth   = $this->config->item('SMTP_auth');			// enable SMTP authentication

@@ -4,7 +4,7 @@
         <h2>Status Pelajar</h2>
         <div id="accordion">
 	        <h3>Bantuan</h3>
-	        <p>Masukkan nombor matrik untuk pencarian pelajar bagu tujuan proses penangguhan belajar</p>
+	        <p>Masukkan nombor matrik untuk pencarian pelajar</p>
         </div>
 
         <div class="info"><?=@$info?></div>
@@ -19,7 +19,6 @@
 			<p><span>&nbsp;</span><?=form_submit('cari','Cari','class="submit"')?></p>
 		</div>
 		<?=form_close()?>
-
 
 		<?if($this->form_validation->run() == TRUE):?>
 		<?if($all->num_rows() < 1):?>
@@ -40,7 +39,7 @@
 					</tr>
 					<?foreach($all->result() AS $v):?>
 						<tr>
-							<td><?=anchor('hea/urus_status/'.$v->matrik, $v->matrik, array('title' => 'Kemaskini '.$v->matrik))?></td>
+							<td><?=anchor('kewangan/invois/'.$v->matrik, $v->matrik, array('title' => 'Kemaskini '.$v->matrik))?></td>
 							<td><?=$v->sesi_daftar?></td>
 							<td><?=$this->program->GetWhere(array('kod_prog' => $this->pel_sem->GetWhere(array('matrik' => $v->matrik, 'sesi' => $v->sesi_daftar), NULL, NULL)->row()->kod_prog), NULL, NULL)->row()->namaprog_MY?></td>
 							<td><?=$v->nama?></td>
@@ -50,7 +49,6 @@
 					<?endforeach?>
 				</table>
 			</div>
-
 		<?endif?>
 		<?endif?>
 

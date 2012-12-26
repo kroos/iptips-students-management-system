@@ -1358,23 +1358,12 @@ class Kemasukan extends CI_Controller
 		public function template($id_template = '1', $buatapa = NULL){
 			$data['title'] = 'Senarai Template';
 			$data['hidden_field'] =  '';
-			$this->load->library('pagination');
-			#$this->load->library('ckeditor');
-			
-			/*
-			 * /
-			 *  
-			 * */
-						
-			$config['base_url'] = base_url().'kemasukan/template';
-			$config['total_rows'] = $this->template_surat->get()->num_rows();
-			$config['per_page'] = 5;
-			$config['suffix'] = '.exe';
+			$this->load->library('ckeditor/Ckeditor5');
 
 			//ckeditor
-			$path = base_url().'js/ckeditor/';
-			$data['CKEditor'] = new CKEditor5($path);
-	 		$data['CKEditor']->replaceAll();
+			//$path = base_url().'js/ckeditor/';
+			//$data['CKEditor'] = new CKEditor5($path);
+	 		//$data['CKEditor']->replaceAll();
 			
 	 		//nice edit
 			/*
@@ -1405,11 +1394,11 @@ class Kemasukan extends CI_Controller
 				$data['hidden_field'] = array('id' => $id_template);
 			}
 			
-			$this->pagination->initialize($config);
+			//$this->pagination->initialize($config);
 			$data['template'] = $this->db->limit(5, $this->uri->segment(3,0));
 			$data['template'] = $this->template_surat->get();
 			
-			$data['paginate'] = $this->pagination->create_links();
+			//$data['paginate'] = $this->pagination->create_links();
 			
 			$this->load->view('kemasukan/template', $data);
 		}
