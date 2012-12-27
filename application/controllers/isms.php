@@ -83,6 +83,8 @@ class Isms extends CI_Controller
 																<p>Kata Laluan : <strong>".$g->row()->password."</strong></p>
 															";
 												//process phpmailer
+												$this->load->library('phpmailer/Phpmailer');
+												$this->phpmailer = new PHPMailer(true);
 												$this->load->library('phpmailer/Pop3');
 												$this->pop3->Authorise($this->config->item('pop3_server'), $this->config->item('pop3_port'), 30, $this->config->item('username'), $this->config->item('password'), 1);
 
