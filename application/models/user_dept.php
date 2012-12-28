@@ -20,6 +20,11 @@ class User_dept extends CI_Model
 			{
 				return $this->db->get_where('user_dept', array('id_user_data' => $id));
 			}
+
+		function GetWhere($where, $limit, $offset)
+			{
+				return $this->db->get_where('user_dept', $where, $limit, $offset);
+			}
 //UPDATE
 
 

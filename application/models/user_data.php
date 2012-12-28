@@ -14,9 +14,8 @@ class User_data extends CI_Model
 
 		function ap ($nama)
 			{
-				$this->db->order_by('apa', 'ASC')->like('nama', $nama)->or_like('ic', $nama)->get_where('user_data', array('id <>' => 1, 'nama' => 'Admin'));
+				return $this->db->order_by('apa', 'ASC')->like('nama', $nama)->or_like('ic', $nama)->get_where('user_data', array('id <>' => 1, 'nama' => 'Admin'));
 			}
-
 
 		function GetAll()
 			{
@@ -48,6 +47,15 @@ class User_data extends CI_Model
 				return $this->db->order_by('name', 'ASC')->get_where('user_data', array('id <>' => 1, 'name' => $name));
 			}
 
+		function cari($cari)
+			{
+				return $this->db->order_by('name', 'ASC')->get_where('user_data', array('id <>' => 1, 'name LIKE "%'.$cari.'%"' => NULL));
+			}
+
+		function GetWhere($id, $limit, $offset)
+			{
+				return $this->db->get_where('user_data', $id, $limit, $offset);
+			}
 //UPDATE
 		function update_profile($id_user, $name, $ic, $email, $address, $city, $state, $zip, $cellphone, $telephone)
 			{
