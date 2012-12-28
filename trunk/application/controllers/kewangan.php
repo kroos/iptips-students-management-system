@@ -110,7 +110,7 @@ class Kewangan extends CI_Controller
 				$this->load->view('kewangan/bayar_prmhnn', $data);
 			}
 
-		public function invoice_pelajar()
+		public function pembayaran()
 			{
 				//buat pencarian dulu
 				$data['info'] = '';
@@ -135,19 +135,52 @@ class Kewangan extends CI_Controller
 				$this->load->view('kewangan/cari_pelajar', $data);
 			}
 
-		public function invois()
+		public function pmbyrn_resit()
 			{
 				$data['info'] = '';
 				$matrik = $this->uri->segment(3, 0);
 				$data['all'] = $this->pel_invois->GetWhere(array('matrik' => $matrik), NULL, NULL);
 				$data['res'] = $this->pel_resit->GetWhere(array('matrik' => $matrik), NULL, NULL);
+				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+				if ($this->form_validation->run() == TRUE)
+					{
+						if($this->input->post('simpan', TRUE))
+							{
+								$noresit = ucwords(strtolower($this->input->post('noresit', TRUE)));
+								$ktr_bayaran = ucwords(strtolower($this->input->post('ktr_bayaran', TRUE)));
+								$jumlah = $this->input->post('jumlah', TRUE);
+
+								$insert = array
+											(
+												'noresit' => $noresit,
+												'matrik' => $matrik,
+												'ktr_bayaran' => $ktr_bayaran,
+												'tarikhmasa_resit' => datetime_db(now()),
+												'jumlah' => $jumlah,
+												'id_add' => $this->session->userdata('id_user'),
+												'dt_add' => datetime_db(now()),
+												'aktif' => 1
+											);
+								$x = $this->pel_resit->insert($insert);
+								if($x)
+									{
+										$data['info'] = 'Pembayaran direkodkan';
+									}
+									else
+									{
+										$data['info'] = 'Pembayaran tidak berjaya direkodkan. Sila cuba sebentar lagi';
+									}
+							}
+					}
+				$data['all'] = $this->pel_invois->GetWhere(array('matrik' => $matrik), NULL, NULL);
+				$data['res'] = $this->pel_resit->GetWhere(array('matrik' => $matrik), NULL, NULL);
 				$this->load->view('kewangan/invois', $data);
 			}
 
-		public function pembayaran()
+/* 		public function pembayaran()
 			{
 				
-			}
+			} */
 
 
 

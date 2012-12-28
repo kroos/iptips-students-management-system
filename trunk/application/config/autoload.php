@@ -114,6 +114,7 @@ $autoload['model'] = array
 								'month',
 								'spm_gred_year',
 								'dept_func',
+								'dept_jaw',
 								'program',
 								'sel_bandar',
 								'sel_gender',
@@ -136,6 +137,7 @@ $autoload['model'] = array
 								'user_dept_func',
 								'user_dept_jaw',
 								'user_function',
+								'user_jawatan',
 								'view'
 							);
 

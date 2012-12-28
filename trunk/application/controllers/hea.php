@@ -46,51 +46,6 @@ class Hea extends CI_Controller
 			}
 
 #############################################################################################################################
-		public function subj_mgmt()
-			{
-				$data['title'] = 'Senarai Subjek';
-
-				//pagination process
-				$this->load->library('pagination');
-				$config['base_url'] = base_url().'hea/subj_mgmt';
-				$config['total_rows'] = $this->subjek->GetAll()->num_rows();
-				$config['per_page'] = 5;
-				$config['suffix'] = '.exe';
-
-				$this->pagination->initialize($config);
-
-				$data['subjek'] = $this->subjek->GetAllPage($config['per_page'], $this->uri->segment(3, 0));
-
-				$data['paginate'] =$this->pagination->create_links();
-
-				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
-				if ($this->form_validation->run() == TRUE)
-					{
-						if($this->input->post('cari', TRUE))
-							{
-								$namasubjek = $this->input->post('namasubjek', TRUE);
-								$data['subjek'] = $this->subjek->search_subj($namasubjek);
-
-								#########################################################
-								$data['sub'] = $this->subjek->SearchSub($nama);
-								//bandingkan dgn model dgn yang ina buat....
-
-								//check balik kalau query kat atas menjadi..kalau tidak paparkan carian yg depa cari tu takdak
-								if($data['sub'])
-									{
-										$data['info'] = '';
-									}
-									else
-									{
-										$data['info'] = 'Query x menjadi, check balik database connection';
-									}
-								#########################################################
-							}
-					}
-				
-				$this->load->view('hea/subj_mgmt', $data);
-			}
-
 		public function info_pelajar()
 			{
 				//pagination process
@@ -473,17 +428,59 @@ class Hea extends CI_Controller
 								echo $st.$std;
 
 								//byk benda kena check..
-								//pelajr, pel_sem, pel_lib, pel_inovice, pel_subjek_gred, pel_dafhostel, 
+								//pelajr, pel_sem, pel_lib, pel_invoice, pel_subjek_gred, pel_dafhostel, 
 							}
 					}
 				$this->load->view('hea/urus_status', $data);
 			}
 
+		public function kehadiran()
+			{
+				
+			}
 
+		public function pensyarah()
+			{
+				//tambah pensyarah
+				$data['info'] = '';
+				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+				if ($this->form_validation->run() == TRUE)
+					{
+						if($this->input->post('cari', TRUE))
+							{
+								$st = $this->input->post('ic', TRUE);
+								$r = $this->user_data->cari($st);
+								if($r)
+									{
+										$data['info'] = 'Carian berjaya';
+										$data['all'] = $r;
+									}
+									else
+									{
+										$data['info'] = 'Sila cuba sebentar lagi';
+									}
+							}
+					}
+				$this->load->view('hea/pensyarah', $data);
+			}
 
-
-
-
+		public function assign_lect()
+			{
+				$data['info'] = '';
+				$noStaff = $this->uri->segment(3, 0);
+				$k = $this->user_data->GetWhere(array('id' => $noStaff), NULL, NULL);
+				if ($k->num_rows() == 1)
+					{
+						$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+						if ($this->form_validation->run() == TRUE)
+							{
+								if($this->input->post('cari', TRUE))
+									{
+									}
+							}
+						$this->load->view('hea/pensyarah', $data);
+					}
+			}
 
 
 

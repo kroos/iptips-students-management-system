@@ -1,7 +1,7 @@
 <?php
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class User_department extends CI_Model 
+class User_jawatan extends CI_Model 
 	{
 		function __construct()
 			{
@@ -11,30 +11,23 @@ class User_department extends CI_Model
 //CRUD for user_data
 
 //SELECT
-		function GetAll()
+		function GetAll($limit, $offset)
 			{
-				return $this->db->get('user_department');
-			}
-
-		function GetAllXISMS()
-			{
-				return $this->db->get_where('user_department', array('id >' => 1));
-			}
-
-		function id($id)
-			{
-				return $this->db->get_where('user_department', array('id' => $id));
+				return $this->db->get('user_jawatan', $limit, $offset);
 			}
 
 		function GetWhere($where, $limit, $offset)
 			{
-				return $this->db->Get_where('user_department', $where, $limit, $offset);
+				return $this->db->get_where('user_jawatan', $where, $limit, $offset);
 			}
 //UPDATE
 
 
 //INSERT
-
+		function insert($insert)
+			{
+				return $this->db->insert('user_jawatan', $insert);
+			}
 
 //DELETE
 

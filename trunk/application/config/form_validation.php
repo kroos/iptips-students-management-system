@@ -706,7 +706,7 @@ $config = array	(
 							(
 								'field' => 'noresit',
 								'label' => 'No Resit',
-								'rules' => 'trim|required|is_unique[pel_resit.noresit]|xss_clean'
+								'rules' => 'trim|required|is_unique[pel_resit.noresit]|alpha_dash|xss_clean'
 							),
 						array
 							(
@@ -1042,7 +1042,7 @@ $config = array	(
 								'rules' => 'trim|required|xss_clean'
 							)
 					),
-					'kewangan/invoice_pelajar' => array
+					'kewangan/pembayaran' => array
 					(
 						array
 							(
@@ -1051,8 +1051,45 @@ $config = array	(
 								'rules' => 'trim|xss_clean'
 							),
 					),
-
-
+					'kewangan/pmbyrn_resit' => array
+					(
+						array
+							(
+								'field' => 'noresit',
+								'label' => 'No Resit',
+								'rules' => 'trim|required|is_unique[pel_resit.noresit]|alpha_dash|xss_clean'
+							),
+						array
+							(
+								'field' => 'ktr_bayaran',
+								'label' => 'Catatan',
+								'rules' => 'trim|required|xss_clean'
+							),
+						array
+							(
+								'field' => 'jumlah',
+								'label' => 'Jumlah',
+								'rules' => 'trim|required|decimal|xss_clean'
+							),
+					),
+					'hea/pensyarah' => array
+					(
+						array
+							(
+								'field' => 'ic',
+								'label' => 'Nama Staff',
+								'rules' => 'trim|xss_clean'
+							)
+					),
+					'hea/assign_lect' => array
+					(
+						array
+							(
+								'field' => 'ic',
+								'label' => 'Subjek',
+								'rules' => 'trim|xss_clean'
+							)
+					),
 
 
 				);

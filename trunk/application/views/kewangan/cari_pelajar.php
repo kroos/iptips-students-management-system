@@ -39,7 +39,7 @@
 					</tr>
 					<?foreach($all->result() AS $v):?>
 						<tr>
-							<td><?=anchor('kewangan/invois/'.$v->matrik, $v->matrik, array('title' => 'Kemaskini '.$v->matrik))?></td>
+							<td><?=anchor('kewangan/pmbyrn_resit/'.$v->matrik, $v->matrik, array('title' => 'Kemaskini '.$v->matrik))?></td>
 							<td><?=$v->sesi_daftar?></td>
 							<td><?=$this->program->GetWhere(array('kod_prog' => $this->pel_sem->GetWhere(array('matrik' => $v->matrik, 'sesi' => $v->sesi_daftar), NULL, NULL)->row()->kod_prog), NULL, NULL)->row()->namaprog_MY?></td>
 							<td><?=$v->nama?></td>
