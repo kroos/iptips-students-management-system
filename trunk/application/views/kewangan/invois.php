@@ -70,6 +70,7 @@
 					</tr>
 				</table>
 			</div>
+			<p>Baki : RM<?=$j?> - RM<?=$p?> = <strong>RM <?=($j - $p)?></strong></p>
 	<?php endblock()?>
 
 <?php end_extend() ?>
