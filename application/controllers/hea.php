@@ -16,6 +16,8 @@ class Hea extends CI_Controller
 				$this->load->model('pel_daftarsubjek');					//nak tau controller ni pakai model mana 1...
 				$this->load->model('pel_subjek_gred');					//nak tau controller ni pakai model mana 1...
 				$this->load->model('prog_subjek');					//nak tau controller ni pakai model mana 1...
+				$this->load->model('sesi_akademik');					//nak tau controller ni pakai model mana 1...
+				$this->load->model('lect_ajar');					//nak tau controller ni pakai model mana 1...
 
 				//mesti ikut peraturan ni..
 				//user mesti log on kalau tidak redirect to index
@@ -471,14 +473,19 @@ class Hea extends CI_Controller
 				$k = $this->user_data->GetWhere(array('id' => $noStaff), NULL, NULL);
 				if ($k->num_rows() == 1)
 					{
+						$se = $this->sesi_akademik->GetWhere(array('aktif' => 1), NULL, NULL);
+						$data['su'] = $this->subjek->GetAll();
+
 						$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
 						if ($this->form_validation->run() == TRUE)
 							{
-								if($this->input->post('cari', TRUE))
+								if($this->input->post('save', TRUE))
 									{
+										
 									}
 							}
-						$this->load->view('hea/pensyarah', $data);
+						$data['all'] = $this->lect_ajar->GetAll(NULL, NULL);
+						$this->load->view('hea/assign_lect', $data);
 					}
 			}
 

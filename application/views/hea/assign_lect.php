@@ -4,26 +4,34 @@
         <h2>Penugasan Pensyarah</h2>
         <div id="accordion">
 	        <h3>Bantuan</h3>
-	        <p>Masukkan nama staff / pensyarah yang akan ditugaskan untuk mengajar subjek</p>
+	        <p>sat</p>
         </div>
-
+<?php
+foreach($su->result() AS $g)
+	{
+		$stat[$g->kodsubjek] = $g->kodsubjek.'&nbsp;|&nbsp;'.$g->namasubjek_MY.'&nbsp;|&nbsp;'.$g->kredit.' Jam Kredit';
+	}
+?>
         <div class="info"><?=@$info?></div>
 
         <div class="form_settings">
             <?=form_open()?>
 
-			<p><span><?=form_label('Nama Staff', 'ic')?></span>
-			<?=form_input(array('name' => 'ic', 'value' => set_value('ic'), 'id' => 'ic'))?>
-			<br /><?=form_error('ic')?></p>
+			<p><span><?=form_label('Subjek', 'stat')?></span>
+			<?=form_dropdown('stat', $stat, set_value('stat'), 'id="stat"')?>
+			<br /><?=form_error('stat')?></p>
 
-			<p><span>&nbsp;</span><?=form_submit('cari', 'Cari','class="submit"')?></p>
+			<p><span><?=form_label('Sesi Akademik', 'sesi')?></span>
+			<?=form_dropdown('sesi', $stat, set_value('sesi'), 'id="sesi"')?>
+			<br /><?=form_error('sesi')?></p>
+
+			<p><span>&nbsp;</span><?=form_submit('save', 'Simpan','class="submit"')?></p>
 		</div>
 		<?=form_close()?>
 
-		<?if($this->form_validation->run() == TRUE):?>
 		<?if($all->num_rows() < 1):?>
 
-			<div class="info">Tiada staff dijumpai</div>
+			<div class="info">Tiada subjek yang diajar</div>
 
 		<?else:?>
 
@@ -72,7 +80,6 @@
 					<?endforeach?>
 				</table>
 			</div>
-		<?endif?>
 		<?endif?>
 
 	<?php endblock()?>

@@ -1085,9 +1085,9 @@ $config = array	(
 					(
 						array
 							(
-								'field' => 'ic',
+								'field' => 'stat',
 								'label' => 'Subjek',
-								'rules' => 'trim|xss_clean'
+								'rules' => 'trim|required|xss_clean'
 							)
 					),
 
