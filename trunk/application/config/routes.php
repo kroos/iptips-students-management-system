@@ -56,6 +56,7 @@ $route['hea/urus_subjek/(:any)'] = 'hea/urus_subjek';
 $route['hea/daftar_subjek/(:num)'] = 'hea/daftar_subjek';
 $route['hea/status_pelajar/(:num)'] = 'hea/status_pelajar';
 $route['hea/urus_status/(:any)'] = 'hea/urus_status';
+$route['hea/assign_lect/(:num)'] = 'hea/assign_lect';
 
 
 /* End of file routes.php */
