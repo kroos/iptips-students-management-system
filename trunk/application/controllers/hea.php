@@ -489,7 +489,33 @@ class Hea extends CI_Controller
 					}
 			}
 
-
+		public function pemarkahan()
+			{
+				$data['info'] = '';
+				$lect = $this->session->userdata('id_user');
+				//echo $lect;
+				//cari sesi dulu...
+				$se = $this->sesi_akademik->GetWhere(array('aktif' => 1), NULL, NULL);
+				if ($se->num_rows() == 1)
+					{
+						$data['sesi'] = $se->row()->kodsesi;
+						$v = $this->lect_ajar->GetWhere(array('nostaf' => $lect, 'sesi' => $data['sesi'], 'aktif' => 1), NULL, NULL);
+						if($v->num_rows() > 0)
+							{
+								$data['la'] = $v;
+								//$data['gr'] = $this->pel_subjek_gred->GetWhere(array('sesi' => $sesi, 'id_drop IS NULL' => NULL, 'id_ign IS NULL' => NULL), NULL, NULL);
+							}
+							else
+							{
+								$data['info'] = 'Anda tidak berada didalam senarai pensyarah. Jika ini adalah kesilapan, sila rujuk Admin';
+							}
+					}
+					else
+					{
+						$data['info'] = 'Tidak dapat menentukan sesi sekarang. Sila rujuk Admin';
+					}
+				$this->load->view('hea/pemarkahan', $data);
+			}
 
 
 
