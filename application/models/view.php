@@ -11,7 +11,7 @@ class View extends CI_Model
 //only select for view
 
 //SELECT
-		function view_user_access_level($id_user)
+		function view_user_access_level($id_user, $ctrlr, $func)
 			{
 				return $this->db->query("
 											select 
@@ -31,7 +31,9 @@ class View extends CI_Model
 											inner join `user_function` on((`user_dept_func`.`id_user_function` = `user_function`.`id`)))
 											WHERE
 											user_dept_func.id_user_data = '$id_user' AND
-											user_dept_func.active = 1 ;
+											user_dept_func.active = 1  AND
+											user_department.dept_ctrlr = '$ctrlr' AND
+											user_function.`function` = '$func';
 										");
 			}
 

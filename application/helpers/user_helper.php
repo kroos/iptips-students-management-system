@@ -4,13 +4,21 @@
 function user_role($id, $controller, $function)
 	{
 		$CI =& get_instance();
-		$t = $CI->view->view_user_access_level($id);
-		foreach ($t->result() as $f)
+		$t = $CI->view->view_user_access_level($id, $controller, $function);
+		if($t)
 			{
-				if ($f->dept_ctrlr.$f->function == $controller.$function)
+				if ($t->num_rows() == 1)
 					{
-						return TRUE;
+						RETURN TRUE;
 					}
+					else
+					{
+						RETURN FALSE;
+					}
+			}
+			else
+			{
+				RETURN FALSE;
 			}
 	};
 
