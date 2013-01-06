@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50523
 File Encoding         : 65001
 
-Date: 2012-12-28 22:32:28
+Date: 2013-01-03 13:04:22
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -325,10 +325,10 @@ CREATE TABLE `ci_sessions` (
 -- ----------------------------
 -- Records of ci_sessions
 -- ----------------------------
-INSERT INTO `ci_sessions` VALUES ('14369ac9502476f6e00ccfcc5d601def', '175.141.18.195', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1356623724', '');
-INSERT INTO `ci_sessions` VALUES ('39a7edeee52e9a16f5e2d7ec2bcba47e', '175.141.18.195', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1356623715', 'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"id_user\";s:1:\"1\";s:8:\"username\";s:6:\"admin1\";s:8:\"password\";s:6:\"123123\";s:9:\"logged_in\";b:1;}');
-INSERT INTO `ci_sessions` VALUES ('3bee722baca532749e02b8c0418c19d6', '175.141.18.195', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1356624182', '');
-INSERT INTO `ci_sessions` VALUES ('ef58a7ff7e26ffc87336e8ef15bee063', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1356624527', 'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"id_user\";s:1:\"1\";s:8:\"username\";s:6:\"admin1\";s:8:\"password\";s:6:\"123123\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('40a404b318609e9a5951e7be3b3cf4e1', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1357015491', 'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"id_user\";s:1:\"1\";s:8:\"username\";s:6:\"admin1\";s:8:\"password\";s:6:\"123123\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('719bb899eac6b55ca9c066823551317e', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1356886901', 'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"id_user\";s:1:\"3\";s:8:\"username\";s:5:\"Super\";s:8:\"password\";s:6:\"123123\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('98fb3a87748d262df06267d026c05941', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1357188943', 'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"id_user\";s:1:\"1\";s:8:\"username\";s:6:\"admin1\";s:8:\"password\";s:6:\"123123\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('c71da64468ab4c269230bcc150c42d92', '202.185.6.180', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1357096111', 'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"id_user\";s:1:\"1\";s:8:\"username\";s:6:\"admin1\";s:8:\"password\";s:6:\"123123\";s:9:\"logged_in\";b:1;}');
 
 -- ----------------------------
 -- Table structure for `dept_func`
@@ -339,7 +339,7 @@ CREATE TABLE `dept_func` (
   `id_user_department` int(11) NOT NULL,
   `id_user_function` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of dept_func
@@ -381,6 +381,9 @@ INSERT INTO `dept_func` VALUES ('36', '2', '33');
 INSERT INTO `dept_func` VALUES ('37', '2', '34');
 INSERT INTO `dept_func` VALUES ('38', '4', '35');
 INSERT INTO `dept_func` VALUES ('39', '4', '36');
+INSERT INTO `dept_func` VALUES ('40', '2', '37');
+INSERT INTO `dept_func` VALUES ('41', '2', '38');
+INSERT INTO `dept_func` VALUES ('42', '2', '39');
 
 -- ----------------------------
 -- Table structure for `dept_jaw`
@@ -605,11 +608,12 @@ CREATE TABLE `lect_ajar` (
   `sesi` varchar(20) DEFAULT NULL,
   `aktif` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of lect_ajar
 -- ----------------------------
+INSERT INTO `lect_ajar` VALUES ('1', '3', 'PS1501', '2013_1', '1');
 
 -- ----------------------------
 -- Table structure for `pel_akademik`
@@ -868,34 +872,6 @@ CREATE TABLE `pel_examresult` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `pel_gredsubjek`
--- ----------------------------
-DROP TABLE IF EXISTS `pel_gredsubjek`;
-CREATE TABLE `pel_gredsubjek` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `matrik` varchar(20) DEFAULT NULL,
-  `kodsubjek` varchar(20) DEFAULT NULL,
-  `sesi` varchar(20) DEFAULT NULL,
-  `status_subjek` varchar(10) DEFAULT NULL,
-  `jum_mark` double(7,3) DEFAULT '0.000',
-  `jum_pemutihan` double(7,3) DEFAULT '0.000',
-  `gred` varchar(4) DEFAULT NULL,
-  `id_add` varchar(20) DEFAULT NULL,
-  `dt_add` datetime DEFAULT NULL,
-  `id_edit` varchar(20) DEFAULT NULL,
-  `dt_edit` datetime DEFAULT NULL,
-  `lulus` tinyint(1) DEFAULT NULL COMMENT '1=lulus;0=gagal',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of pel_gredsubjek
--- ----------------------------
-INSERT INTO `pel_gredsubjek` VALUES ('1', 'HURRAH4', 'PS1501', '2013_1', null, '78.000', '0.000', 'B+', null, null, null, null, '1');
-INSERT INTO `pel_gredsubjek` VALUES ('2', 'HURRAH4', 'WI1101', '2013_1', null, '45.000', '0.000', 'C-', null, null, null, null, '1');
-INSERT INTO `pel_gredsubjek` VALUES ('3', 'HURRAH4', 'WI1104', '2013_1', null, '43.000', '0.000', 'D', null, null, null, null, '0');
-
--- ----------------------------
 -- Table structure for `pel_hadir`
 -- ----------------------------
 DROP TABLE IF EXISTS `pel_hadir`;
@@ -1097,7 +1073,7 @@ CREATE TABLE `pel_resit` (
   `aktif` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `idx1` (`noresit`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of pel_resit
@@ -1111,6 +1087,8 @@ INSERT INTO `pel_resit` VALUES ('8', 'Watchaa', 'HURRAH1', 'Huh', '2012-12-17 00
 INSERT INTO `pel_resit` VALUES ('9', 'Watchaa1', 'HURRAH2', 'Huh', '2012-12-24 21:51:41', '700.00', '1', '2012-12-24 21:51:41', null, null, '1');
 INSERT INTO `pel_resit` VALUES ('10', 'Bayar La Weii1', 'HURRAH3', 'Huh', '2012-12-25 00:39:41', '700.00', '1', '2012-12-25 00:39:41', null, null, '1');
 INSERT INTO `pel_resit` VALUES ('11', 'Bayar La Weii3', 'HURRAH4', 'Huh', '2012-12-25 01:11:05', '700.00', '1', '2012-12-25 01:11:05', null, null, '1');
+INSERT INTO `pel_resit` VALUES ('12', 'Test 12', 'HURRAH4', 'Test', '2012-12-28 22:54:22', '700.00', '1', '2012-12-28 22:54:22', null, null, '1');
+INSERT INTO `pel_resit` VALUES ('13', 'Test123', 'HURRAH4', 'Bayar Sem 1', '2012-12-29 02:21:57', '750.00', '1', '2012-12-29 02:21:57', null, null, '1');
 
 -- ----------------------------
 -- Table structure for `pel_sem`
@@ -1201,39 +1179,57 @@ CREATE TABLE `pel_subjek_gred` (
   `dt_drop` datetime DEFAULT NULL,
   `id_ign` int(11) DEFAULT NULL,
   `dt_ign` datetime DEFAULT NULL,
-  `gred` decimal(10,0) DEFAULT NULL,
+  `gred` varchar(10) DEFAULT NULL,
+  `status_subjek` varchar(10) DEFAULT NULL,
+  `jum_mark` double(7,3) DEFAULT NULL,
+  `jum_pemutihan` double(7,3) DEFAULT NULL,
+  `lulus` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of pel_subjek_gred
 -- ----------------------------
-INSERT INTO `pel_subjek_gred` VALUES ('1', 'HURRAH3', 'PS1501', '2013_1', '1.0', '0', '1', '2012-12-25 00:54:13', null, null, null, null, null);
-INSERT INTO `pel_subjek_gred` VALUES ('2', 'HURRAH3', 'WI1101', '2013_1', '1.0', '2', '1', '2012-12-25 00:54:13', null, null, null, null, null);
-INSERT INTO `pel_subjek_gred` VALUES ('3', 'HURRAH3', 'WI1104', '2013_1', '1.0', '2', '1', '2012-12-25 00:54:13', null, null, null, null, null);
-INSERT INTO `pel_subjek_gred` VALUES ('4', 'HURRAH3', 'US1201', '2013_1', '1.0', '3', '1', '2012-12-25 00:54:13', null, null, null, null, null);
-INSERT INTO `pel_subjek_gred` VALUES ('5', 'HURRAH3', 'SY1206', '2013_1', '1.0', '3', '1', '2012-12-25 00:54:13', null, null, null, null, null);
-INSERT INTO `pel_subjek_gred` VALUES ('6', 'HURRAH3', 'MPW1113', '2013_1', '1.0', '3', '1', '2012-12-25 00:54:13', null, null, null, null, null);
-INSERT INTO `pel_subjek_gred` VALUES ('7', 'HURRAH3', 'MPW1123', '2013_1', '1.0', '3', '1', '2012-12-25 00:54:14', null, null, null, null, null);
-INSERT INTO `pel_subjek_gred` VALUES ('8', 'HURRAH3', 'US1211', '2013_1', '1.0', '3', '1', '2012-12-25 00:54:14', null, null, null, null, null);
-INSERT INTO `pel_subjek_gred` VALUES ('48', 'HURRAH4', 'PS1501', '2013_1', '1.0', '0', '1', '2012-12-25 01:11:39', null, null, null, null, null);
-INSERT INTO `pel_subjek_gred` VALUES ('49', 'HURRAH4', 'WI1101', '2013_1', '1.0', '2', '1', '2012-12-25 01:11:39', null, null, null, null, null);
-INSERT INTO `pel_subjek_gred` VALUES ('50', 'HURRAH4', 'WI1104', '2013_1', '1.0', '2', '1', '2012-12-25 01:11:39', null, null, null, null, null);
-INSERT INTO `pel_subjek_gred` VALUES ('51', 'HURRAH4', 'US1201', '2013_1', '1.0', '3', '1', '2012-12-25 01:11:39', null, null, null, null, null);
-INSERT INTO `pel_subjek_gred` VALUES ('52', 'HURRAH4', 'MPW1113', '2013_1', '1.0', '3', '1', '2012-12-25 01:11:39', null, null, null, null, null);
-INSERT INTO `pel_subjek_gred` VALUES ('53', 'HURRAH4', 'US1211', '2013_1', '1.0', '3', '1', '2012-12-25 01:11:39', null, null, null, null, null);
-INSERT INTO `pel_subjek_gred` VALUES ('54', 'HURRAH4', 'SY1206', '2013_1', '1.0', '3', '1', '2012-12-25 01:11:39', null, null, null, null, null);
-INSERT INTO `pel_subjek_gred` VALUES ('55', 'HURRAH4', 'MPW1123', '2013_1', '1.0', '3', '1', '2012-12-25 01:11:39', null, null, null, null, null);
-INSERT INTO `pel_subjek_gred` VALUES ('56', 'HURRAH2', 'PS1501', '2013_1', '1.0', '0', '1', '2012-12-25 03:58:00', null, null, null, null, null);
-INSERT INTO `pel_subjek_gred` VALUES ('57', 'HURRAH2', 'WI1101', '2013_1', '1.0', '2', '1', '2012-12-25 03:58:18', null, null, null, null, null);
-INSERT INTO `pel_subjek_gred` VALUES ('58', 'HURRAH2', 'MPW1123', '2013_1', '1.0', '3', '1', '2012-12-25 03:58:26', null, null, null, null, null);
-INSERT INTO `pel_subjek_gred` VALUES ('59', 'HURRAH2', 'SY1206', '2013_1', '1.0', '3', '1', '2012-12-25 03:58:34', null, null, null, null, null);
-INSERT INTO `pel_subjek_gred` VALUES ('60', 'HURRAH2', 'MPW1113', '2013_1', '1.0', '3', '1', '2012-12-25 03:58:44', null, null, null, null, null);
-INSERT INTO `pel_subjek_gred` VALUES ('61', 'HURRAH2', 'QH1201', '2013_1', '1.0', '3', '1', '2012-12-25 03:58:55', null, null, null, null, null);
-INSERT INTO `pel_subjek_gred` VALUES ('62', 'HURRAH2', 'WI1104', '2013_1', '1.0', '2', '1', '2012-12-25 03:59:04', null, null, null, null, null);
-INSERT INTO `pel_subjek_gred` VALUES ('63', 'HURRAH2', 'US1212', '2013_1', '1.0', '3', '1', '2012-12-25 03:59:30', '1', '2012-12-25 04:08:12', null, null, null);
-INSERT INTO `pel_subjek_gred` VALUES ('64', 'HURRAH2', 'US1212', '2013_1', '1.0', '3', '1', '2012-12-25 04:21:09', '1', '2012-12-25 04:21:20', null, null, null);
-INSERT INTO `pel_subjek_gred` VALUES ('65', 'HURRAH2', 'US1212', '2013_1', '1.0', '3', '1', '2012-12-25 04:21:34', null, null, null, null, null);
+INSERT INTO `pel_subjek_gred` VALUES ('1', 'HURRAH3', 'PS1501', '2013_1', '1.0', '0', '1', '2012-12-25 00:54:13', null, null, null, null, null, null, null, null, null);
+INSERT INTO `pel_subjek_gred` VALUES ('2', 'HURRAH3', 'WI1101', '2013_1', '1.0', '2', '1', '2012-12-25 00:54:13', null, null, null, null, null, null, null, null, null);
+INSERT INTO `pel_subjek_gred` VALUES ('3', 'HURRAH3', 'WI1104', '2013_1', '1.0', '2', '1', '2012-12-25 00:54:13', null, null, null, null, null, null, null, null, null);
+INSERT INTO `pel_subjek_gred` VALUES ('4', 'HURRAH3', 'US1201', '2013_1', '1.0', '3', '1', '2012-12-25 00:54:13', null, null, null, null, null, null, null, null, null);
+INSERT INTO `pel_subjek_gred` VALUES ('5', 'HURRAH3', 'SY1206', '2013_1', '1.0', '3', '1', '2012-12-25 00:54:13', null, null, null, null, null, null, null, null, null);
+INSERT INTO `pel_subjek_gred` VALUES ('6', 'HURRAH3', 'MPW1113', '2013_1', '1.0', '3', '1', '2012-12-25 00:54:13', null, null, null, null, null, null, null, null, null);
+INSERT INTO `pel_subjek_gred` VALUES ('7', 'HURRAH3', 'MPW1123', '2013_1', '1.0', '3', '1', '2012-12-25 00:54:14', null, null, null, null, null, null, null, null, null);
+INSERT INTO `pel_subjek_gred` VALUES ('8', 'HURRAH3', 'US1211', '2013_1', '1.0', '3', '1', '2012-12-25 00:54:14', null, null, null, null, null, null, null, null, null);
+INSERT INTO `pel_subjek_gred` VALUES ('48', 'HURRAH4', 'PS1501', '2013_1', '1.0', '0', '1', '2012-12-25 01:11:39', null, null, null, null, 'B+', null, '78.000', '0.000', '1');
+INSERT INTO `pel_subjek_gred` VALUES ('49', 'HURRAH4', 'WI1101', '2013_1', '1.0', '2', '1', '2012-12-25 01:11:39', null, null, null, null, 'C-', null, '45.000', '0.000', '1');
+INSERT INTO `pel_subjek_gred` VALUES ('50', 'HURRAH4', 'WI1104', '2013_1', '1.0', '2', '1', '2012-12-25 01:11:39', null, null, null, null, 'D', null, '43.000', '0.000', '0');
+INSERT INTO `pel_subjek_gred` VALUES ('51', 'HURRAH4', 'US1201', '2013_1', '1.0', '3', '1', '2012-12-25 01:11:39', null, null, null, null, 'B+', null, '78.000', '0.000', '1');
+INSERT INTO `pel_subjek_gred` VALUES ('52', 'HURRAH4', 'MPW1113', '2013_1', '1.0', '3', '1', '2012-12-25 01:11:39', null, null, null, null, 'B+', null, '78.000', '0.000', '1');
+INSERT INTO `pel_subjek_gred` VALUES ('53', 'HURRAH4', 'US1211', '2013_1', '1.0', '3', '1', '2012-12-25 01:11:39', null, null, null, null, 'B+', null, '78.000', '0.000', '1');
+INSERT INTO `pel_subjek_gred` VALUES ('54', 'HURRAH4', 'SY1206', '2013_1', '1.0', '3', '1', '2012-12-25 01:11:39', null, null, null, null, 'B+', null, '78.000', '0.000', '1');
+INSERT INTO `pel_subjek_gred` VALUES ('55', 'HURRAH4', 'MPW1123', '2013_1', '1.0', '3', '1', '2012-12-25 01:11:39', null, null, null, null, 'B+', null, '78.000', '0.000', '1');
+INSERT INTO `pel_subjek_gred` VALUES ('56', 'HURRAH2', 'PS1501', '2013_1', '1.0', '0', '1', '2012-12-25 03:58:00', null, null, null, null, null, null, null, null, null);
+INSERT INTO `pel_subjek_gred` VALUES ('57', 'HURRAH2', 'WI1101', '2013_1', '1.0', '2', '1', '2012-12-25 03:58:18', null, null, null, null, null, null, null, null, null);
+INSERT INTO `pel_subjek_gred` VALUES ('58', 'HURRAH2', 'MPW1123', '2013_1', '1.0', '3', '1', '2012-12-25 03:58:26', null, null, null, null, null, null, null, null, null);
+INSERT INTO `pel_subjek_gred` VALUES ('59', 'HURRAH2', 'SY1206', '2013_1', '1.0', '3', '1', '2012-12-25 03:58:34', null, null, null, null, null, null, null, null, null);
+INSERT INTO `pel_subjek_gred` VALUES ('60', 'HURRAH2', 'MPW1113', '2013_1', '1.0', '3', '1', '2012-12-25 03:58:44', null, null, null, null, null, null, null, null, null);
+INSERT INTO `pel_subjek_gred` VALUES ('61', 'HURRAH2', 'QH1201', '2013_1', '1.0', '3', '1', '2012-12-25 03:58:55', null, null, null, null, null, null, null, null, null);
+INSERT INTO `pel_subjek_gred` VALUES ('62', 'HURRAH2', 'WI1104', '2013_1', '1.0', '2', '1', '2012-12-25 03:59:04', null, null, null, null, null, null, null, null, null);
+INSERT INTO `pel_subjek_gred` VALUES ('63', 'HURRAH2', 'US1212', '2013_1', '1.0', '3', '1', '2012-12-25 03:59:30', '1', '2012-12-25 04:08:12', null, null, null, null, null, null, null);
+INSERT INTO `pel_subjek_gred` VALUES ('64', 'HURRAH2', 'US1212', '2013_1', '1.0', '3', '1', '2012-12-25 04:21:09', '1', '2012-12-25 04:21:20', null, null, null, null, null, null, null);
+INSERT INTO `pel_subjek_gred` VALUES ('65', 'HURRAH2', 'US1212', '2013_1', '1.0', '3', '1', '2012-12-25 04:21:34', null, null, null, null, null, null, null, null, null);
+INSERT INTO `pel_subjek_gred` VALUES ('66', 'DSY1', 'WI1104', '2013_1', '1.0', '2', '1', '2012-12-29 02:02:18', null, null, null, null, null, null, null, null, null);
+INSERT INTO `pel_subjek_gred` VALUES ('67', 'DSY1', 'PS1501', '2013_1', '1.0', '0', '1', '2012-12-29 02:02:26', null, null, null, null, null, null, null, null, null);
+INSERT INTO `pel_subjek_gred` VALUES ('68', 'DSY1', 'WI1101', '2013_1', '1.0', '2', '1', '2012-12-29 02:02:53', null, null, null, null, null, null, null, null, null);
+INSERT INTO `pel_subjek_gred` VALUES ('69', 'DSY1', 'MPW1123', '2013_1', '1.0', '3', '1', '2012-12-29 02:03:03', null, null, null, null, null, null, null, null, null);
+INSERT INTO `pel_subjek_gred` VALUES ('70', 'DSY1', 'SY1206', '2013_1', '1.0', '3', '1', '2012-12-29 02:03:33', null, null, null, null, null, null, null, null, null);
+INSERT INTO `pel_subjek_gred` VALUES ('71', 'DSY1', 'MPW1113', '2013_1', '1.0', '3', '1', '2012-12-29 02:03:45', null, null, null, null, null, null, null, null, null);
+INSERT INTO `pel_subjek_gred` VALUES ('72', 'DSY1', 'QH1201', '2013_1', '1.0', '3', '1', '2012-12-29 02:03:57', null, null, null, null, null, null, null, null, null);
+INSERT INTO `pel_subjek_gred` VALUES ('73', 'HEM001', 'PS0005', '2013_1', '1.0', '0', '1', '2012-12-29 02:41:23', null, null, null, null, null, null, null, null, null);
+INSERT INTO `pel_subjek_gred` VALUES ('74', 'HEM001', 'PS0001', '2013_1', '1.0', '0', '1', '2012-12-29 02:41:32', null, null, null, null, null, null, null, null, null);
+INSERT INTO `pel_subjek_gred` VALUES ('75', 'HEM001', 'PS0004', '2013_1', '1.0', '0', '1', '2012-12-29 02:41:38', null, null, null, null, null, null, null, null, null);
+INSERT INTO `pel_subjek_gred` VALUES ('76', 'HEM001', 'PS0007', '2013_1', '1.0', '0', '1', '2012-12-29 02:42:42', null, null, null, null, null, null, null, null, null);
+INSERT INTO `pel_subjek_gred` VALUES ('77', 'HEM001', 'PS0003', '2013_1', '1.0', '0', '1', '2012-12-29 02:42:52', null, null, null, null, null, null, null, null, null);
+INSERT INTO `pel_subjek_gred` VALUES ('78', 'HEM001', 'PS0006', '2013_1', '1.0', '0', '1', '2012-12-29 02:43:01', null, null, null, null, null, null, null, null, null);
+INSERT INTO `pel_subjek_gred` VALUES ('79', 'HEM001', 'PS0002', '2013_1', '1.0', '0', '1', '2012-12-29 02:43:29', null, null, null, null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for `pel_transkrip`
@@ -1341,164 +1337,181 @@ CREATE TABLE `prog_subjek` (
   `kodsubjek` varchar(10) DEFAULT NULL,
   `sem` double(2,1) DEFAULT NULL,
   PRIMARY KEY (`ID`),
-  UNIQUE KEY `idx1` (`kod_prog`,`kodsubjek`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=158 DEFAULT CHARSET=utf8;
+  UNIQUE KEY `idx1` (`kod_prog`,`kodsubjek`,`sem`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=176 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of prog_subjek
 -- ----------------------------
-INSERT INTO `prog_subjek` VALUES ('1', 'DSY', 'WI1104', '1.0');
-INSERT INTO `prog_subjek` VALUES ('2', 'DSY', 'MPW1113', '1.0');
-INSERT INTO `prog_subjek` VALUES ('3', 'DSY', 'MPW1123', '1.0');
-INSERT INTO `prog_subjek` VALUES ('4', 'DSY', 'WI1101', '1.0');
-INSERT INTO `prog_subjek` VALUES ('5', 'DSY', 'US1201', '1.0');
-INSERT INTO `prog_subjek` VALUES ('6', 'DSY', 'SY1206', '1.0');
-INSERT INTO `prog_subjek` VALUES ('7', 'DSY', 'US1211', '1.0');
-INSERT INTO `prog_subjek` VALUES ('8', 'DSY', 'PS1501', '1.0');
-INSERT INTO `prog_subjek` VALUES ('9', 'DSY', 'WI1102', '2.0');
-INSERT INTO `prog_subjek` VALUES ('10', 'DSY', 'WI1105', '2.0');
-INSERT INTO `prog_subjek` VALUES ('11', 'DSY', 'WI1106', '2.0');
-INSERT INTO `prog_subjek` VALUES ('12', 'DSY', 'SY1202', '2.0');
-INSERT INTO `prog_subjek` VALUES ('13', 'DSY', 'SY1207', '2.0');
-INSERT INTO `prog_subjek` VALUES ('14', 'DSY', 'US1212', '2.0');
-INSERT INTO `prog_subjek` VALUES ('15', 'DSY', 'PS1502', '2.0');
-INSERT INTO `prog_subjek` VALUES ('16', 'DSY', 'SY1203', '3.0');
-INSERT INTO `prog_subjek` VALUES ('17', 'DSY', 'MPW1143', '3.0');
-INSERT INTO `prog_subjek` VALUES ('18', 'DSY', 'WI1103', '3.0');
-INSERT INTO `prog_subjek` VALUES ('19', 'DSY', 'MPW1133', '3.0');
-INSERT INTO `prog_subjek` VALUES ('21', 'DSY', 'US1213', '3.0');
-INSERT INTO `prog_subjek` VALUES ('22', 'DSY', 'PS1503', '3.0');
-INSERT INTO `prog_subjek` VALUES ('25', 'DSY', 'WI1107', '4.0');
-INSERT INTO `prog_subjek` VALUES ('26', 'DSY', 'SY1204', '4.0');
-INSERT INTO `prog_subjek` VALUES ('27', 'DSY', 'SY1208', '4.0');
-INSERT INTO `prog_subjek` VALUES ('28', 'DSY', 'EL1402', '3.0');
-INSERT INTO `prog_subjek` VALUES ('29', 'DSY', 'EL1404', '3.0');
-INSERT INTO `prog_subjek` VALUES ('30', 'DSY', 'PS1801', '4.0');
-INSERT INTO `prog_subjek` VALUES ('31', 'DSY', 'SY1205', '5.0');
-INSERT INTO `prog_subjek` VALUES ('32', 'DSY', 'SY1209', '5.0');
-INSERT INTO `prog_subjek` VALUES ('33', 'DSY', 'SY1211', '5.0');
-INSERT INTO `prog_subjek` VALUES ('34', 'DSY', 'SY1213', '5.0');
-INSERT INTO `prog_subjek` VALUES ('35', 'DSY', 'SY1218', '5.0');
-INSERT INTO `prog_subjek` VALUES ('36', 'DSY', 'EL1401', '5.0');
-INSERT INTO `prog_subjek` VALUES ('37', 'DSY', 'PS1802', '5.0');
-INSERT INTO `prog_subjek` VALUES ('38', 'DSY', 'EL1403', '5.0');
-INSERT INTO `prog_subjek` VALUES ('39', 'DSY', 'SY1214', '6.0');
-INSERT INTO `prog_subjek` VALUES ('40', 'DSY', 'SY1215', '6.0');
-INSERT INTO `prog_subjek` VALUES ('41', 'DSY', 'SY1216', '6.0');
-INSERT INTO `prog_subjek` VALUES ('42', 'DSY', 'SY1217', '6.0');
-INSERT INTO `prog_subjek` VALUES ('43', 'DSY', 'PS1506', '6.0');
-INSERT INTO `prog_subjek` VALUES ('44', 'DSY', 'WI1108', '6.0');
-INSERT INTO `prog_subjek` VALUES ('45', 'DSY', 'PS1803', '6.0');
-INSERT INTO `prog_subjek` VALUES ('46', 'DUS', 'MPW1113', '1.0');
-INSERT INTO `prog_subjek` VALUES ('47', 'DUS', 'MPW1123', '1.0');
-INSERT INTO `prog_subjek` VALUES ('48', 'DUS ', 'WI1101', '1.0');
-INSERT INTO `prog_subjek` VALUES ('49', 'DUS', 'WI1104', '1.0');
-INSERT INTO `prog_subjek` VALUES ('50', 'DUS', 'US1201', '1.0');
-INSERT INTO `prog_subjek` VALUES ('51', 'DUS', 'SY1206', '1.0');
-INSERT INTO `prog_subjek` VALUES ('52', 'DUS', 'US1211', '1.0');
-INSERT INTO `prog_subjek` VALUES ('53', 'DUS', 'PS1501', '1.0');
-INSERT INTO `prog_subjek` VALUES ('54', 'DUS', 'WI1102', '2.0');
-INSERT INTO `prog_subjek` VALUES ('55', 'DUS', 'WI1105', '2.0');
-INSERT INTO `prog_subjek` VALUES ('56', 'DUS', 'WI1106', '2.0');
-INSERT INTO `prog_subjek` VALUES ('57', 'DUS', 'US1212', '2.0');
-INSERT INTO `prog_subjek` VALUES ('58', 'DUS', 'QH1203', '2.0');
-INSERT INTO `prog_subjek` VALUES ('59', 'DUS', 'PS1502', '2.0');
-INSERT INTO `prog_subjek` VALUES ('60', 'DUS', 'MPW1133', '3.0');
-INSERT INTO `prog_subjek` VALUES ('61', 'DUS', 'MPW1143', '3.0');
-INSERT INTO `prog_subjek` VALUES ('62', 'DUS', 'WI1103', '3.0');
-INSERT INTO `prog_subjek` VALUES ('63', 'DUS', 'US1213', '3.0');
-INSERT INTO `prog_subjek` VALUES ('64', 'DUS', 'QH1205', '3.0');
-INSERT INTO `prog_subjek` VALUES ('65', 'DUS', 'EL1402', '3.0');
-INSERT INTO `prog_subjek` VALUES ('66', 'DUS', 'EL1404', '3.0');
-INSERT INTO `prog_subjek` VALUES ('67', 'DUS', 'PS1503', '3.0');
-INSERT INTO `prog_subjek` VALUES ('68', 'DUS ', 'WI1107', '4.0');
-INSERT INTO `prog_subjek` VALUES ('69', 'DUS', 'US1202', '4.0');
-INSERT INTO `prog_subjek` VALUES ('70', 'DUS', 'US1203', '4.0');
-INSERT INTO `prog_subjek` VALUES ('71', 'DUS', 'QH1204', '4.0');
-INSERT INTO `prog_subjek` VALUES ('72', 'DUS', 'SY1208', '4.0');
-INSERT INTO `prog_subjek` VALUES ('73', 'DUS', 'PS1504', '4.0');
-INSERT INTO `prog_subjek` VALUES ('74', 'DUS', 'PS1801', '4.0');
-INSERT INTO `prog_subjek` VALUES ('75', 'DUS', 'US1204', '5.0');
-INSERT INTO `prog_subjek` VALUES ('76', 'DUS', 'US1205', '5.0');
-INSERT INTO `prog_subjek` VALUES ('77', 'DUS', 'US1206', '5.0');
-INSERT INTO `prog_subjek` VALUES ('78', 'DUS', 'US1207', '5.0');
-INSERT INTO `prog_subjek` VALUES ('79', 'DUS', 'US1209', '5.0');
-INSERT INTO `prog_subjek` VALUES ('80', 'DUS', 'EL1401', '5.0');
-INSERT INTO `prog_subjek` VALUES ('81', 'DUS', 'EL1403', '5.0');
-INSERT INTO `prog_subjek` VALUES ('82', 'DUS', 'PS1505', '5.0');
-INSERT INTO `prog_subjek` VALUES ('83', 'DUS', 'PS1802', '5.0');
-INSERT INTO `prog_subjek` VALUES ('84', 'DUS', 'US1208', '6.0');
-INSERT INTO `prog_subjek` VALUES ('85', 'DUS', 'US1210', '6.0');
-INSERT INTO `prog_subjek` VALUES ('86', 'DUS', 'US1301', '6.0');
-INSERT INTO `prog_subjek` VALUES ('87', 'DUS', 'US1303', '6.0');
-INSERT INTO `prog_subjek` VALUES ('88', 'DUS', 'US1302', '6.0');
-INSERT INTO `prog_subjek` VALUES ('89', 'DUS ', 'US1304', '6.0');
-INSERT INTO `prog_subjek` VALUES ('90', 'DUS', 'WI1108', '6.0');
-INSERT INTO `prog_subjek` VALUES ('91', 'DUS', 'OS1506', '6.0');
-INSERT INTO `prog_subjek` VALUES ('92', 'DUS', 'OS1803', '6.0');
+INSERT INTO `prog_subjek` VALUES ('126', 'DQH', 'EL1401', '5.0');
+INSERT INTO `prog_subjek` VALUES ('118', 'DQH', 'EL1402', '4.0');
+INSERT INTO `prog_subjek` VALUES ('128', 'DQH', 'EL1403', '5.0');
+INSERT INTO `prog_subjek` VALUES ('119', 'DQH', 'EL1404', '4.0');
 INSERT INTO `prog_subjek` VALUES ('93', 'DQH', 'MPW1113', '1.0');
 INSERT INTO `prog_subjek` VALUES ('94', 'DQH', 'MPW1123', '1.0');
-INSERT INTO `prog_subjek` VALUES ('95', 'DQH', 'WI1101', '1.0');
-INSERT INTO `prog_subjek` VALUES ('96', 'DQH', 'WI1104', '1.0');
-INSERT INTO `prog_subjek` VALUES ('97', 'DQH', 'QH1201', '1.0');
-INSERT INTO `prog_subjek` VALUES ('98', 'DQH', 'SY1206', '1.0');
-INSERT INTO `prog_subjek` VALUES ('99', 'DQH', 'PS1501', '1.0');
-INSERT INTO `prog_subjek` VALUES ('100', 'DQH', 'WI1102', '2.0');
-INSERT INTO `prog_subjek` VALUES ('101', 'DQH', 'WI1105', '2.0');
-INSERT INTO `prog_subjek` VALUES ('102', 'DQH', 'WI1106', '2.0');
-INSERT INTO `prog_subjek` VALUES ('103', 'DQH', 'QH1202', '2.0');
-INSERT INTO `prog_subjek` VALUES ('104', 'DQH ', 'US1212', '2.0');
-INSERT INTO `prog_subjek` VALUES ('105', 'DQH ', 'PS1502', '2.0');
 INSERT INTO `prog_subjek` VALUES ('106', 'DQH', 'MPW1133', '3.0');
 INSERT INTO `prog_subjek` VALUES ('107', 'DQH', 'MPW1143', '3.0');
-INSERT INTO `prog_subjek` VALUES ('108', 'DQH', 'WI1103', '3.0');
-INSERT INTO `prog_subjek` VALUES ('109', 'DQH', 'QH1203', '3.0');
-INSERT INTO `prog_subjek` VALUES ('110', 'DQH', 'QH1205', '3.0');
-INSERT INTO `prog_subjek` VALUES ('111', 'DQH', 'US1213', '3.0');
+INSERT INTO `prog_subjek` VALUES ('99', 'DQH', 'PS1501', '1.0');
+INSERT INTO `prog_subjek` VALUES ('105', 'DQH ', 'PS1502', '2.0');
 INSERT INTO `prog_subjek` VALUES ('112', 'DQH', 'PS1503', '3.0');
-INSERT INTO `prog_subjek` VALUES ('113', 'DQH', 'WI1107', '4.0');
-INSERT INTO `prog_subjek` VALUES ('114', 'DQH', 'QH1204', '4.0');
-INSERT INTO `prog_subjek` VALUES ('115', 'DQH', 'QH1206', '4.0');
-INSERT INTO `prog_subjek` VALUES ('116', 'DQH', 'SY1204', '4.0');
-INSERT INTO `prog_subjek` VALUES ('117', 'DQH', 'SY1208', '4.0');
-INSERT INTO `prog_subjek` VALUES ('118', 'DQH', 'EL1402', '4.0');
-INSERT INTO `prog_subjek` VALUES ('119', 'DQH', 'EL1404', '4.0');
+INSERT INTO `prog_subjek` VALUES ('134', 'DQH', 'PS1506', '6.0');
 INSERT INTO `prog_subjek` VALUES ('120', 'DQH', 'PS1801', '4.0');
+INSERT INTO `prog_subjek` VALUES ('127', 'DQH', 'PS1802', '5.0');
+INSERT INTO `prog_subjek` VALUES ('97', 'DQH', 'QH1201', '1.0');
+INSERT INTO `prog_subjek` VALUES ('103', 'DQH', 'QH1202', '2.0');
+INSERT INTO `prog_subjek` VALUES ('109', 'DQH', 'QH1203', '3.0');
+INSERT INTO `prog_subjek` VALUES ('114', 'DQH', 'QH1204', '4.0');
+INSERT INTO `prog_subjek` VALUES ('110', 'DQH', 'QH1205', '3.0');
+INSERT INTO `prog_subjek` VALUES ('115', 'DQH', 'QH1206', '4.0');
+INSERT INTO `prog_subjek` VALUES ('129', 'DQH', 'QH1301', '6.0');
+INSERT INTO `prog_subjek` VALUES ('131', 'DQH', 'QH1302', '6.0');
+INSERT INTO `prog_subjek` VALUES ('130', 'DQH', 'QH1303', '6.0');
+INSERT INTO `prog_subjek` VALUES ('132', 'DQH', 'QH1304', '6.0');
+INSERT INTO `prog_subjek` VALUES ('116', 'DQH', 'SY1204', '4.0');
+INSERT INTO `prog_subjek` VALUES ('98', 'DQH', 'SY1206', '1.0');
+INSERT INTO `prog_subjek` VALUES ('117', 'DQH', 'SY1208', '4.0');
 INSERT INTO `prog_subjek` VALUES ('121', 'DQH', 'US1202', '5.0');
 INSERT INTO `prog_subjek` VALUES ('122', 'DQH', 'US1204', '5.0');
 INSERT INTO `prog_subjek` VALUES ('123', 'DQH', 'US1206', '5.0');
 INSERT INTO `prog_subjek` VALUES ('124', 'DQH', 'US1207', '5.0');
-INSERT INTO `prog_subjek` VALUES ('125', 'DQH', 'US1209', '5.0');
-INSERT INTO `prog_subjek` VALUES ('126', 'DQH', 'EL1401', '5.0');
-INSERT INTO `prog_subjek` VALUES ('127', 'DQH', 'PS1802', '5.0');
-INSERT INTO `prog_subjek` VALUES ('128', 'DQH', 'EL1403', '5.0');
-INSERT INTO `prog_subjek` VALUES ('129', 'DQH', 'QH1301', '6.0');
-INSERT INTO `prog_subjek` VALUES ('130', 'DQH', 'QH1303', '6.0');
-INSERT INTO `prog_subjek` VALUES ('131', 'DQH', 'QH1302', '6.0');
-INSERT INTO `prog_subjek` VALUES ('132', 'DQH', 'QH1304', '6.0');
 INSERT INTO `prog_subjek` VALUES ('133', 'DQH', 'US1208', '6.0');
-INSERT INTO `prog_subjek` VALUES ('134', 'DQH', 'PS1506', '6.0');
+INSERT INTO `prog_subjek` VALUES ('125', 'DQH', 'US1209', '5.0');
+INSERT INTO `prog_subjek` VALUES ('104', 'DQH ', 'US1212', '2.0');
+INSERT INTO `prog_subjek` VALUES ('111', 'DQH', 'US1213', '3.0');
+INSERT INTO `prog_subjek` VALUES ('95', 'DQH', 'WI1101', '1.0');
+INSERT INTO `prog_subjek` VALUES ('100', 'DQH', 'WI1102', '2.0');
+INSERT INTO `prog_subjek` VALUES ('108', 'DQH', 'WI1103', '3.0');
+INSERT INTO `prog_subjek` VALUES ('96', 'DQH', 'WI1104', '1.0');
+INSERT INTO `prog_subjek` VALUES ('101', 'DQH', 'WI1105', '2.0');
+INSERT INTO `prog_subjek` VALUES ('102', 'DQH', 'WI1106', '2.0');
+INSERT INTO `prog_subjek` VALUES ('113', 'DQH', 'WI1107', '4.0');
 INSERT INTO `prog_subjek` VALUES ('135', 'DQH', 'WI1108', '6.0');
-INSERT INTO `prog_subjek` VALUES ('136', 'DSY', 'SY1210', '4.0');
-INSERT INTO `prog_subjek` VALUES ('137', 'DSY', 'SY1212', '4.0');
+INSERT INTO `prog_subjek` VALUES ('36', 'DSY', 'EL1401', '5.0');
+INSERT INTO `prog_subjek` VALUES ('28', 'DSY', 'EL1402', '3.0');
+INSERT INTO `prog_subjek` VALUES ('38', 'DSY', 'EL1403', '5.0');
+INSERT INTO `prog_subjek` VALUES ('29', 'DSY', 'EL1404', '3.0');
+INSERT INTO `prog_subjek` VALUES ('2', 'DSY', 'MPW1113', '1.0');
+INSERT INTO `prog_subjek` VALUES ('3', 'DSY', 'MPW1123', '1.0');
+INSERT INTO `prog_subjek` VALUES ('19', 'DSY', 'MPW1133', '3.0');
+INSERT INTO `prog_subjek` VALUES ('17', 'DSY', 'MPW1143', '3.0');
+INSERT INTO `prog_subjek` VALUES ('8', 'DSY', 'PS1501', '1.0');
+INSERT INTO `prog_subjek` VALUES ('15', 'DSY', 'PS1502', '2.0');
+INSERT INTO `prog_subjek` VALUES ('22', 'DSY', 'PS1503', '3.0');
 INSERT INTO `prog_subjek` VALUES ('138', 'DSY', 'PS1504', '4.0');
+INSERT INTO `prog_subjek` VALUES ('43', 'DSY', 'PS1506', '6.0');
+INSERT INTO `prog_subjek` VALUES ('30', 'DSY', 'PS1801', '4.0');
+INSERT INTO `prog_subjek` VALUES ('37', 'DSY', 'PS1802', '5.0');
+INSERT INTO `prog_subjek` VALUES ('45', 'DSY', 'PS1803', '6.0');
+INSERT INTO `prog_subjek` VALUES ('12', 'DSY', 'SY1202', '2.0');
+INSERT INTO `prog_subjek` VALUES ('16', 'DSY', 'SY1203', '3.0');
+INSERT INTO `prog_subjek` VALUES ('26', 'DSY', 'SY1204', '4.0');
+INSERT INTO `prog_subjek` VALUES ('31', 'DSY', 'SY1205', '5.0');
+INSERT INTO `prog_subjek` VALUES ('6', 'DSY', 'SY1206', '1.0');
+INSERT INTO `prog_subjek` VALUES ('13', 'DSY', 'SY1207', '2.0');
+INSERT INTO `prog_subjek` VALUES ('27', 'DSY', 'SY1208', '4.0');
+INSERT INTO `prog_subjek` VALUES ('32', 'DSY', 'SY1209', '5.0');
+INSERT INTO `prog_subjek` VALUES ('136', 'DSY', 'SY1210', '4.0');
+INSERT INTO `prog_subjek` VALUES ('33', 'DSY', 'SY1211', '5.0');
+INSERT INTO `prog_subjek` VALUES ('137', 'DSY', 'SY1212', '4.0');
+INSERT INTO `prog_subjek` VALUES ('34', 'DSY', 'SY1213', '5.0');
+INSERT INTO `prog_subjek` VALUES ('39', 'DSY', 'SY1214', '6.0');
+INSERT INTO `prog_subjek` VALUES ('40', 'DSY', 'SY1215', '6.0');
+INSERT INTO `prog_subjek` VALUES ('41', 'DSY', 'SY1216', '6.0');
+INSERT INTO `prog_subjek` VALUES ('42', 'DSY', 'SY1217', '6.0');
+INSERT INTO `prog_subjek` VALUES ('35', 'DSY', 'SY1218', '5.0');
+INSERT INTO `prog_subjek` VALUES ('5', 'DSY', 'US1201', '1.0');
+INSERT INTO `prog_subjek` VALUES ('7', 'DSY', 'US1211', '1.0');
+INSERT INTO `prog_subjek` VALUES ('14', 'DSY', 'US1212', '2.0');
+INSERT INTO `prog_subjek` VALUES ('21', 'DSY', 'US1213', '3.0');
+INSERT INTO `prog_subjek` VALUES ('4', 'DSY', 'WI1101', '1.0');
+INSERT INTO `prog_subjek` VALUES ('9', 'DSY', 'WI1102', '2.0');
+INSERT INTO `prog_subjek` VALUES ('18', 'DSY', 'WI1103', '3.0');
+INSERT INTO `prog_subjek` VALUES ('1', 'DSY', 'WI1104', '1.0');
+INSERT INTO `prog_subjek` VALUES ('10', 'DSY', 'WI1105', '2.0');
+INSERT INTO `prog_subjek` VALUES ('11', 'DSY', 'WI1106', '2.0');
+INSERT INTO `prog_subjek` VALUES ('25', 'DSY', 'WI1107', '4.0');
+INSERT INTO `prog_subjek` VALUES ('44', 'DSY', 'WI1108', '6.0');
+INSERT INTO `prog_subjek` VALUES ('80', 'DUS', 'EL1401', '5.0');
+INSERT INTO `prog_subjek` VALUES ('65', 'DUS', 'EL1402', '3.0');
+INSERT INTO `prog_subjek` VALUES ('81', 'DUS', 'EL1403', '5.0');
+INSERT INTO `prog_subjek` VALUES ('66', 'DUS', 'EL1404', '3.0');
+INSERT INTO `prog_subjek` VALUES ('46', 'DUS', 'MPW1113', '1.0');
+INSERT INTO `prog_subjek` VALUES ('47', 'DUS', 'MPW1123', '1.0');
+INSERT INTO `prog_subjek` VALUES ('60', 'DUS', 'MPW1133', '3.0');
+INSERT INTO `prog_subjek` VALUES ('61', 'DUS', 'MPW1143', '3.0');
+INSERT INTO `prog_subjek` VALUES ('91', 'DUS', 'OS1506', '6.0');
+INSERT INTO `prog_subjek` VALUES ('92', 'DUS', 'OS1803', '6.0');
+INSERT INTO `prog_subjek` VALUES ('53', 'DUS', 'PS1501', '1.0');
+INSERT INTO `prog_subjek` VALUES ('59', 'DUS', 'PS1502', '2.0');
+INSERT INTO `prog_subjek` VALUES ('67', 'DUS', 'PS1503', '3.0');
+INSERT INTO `prog_subjek` VALUES ('73', 'DUS', 'PS1504', '4.0');
+INSERT INTO `prog_subjek` VALUES ('82', 'DUS', 'PS1505', '5.0');
+INSERT INTO `prog_subjek` VALUES ('74', 'DUS', 'PS1801', '4.0');
+INSERT INTO `prog_subjek` VALUES ('83', 'DUS', 'PS1802', '5.0');
+INSERT INTO `prog_subjek` VALUES ('58', 'DUS', 'QH1203', '2.0');
+INSERT INTO `prog_subjek` VALUES ('71', 'DUS', 'QH1204', '4.0');
+INSERT INTO `prog_subjek` VALUES ('64', 'DUS', 'QH1205', '3.0');
+INSERT INTO `prog_subjek` VALUES ('51', 'DUS', 'SY1206', '1.0');
+INSERT INTO `prog_subjek` VALUES ('72', 'DUS', 'SY1208', '4.0');
+INSERT INTO `prog_subjek` VALUES ('50', 'DUS', 'US1201', '1.0');
+INSERT INTO `prog_subjek` VALUES ('69', 'DUS', 'US1202', '4.0');
+INSERT INTO `prog_subjek` VALUES ('70', 'DUS', 'US1203', '4.0');
+INSERT INTO `prog_subjek` VALUES ('75', 'DUS', 'US1204', '5.0');
+INSERT INTO `prog_subjek` VALUES ('76', 'DUS', 'US1205', '5.0');
+INSERT INTO `prog_subjek` VALUES ('77', 'DUS', 'US1206', '5.0');
+INSERT INTO `prog_subjek` VALUES ('78', 'DUS', 'US1207', '5.0');
+INSERT INTO `prog_subjek` VALUES ('84', 'DUS', 'US1208', '6.0');
+INSERT INTO `prog_subjek` VALUES ('79', 'DUS', 'US1209', '5.0');
+INSERT INTO `prog_subjek` VALUES ('85', 'DUS', 'US1210', '6.0');
+INSERT INTO `prog_subjek` VALUES ('52', 'DUS', 'US1211', '1.0');
+INSERT INTO `prog_subjek` VALUES ('57', 'DUS', 'US1212', '2.0');
+INSERT INTO `prog_subjek` VALUES ('63', 'DUS', 'US1213', '3.0');
+INSERT INTO `prog_subjek` VALUES ('86', 'DUS', 'US1301', '6.0');
+INSERT INTO `prog_subjek` VALUES ('88', 'DUS', 'US1302', '6.0');
+INSERT INTO `prog_subjek` VALUES ('87', 'DUS', 'US1303', '6.0');
+INSERT INTO `prog_subjek` VALUES ('89', 'DUS ', 'US1304', '6.0');
+INSERT INTO `prog_subjek` VALUES ('48', 'DUS ', 'WI1101', '1.0');
+INSERT INTO `prog_subjek` VALUES ('54', 'DUS', 'WI1102', '2.0');
+INSERT INTO `prog_subjek` VALUES ('62', 'DUS', 'WI1103', '3.0');
+INSERT INTO `prog_subjek` VALUES ('49', 'DUS', 'WI1104', '1.0');
+INSERT INTO `prog_subjek` VALUES ('55', 'DUS', 'WI1105', '2.0');
+INSERT INTO `prog_subjek` VALUES ('56', 'DUS', 'WI1106', '2.0');
+INSERT INTO `prog_subjek` VALUES ('68', 'DUS ', 'WI1107', '4.0');
+INSERT INTO `prog_subjek` VALUES ('90', 'DUS', 'WI1108', '6.0');
 INSERT INTO `prog_subjek` VALUES ('139', 'PST', 'PS0001', '1.0');
+INSERT INTO `prog_subjek` VALUES ('159', 'PST', 'PS0001', '2.0');
 INSERT INTO `prog_subjek` VALUES ('140', 'PST', 'PS0002', '1.0');
+INSERT INTO `prog_subjek` VALUES ('160', 'PST', 'PS0002', '2.0');
 INSERT INTO `prog_subjek` VALUES ('141', 'PST', 'PS0003', '1.0');
+INSERT INTO `prog_subjek` VALUES ('161', 'PST', 'PS0003', '2.0');
 INSERT INTO `prog_subjek` VALUES ('142', 'PST', 'PS0004', '1.0');
+INSERT INTO `prog_subjek` VALUES ('162', 'PST', 'PS0004', '2.0');
 INSERT INTO `prog_subjek` VALUES ('143', 'PST', 'PS0005', '1.0');
+INSERT INTO `prog_subjek` VALUES ('163', 'PST', 'PS0005', '2.0');
 INSERT INTO `prog_subjek` VALUES ('144', 'PST', 'PS0006', '1.0');
+INSERT INTO `prog_subjek` VALUES ('164', 'PST', 'PS0006', '2.0');
 INSERT INTO `prog_subjek` VALUES ('145', 'PST', 'PS0007', '1.0');
+INSERT INTO `prog_subjek` VALUES ('165', 'PST', 'PS0007', '2.0');
 INSERT INTO `prog_subjek` VALUES ('148', 'ST', 'S101', '1.0');
+INSERT INTO `prog_subjek` VALUES ('166', 'ST', 'S101', '2.0');
 INSERT INTO `prog_subjek` VALUES ('149', 'ST', 'S102', '1.0');
+INSERT INTO `prog_subjek` VALUES ('167', 'ST', 'S102', '2.0');
 INSERT INTO `prog_subjek` VALUES ('150', 'ST', 'S103', '1.0');
+INSERT INTO `prog_subjek` VALUES ('168', 'ST', 'S103', '2.0');
 INSERT INTO `prog_subjek` VALUES ('151', 'ST', 'S104', '1.0');
+INSERT INTO `prog_subjek` VALUES ('169', 'ST', 'S104', '2.0');
 INSERT INTO `prog_subjek` VALUES ('152', 'ST', 'S105', '1.0');
+INSERT INTO `prog_subjek` VALUES ('170', 'ST', 'S105', '2.0');
 INSERT INTO `prog_subjek` VALUES ('153', 'ST', 'S106', '1.0');
+INSERT INTO `prog_subjek` VALUES ('171', 'ST', 'S106', '2.0');
 INSERT INTO `prog_subjek` VALUES ('154', 'ST', 'S107', '1.0');
+INSERT INTO `prog_subjek` VALUES ('172', 'ST', 'S107', '2.0');
 INSERT INTO `prog_subjek` VALUES ('155', 'ST', 'S108', '1.0');
+INSERT INTO `prog_subjek` VALUES ('173', 'ST', 'S108', '2.0');
 INSERT INTO `prog_subjek` VALUES ('156', 'ST', 'S109', '1.0');
+INSERT INTO `prog_subjek` VALUES ('174', 'ST', 'S109', '2.0');
 INSERT INTO `prog_subjek` VALUES ('157', 'ST', 'S110', '1.0');
+INSERT INTO `prog_subjek` VALUES ('175', 'ST', 'S110', '2.0');
 
 -- ----------------------------
 -- Table structure for `program`
@@ -4896,13 +4909,14 @@ CREATE TABLE `user_data` (
   `dateAdded` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `Username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user_data
 -- ----------------------------
 INSERT INTO `user_data` VALUES ('1', 'admin1', '123123', '760505026479', 'Admin', '1, Taman Mutiara', 'Sungai Petani', 'Kedah', '08000', '0162172420', '', 'dhiauddin@gmail.com', '2012-11-13 09:16:19');
 INSERT INTO `user_data` VALUES ('3', 'Super', '123123', '123456789966', 'Super Staf', 'Kampung Ku,\r\nYang Permai,\r\nLagi Indah Dan Damai,', 'Badarku', 'Kedah', '05300', '0123456789', '041234567', 'Hishamudin.ma@gmail.com', '2012-12-27 01:54:38');
+INSERT INTO `user_data` VALUES ('4', 'Lecture', '123123', '123456789015', 'Sham Kamikaze', '1, Asd Asd', 'Pendang', 'Kedah', '05400', '0162052420', '044225488', 'krooitnot@gmail.com', '2012-12-29 03:29:56');
 
 -- ----------------------------
 -- Table structure for `user_department`
@@ -4934,7 +4948,7 @@ CREATE TABLE `user_dept` (
   `id_user_data` int(11) NOT NULL,
   `id_user_department` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user_dept
@@ -4946,6 +4960,8 @@ INSERT INTO `user_dept` VALUES ('4', '1', '4');
 INSERT INTO `user_dept` VALUES ('5', '1', '5');
 INSERT INTO `user_dept` VALUES ('6', '1', '6');
 INSERT INTO `user_dept` VALUES ('11', '3', '2');
+INSERT INTO `user_dept` VALUES ('12', '3', '4');
+INSERT INTO `user_dept` VALUES ('13', '4', '2');
 
 -- ----------------------------
 -- Table structure for `user_dept_func`
@@ -4959,7 +4975,7 @@ CREATE TABLE `user_dept_func` (
   `active` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'weather its active for the user or not',
   PRIMARY KEY (`id`),
   KEY `unique` (`id_user_function`)
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user_dept_func
@@ -5012,6 +5028,28 @@ INSERT INTO `user_dept_func` VALUES ('51', '3', '2', '31', '0');
 INSERT INTO `user_dept_func` VALUES ('52', '3', '2', '32', '0');
 INSERT INTO `user_dept_func` VALUES ('53', '3', '2', '33', '0');
 INSERT INTO `user_dept_func` VALUES ('54', '3', '2', '34', '0');
+INSERT INTO `user_dept_func` VALUES ('55', '1', '2', '37', '1');
+INSERT INTO `user_dept_func` VALUES ('56', '3', '4', '1', '1');
+INSERT INTO `user_dept_func` VALUES ('57', '3', '4', '17', '0');
+INSERT INTO `user_dept_func` VALUES ('58', '3', '4', '18', '0');
+INSERT INTO `user_dept_func` VALUES ('59', '3', '4', '35', '0');
+INSERT INTO `user_dept_func` VALUES ('60', '3', '4', '36', '0');
+INSERT INTO `user_dept_func` VALUES ('61', '4', '2', '1', '1');
+INSERT INTO `user_dept_func` VALUES ('62', '4', '2', '12', '0');
+INSERT INTO `user_dept_func` VALUES ('63', '4', '2', '26', '0');
+INSERT INTO `user_dept_func` VALUES ('64', '4', '2', '27', '0');
+INSERT INTO `user_dept_func` VALUES ('65', '4', '2', '28', '0');
+INSERT INTO `user_dept_func` VALUES ('66', '4', '2', '29', '0');
+INSERT INTO `user_dept_func` VALUES ('67', '4', '2', '30', '0');
+INSERT INTO `user_dept_func` VALUES ('68', '4', '2', '31', '0');
+INSERT INTO `user_dept_func` VALUES ('69', '4', '2', '32', '0');
+INSERT INTO `user_dept_func` VALUES ('70', '4', '2', '33', '0');
+INSERT INTO `user_dept_func` VALUES ('71', '4', '2', '34', '0');
+INSERT INTO `user_dept_func` VALUES ('72', '4', '2', '37', '0');
+INSERT INTO `user_dept_func` VALUES ('73', '1', '2', '38', '1');
+INSERT INTO `user_dept_func` VALUES ('74', '1', '2', '39', '1');
+INSERT INTO `user_dept_func` VALUES ('75', '3', '2', '38', '0');
+INSERT INTO `user_dept_func` VALUES ('76', '3', '2', '39', '1');
 
 -- ----------------------------
 -- Table structure for `user_dept_jaw`
@@ -5023,15 +5061,14 @@ CREATE TABLE `user_dept_jaw` (
   `id_user_department` int(11) NOT NULL,
   `id_user_jawatan` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user_dept_jaw
 -- ----------------------------
-INSERT INTO `user_dept_jaw` VALUES ('2', '2', '2', '2');
-INSERT INTO `user_dept_jaw` VALUES ('3', '2', '3', '1');
-INSERT INTO `user_dept_jaw` VALUES ('4', '2', '4', '8');
 INSERT INTO `user_dept_jaw` VALUES ('5', '3', '2', '2');
+INSERT INTO `user_dept_jaw` VALUES ('6', '3', '4', '8');
+INSERT INTO `user_dept_jaw` VALUES ('7', '4', '2', '2');
 
 -- ----------------------------
 -- Table structure for `user_function`
@@ -5046,7 +5083,7 @@ CREATE TABLE `user_function` (
   `posisi` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `Function` (`function`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user_function
@@ -5060,7 +5097,6 @@ INSERT INTO `user_function` VALUES ('8', 'user_cat', 'Tambah jabatan untuk user'
 INSERT INTO `user_function` VALUES ('9', 'senarai_pemohon', 'Memaparkan senarai pemohon kemasukan ke pusat pengajian', 'Senarai Pemohon', '1', '3');
 INSERT INTO `user_function` VALUES ('10', 'user_perm_edit', 'Digunakan untuk mengedit capaian pengguna kepada fungsi page mengikut jabatan/controller/modul', 'Kemaskini Capaian Pengguna', '1', '2');
 INSERT INTO `user_function` VALUES ('11', 'permohonan_baru', 'Masukkan data permohonan pelajar yang ingin melanjutkan pelajaran di sini.', 'Permohonan Baru', '0', '2');
-INSERT INTO `user_function` VALUES ('12', 'subj_mgmt', 'Menguruskan subjek-subjek', 'Pengurusan Subjek', '1', '20');
 INSERT INTO `user_function` VALUES ('13', 'mohon_pelajar', 'Page ni digunakan untuk memilih pelajar diterima masuk kedalam institusi pengajian', 'Proses Permohonan', '1', '4');
 INSERT INTO `user_function` VALUES ('14', 'pmhn_tdk_lgkp', 'Update status permohonan pelajar dari \"Dalam Proses\" kepada \"Tidak Lengkap\"', 'Permohonan Tidak Lengkap', '0', '5');
 INSERT INTO `user_function` VALUES ('15', 'pmhn_gagal', 'Update status permohonan pelajar dari \"Dalam Proses\" kepada \"Gagal\"', 'Permohonan Gagal', '0', '6');
@@ -5082,8 +5118,11 @@ INSERT INTO `user_function` VALUES ('31', 'urus_subjek', 'Kemaskini Subjek Bagi 
 INSERT INTO `user_function` VALUES ('32', 'drop_subj', 'Digunakan Untuk Menggugurkan Subjek Pelajar', 'Drop Subjek', '0', '8');
 INSERT INTO `user_function` VALUES ('33', 'status_pelajar', 'Carian Pelajar Untuk Penangguhan Belajar', 'Status Pelajar', '1', '9');
 INSERT INTO `user_function` VALUES ('34', 'urus_status', 'Mengemaskini Status Penangguhan Pelajar', 'Kemaskini Status', '0', '10');
-INSERT INTO `user_function` VALUES ('35', 'invoice_pelajar', 'Pencarian Pelajar Untuk Invoice', 'Invoice Pelajar', '1', '3');
-INSERT INTO `user_function` VALUES ('36', 'invois', 'Invois Dan Resit Terperinci', 'Invois Lengkap', '0', '4');
+INSERT INTO `user_function` VALUES ('35', 'pembayaran', 'Pencarian Pelajar Untuk Pembayaran', 'Pembayaran', '1', '3');
+INSERT INTO `user_function` VALUES ('36', 'pmbyrn_resit', 'Pembayaran Resit', 'Pembayaran Resit', '0', '4');
+INSERT INTO `user_function` VALUES ('37', 'pensyarah', 'Penambahan Pensyarah / Assigning Lecturer', 'Penugasan Pensyarah', '1', '12');
+INSERT INTO `user_function` VALUES ('38', 'assign_lect', 'Proses Penugasan Untuk Dijadikan Sebagai Pensyarah', 'Kemaskini Pensyarah', '0', '13');
+INSERT INTO `user_function` VALUES ('39', 'pemarkahan', 'Hanya Untuk Pensyarah Yang Akan Memberi Markah Kepada Pelajar', 'Pemarkahan', '1', '11');
 
 -- ----------------------------
 -- Table structure for `user_jawatan`
@@ -5248,94 +5287,94 @@ INSERT INTO `yuran_prog` VALUES ('66', '20001', 'DAFTAR', 'ST', '50.00', '1');
 -- View structure for `view_akaun`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_akaun`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_akaun` AS select `akaun`.`kod_akaun` AS `kod_akaun`,`akaun`.`keterangan_MY` AS `keterangan_MY`,`jenis_akaun`.`kod_jenis` AS `kod_jenis`,`jenis_akaun`.`nama_jenis` AS `nama_jenis` from (`akaun` join `jenis_akaun` on((`akaun`.`kod_jenis` = `jenis_akaun`.`kod_jenis`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_akaun` AS select `akaun`.`kod_akaun` AS `kod_akaun`,`akaun`.`keterangan_MY` AS `keterangan_MY`,`jenis_akaun`.`kod_jenis` AS `kod_jenis`,`jenis_akaun`.`nama_jenis` AS `nama_jenis` from (`akaun` join `jenis_akaun` on((`akaun`.`kod_jenis` = `jenis_akaun`.`kod_jenis`))) ;
 
 -- ----------------------------
 -- View structure for `view_app_pelajar`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_app_pelajar`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_app_pelajar` AS select `app_pelajar`.`id` AS `id`,`app_pelajar`.`nama` AS `nama`,`sel_negara`.`namanegara` AS `namanegara`,`app_akademik`.`institusi` AS `institusi`,`app_akademik`.`tahun` AS `tahun`,`sel_level`.`tahap_MY` AS `tahap_MY`,`sel_subjek`.`subjek_MY` AS `subjek_MY`,`app_subjek_akademik`.`gred` AS `gred`,`program`.`namaprog_MY` AS `namaprog_MY`,`app_progmohon`.`pilihan` AS `pilihan`,`app_progmohon`.`catatan` AS `catatan`,`sel_statusmohon`.`status_MY` AS `status_MY` from ((((((((`app_pelajar` left join `app_akademik` on((`app_pelajar`.`id` = `app_akademik`.`id_mohon`))) left join `app_progmohon` on((`app_pelajar`.`id` = `app_progmohon`.`id_mohon`))) left join `app_subjek_akademik` on((`app_subjek_akademik`.`akademik_id` = `app_akademik`.`id`))) left join `sel_level` on((`sel_level`.`kodtahap` = `app_akademik`.`level`))) left join `sel_subjek` on((`sel_subjek`.`kodsubjek` = `app_subjek_akademik`.`subjek`))) left join `program` on(((`program`.`kod_prog` = `app_progmohon`.`kod_prog`) and (`app_pelajar`.`progTawar` = `program`.`kod_prog`)))) left join `sel_statusmohon` on(((`sel_statusmohon`.`kodstatus` = `app_progmohon`.`status_mohon`) and (`app_pelajar`.`status_mohon` = `sel_statusmohon`.`kodstatus`)))) join `sel_negara` on((`sel_negara`.`kodnegara` = `app_pelajar`.`warganegara`))) where (`app_progmohon`.`status_mohon` = 'DIP') ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_app_pelajar` AS select `app_pelajar`.`id` AS `id`,`app_pelajar`.`nama` AS `nama`,`sel_negara`.`namanegara` AS `namanegara`,`app_akademik`.`institusi` AS `institusi`,`app_akademik`.`tahun` AS `tahun`,`sel_level`.`tahap_MY` AS `tahap_MY`,`sel_subjek`.`subjek_MY` AS `subjek_MY`,`app_subjek_akademik`.`gred` AS `gred`,`program`.`namaprog_MY` AS `namaprog_MY`,`app_progmohon`.`pilihan` AS `pilihan`,`app_progmohon`.`catatan` AS `catatan`,`sel_statusmohon`.`status_MY` AS `status_MY` from ((((((((`app_pelajar` left join `app_akademik` on((`app_pelajar`.`id` = `app_akademik`.`id_mohon`))) left join `app_progmohon` on((`app_pelajar`.`id` = `app_progmohon`.`id_mohon`))) left join `app_subjek_akademik` on((`app_subjek_akademik`.`akademik_id` = `app_akademik`.`id`))) left join `sel_level` on((`sel_level`.`kodtahap` = `app_akademik`.`level`))) left join `sel_subjek` on((`sel_subjek`.`kodsubjek` = `app_subjek_akademik`.`subjek`))) left join `program` on(((`program`.`kod_prog` = `app_progmohon`.`kod_prog`) and (`app_pelajar`.`progTawar` = `program`.`kod_prog`)))) left join `sel_statusmohon` on(((`sel_statusmohon`.`kodstatus` = `app_progmohon`.`status_mohon`) and (`app_pelajar`.`status_mohon` = `sel_statusmohon`.`kodstatus`)))) join `sel_negara` on((`sel_negara`.`kodnegara` = `app_pelajar`.`warganegara`))) where (`app_progmohon`.`status_mohon` = 'DIP') ;
 
 -- ----------------------------
 -- View structure for `view_apppelajar_pelresit`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_apppelajar_pelresit`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_apppelajar_pelresit` AS select `app_pelajar`.`nama` AS `nama`,`pel_resit`.`matrik` AS `matrik`,`pel_resit`.`jumlah` AS `jumlah` from (`pel_resit` join `app_pelajar` on((`app_pelajar`.`siri_mohon` = `pel_resit`.`matrik`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_apppelajar_pelresit` AS select `app_pelajar`.`nama` AS `nama`,`pel_resit`.`matrik` AS `matrik`,`pel_resit`.`jumlah` AS `jumlah` from (`pel_resit` join `app_pelajar` on((`app_pelajar`.`siri_mohon` = `pel_resit`.`matrik`))) ;
 
 -- ----------------------------
 -- View structure for `view_department_function`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_department_function`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_department_function` AS select `dept_func`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept`,`dept_func`.`id_user_function` AS `id_user_function`,`user_function`.`function` AS `function`,`user_function`.`remarks` AS `remarks`,`user_function`.`menu` AS `menu`,`user_function`.`menu_display` AS `menu_display`,`user_function`.`posisi` AS `posisi` from ((`dept_func` join `user_department` on((`dept_func`.`id_user_department` = `user_department`.`id`))) join `user_function` on((`dept_func`.`id_user_function` = `user_function`.`id`))) order by `dept_func`.`id_user_department`,`user_function`.`posisi` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_department_function` AS select `dept_func`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept`,`dept_func`.`id_user_function` AS `id_user_function`,`user_function`.`function` AS `function`,`user_function`.`remarks` AS `remarks`,`user_function`.`menu` AS `menu`,`user_function`.`menu_display` AS `menu_display`,`user_function`.`posisi` AS `posisi` from ((`dept_func` join `user_department` on((`dept_func`.`id_user_department` = `user_department`.`id`))) join `user_function` on((`dept_func`.`id_user_function` = `user_function`.`id`))) order by `dept_func`.`id_user_department`,`user_function`.`posisi` ;
 
 -- ----------------------------
 -- View structure for `view_department_jawatan`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_department_jawatan`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_department_jawatan` AS select `dept_jaw`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept`,`dept_jaw`.`id_jawatan` AS `id_jawatan`,`user_jawatan`.`jawatan` AS `jawatan` from ((`dept_jaw` join `user_jawatan` on((`dept_jaw`.`id_jawatan` = `user_jawatan`.`id`))) join `user_department` on((`user_department`.`id` = `dept_jaw`.`id_user_department`))) order by `dept_jaw`.`id_user_department`,`dept_jaw`.`id_jawatan` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_department_jawatan` AS select `dept_jaw`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept`,`dept_jaw`.`id_jawatan` AS `id_jawatan`,`user_jawatan`.`jawatan` AS `jawatan` from ((`dept_jaw` join `user_jawatan` on((`dept_jaw`.`id_jawatan` = `user_jawatan`.`id`))) join `user_department` on((`user_department`.`id` = `dept_jaw`.`id_user_department`))) order by `dept_jaw`.`id_user_department`,`dept_jaw`.`id_jawatan` ;
 
 -- ----------------------------
 -- View structure for `view_pel_invois`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_pel_invois`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_pel_invois` AS select `pel_invois`.`no_inv` AS `no_inv`,`pel_invois`.`matrik` AS `matrik`,`pel_invois`.`ktr_invois` AS `ktr_invois`,`pel_invois`.`jumlah` AS `jumlah_penuh`,`akaun`.`keterangan_MY` AS `keterangan_MY`,`pel_item_invois`.`jumlah` AS `jumlah`,`pel_item_invois`.`aktif` AS `aktif` from ((`pel_invois` join `pel_item_invois` on((`pel_item_invois`.`no_inv` = `pel_invois`.`no_inv`))) join `akaun` on((`pel_item_invois`.`kod_akaun` = `akaun`.`kod_akaun`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_pel_invois` AS select `pel_invois`.`no_inv` AS `no_inv`,`pel_invois`.`matrik` AS `matrik`,`pel_invois`.`ktr_invois` AS `ktr_invois`,`pel_invois`.`jumlah` AS `jumlah_penuh`,`akaun`.`keterangan_MY` AS `keterangan_MY`,`pel_item_invois`.`jumlah` AS `jumlah`,`pel_item_invois`.`aktif` AS `aktif` from ((`pel_invois` join `pel_item_invois` on((`pel_item_invois`.`no_inv` = `pel_invois`.`no_inv`))) join `akaun` on((`pel_item_invois`.`kod_akaun` = `akaun`.`kod_akaun`))) ;
 
 -- ----------------------------
 -- View structure for `view_prog_subjek`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_prog_subjek`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_prog_subjek` AS select `subjek`.`namasubjek_MY` AS `namasubjek_MY`,`prog_subjek`.`kod_prog` AS `kod_prog`,`program`.`namaprog_MY` AS `namaprog_MY`,`prog_subjek`.`sem` AS `sem`,`prog_subjek`.`kodsubjek` AS `kodsubjek`,`subjek`.`kredit` AS `kredit` from ((`prog_subjek` join `program` on((`prog_subjek`.`kod_prog` = `program`.`kod_prog`))) join `subjek` on((`prog_subjek`.`kodsubjek` = `subjek`.`kodsubjek`))) order by `program`.`kod_prog`,`prog_subjek`.`sem` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_prog_subjek` AS select `subjek`.`namasubjek_MY` AS `namasubjek_MY`,`prog_subjek`.`kod_prog` AS `kod_prog`,`program`.`namaprog_MY` AS `namaprog_MY`,`prog_subjek`.`sem` AS `sem`,`prog_subjek`.`kodsubjek` AS `kodsubjek`,`subjek`.`kredit` AS `kredit` from ((`prog_subjek` join `program` on((`prog_subjek`.`kod_prog` = `program`.`kod_prog`))) join `subjek` on((`prog_subjek`.`kodsubjek` = `subjek`.`kodsubjek`))) order by `program`.`kod_prog`,`prog_subjek`.`sem` ;
 
 -- ----------------------------
 -- View structure for `view_sel_negara_negeri_bandar`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_sel_negara_negeri_bandar`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_sel_negara_negeri_bandar` AS select `sel_negeri`.`kodnegara` AS `kodnegara`,`sel_negara`.`namanegara` AS `namanegara`,`sel_negara`.`prefix` AS `prefix`,`sel_negeri`.`kodnegeri` AS `kodnegeri`,`sel_negeri`.`namanegeri` AS `namanegeri`,`sel_bandar`.`kodbandar` AS `kodbandar`,`sel_bandar`.`namabandar` AS `namabandar` from ((`sel_negara` join `sel_negeri` on((`sel_negara`.`kodnegara` = `sel_negeri`.`kodnegara`))) join `sel_bandar` on(((`sel_negeri`.`kodnegeri` = `sel_bandar`.`kodnegeri`) and (`sel_negara`.`kodnegara` = `sel_bandar`.`kodnegara`)))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_sel_negara_negeri_bandar` AS select `sel_negeri`.`kodnegara` AS `kodnegara`,`sel_negara`.`namanegara` AS `namanegara`,`sel_negara`.`prefix` AS `prefix`,`sel_negeri`.`kodnegeri` AS `kodnegeri`,`sel_negeri`.`namanegeri` AS `namanegeri`,`sel_bandar`.`kodbandar` AS `kodbandar`,`sel_bandar`.`namabandar` AS `namabandar` from ((`sel_negara` join `sel_negeri` on((`sel_negara`.`kodnegara` = `sel_negeri`.`kodnegara`))) join `sel_bandar` on(((`sel_negeri`.`kodnegeri` = `sel_bandar`.`kodnegeri`) and (`sel_negara`.`kodnegara` = `sel_bandar`.`kodnegara`)))) ;
 
 -- ----------------------------
 -- View structure for `view_sesi_taqwim`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_sesi_taqwim`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_sesi_taqwim` AS select `item_taqwim`.`kod_item` AS `kod_item`,`item_taqwim`.`item_MY` AS `item_MY`,`sesi_taqwim`.`sesi` AS `sesi`,`sesi_taqwim`.`tarikh_mula` AS `tarikh_mula`,`sesi_taqwim`.`tarikh_tamat` AS `tarikh_tamat`,`item_taqwim`.`posisi` AS `posisi` from (`item_taqwim` join `sesi_taqwim` on((`item_taqwim`.`kod_item` = `sesi_taqwim`.`kod_item`))) order by `item_taqwim`.`posisi`,`sesi_taqwim`.`sesi` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_sesi_taqwim` AS select `item_taqwim`.`kod_item` AS `kod_item`,`item_taqwim`.`item_MY` AS `item_MY`,`sesi_taqwim`.`sesi` AS `sesi`,`sesi_taqwim`.`tarikh_mula` AS `tarikh_mula`,`sesi_taqwim`.`tarikh_tamat` AS `tarikh_tamat`,`item_taqwim`.`posisi` AS `posisi` from (`item_taqwim` join `sesi_taqwim` on((`item_taqwim`.`kod_item` = `sesi_taqwim`.`kod_item`))) order by `item_taqwim`.`posisi`,`sesi_taqwim`.`sesi` ;
 
 -- ----------------------------
 -- View structure for `view_status`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_status`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_status` AS select `sel_status`.`kodstatus` AS `kodstatus`,`sel_status`.`status_MY` AS `status_MY`,`sel_status`.`stud` AS `stud`,`sel_status`.`grad` AS `grad`,`sel_statusDtl`.`kod_sem` AS `kod_sem`,`sel_statusDtl`.`kod_detail` AS `kod_detail`,`sel_statusDtl`.`keterangan` AS `keterangan` from (`sel_status` join `sel_statusDtl` on((`sel_status`.`kod_sem` = `sel_statusDtl`.`kod_sem`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_status` AS select `sel_status`.`kodstatus` AS `kodstatus`,`sel_status`.`status_MY` AS `status_MY`,`sel_status`.`stud` AS `stud`,`sel_status`.`grad` AS `grad`,`sel_statusDtl`.`kod_sem` AS `kod_sem`,`sel_statusDtl`.`kod_detail` AS `kod_detail`,`sel_statusDtl`.`keterangan` AS `keterangan` from (`sel_status` join `sel_statusDtl` on((`sel_status`.`kod_sem` = `sel_statusDtl`.`kod_sem`))) ;
 
 -- ----------------------------
 -- View structure for `view_taqwim`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_taqwim`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_taqwim` AS select ((to_days(`sesi_taqwim`.`tarikh_tamat`) - to_days(`sesi_taqwim`.`tarikh_mula`)) + 1) AS `tempoh`,`item_taqwim`.`item_MY` AS `item_MY`,`sesi_taqwim`.`tarikh_mula` AS `t_mula`,`sesi_taqwim`.`tarikh_tamat` AS `t_tamat`,`sesi_taqwim`.`sesi` AS `sesi`,`sesi_akademik`.`namasesi_MY` AS `namasesi_MY`,`sesi_akademik`.`tahun` AS `tahun`,`sesi_akademik`.`tarikh_mula` AS `tarikh_mula`,`sesi_akademik`.`tarikh_tamat` AS `tarikh_tamat` from ((`sesi_akademik` join `sesi_taqwim` on((`sesi_taqwim`.`sesi` = `sesi_akademik`.`kodsesi`))) join `item_taqwim` on((`sesi_taqwim`.`kod_item` = `item_taqwim`.`kod_item`))) order by `sesi_taqwim`.`tarikh_mula`,`item_taqwim`.`posisi` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_taqwim` AS select ((to_days(`sesi_taqwim`.`tarikh_tamat`) - to_days(`sesi_taqwim`.`tarikh_mula`)) + 1) AS `tempoh`,`item_taqwim`.`item_MY` AS `item_MY`,`sesi_taqwim`.`tarikh_mula` AS `t_mula`,`sesi_taqwim`.`tarikh_tamat` AS `t_tamat`,`sesi_taqwim`.`sesi` AS `sesi`,`sesi_akademik`.`namasesi_MY` AS `namasesi_MY`,`sesi_akademik`.`tahun` AS `tahun`,`sesi_akademik`.`tarikh_mula` AS `tarikh_mula`,`sesi_akademik`.`tarikh_tamat` AS `tarikh_tamat` from ((`sesi_akademik` join `sesi_taqwim` on((`sesi_taqwim`.`sesi` = `sesi_akademik`.`kodsesi`))) join `item_taqwim` on((`sesi_taqwim`.`kod_item` = `item_taqwim`.`kod_item`))) order by `sesi_taqwim`.`tarikh_mula`,`item_taqwim`.`posisi` ;
 
 -- ----------------------------
 -- View structure for `view_user_department`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_user_department`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_user_department` AS select `user_dept`.`id_user_data` AS `id_user_data`,`user_data`.`username` AS `username`,`user_data`.`password` AS `password`,`user_data`.`name` AS `name`,`user_dept`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept` from ((`user_data` join `user_dept` on((`user_dept`.`id_user_data` = `user_data`.`id`))) join `user_department` on((`user_dept`.`id_user_department` = `user_department`.`id`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_user_department` AS select `user_dept`.`id_user_data` AS `id_user_data`,`user_data`.`username` AS `username`,`user_data`.`password` AS `password`,`user_data`.`name` AS `name`,`user_dept`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept` from ((`user_data` join `user_dept` on((`user_dept`.`id_user_data` = `user_data`.`id`))) join `user_department` on((`user_dept`.`id_user_department` = `user_department`.`id`))) ;
 
 -- ----------------------------
 -- View structure for `view_user_dept_func_level`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_user_dept_func_level`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_user_dept_func_level` AS select `user_dept_func`.`id` AS `id`,`user_dept_func`.`id_user_data` AS `id_user_data`,`user_data`.`name` AS `name`,`user_dept_func`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept`,`user_dept_func`.`id_user_function` AS `id_user_function`,`user_function`.`function` AS `function`,`user_function`.`remarks` AS `remarks`,`user_dept_func`.`active` AS `active` from (((`user_data` join `user_department`) join `user_dept_func` on(((`user_dept_func`.`id_user_data` = `user_data`.`id`) and (`user_dept_func`.`id_user_department` = `user_department`.`id`)))) join `user_function` on((`user_dept_func`.`id_user_function` = `user_function`.`id`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_user_dept_func_level` AS select `user_dept_func`.`id` AS `id`,`user_dept_func`.`id_user_data` AS `id_user_data`,`user_data`.`name` AS `name`,`user_dept_func`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept`,`user_dept_func`.`id_user_function` AS `id_user_function`,`user_function`.`function` AS `function`,`user_function`.`remarks` AS `remarks`,`user_dept_func`.`active` AS `active` from (((`user_data` join `user_department`) join `user_dept_func` on(((`user_dept_func`.`id_user_data` = `user_data`.`id`) and (`user_dept_func`.`id_user_department` = `user_department`.`id`)))) join `user_function` on((`user_dept_func`.`id_user_function` = `user_function`.`id`))) ;
 
 -- ----------------------------
 -- View structure for `view_user_dept_jaw`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_user_dept_jaw`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_user_dept_jaw` AS select `user_dept_jaw`.`id` AS `id`,`user_dept_jaw`.`id_user_data` AS `id_user_data`,`user_data`.`name` AS `name`,`user_dept_jaw`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept`,`user_dept_jaw`.`id_user_jawatan` AS `id_user_jawatan`,`user_jawatan`.`jawatan` AS `jawatan`,`user_jawatan`.`remarks` AS `remarks` from (((`user_dept_jaw` join `user_data` on((`user_dept_jaw`.`id_user_data` = `user_data`.`id`))) join `user_department` on((`user_dept_jaw`.`id_user_department` = `user_department`.`id`))) join `user_jawatan` on((`user_dept_jaw`.`id_user_jawatan` = `user_jawatan`.`id`))) order by `user_data`.`name`,`user_dept_jaw`.`id_user_department`,`user_dept_jaw`.`id_user_jawatan` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_user_dept_jaw` AS select `user_dept_jaw`.`id` AS `id`,`user_dept_jaw`.`id_user_data` AS `id_user_data`,`user_data`.`name` AS `name`,`user_dept_jaw`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept`,`user_dept_jaw`.`id_user_jawatan` AS `id_user_jawatan`,`user_jawatan`.`jawatan` AS `jawatan`,`user_jawatan`.`remarks` AS `remarks` from (((`user_dept_jaw` join `user_data` on((`user_dept_jaw`.`id_user_data` = `user_data`.`id`))) join `user_department` on((`user_dept_jaw`.`id_user_department` = `user_department`.`id`))) join `user_jawatan` on((`user_dept_jaw`.`id_user_jawatan` = `user_jawatan`.`id`))) order by `user_data`.`name`,`user_dept_jaw`.`id_user_department`,`user_dept_jaw`.`id_user_jawatan` ;
 
 -- ----------------------------
 -- View structure for `view_view_user_access`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_view_user_access`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_view_user_access` AS select `user_dept_func`.`id` AS `id`,`user_dept_func`.`id_user_data` AS `id_user_data`,`user_data`.`name` AS `name`,`user_dept_func`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept`,`user_dept_func`.`id_user_function` AS `id_user_function`,`user_function`.`function` AS `function`,`user_function`.`remarks` AS `remarks`,`user_dept_func`.`active` AS `active` from (((`user_data` join `user_department`) join `user_dept_func` on(((`user_dept_func`.`id_user_data` = `user_data`.`id`) and (`user_dept_func`.`id_user_department` = `user_department`.`id`)))) join `user_function` on((`user_dept_func`.`id_user_function` = `user_function`.`id`))) order by `user_dept_func`.`id_user_department`,`user_dept_func`.`id_user_function` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_view_user_access` AS select `user_dept_func`.`id` AS `id`,`user_dept_func`.`id_user_data` AS `id_user_data`,`user_data`.`name` AS `name`,`user_dept_func`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept`,`user_dept_func`.`id_user_function` AS `id_user_function`,`user_function`.`function` AS `function`,`user_function`.`remarks` AS `remarks`,`user_dept_func`.`active` AS `active` from (((`user_data` join `user_department`) join `user_dept_func` on(((`user_dept_func`.`id_user_data` = `user_data`.`id`) and (`user_dept_func`.`id_user_department` = `user_department`.`id`)))) join `user_function` on((`user_dept_func`.`id_user_function` = `user_function`.`id`))) order by `user_dept_func`.`id_user_department`,`user_dept_func`.`id_user_function` ;
 
 -- ----------------------------
 -- View structure for `view_yuran_program`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_yuran_program`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY INVOKER VIEW `view_yuran_program` AS select `akaun`.`kod_akaun` AS `kod_akaun`,`akaun`.`keterangan_MY` AS `keterangan_MY`,`yuran_prog`.`kategori` AS `kategori`,`program`.`namaprog_MY` AS `namaprog_MY`,`yuran_prog`.`jumlah` AS `jumlah`,`yuran_prog`.`aktif` AS `aktif` from ((`akaun` join `yuran_prog` on((`akaun`.`kod_akaun` = `yuran_prog`.`kod_akaun`))) join `program` on((`yuran_prog`.`kod_prog` = `program`.`kod_prog`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY INVOKER VIEW `view_yuran_program` AS select `akaun`.`kod_akaun` AS `kod_akaun`,`akaun`.`keterangan_MY` AS `keterangan_MY`,`yuran_prog`.`kategori` AS `kategori`,`program`.`namaprog_MY` AS `namaprog_MY`,`yuran_prog`.`jumlah` AS `jumlah`,`yuran_prog`.`aktif` AS `aktif` from ((`akaun` join `yuran_prog` on((`akaun`.`kod_akaun` = `yuran_prog`.`kod_akaun`))) join `program` on((`yuran_prog`.`kod_prog` = `program`.`kod_prog`))) ;

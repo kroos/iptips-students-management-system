@@ -502,12 +502,27 @@ class Hea extends CI_Controller
 						$v = $this->lect_ajar->GetWhere(array('nostaf' => $lect, 'sesi' => $data['sesi'], 'aktif' => 1), NULL, NULL);
 						if($v->num_rows() > 0)
 							{
+								$data['set'] = 1;
 								$data['la'] = $v;
 								//$data['gr'] = $this->pel_subjek_gred->GetWhere(array('sesi' => $sesi, 'id_drop IS NULL' => NULL, 'id_ign IS NULL' => NULL), NULL, NULL);
+								$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+								if ($this->form_validation->run() == TRUE)
+									{
+										if($this->input->post('save', TRUE))
+											{
+												$array = $this->input->post(NULL, TRUE);
+												unset($array['save']);
+												//print_r($array);
+												//mula2 cari dulu gred dalam kategori apa
+												$gred = $array['jum_mark'] + $array['jum_pemutihan'];
+												
+											}
+									}
 							}
 							else
 							{
 								$data['info'] = 'Anda tidak berada didalam senarai pensyarah. Jika ini adalah kesilapan, sila rujuk Admin';
+								$data['set'] = 0;
 							}
 					}
 					else

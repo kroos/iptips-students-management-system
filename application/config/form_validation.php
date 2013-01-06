@@ -1090,6 +1090,21 @@ $config = array	(
 								'rules' => 'trim|required|xss_clean'
 							)
 					),
+					'hea/pemarkahan' => array
+					(
+						array
+							(
+								'field' => 'jum_mark',
+								'label' => 'Markah',
+								'rules' => 'trim|required|greater_than[-1]|less_than[101]|xss_clean'
+							),
+						array
+							(
+								'field' => 'jum_pemutihan',
+								'label' => 'Pemutihan',
+								'rules' => 'trim|required|greater_than[-1]|less_than[101]|xss_clean'
+							)
+					),
 
 
 				);
