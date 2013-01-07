@@ -18,6 +18,7 @@ class Hea extends CI_Controller
 				$this->load->model('prog_subjek');					//nak tau controller ni pakai model mana 1...
 				$this->load->model('sesi_akademik');					//nak tau controller ni pakai model mana 1...
 				$this->load->model('lect_ajar');					//nak tau controller ni pakai model mana 1...
+				$this->load->model('gredmata');					//nak tau controller ni pakai model mana 1...
 
 				//mesti ikut peraturan ni..
 				//user mesti log on kalau tidak redirect to index
@@ -504,18 +505,43 @@ class Hea extends CI_Controller
 							{
 								$data['set'] = 1;
 								$data['la'] = $v;
+								$data['gr'] = $this->gredmata->GetWhere(array('tiada_gred <>' => 0), NULL, NULL);
 								//$data['gr'] = $this->pel_subjek_gred->GetWhere(array('sesi' => $sesi, 'id_drop IS NULL' => NULL, 'id_ign IS NULL' => NULL), NULL, NULL);
 								$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
 								if ($this->form_validation->run() == TRUE)
 									{
 										if($this->input->post('save', TRUE))
 											{
-												$array = $this->input->post(NULL, TRUE);
-												unset($array['save']);
-												//print_r($array);
-												//mula2 cari dulu gred dalam kategori apa
-												$gred = $array['jum_mark'] + $array['jum_pemutihan'];
-												
+												$jum_mark = $this->input->post('jum_mark', TRUE);
+												$jum_pemutihan = $this->input->post('jum_pemutihan', TRUE);
+												$gred = $this->input->post('gred', TRUE);
+												$id = $this->input->post('id', TRUE);
+
+												//kes 1... hadir peperiksaan
+												if($jum_mark != NULL && $jum_pemutihan != NULL)
+													{
+														$jum_mark = $jum_mark + $jum_pemutihan;
+														//cari balik sama dgn gred apa...
+														//echo $jum_mark.' test';'90' BETWEEN gredmata.mark1 AND  gredmata.mark2
+														$gred = $this->gredmata->GetWhereBetween($jum_mark)->row()->gred;
+														$lulus = $this->gredmata->GetWhereBetween($jum_mark)->row()->lulus;
+
+														//update
+														$x = $this->pel_subjek_gred->update(array('id' => $id), array('gred' => $gred, 'jum_mark' => $jum_mark, 'jum_pemutihan' => $jum_pemutihan, 'lulus' => $lulus));
+														if($x)
+															{
+																$data['info'] = 'Markah berjaya dimasukkan';
+															}
+															else
+															{
+																$data['info'] = 'Sila cuba sebentar lagi';
+															}
+													}
+													else
+													{
+														//kes 2
+														
+													}
 											}
 									}
 							}

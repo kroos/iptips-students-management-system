@@ -18,6 +18,13 @@ class Gredmata extends CI_Model
 				return $this->db->get_where('gredmata', $where, $limit, $offset);
 			}
 
+		function GetWhereBetween($jum_mark)
+			{
+				$dateRange = "'$jum_mark' BETWEEN mark1 AND  mark2";
+				$this->db->where($dateRange, NULL, FALSE);  
+				return $this->db->get('gredmata');
+			}
+
 //INSERT
 		function insert($insert)
 			{
