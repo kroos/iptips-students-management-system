@@ -4,7 +4,10 @@
         <h2>Pemarkahan</h2>
         <div id="accordion">
 	        <h3>Bantuan</h3>
-	        <p>Pemarkahan yang dibuat adalah berdasarkan kepada keseluruhan markah yang dapat dikumpul oleh pelajar. Ini termasuklah markah tugasan, kuiz, peperiksaan akhir dan lain-lain lagi.</p>
+	        <p>Pemarkahan yang dibuat adalah berdasarkan kepada keseluruhan markah yang dapat dikumpul oleh pelajar. Ini termasuklah markah tugasan, kuiz, peperiksaan akhir dan lain-lain lagi.<br /><br />
+			Sekiranya pelajar tidak menghadiri peperiksaan, sila pilih gred dibawah untuk mewakili ketidakhadiran pelajar tersebut<br /><br />
+			Jika menghadiri peperiksaan, maka masukkan markah dan juga markah pemutihan seperti biasa.
+			</p>
         </div>
 
         <div class="info"><?=@$info?></div>
@@ -13,6 +16,9 @@
 	<?if($la->num_rows() < 0):?>
 		<p>Tiada subjek didaftarkan kepada anda</p>
 	<?else:?>
+	<?foreach($gr->result() AS $gr):?>
+		<?$gred[$gr->gred] = $gr->keterangan?>
+	<?endforeach?>
 		<ol>
 		<?foreach($la->result() AS $e):?>
 			<li><?=$this->subjek->GetWhere(array('kodsubjek' => $e->kodsubjek), NULL, NULL)->row()->namasubjek_MY?>
@@ -31,7 +37,7 @@
 						<?=form_open()?>
 							<tr>
 								<td><?=$v->matrik?></td>
-								<td><?=($v->jum_mark != NULL ? $v->gred : 'Tiada Info')?></td>
+								<td><?=($v->jum_mark != NULL ? $v->gred : form_dropdown('gred', $gred, set_value('gred')).'<br />'.form_error('gred'))?></td>
 								<td><?=($v->jum_mark != NULL ? $v->jum_mark : form_input(array('name' => 'jum_mark', 'value' => set_value('jum_mark'), 'title' => 'Masukkan Jumlah Markah')).'<br />'.form_error('jum_mark'))?></td>
 								<td><?=($v->jum_mark != NULL ? $v->jum_pemutihan : form_input(array('name' => 'jum_pemutihan', 'value' => set_value('jum_pemutihan'), 'title' => 'Masukkan Jumlah Pemutihan')).'<br />'.form_error('jum_pemutihan'))?></td>
 								<td><?=($v->jum_mark != NULL ? ($v->lulus == 1 ? 'LULUS' : 'TIDAK') : 'Tiada Info')?></td>

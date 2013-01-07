@@ -1096,13 +1096,19 @@ $config = array	(
 							(
 								'field' => 'jum_mark',
 								'label' => 'Markah',
-								'rules' => 'trim|required|greater_than[-1]|less_than[101]|xss_clean'
+								'rules' => 'trim|greater_than[-1]|less_than[101]|xss_clean'
 							),
 						array
 							(
 								'field' => 'jum_pemutihan',
 								'label' => 'Pemutihan',
-								'rules' => 'trim|required|greater_than[-1]|less_than[101]|xss_clean'
+								'rules' => 'trim|greater_than[-1]|less_than[101]|xss_clean'
+							),
+						array
+							(
+								'field' => 'gred',
+								'label' => 'Gred',
+								'rules' => 'trim|xss_clean'
 							)
 					),
 
