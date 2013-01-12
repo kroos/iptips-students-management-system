@@ -43,6 +43,7 @@ $route['404_override'] = 'isms/page_missing';
 $route['isms/user_cat/(:num)'] = 'isms/user_cat';
 $route['kemasukan/senarai_pemohon/(:num)'] = 'kemasukan/senarai_pemohon';
 $route['kemasukan/progmohon/(:num)'] = 'kemasukan/progmohon';
+$route['kemasukan/rayuan_permohonan/(:num)'] = 'kemasukan/rayuan_permohonan';
 $route['kemasukan/akademik/(:num)'] = 'kemasukan/akademik';
 $route['kemasukan/waris/(:num)'] = 'kemasukan/waris';
 $route['kemasukan/edit_permohonan/(:num)'] = 'kemasukan/edit_permohonan';
@@ -57,6 +58,7 @@ $route['hea/daftar_subjek/(:num)'] = 'hea/daftar_subjek';
 $route['hea/status_pelajar/(:num)'] = 'hea/status_pelajar';
 $route['hea/urus_status/(:any)'] = 'hea/urus_status';
 $route['hea/assign_lect/(:num)'] = 'hea/assign_lect';
+$route['hea/kemaskini_gred/(:num)'] = 'hea/kemaskini_gred';
 
 
 /* End of file routes.php */

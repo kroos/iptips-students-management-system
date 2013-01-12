@@ -17,8 +17,8 @@
 			<br /><?=form_error('ic')?></p>
 
 			<p><span>&nbsp;</span><?=form_submit('cari', 'Cari','class="submit"')?></p>
-		</div>
 		<?=form_close()?>
+		</div>
 
 		<?if($this->form_validation->run() == TRUE):?>
 		<?if($all->num_rows() < 1):?>

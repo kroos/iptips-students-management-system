@@ -4,12 +4,16 @@
         <h2>Penugasan Pensyarah</h2>
         <div id="accordion">
 	        <h3>Bantuan</h3>
-	        <p>sat</p>
+	        <p>Pilih matapelajaran dan sesi akademik untuk diberikan kepada pensyarah. Fungsi pemarkahan dan kemaskini markah akan diberi secara auto kepada pensyarah berkenaan.</p>
         </div>
 <?php
 foreach($su->result() AS $g)
 	{
 		$stat[$g->kodsubjek] = $g->kodsubjek.'&nbsp;|&nbsp;'.$g->namasubjek_MY.'&nbsp;|&nbsp;'.$g->kredit.' Jam Kredit';
+	}
+foreach($se->result() AS $u)
+	{
+		$ses[$u->kodsesi] = $u->kodsesi;
 	}
 ?>
         <div class="info"><?=@$info?></div>
@@ -17,12 +21,12 @@ foreach($su->result() AS $g)
         <div class="form_settings">
             <?=form_open()?>
 
-			<p><span><?=form_label('Subjek', 'stat')?></span>
-			<?=form_dropdown('stat', $stat, set_value('stat'), 'id="stat"')?>
-			<br /><?=form_error('stat')?></p>
+			<p><span><?=form_label('Subjek', 'kodsubjek')?></span>
+			<?=form_dropdown('kodsubjek', $stat, set_value('kodsubjek'), 'id="kodsubjek"')?>
+			<br /><?=form_error('kodsubjek')?></p>
 
 			<p><span><?=form_label('Sesi Akademik', 'sesi')?></span>
-			<?=form_dropdown('sesi', $stat, set_value('sesi'), 'id="sesi"')?>
+			<?=form_dropdown('sesi', $ses, set_value('sesi'), 'id="sesi"')?>
 			<br /><?=form_error('sesi')?></p>
 
 			<p><span>&nbsp;</span><?=form_submit('save', 'Simpan','class="submit"')?></p>
@@ -39,18 +43,14 @@ foreach($su->result() AS $g)
 				<table style="width:100%; border-spacing:0;">
 					<tr>
 						<th>Nama</th>
-						<th>IC</th>
-						<th>Telefon</th>
-						<th>Email</th>
 						<th>Jabatan</th>
 						<th>Jawatan</th>
+						<th>Subjek</th>
 					</tr>
+
 					<?foreach($all->result() AS $v):?>
 						<tr>
-							<td><?=anchor('hea/assign_lect/'.$v->id, $v->name, array('title' => 'Kemaskini '.$v->name))?></td>
-							<td><?=$v->ic?></td>
-							<td><?=$v->cellphone?></td>
-							<td><?=$v->email?></td>
+							<td><?=$this->user_data->GetWhere(array('id' => $this->uri->segment(3, 0)), NULL, NULL)->row()->name?></td>
 							<td colspan="2">
 
 								<table style="width:100%; border-spacing:0;">
@@ -73,6 +73,22 @@ foreach($su->result() AS $g)
 										</tr>
 									<?endforeach?>
 								</table>
+
+							</td>
+							<td>
+
+								<?$pr = $this->lect_ajar->GetWhere(array('nostaf' => $this->uri->segment(3, 0), 'aktif' => 1), NULL, NULL)?>
+								<?if($pr->num_rows() < 1):?>
+									<div class="info">Tiada subjek yang diajar</div>
+								<?else:?>
+									<table style="width:100%; border-spacing:0;">
+										<?foreach($pr->result() AS $b):?>
+											<tr>
+												<td><?=$b->kodsubjek.'&nbsp;'.$this->subjek->GetWhere(array('kodsubjek' => $b->kodsubjek))->row()->namasubjek_MY?></td>
+											</tr>
+										<?endforeach?>
+									</table>
+								<?endif?>
 
 							</td>
 

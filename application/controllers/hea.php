@@ -9,16 +9,21 @@ class Hea extends CI_Controller
 
 				$this->load->model('subjek');					//nak tau controller ni pakai model mana 1...
 				$this->load->model('pelajar');					//nak tau controller ni pakai model mana 1...
-				$this->load->model('pel_waris');					//nak tau controller ni pakai model mana 1...
+				$this->load->model('pel_waris');				//nak tau controller ni pakai model mana 1...
 				$this->load->model('pel_sem');					//nak tau controller ni pakai model mana 1...
-				$this->load->model('pel_akademik');					//nak tau controller ni pakai model mana 1...
-				$this->load->model('pel_subjek_akademik');					//nak tau controller ni pakai model mana 1...
-				$this->load->model('pel_daftarsubjek');					//nak tau controller ni pakai model mana 1...
-				$this->load->model('pel_subjek_gred');					//nak tau controller ni pakai model mana 1...
-				$this->load->model('prog_subjek');					//nak tau controller ni pakai model mana 1...
-				$this->load->model('sesi_akademik');					//nak tau controller ni pakai model mana 1...
-				$this->load->model('lect_ajar');					//nak tau controller ni pakai model mana 1...
+				$this->load->model('pel_akademik');				//nak tau controller ni pakai model mana 1...
+				$this->load->model('pel_subjek_akademik');		//nak tau controller ni pakai model mana 1...
+				$this->load->model('pel_daftarsubjek');			//nak tau controller ni pakai model mana 1...
+				$this->load->model('pel_subjek_gred');			//nak tau controller ni pakai model mana 1...
+				$this->load->model('prog_subjek');				//nak tau controller ni pakai model mana 1...
+				$this->load->model('sesi_akademik');			//nak tau controller ni pakai model mana 1...
+				$this->load->model('lect_ajar');				//nak tau controller ni pakai model mana 1...
 				$this->load->model('gredmata');					//nak tau controller ni pakai model mana 1...
+				$this->load->model('pel_invois');				//nak tau controller ni pakai model mana 1...
+				$this->load->model('pel_resit');				//nak tau controller ni pakai model mana 1...
+				$this->load->model('pel_hadir');				//nak tau controller ni pakai model mana 1...
+
+				$this->lang->load('form_validation', 'melayu');
 
 				//mesti ikut peraturan ni..
 				//user mesti log on kalau tidak redirect to index
@@ -442,6 +447,31 @@ class Hea extends CI_Controller
 				
 			}
 
+		public function slip_exam()
+			{
+				//mula2 display dulu student... mbik jerrr dari pel_sem
+				//carik sem dulu
+				$sesi = $this->sesi_akademik->GetWhere(array('aktif' => 1), NULL, NULL)->row()->kodsesi;
+				$data['sel'] = $this->pel_sem->GetWhere(array('sesi' => $sesi, 'aktif' => 1, 'status_pel' => '01'), NULL, NULL);
+
+				
+
+				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+				if ($this->form_validation->run() == TRUE)
+					{
+						if($this->input->post('cari', TRUE))
+							{
+								$matrik = $this->input->post('matrik', TRUE);
+							}
+					}
+				$this->load->view('hea/slip_exam', $data);
+			}
+
+		public function cetak_slip_exam()
+			{
+				// sham... tolong buat pdf kat sini...hahahhaha
+			}
+
 		public function pensyarah()
 			{
 				//tambah pensyarah
@@ -469,32 +499,60 @@ class Hea extends CI_Controller
 
 		public function assign_lect()
 			{
-				$data['info'] = '';
 				$noStaff = $this->uri->segment(3, 0);
 				$k = $this->user_data->GetWhere(array('id' => $noStaff), NULL, NULL);
 				if ($k->num_rows() == 1)
 					{
 						$se = $this->sesi_akademik->GetWhere(array('aktif' => 1), NULL, NULL);
-						$data['su'] = $this->subjek->GetAll();
+						$data['su'] = $this->subjek->GetAllPage(NULL, NULL);
+						$data['se'] = $this->sesi_akademik->GetWhere(array('tahun >=' => mdate("%Y", now())), NULL, NULL);
 
 						$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
 						if ($this->form_validation->run() == TRUE)
 							{
 								if($this->input->post('save', TRUE))
 									{
-										
+										$sesi = $this->input->post('sesi', TRUE);
+										$kodsubjek = $this->input->post('kodsubjek', TRUE);
+
+										//autoinsert kalau user xdak dlm senarai user_dept_func
+										$l1 = $this->user_dept_func->GetWhere(array('id_user_data' => $noStaff, 'id_user_department' => 2), NULL, NULL);
+										if($l1->num_rows() < 1)
+											{
+												//insert
+												$this->db->trans_start();
+													$this->user_dept_func->insertall(array('id_user_data' => $noStaff, 'id_user_department' => 2, 'id_user_function' => 39, 'active' => 1));
+													$this->user_dept_func->insertall(array('id_user_data' => $noStaff, 'id_user_department' => 2, 'id_user_function' => 40, 'active' => 1));
+													$this->lect_ajar->insert(array('sesi' => $sesi, 'kodsubjek' => $kodsubjek, 'aktif' => 1, 'nostaf' => $noStaff));
+												$this->db->trans_complete();
+											}
+											else
+											{
+												//update
+												$this->db->trans_start();
+													$this->user_dept_func->updatewhere(array('id_user_data' => $noStaff, 'id_user_department' => 2, 'id_user_function' => 39), array('active' => 1));
+													$this->user_dept_func->updatewhere(array('id_user_data' => $noStaff, 'id_user_department' => 2, 'id_user_function' => 40), array('active' => 1));
+													$this->lect_ajar->insert(array('sesi' => $sesi, 'kodsubjek' => $kodsubjek, 'aktif' => 1, 'nostaf' => $noStaff));
+												$this->db->trans_complete();
+											}
+										if($this->db->trans_status() === TRUE)
+											{
+												$data['info'] = 'Penambahan pensyarah berjaya';
+											}
+											else
+											{
+												$data['info'] = 'Sila cuba sebentar lagi';
+											}
 									}
 							}
-						$data['all'] = $this->lect_ajar->GetAll(NULL, NULL);
+						$data['all'] = $this->user_data->GetWhere(array('id' => $noStaff), NULL, NULL);
 						$this->load->view('hea/assign_lect', $data);
 					}
 			}
 
 		public function pemarkahan()
 			{
-				$data['info'] = '';
 				$lect = $this->session->userdata('id_user');
-				//echo $lect;
 				//cari sesi dulu...
 				$se = $this->sesi_akademik->GetWhere(array('aktif' => 1), NULL, NULL);
 				if ($se->num_rows() == 1)
@@ -505,8 +563,6 @@ class Hea extends CI_Controller
 							{
 								$data['set'] = 1;
 								$data['la'] = $v;
-								$data['gr'] = $this->gredmata->GetWhere(array('tiada_gred <>' => 0), NULL, NULL);
-								//$data['gr'] = $this->pel_subjek_gred->GetWhere(array('sesi' => $sesi, 'id_drop IS NULL' => NULL, 'id_ign IS NULL' => NULL), NULL, NULL);
 								$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
 								if ($this->form_validation->run() == TRUE)
 									{
@@ -514,33 +570,22 @@ class Hea extends CI_Controller
 											{
 												$jum_mark = $this->input->post('jum_mark', TRUE);
 												$jum_pemutihan = $this->input->post('jum_pemutihan', TRUE);
-												$gred = $this->input->post('gred', TRUE);
 												$id = $this->input->post('id', TRUE);
 
-												//kes 1... hadir peperiksaan
-												if($jum_mark != NULL && $jum_pemutihan != NULL)
-													{
-														$jum_mark = $jum_mark + $jum_pemutihan;
-														//cari balik sama dgn gred apa...
-														//echo $jum_mark.' test';'90' BETWEEN gredmata.mark1 AND  gredmata.mark2
-														$gred = $this->gredmata->GetWhereBetween($jum_mark)->row()->gred;
-														$lulus = $this->gredmata->GetWhereBetween($jum_mark)->row()->lulus;
+												$jum_mark1 = $jum_mark + $jum_pemutihan;
+												//cari balik sama dgn gred apa...
+												$gred = $this->gredmata->GetWhereBetween($jum_mark1)->row()->gred;
+												$lulus = $this->gredmata->GetWhereBetween($jum_mark1)->row()->lulus;
 
-														//update
-														$x = $this->pel_subjek_gred->update(array('id' => $id), array('gred' => $gred, 'jum_mark' => $jum_mark, 'jum_pemutihan' => $jum_pemutihan, 'lulus' => $lulus));
-														if($x)
-															{
-																$data['info'] = 'Markah berjaya dimasukkan';
-															}
-															else
-															{
-																$data['info'] = 'Sila cuba sebentar lagi';
-															}
+												//update
+												$x = $this->pel_subjek_gred->update(array('id' => $id), array('gred' => $gred, 'jum_mark' => $jum_mark, 'jum_pemutihan' => $jum_pemutihan, 'lulus' => $lulus));
+												if($x)
+													{
+														$data['info'] = 'Markah berjaya dimasukkan';
 													}
 													else
 													{
-														//kes 2
-														
+														$data['info'] = 'Sila cuba sebentar lagi';
 													}
 											}
 									}
@@ -558,7 +603,40 @@ class Hea extends CI_Controller
 				$this->load->view('hea/pemarkahan', $data);
 			}
 
+		public function kemaskini_gred()
+			{
+				$pe = $this->uri->segment(3, 0);
+				$data['m'] = $this->pel_subjek_gred->GetWhere(array('id' => $pe), NULL, NULL);
+				$conf = $this->pel_sem->GetWhere(array('matrik' => $data['m']->row()->matrik, 'aktif' => 1), NULL, NULL);
+				if($conf)
+					{
+						$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+						if ($this->form_validation->run() == TRUE)
+							{
+								if($this->input->post('save', TRUE))
+									{
+										$jum_mark = $this->input->post('jum_mark', TRUE);
+										$jum_pemutihan = $this->input->post('jum_pemutihan', TRUE);
 
+										$jum_mark1 = $jum_mark + $jum_pemutihan;
+										//cari balik sama dgn gred apa...
+										$gred = $this->gredmata->GetWhereBetween($jum_mark1)->row()->gred;
+										$lulus = $this->gredmata->GetWhereBetween($jum_mark1)->row()->lulus;
+										$r = $this->pel_subjek_gred->update(array('id' => $pe), array('gred' => $gred, 'jum_mark' => $jum_mark, 'jum_pemutihan' => $jum_pemutihan, 'lulus' => $lulus));
+										if($r)
+											{
+												//$data['info'] = 'Markah berjaya dikemaskini';
+												redirect('hea/pemarkahan', 'location');
+											}
+											else
+											{
+												$data['info'] = 'Sila cuba sebentar lagi';
+											}
+									}
+							}
+						$this->load->view('hea/kemaskini_gred', $data);
+					}
+			}
 
 
 
