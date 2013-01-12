@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50522
 File Encoding         : 65001
 
-Date: 2013-01-12 18:42:29
+Date: 2013-01-12 21:35:40
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -118,7 +118,7 @@ CREATE TABLE `app_pelajar` (
   `aktif` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `siri_mohon` (`siri_mohon`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of app_pelajar
@@ -137,6 +137,7 @@ INSERT INTO `app_pelajar` VALUES ('14', 'P1310011', 'Student 50', '900101025557'
 INSERT INTO `app_pelajar` VALUES ('15', 'P1310012', 'Student 51', '800101025551', 'none', '2012-12-25', 'M010701', '1', 'B05', '1103', '1', '1', '1, Taman Mutiara', '', '05400', 'M010321', '03', 'M01', '', '0162052420', 'stud51@gmail.com', '1', '2012-12-25', '1', '2012-12-25', '2012-12-25 00:00:00', '1', '2013_1', 'TW', 'DUS', '1');
 INSERT INTO `app_pelajar` VALUES ('16', 'P1310013', 'Student 52', '123456789019', '123456789019', '2012-12-25', 'M010701', '1', 'A12', '2022', '1', '1', '1, Taman Mutiara', '', '08000', 'M011601', '16', 'M01', '', '0162052420', 'email52@email.com', '1', '2012-12-25', '1', '2012-12-25', '2012-12-25 00:00:00', '1', '2013_1', 'TW', 'DUS', '1');
 INSERT INTO `app_pelajar` VALUES ('17', '', 'Student 1', '800101025555', '111234', '2012-12-03', 'M010701', '2', 'A09', '2043', '1', '1', 'Tmn Peruda', '', '05300', 'M010217', '02', 'M01', '0', '0', 'stud1@mail.com', '1', '2013-01-11', null, null, null, null, null, 'DIP', null, '1');
+INSERT INTO `app_pelajar` VALUES ('18', 'P1320001', 'Student 3', '900101025555', '1112', '2012-12-03', 'M010701', '1', 'A12', '2022', '1', '1', 'Tmn Peruda', '', '05300', 'M010101', '01', 'M01', '0', '0', '0', '1', '2013-01-12', null, null, null, null, '2013_2', 'DIP', null, '1');
 
 -- ----------------------------
 -- Table structure for `app_progmohon`
@@ -308,7 +309,7 @@ INSERT INTO `app_waris` VALUES ('3', '8', 'Parent 2', 'H04', '1, Tamana Mutiara'
 INSERT INTO `app_waris` VALUES ('4', '6', 'Parent 4', 'H04', '2, Taman Mutiara', '', '05400', '', '', '0162052420', 'parent4@email.com');
 INSERT INTO `app_waris` VALUES ('5', '7', 'Parent 5', 'H07', '1, Taman Mutiara', '', '05400', '', '', '0162052420', 'parent5@email.com');
 INSERT INTO `app_waris` VALUES ('6', '1', 'Parent 3', 'H04', 'ntah la haih', null, '00000', null, null, '0162172420', 'parent3@email.com');
-INSERT INTO `app_waris` VALUES ('7', '4', 'Parent 6', 'H04', 'aku pun ta tau', null, '00000', null, null, '1234567890', 'parent6@email.com');
+INSERT INTO `app_waris` VALUES ('7', '18', 'Parent 6', 'H04', 'aku pun ta tau', null, '00000', null, null, '1234567890', 'parent6@email.com');
 INSERT INTO `app_waris` VALUES ('8', '5', 'Parent 7', 'H04', 'huwaicchhhh', null, '00000', null, null, '1234567891', 'parent7@email.com');
 INSERT INTO `app_waris` VALUES ('9', '12', 'Spouse 6', 'H02', '72, Jalan Keranji 11,\r\nTaman Keranji,\r\nJalan Alor Mengkudu,', '', '05400', '', '', '0162052420', 'parent6@email.com');
 INSERT INTO `app_waris` VALUES ('10', '12', 'Spouse 6', 'H02', '72, Jalan Keranji 11,\r\nTaman Keranji,\r\nJalan Alor Mengkudu,', '', '05400', '', '', '0162052420', 'parent6@email.com');
@@ -335,7 +336,7 @@ CREATE TABLE `ci_sessions` (
 -- ----------------------------
 -- Records of ci_sessions
 -- ----------------------------
-INSERT INTO `ci_sessions` VALUES ('61183f943ba93a5e8a45fa208410f1fe', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1357926593', 'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"id_user\";s:1:\"1\";s:8:\"username\";s:6:\"admin1\";s:8:\"password\";s:6:\"123123\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('22f9560d26a284ef46f950591e6cad59', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1357997719', 'a:4:{s:7:\"id_user\";s:1:\"1\";s:8:\"username\";s:6:\"admin1\";s:8:\"password\";s:6:\"123123\";s:9:\"logged_in\";b:1;}');
 
 -- ----------------------------
 -- Table structure for `dept_func`
@@ -346,7 +347,7 @@ CREATE TABLE `dept_func` (
   `id_user_department` int(11) NOT NULL,
   `id_user_function` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of dept_func
@@ -403,6 +404,7 @@ INSERT INTO `dept_func` VALUES ('51', '5', '48');
 INSERT INTO `dept_func` VALUES ('52', '5', '49');
 INSERT INTO `dept_func` VALUES ('53', '5', '50');
 INSERT INTO `dept_func` VALUES ('54', '5', '51');
+INSERT INTO `dept_func` VALUES ('55', '5', '52');
 
 -- ----------------------------
 -- Table structure for `dept_jaw`
@@ -4790,8 +4792,8 @@ CREATE TABLE `sesi_intake` (
 -- ----------------------------
 -- Records of sesi_intake
 -- ----------------------------
-INSERT INTO `sesi_intake` VALUES ('2013_1', 'P131', '0014', '2012-06-01', '2012-12-31', '2012-12-31', '0');
-INSERT INTO `sesi_intake` VALUES ('2013_2', 'P132', '0001', '2013-01-01', '2013-06-30', '2013-06-01', '1');
+INSERT INTO `sesi_intake` VALUES ('2013_1', 'P131', '0014', '2012-06-01', '2012-12-31', '2012-12-31', '1');
+INSERT INTO `sesi_intake` VALUES ('2013_2', 'P132', '0002', '2013-01-01', '2013-06-30', '2013-06-01', '0');
 INSERT INTO `sesi_intake` VALUES ('2014_1', 'P141', '0001', '2013-06-01', '2013-12-31', '2013-12-31', '0');
 INSERT INTO `sesi_intake` VALUES ('2015_1', 'P151', '0001', '2014-06-01', '2014-12-31', '2015-01-05', '0');
 
@@ -5158,7 +5160,7 @@ CREATE TABLE `user_dept_func` (
   `active` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'weather its active for the user or not',
   PRIMARY KEY (`id`),
   KEY `unique` (`id_user_function`)
-) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user_dept_func
@@ -5251,6 +5253,7 @@ INSERT INTO `user_dept_func` VALUES ('91', '1', '5', '19', '1');
 INSERT INTO `user_dept_func` VALUES ('92', '1', '5', '50', '1');
 INSERT INTO `user_dept_func` VALUES ('93', '1', '5', '16', '1');
 INSERT INTO `user_dept_func` VALUES ('94', '1', '5', '51', '1');
+INSERT INTO `user_dept_func` VALUES ('95', '1', '5', '52', '1');
 
 -- ----------------------------
 -- Table structure for `user_dept_jaw`
@@ -5284,7 +5287,7 @@ CREATE TABLE `user_function` (
   `posisi` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `Function` (`function`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user_function
@@ -5295,21 +5298,21 @@ INSERT INTO `user_function` VALUES ('5', 'devel', 'Penambahan function', 'Develo
 INSERT INTO `user_function` VALUES ('6', 'set_privillege', 'Memaparkan user dan function', '', '0', '3');
 INSERT INTO `user_function` VALUES ('7', 'update_privillege', 'Kemaskini kebenaran function utk pengguna', '', '0', '4');
 INSERT INTO `user_function` VALUES ('8', 'user_cat', 'Tambah jabatan untuk user', 'Tambah Jabatan Kepada Pengguna', '1', '1');
-INSERT INTO `user_function` VALUES ('9', 'senarai_pemohon', 'Memaparkan senarai pemohon kemasukan ke pusat pengajian', 'Senarai Pemohon', '1', '3');
+INSERT INTO `user_function` VALUES ('9', 'senarai_pemohon', 'Memaparkan senarai pemohon kemasukan ke pusat pengajian', 'Senarai Pemohon', '1', '6');
 INSERT INTO `user_function` VALUES ('10', 'user_perm_edit', 'Digunakan untuk mengedit capaian pengguna kepada fungsi page mengikut jabatan/controller/modul', 'Kemaskini Capaian Pengguna', '1', '2');
 INSERT INTO `user_function` VALUES ('11', 'permohonan_baru', 'Masukkan data permohonan pelajar yang ingin melanjutkan pelajaran di sini.', 'Permohonan Baru', '0', '2');
-INSERT INTO `user_function` VALUES ('13', 'mohon_pelajar', 'Page ni digunakan untuk memilih pelajar diterima masuk kedalam institusi pengajian', 'Proses Permohonan', '1', '4');
-INSERT INTO `user_function` VALUES ('14', 'pmhn_tdk_lgkp', 'Update status permohonan pelajar dari \"Dalam Proses\" kepada \"Tidak Lengkap\"', 'Permohonan Tidak Lengkap', '0', '5');
-INSERT INTO `user_function` VALUES ('15', 'pmhn_gagal', 'Update status permohonan pelajar dari \"Dalam Proses\" kepada \"Gagal\"', 'Permohonan Gagal', '0', '6');
-INSERT INTO `user_function` VALUES ('16', 'pendaftaran', 'Pendaftaran Bakal Pelajar Yang Permohonannya Diluluskan', 'Pendaftaran', '1', '9');
+INSERT INTO `user_function` VALUES ('13', 'mohon_pelajar', 'Page ni digunakan untuk memilih pelajar diterima masuk kedalam institusi pengajian', 'Proses Permohonan', '1', '9');
+INSERT INTO `user_function` VALUES ('14', 'pmhn_tdk_lgkp', 'Update status permohonan pelajar dari \"Dalam Proses\" kepada \"Tidak Lengkap\"', 'Permohonan Tidak Lengkap', '0', '10');
+INSERT INTO `user_function` VALUES ('15', 'pmhn_gagal', 'Update status permohonan pelajar dari \"Dalam Proses\" kepada \"Gagal\"', 'Permohonan Gagal', '0', '11');
+INSERT INTO `user_function` VALUES ('16', 'pendaftaran', 'Pendaftaran Bakal Pelajar Yang Permohonannya Diluluskan', 'Pendaftaran', '1', '14');
 INSERT INTO `user_function` VALUES ('17', 'pmbyrn_penawarn', 'Carian Pembayaran Perlu Dibuat Sebelum Proses Pendaftaran Dapat Dilakukan Kepada Bakal Pelajar.', 'Pembayaran Pendaftaran', '1', '1');
 INSERT INTO `user_function` VALUES ('18', 'bayar_prmhnn', 'Pembayaran Sebelum Pendaftaran Bakal Pelajar', 'Bayar Pendaftaran', '0', '2');
-INSERT INTO `user_function` VALUES ('19', 'pmhn_berjaya', 'Mencetak Surat Tawaran Bg Pemohon Yg Ditawarkan Melanjutkan Pelajara Di Iptip.', 'Tawaran', '1', '8');
+INSERT INTO `user_function` VALUES ('19', 'pmhn_berjaya', 'Mencetak Surat Tawaran Bg Pemohon Yg Ditawarkan Melanjutkan Pelajara Di Iptip.', 'Tawaran', '1', '12');
 INSERT INTO `user_function` VALUES ('20', 'permohonan', 'Fungsi Ini Adalah Untuk Menentukan Samada Pelajar Baru Atau Bekas Pelajar Memasuki Semula Pusat Pengajian', 'Permohonan', '1', '1');
-INSERT INTO `user_function` VALUES ('21', 'rayuan_permohonan', 'Fungsi Ini Digunakan Sekiranya Terdapat Pelajar Yang Tidak Berjaya Dalam Permohonan Ditimbangkan Semula Untuk Kemasukan Dalam Sesi Kemasukan', 'Rayuan Permohonan', '1', '7');
+INSERT INTO `user_function` VALUES ('21', 'rayuan_permohonan', 'Fungsi Ini Digunakan Sekiranya Terdapat Pelajar Yang Tidak Berjaya Dalam Permohonan Ditimbangkan Semula Untuk Kemasukan Dalam Sesi Kemasukan', 'Rayuan Permohonan', '1', '13');
 INSERT INTO `user_function` VALUES ('22', 'truncate', 'Reset System', 'Truncate System', '1', '6');
-INSERT INTO `user_function` VALUES ('23', 'sesi_intake', 'Fungsi Ini Digunakan Untuk Menetapkan Sesi Permohonan Kemasukan Pelajar', 'Penetapan Sesi Kemasukan', '1', '10');
-INSERT INTO `user_function` VALUES ('24', 'template', 'Untuk Tetapan Format Surat Tawaran.', 'Penetapan Format Surat', '1', '11');
+INSERT INTO `user_function` VALUES ('23', 'sesi_intake', 'Fungsi Ini Digunakan Untuk Menetapkan Sesi Permohonan Kemasukan Pelajar', 'Penetapan Sesi Kemasukan', '1', '16');
+INSERT INTO `user_function` VALUES ('24', 'template', 'Untuk Tetapan Format Surat Tawaran.', 'Penetapan Format Surat', '1', '18');
 INSERT INTO `user_function` VALUES ('26', 'info_pelajar', 'Mencari Dan Memaparkan Maklumat Pelajar', 'Maklumat Pelajar', '1', '1');
 INSERT INTO `user_function` VALUES ('27', 'edit', 'Mengemaskini Profail Pelajar', 'Kemaskini Pelajar', '0', '2');
 INSERT INTO `user_function` VALUES ('28', 'edit_waris', 'Mengemaskini Profail Waris Pelajar', 'Kemaskini Waris', '0', '3');
@@ -5329,13 +5332,14 @@ INSERT INTO `user_function` VALUES ('41', 'slip_exam', 'Memeriksa Dan Juga Mence
 INSERT INTO `user_function` VALUES ('42', 'cetak_slip_exam', 'Cetak Slip Peperiksaan Bagi Pelajar Yang Tiada Masalah', 'Cetak Slip Peperiksaan', '0', '13');
 INSERT INTO `user_function` VALUES ('43', 'bypass_slip', 'Cetak Slip Peperiksaan Bagi Pelajar Yang Bermasalah', 'Bypass Cetak Slip Peperiksaan', '0', '14');
 INSERT INTO `user_function` VALUES ('44', 'kehadiran', 'Mencatat Kehadiran Pelajar Ke Kelas', 'Kehadiran', '1', '11');
-INSERT INTO `user_function` VALUES ('45', 'detail_pemohon', 'Papar Detail Pemohon', 'Detail Pemohon', '0', '12');
-INSERT INTO `user_function` VALUES ('46', 'edit_permohonan', 'Mengemaskini Butiran Pemohon', 'Kemaskini Permohonan', '0', '13');
-INSERT INTO `user_function` VALUES ('47', 'waris', 'Mengemaskini Butiran Waris Pemohon', 'Edit Waris', '0', '14');
-INSERT INTO `user_function` VALUES ('48', 'progmohon', 'Mengemaskini Butiran Permohonan Program', 'Memohon Program', '0', '15');
-INSERT INTO `user_function` VALUES ('49', 'akademik', 'Mengemaskini Butiran Akademik Pemohon', 'Akademik Pemohon', '0', '16');
-INSERT INTO `user_function` VALUES ('50', 'surat_tawar', 'Mencetak Surat Tawaran', 'Cetak Surat Tawaran', '0', '17');
-INSERT INTO `user_function` VALUES ('51', 'set_sesi', 'Mengaktifkan Sesi Kemasukan Yang Baru', 'Pengaktifan Sesi Kemasukan', '0', '18');
+INSERT INTO `user_function` VALUES ('45', 'detail_pemohon', 'Papar Detail Pemohon', 'Detail Pemohon', '0', '7');
+INSERT INTO `user_function` VALUES ('46', 'edit_permohonan', 'Mengemaskini Butiran Pemohon', 'Kemaskini Permohonan', '0', '8');
+INSERT INTO `user_function` VALUES ('47', 'waris', 'Mengemaskini Butiran Waris Pemohon', 'Edit Waris', '0', '3');
+INSERT INTO `user_function` VALUES ('48', 'progmohon', 'Mengemaskini Butiran Permohonan Program', 'Memohon Program', '0', '4');
+INSERT INTO `user_function` VALUES ('49', 'akademik', 'Mengemaskini Butiran Akademik Pemohon', 'Akademik Pemohon', '0', '5');
+INSERT INTO `user_function` VALUES ('50', 'surat_tawar', 'Mencetak Surat Tawaran', 'Cetak Surat Tawaran', '0', '15');
+INSERT INTO `user_function` VALUES ('51', 'set_sesi', 'Mengaktifkan Sesi Kemasukan Yang Baru', 'Pengaktifan Sesi Kemasukan', '0', '17');
+INSERT INTO `user_function` VALUES ('52', 'edit_template', 'Mengemaskini Template Surat Tawaran', 'Kemaskini Template', '0', '19');
 
 -- ----------------------------
 -- Table structure for `user_jawatan`
