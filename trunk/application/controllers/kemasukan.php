@@ -23,7 +23,7 @@ class Kemasukan extends CI_Controller
 				$this->load->model('pel_akademik');				//load table tamplate surat tawaran
 				$this->load->model('pel_daftarsubjek');			//load table tamplate surat tawaran
 				$this->load->model('pel_subjek_akademik');		//load table tamplate surat tawaran
-				$this->load->model('pel_subjek_gred');		//load table tamplate surat tawaran
+				$this->load->model('pel_subjek_gred');			//load table tamplate surat tawaran
 				$this->load->model('pel_sem');					//load table tamplate surat tawaran
 				$this->load->model('siri_invois');				//load table tamplate surat tawaran
 				$this->load->model('pelajar');					//load table pelajar
@@ -33,6 +33,7 @@ class Kemasukan extends CI_Controller
 				$this->load->model('prog_subjek');				//load table tamplate surat tawaran
 				$this->load->model('pel_item_invois');			//load table tamplate surat tawaran
 				$this->load->model('subjek');					//load table tamplate surat tawaran
+				$this->load->model('pel_hadir');				//load table tamplate surat tawaran
 				
 				$this->lang->load('form_validation', 'melayu');
 				
@@ -930,10 +931,7 @@ class Kemasukan extends CI_Controller
 
 				$this->pagination->initialize($config);
 
-				$data['u'] = $this->app_pelajar->GetWherePage($whe, $config['per_page'], $this->uri->segment(3, 0));
-				//echo $this->db->last_query();
-
-				$data['paginate'] =$this->pagination->create_links();
+				$data['paginate'] = $this->pagination->create_links();
 				
 
 				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
@@ -965,6 +963,8 @@ class Kemasukan extends CI_Controller
 									}
 							}
 					}
+				$data['u'] = $this->app_pelajar->GetWherePage($whe, $config['per_page'], $this->uri->segment(3, 0));
+				//echo $this->db->last_query();
 				$this->load->view('kemasukan/mohon_rayuan', $data);
 			}
 
@@ -1091,7 +1091,7 @@ class Kemasukan extends CI_Controller
 															'alamat1' => $war->row()->alamat1,
 															'alamat2' => $war->row()->alamat2,
 															'poskod' => $war->row()->poskod,
-															'no_telefon' => $war->row()->nohp,
+															'no_telefon' => $war->row()->nohp
 														);
 /* 										$regwar = $this->pel_waris->insert($waris);
  */
@@ -1224,6 +1224,8 @@ class Kemasukan extends CI_Controller
 																'prog_struct' => 1
 															);
 												$tda[] = $this->pel_daftarsubjek->insert($array);
+												//insert into pel_hadir
+												$gaag[] = $this->pel_hadir->insert(array('id_daftarsubjek' => $this->db->insert_id()));
 											}
 										foreach ($prog_subjek1->result() as $ps1)
 											{
@@ -1331,8 +1333,8 @@ class Kemasukan extends CI_Controller
 				//check tarikh la ni dulu....
 				$dateDaftar = $this->sesi_intake->GetWhere(array('kodsesi' => $kodsesi))->row()->tarikh_daftar;
 				//echo $dateDaftar;
-				if (date_db(now()) > $dateDaftar)
-					{
+				//if (date_db(now()) > $dateDaftar)
+					//{
 						//update semua jadi unactive dulu
 						$x = $this->sesi_intake->update(NULL, array('aktif' => 0));
 						//kendian update kodsesi aktiv
@@ -1347,11 +1349,11 @@ class Kemasukan extends CI_Controller
 								redirect ('kemasukan/sesi_intake', 'location');
 								//echo 'x jadi';
 							}
-					}
-					else
-					{
-						redirect ('kemasukan/sesi_intake', 'location');
-					}
+					//}
+					//else
+					//{
+						//redirect ('kemasukan/sesi_intake', 'location');
+					//}
 			}
 			
 		//template surat

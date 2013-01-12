@@ -4,7 +4,7 @@
 //form validation through controller
 //format
 /*
-$config = array	( 
+$config = array	(
 					'controller/function' => array
 					( 
 						array
@@ -403,6 +403,33 @@ $config = array	(
 							(
 								'field' => 'name',
 								'label' => 'Nama Staf',
+								'rules' => 'trim|required|min_length[2]|xss_clean'
+							)
+					),
+					'kemasukan/rayuan_permohonan' => array
+					(
+						array
+							(
+								'field' => 'id_appprogmohon',
+								'label' => 'ID',
+								'rules' => 'trim|required|xss_clean'
+							),
+						array
+							(
+								'field' => 'id_mohon',
+								'label' => 'ID Mohon',
+								'rules' => 'trim|required|xss_clean'
+							),
+						array
+							(
+								'field' => 'kodprog',
+								'label' => 'Kod Program',
+								'rules' => 'trim|required|xss_clean'
+							),
+						array
+							(
+								'field' => 'catatan',
+								'label' => 'Catatan',
 								'rules' => 'trim|required|min_length[2]|xss_clean'
 							)
 					),
@@ -1085,10 +1112,16 @@ $config = array	(
 					(
 						array
 							(
-								'field' => 'stat',
+								'field' => 'kodsubjek',
 								'label' => 'Subjek',
 								'rules' => 'trim|required|xss_clean'
-							)
+							),
+						array
+							(
+								'field' => 'sesi',
+								'label' => 'Sesi Akademik',
+								'rules' => 'trim|required|xss_clean'
+							),
 					),
 					'hea/pemarkahan' => array
 					(
@@ -1096,19 +1129,28 @@ $config = array	(
 							(
 								'field' => 'jum_mark',
 								'label' => 'Markah',
-								'rules' => 'trim|greater_than[-1]|less_than[101]|xss_clean'
+								'rules' => 'trim|required|greater_than[-1]|less_than[101]|xss_clean'
 							),
 						array
 							(
 								'field' => 'jum_pemutihan',
 								'label' => 'Pemutihan',
-								'rules' => 'trim|greater_than[-1]|less_than[101]|xss_clean'
+								'rules' => 'trim|required|greater_than[-1]|less_than[101]|xss_clean'
+							)
+					),
+					'hea/kemaskini_gred' => array
+					(
+						array
+							(
+								'field' => 'jum_mark',
+								'label' => 'Markah',
+								'rules' => 'trim|required|greater_than[-1]|less_than[101]|xss_clean'
 							),
 						array
 							(
-								'field' => 'gred',
-								'label' => 'Gred',
-								'rules' => 'trim|xss_clean'
+								'field' => 'jum_pemutihan',
+								'label' => 'Pemutihan',
+								'rules' => 'trim|required|greater_than[-1]|less_than[101]|xss_clean'
 							)
 					),
 

@@ -15,7 +15,7 @@ class Subjek extends CI_Model
 
 		function GetAllPage($num, $offset)
 			{
-				return $this->db->order_by('namasubjek_MY DESC')->limit($num, $offset)->get('subjek');
+				return $this->db->order_by('namasubjek_MY DESC')->get('subjek', $num, $offset);
 			}
 
 		function GetWhere($where)
