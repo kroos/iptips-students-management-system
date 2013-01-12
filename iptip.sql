@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : Radius
-Source Server Version : 50523
-Source Host           : 202.185.6.131:3306
+Source Server         : Localhost
+Source Server Version : 50522
+Source Host           : localhost:3306
 Source Database       : iptip
 
 Target Server Type    : MYSQL
-Target Server Version : 50523
+Target Server Version : 50522
 File Encoding         : 65001
 
-Date: 2013-01-03 13:04:22
+Date: 2013-01-12 18:42:29
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -118,7 +118,7 @@ CREATE TABLE `app_pelajar` (
   `aktif` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `siri_mohon` (`siri_mohon`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of app_pelajar
@@ -127,15 +127,16 @@ INSERT INTO `app_pelajar` VALUES ('1', 'P1310002', 'Ahmad', '900101025556', '111
 INSERT INTO `app_pelajar` VALUES ('2', 'P1310003', 'Student 1', '800101025555', '111234', '2012-12-03', 'M010701', '2', 'A09', '2043', '1', '1', 'Tmn Peruda', '', '05300', 'M010217', '02', 'M01', '0', '0', 'stud1@mail.com', '1', '2012-12-04', '1', '2012-12-13', '2012-12-13 00:00:00', '1', '2013_1', 'TW', 'DQH', '1');
 INSERT INTO `app_pelajar` VALUES ('3', 'P1310004', 'Student 4 Bin Bapak Dia', '3232323232', '323232', '2012-12-03', 'M010701', '2', 'B03', '1103', '1', '1', 'Tmn Peruda', '', '05300', 'M010101', '01', 'M01', '0', '0', 'asd@asd.com', '1', '2012-12-05', '1', '2012-12-12', null, null, '2013_1', 'TW', 'DSY', '1');
 INSERT INTO `app_pelajar` VALUES ('4', 'P1310005', 'Student 3', '900101025555', '1112', '2012-12-03', 'M010701', '1', 'A12', '2022', '1', '1', 'Tmn Peruda', '', '05300', 'M010101', '01', 'M01', '0', '0', '0', '1', '2012-12-05', '1', '2012-12-09', null, null, '2013_1', 'INC', null, '1');
-INSERT INTO `app_pelajar` VALUES ('5', 'P1310006', 'Student 2', '123456789014', '123456789014', '2012-12-06', 'M010701', '1', 'A01', '100', '1', '1', '72, Taman Keranji', '', '05400', 'M010201', '02', 'M01', '', '0162052420', 'email@email.com', '1', '2012-12-06', '1', '2012-12-07', null, null, '2013_1', 'DIP', null, '1');
+INSERT INTO `app_pelajar` VALUES ('5', 'P1310006', 'Student 2', '123456789014', '123456789014', '2012-12-06', 'M010701', '1', 'A01', '100', '1', '1', '72, Taman Keranji', '', '05400', 'M010201', '02', 'M01', '', '0162052420', 'email@email.com', '1', '2012-12-06', '1', '2013-01-12', null, null, '2013_1', 'TW', 'PST', '0');
 INSERT INTO `app_pelajar` VALUES ('6', 'P1310007', 'Student 4', '123456789015', '123456789015', '2012-12-06', 'M010502', '1', 'A04', '2039', '2', '1', '2, Taman Mutiara', '', '08000', 'M010202', '02', 'M01', '', '0162052420', 'email1@email.com', '1', '2012-12-06', '1', '2012-12-09', null, null, '2013_1', 'GL', '', '0');
-INSERT INTO `app_pelajar` VALUES ('7', 'P1310008', 'Student 5', '123456789016', '123456789016', '2012-12-06', 'M010701', '1', 'A12', '2022', '2', '1', '2, Taman Mutiara', '', '08000', 'M010218', '02', 'M01', '', '0162052420', 'email5@email.com', '1', '2012-12-06', null, null, null, null, '2013_1', 'DIP', null, '1');
-INSERT INTO `app_pelajar` VALUES ('8', 'P1310001', 'Student 2', '123456789017', '123456789017', '2012-12-06', 'M010701', '1', 'A01', '100', '1', '1', '72, Taman Keranji', '', '05400', 'M010201', '02', 'M01', '', '0162052420', 'email@email.com', '1', '2012-12-08', null, null, null, null, '2013_1', 'DIP', null, '1');
+INSERT INTO `app_pelajar` VALUES ('7', 'P1310008', 'Student 5', '123456789016', '123456789016', '2012-12-06', 'M010701', '1', 'A12', '2022', '2', '1', '2, Taman Mutiara', '', '08000', 'M010218', '02', 'M01', '', '0162052420', 'email5@email.com', '1', '2012-12-06', '1', '2013-01-11', null, null, '2013_1', 'INC', null, '1');
+INSERT INTO `app_pelajar` VALUES ('8', 'P1310001', 'Student 2', '123456789017', '123456789017', '2012-12-06', 'M010701', '1', 'A01', '100', '1', '1', '72, Taman Keranji', '', '05400', 'M010201', '02', 'M01', '', '0162052420', 'email@email.com', '1', '2012-12-08', '1', '2013-01-11', null, null, '2013_1', 'INC', null, '1');
 INSERT INTO `app_pelajar` VALUES ('12', 'P1310009', 'Student 6', '123456789020', '-', '2012-12-09', 'M010232', '1', 'M01', '100', '1', '1', '7, Taman Mutiara', '', '08000', 'M010232', '02', 'M01', '', '0162052420', 'email6@email.com', '1', '2012-12-09', '1', '2012-12-09', null, null, '2013_1', 'DIP', null, '1');
 INSERT INTO `app_pelajar` VALUES ('13', 'P1310010', 'Student Tadi', '123456789009', '--', '1982-12-14', 'T036511', '3', 'C15', '2061', '1', '1', '1, Taman Mutiara', '', '08000', 'M011110', '11', 'M01', '', '0162052420', 'stud8@gmail.com', '1', '2012-12-16', '1', '2012-12-16', '2012-12-19 00:00:00', '1', '2013_1', 'TW', 'DSY', '1');
 INSERT INTO `app_pelajar` VALUES ('14', 'P1310011', 'Student 50', '900101025557', 'TIADA', '2012-12-24', 'M010232', '1', 'B05', '904', '1', '1', '2, Taman Mutiara', '', '08000', 'M010513', '05', 'M01', '', '0162052420', 'stud50@gmail.com', '1', '2012-12-24', '1', '2012-12-24', '2012-12-24 00:00:00', '1', '2013_1', 'TW', 'DQH', '1');
 INSERT INTO `app_pelajar` VALUES ('15', 'P1310012', 'Student 51', '800101025551', 'none', '2012-12-25', 'M010701', '1', 'B05', '1103', '1', '1', '1, Taman Mutiara', '', '05400', 'M010321', '03', 'M01', '', '0162052420', 'stud51@gmail.com', '1', '2012-12-25', '1', '2012-12-25', '2012-12-25 00:00:00', '1', '2013_1', 'TW', 'DUS', '1');
 INSERT INTO `app_pelajar` VALUES ('16', 'P1310013', 'Student 52', '123456789019', '123456789019', '2012-12-25', 'M010701', '1', 'A12', '2022', '1', '1', '1, Taman Mutiara', '', '08000', 'M011601', '16', 'M01', '', '0162052420', 'email52@email.com', '1', '2012-12-25', '1', '2012-12-25', '2012-12-25 00:00:00', '1', '2013_1', 'TW', 'DUS', '1');
+INSERT INTO `app_pelajar` VALUES ('17', '', 'Student 1', '800101025555', '111234', '2012-12-03', 'M010701', '2', 'A09', '2043', '1', '1', 'Tmn Peruda', '', '05300', 'M010217', '02', 'M01', '0', '0', 'stud1@mail.com', '1', '2013-01-11', null, null, null, null, null, 'DIP', null, '1');
 
 -- ----------------------------
 -- Table structure for `app_progmohon`
@@ -152,7 +153,7 @@ CREATE TABLE `app_progmohon` (
   `dt_edit` datetime DEFAULT NULL,
   `catatan` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of app_progmohon
@@ -165,14 +166,14 @@ INSERT INTO `app_progmohon` VALUES ('5', '3', 'P1310004', 'DQH', '2', 'GL', '1',
 INSERT INTO `app_progmohon` VALUES ('6', '3', 'P1310004', 'DUS', '3', 'GL', '1', '2012-12-12 14:04:02', 'Penawaran Program Yang Lain');
 INSERT INTO `app_progmohon` VALUES ('7', '4', 'P1310002', 'DSY', '1', 'INC', '1', '2012-12-09 03:05:21', 'Maklumat Tidak Lengkap');
 INSERT INTO `app_progmohon` VALUES ('8', '2', 'P1310003', 'DQH', '1', 'TW', '1', '2012-12-13 05:14:35', 'Penawaran Program DQH Dapat Yang Ni');
-INSERT INTO `app_progmohon` VALUES ('9', '5', 'P1310006', 'DSY', '1', 'GL', '1', '2012-12-07 09:04:43', 'Permohonan Gagal');
-INSERT INTO `app_progmohon` VALUES ('10', '5', 'P1310006', 'DUS', '2', 'GL', '1', '2012-12-07 09:04:43', 'Permohonan Gagal');
-INSERT INTO `app_progmohon` VALUES ('11', '5', 'P1310006', 'ST', '3', 'GL', '1', '2012-12-07 09:04:43', 'Permohonan Gagal');
-INSERT INTO `app_progmohon` VALUES ('12', '5', 'P1310006', 'PST', '4', 'GL', '1', '2012-12-07 09:04:43', 'Permohonan Gagal');
+INSERT INTO `app_progmohon` VALUES ('9', '5', 'P1310006', 'DSY', '1', 'GL', '1', '2013-01-12 00:16:31', 'Penawaran Program Yang Lain');
+INSERT INTO `app_progmohon` VALUES ('10', '5', 'P1310006', 'DUS', '2', 'GL', '1', '2013-01-12 00:16:31', 'Penawaran Program Yang Lain');
+INSERT INTO `app_progmohon` VALUES ('11', '5', 'P1310006', 'ST', '3', 'GL', '1', '2013-01-12 00:16:31', 'Penawaran Program Yang Lain');
+INSERT INTO `app_progmohon` VALUES ('12', '5', 'P1310006', 'PST', '4', 'TW', '1', '2013-01-12 00:16:31', 'Penawaran Program PST Try Pra Stam');
 INSERT INTO `app_progmohon` VALUES ('13', '6', 'P1310007', 'DUS', '1', 'GL', '1', '2012-12-09 03:05:53', 'Permohonan Gagal');
-INSERT INTO `app_progmohon` VALUES ('14', '7', 'P1310008', 'DSY', '1', 'DIP', '1', '2012-12-06 14:36:59', 'Qwe');
-INSERT INTO `app_progmohon` VALUES ('15', '7', 'P1310008', 'DUS', '2', 'DIP', '1', '2012-12-06 14:37:00', 'Qwe');
-INSERT INTO `app_progmohon` VALUES ('16', '7', 'P1310008', 'ST', '3', 'DIP', '1', '2012-12-06 14:37:00', 'Qwe');
+INSERT INTO `app_progmohon` VALUES ('14', '7', 'P1310008', 'DSY', '1', 'INC', '1', '2013-01-11 23:46:22', 'Maklumat Tidak Lengkap');
+INSERT INTO `app_progmohon` VALUES ('15', '7', 'P1310008', 'DUS', '2', 'INC', '1', '2013-01-11 23:46:22', 'Maklumat Tidak Lengkap');
+INSERT INTO `app_progmohon` VALUES ('16', '7', 'P1310008', 'ST', '3', 'INC', '1', '2013-01-11 23:46:22', 'Maklumat Tidak Lengkap');
 INSERT INTO `app_progmohon` VALUES ('17', '12', 'P1310009', 'ST', '1', 'DIP', '1', '2012-12-09 15:57:06', 'Stam');
 INSERT INTO `app_progmohon` VALUES ('18', '12', 'P1310009', 'PST', '2', 'DIP', '1', '2012-12-09 15:57:06', 'Pra Stam');
 INSERT INTO `app_progmohon` VALUES ('19', '12', 'P1310009', 'ST', '1', 'DIP', '1', '2012-12-09 16:31:47', 'Stam');
@@ -189,6 +190,14 @@ INSERT INTO `app_progmohon` VALUES ('29', '15', 'P1310012', 'DUS', '3', 'TW', '1
 INSERT INTO `app_progmohon` VALUES ('30', '16', 'P1310013', 'DQH', '1', 'GL', '1', '2012-12-25 01:10:27', 'Penawaran Program Yang Lain');
 INSERT INTO `app_progmohon` VALUES ('31', '16', 'P1310013', 'DUS', '2', 'TW', '1', '2012-12-25 01:10:27', 'Penawaran Program DUS Catatan :');
 INSERT INTO `app_progmohon` VALUES ('32', '16', 'P1310013', 'DSY', '3', 'GL', '1', '2012-12-25 01:10:27', 'Penawaran Program Yang Lain');
+INSERT INTO `app_progmohon` VALUES ('33', '5', 'P1310006', 'DSY', '1', 'GL', '1', '2013-01-12 00:16:31', 'Penawaran Program Yang Lain');
+INSERT INTO `app_progmohon` VALUES ('34', '5', 'P1310006', 'DUS', '2', 'GL', '1', '2013-01-12 00:16:31', 'Penawaran Program Yang Lain');
+INSERT INTO `app_progmohon` VALUES ('35', '5', 'P1310006', 'ST', '3', 'GL', '1', '2013-01-12 00:16:31', 'Penawaran Program Yang Lain');
+INSERT INTO `app_progmohon` VALUES ('36', '5', 'P1310006', 'PST', '4', 'GL', '1', '2013-01-12 00:16:31', 'Penawaran Program Yang Lain');
+INSERT INTO `app_progmohon` VALUES ('37', '5', 'P1310006', 'DSY', '1', 'GL', '1', '2013-01-12 00:16:31', 'Penawaran Program Yang Lain');
+INSERT INTO `app_progmohon` VALUES ('38', '5', 'P1310006', 'DUS', '2', 'GL', '1', '2013-01-12 00:16:31', 'Penawaran Program Yang Lain');
+INSERT INTO `app_progmohon` VALUES ('39', '5', 'P1310006', 'ST', '3', 'GL', '1', '2013-01-12 00:16:31', 'Penawaran Program Yang Lain');
+INSERT INTO `app_progmohon` VALUES ('40', '5', 'P1310006', 'PST', '4', 'GL', '1', '2013-01-12 00:16:31', 'Penawaran Program Yang Lain');
 
 -- ----------------------------
 -- Table structure for `app_subjek_akademik`
@@ -288,12 +297,12 @@ CREATE TABLE `app_waris` (
   `nohp` varchar(20) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of app_waris
 -- ----------------------------
-INSERT INTO `app_waris` VALUES ('1', '2', 'Parent 1', 'H04', '1, Taman Mutiara', '', '08000', '', '', '0162052420', 'email@email.com');
+INSERT INTO `app_waris` VALUES ('1', '17', 'Parent 1', 'H04', '1, Taman Mutiara', '', '08000', '', '', '0162052420', 'email@email.com');
 INSERT INTO `app_waris` VALUES ('2', '3', 'Parent 2', 'H04', '2, Taman Mutiara', '', '08000', '', '', '0162052420', 'email1@email.com');
 INSERT INTO `app_waris` VALUES ('3', '8', 'Parent 2', 'H04', '1, Tamana Mutiara', '', '08000', '', '', '0162052420', 'parent2@email.com');
 INSERT INTO `app_waris` VALUES ('4', '6', 'Parent 4', 'H04', '2, Taman Mutiara', '', '05400', '', '', '0162052420', 'parent4@email.com');
@@ -307,6 +316,7 @@ INSERT INTO `app_waris` VALUES ('11', '13', 'Parent 8', 'H06', '1, Taman Mutiara
 INSERT INTO `app_waris` VALUES ('12', '14', 'Parent 50', 'H04', '123,asd Asd', '', '08000', '', '', '0162052420', 'Parent50@email.com');
 INSERT INTO `app_waris` VALUES ('13', '15', 'Parent 51', 'H06', 'Qwe Asd', '', '05400', '', '', '0162052420', 'Parent51@email.com');
 INSERT INTO `app_waris` VALUES ('14', '16', 'Parent 52', 'H01', 'Asd Asd', '', '05400', '', '', '0162052420', 'Parent52@email.com');
+INSERT INTO `app_waris` VALUES ('15', '5', 'Parent 2', 'H01', 'Qwe, Qwe, Qweqwe', '', '08000', '', '', '0162052420', '');
 
 -- ----------------------------
 -- Table structure for `ci_sessions`
@@ -325,10 +335,7 @@ CREATE TABLE `ci_sessions` (
 -- ----------------------------
 -- Records of ci_sessions
 -- ----------------------------
-INSERT INTO `ci_sessions` VALUES ('40a404b318609e9a5951e7be3b3cf4e1', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1357015491', 'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"id_user\";s:1:\"1\";s:8:\"username\";s:6:\"admin1\";s:8:\"password\";s:6:\"123123\";s:9:\"logged_in\";b:1;}');
-INSERT INTO `ci_sessions` VALUES ('719bb899eac6b55ca9c066823551317e', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1356886901', 'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"id_user\";s:1:\"3\";s:8:\"username\";s:5:\"Super\";s:8:\"password\";s:6:\"123123\";s:9:\"logged_in\";b:1;}');
-INSERT INTO `ci_sessions` VALUES ('98fb3a87748d262df06267d026c05941', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1357188943', 'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"id_user\";s:1:\"1\";s:8:\"username\";s:6:\"admin1\";s:8:\"password\";s:6:\"123123\";s:9:\"logged_in\";b:1;}');
-INSERT INTO `ci_sessions` VALUES ('c71da64468ab4c269230bcc150c42d92', '202.185.6.180', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1357096111', 'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"id_user\";s:1:\"1\";s:8:\"username\";s:6:\"admin1\";s:8:\"password\";s:6:\"123123\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('61183f943ba93a5e8a45fa208410f1fe', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0', '1357926593', 'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"id_user\";s:1:\"1\";s:8:\"username\";s:6:\"admin1\";s:8:\"password\";s:6:\"123123\";s:9:\"logged_in\";b:1;}');
 
 -- ----------------------------
 -- Table structure for `dept_func`
@@ -339,7 +346,7 @@ CREATE TABLE `dept_func` (
   `id_user_department` int(11) NOT NULL,
   `id_user_function` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of dept_func
@@ -384,6 +391,18 @@ INSERT INTO `dept_func` VALUES ('39', '4', '36');
 INSERT INTO `dept_func` VALUES ('40', '2', '37');
 INSERT INTO `dept_func` VALUES ('41', '2', '38');
 INSERT INTO `dept_func` VALUES ('42', '2', '39');
+INSERT INTO `dept_func` VALUES ('43', '2', '40');
+INSERT INTO `dept_func` VALUES ('44', '2', '41');
+INSERT INTO `dept_func` VALUES ('45', '2', '42');
+INSERT INTO `dept_func` VALUES ('46', '2', '43');
+INSERT INTO `dept_func` VALUES ('47', '2', '44');
+INSERT INTO `dept_func` VALUES ('48', '5', '45');
+INSERT INTO `dept_func` VALUES ('49', '5', '46');
+INSERT INTO `dept_func` VALUES ('50', '5', '47');
+INSERT INTO `dept_func` VALUES ('51', '5', '48');
+INSERT INTO `dept_func` VALUES ('52', '5', '49');
+INSERT INTO `dept_func` VALUES ('53', '5', '50');
+INSERT INTO `dept_func` VALUES ('54', '5', '51');
 
 -- ----------------------------
 -- Table structure for `dept_jaw`
@@ -489,26 +508,6 @@ INSERT INTO `gredmata` VALUES ('22', '-1', '-1', 'GHA', '0', 'GAGAL HADIR PEPERI
 INSERT INTO `gredmata` VALUES ('23', '-1', '-1', 'GHB', '0', 'GAGAL HADIR PENILAIAN BERTERUSAN', '2', '0');
 
 -- ----------------------------
--- Table structure for `host_bilik`
--- ----------------------------
-DROP TABLE IF EXISTS `host_bilik`;
-CREATE TABLE `host_bilik` (
-  `id` int(8) NOT NULL AUTO_INCREMENT,
-  `kodhostel` varchar(20) DEFAULT NULL,
-  `nobilik` varchar(20) DEFAULT NULL,
-  `harga_hari` double(8,2) DEFAULT NULL,
-  `harga_bulan` double(8,2) DEFAULT NULL,
-  `max_capacity` int(3) DEFAULT NULL,
-  `aktif` tinyint(1) DEFAULT '1',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `idx1` (`nobilik`,`kodhostel`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of host_bilik
--- ----------------------------
-
--- ----------------------------
 -- Table structure for `hostel`
 -- ----------------------------
 DROP TABLE IF EXISTS `hostel`;
@@ -527,6 +526,26 @@ CREATE TABLE `hostel` (
 
 -- ----------------------------
 -- Records of hostel
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `host_bilik`
+-- ----------------------------
+DROP TABLE IF EXISTS `host_bilik`;
+CREATE TABLE `host_bilik` (
+  `id` int(8) NOT NULL AUTO_INCREMENT,
+  `kodhostel` varchar(20) DEFAULT NULL,
+  `nobilik` varchar(20) DEFAULT NULL,
+  `harga_hari` double(8,2) DEFAULT NULL,
+  `harga_bulan` double(8,2) DEFAULT NULL,
+  `max_capacity` int(3) DEFAULT NULL,
+  `aktif` tinyint(1) DEFAULT '1',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx1` (`nobilik`,`kodhostel`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of host_bilik
 -- ----------------------------
 
 -- ----------------------------
@@ -608,12 +627,63 @@ CREATE TABLE `lect_ajar` (
   `sesi` varchar(20) DEFAULT NULL,
   `aktif` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of lect_ajar
 -- ----------------------------
 INSERT INTO `lect_ajar` VALUES ('1', '3', 'PS1501', '2013_1', '1');
+INSERT INTO `lect_ajar` VALUES ('2', '4', 'QH1201', '2013_1', '1');
+INSERT INTO `lect_ajar` VALUES ('3', '4', 'WI1105', '2013_1', '1');
+INSERT INTO `lect_ajar` VALUES ('4', '3', 'SY1208', '2013_1', '1');
+INSERT INTO `lect_ajar` VALUES ('5', '3', 'S103', '2013_1', '1');
+INSERT INTO `lect_ajar` VALUES ('6', '4', 'US1304', '2013_1', '1');
+
+-- ----------------------------
+-- Table structure for `pelajar`
+-- ----------------------------
+DROP TABLE IF EXISTS `pelajar`;
+CREATE TABLE `pelajar` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `matrik` varchar(20) NOT NULL,
+  `nama` varchar(100) DEFAULT NULL,
+  `ic` varchar(50) DEFAULT NULL,
+  `passport` varchar(50) DEFAULT NULL,
+  `status_pljr` varchar(10) DEFAULT NULL,
+  `dt_lahir` date DEFAULT NULL,
+  `tempat_lahir` varchar(100) DEFAULT NULL,
+  `status_warga` tinyint(1) DEFAULT NULL,
+  `warganegara` varchar(20) DEFAULT NULL,
+  `bangsa` varchar(5) DEFAULT NULL,
+  `jantina` varchar(1) DEFAULT NULL,
+  `status_kahwin` varchar(5) DEFAULT NULL,
+  `alamat1` varchar(100) DEFAULT NULL,
+  `alamat2` varchar(100) DEFAULT NULL,
+  `poskod` varchar(10) DEFAULT NULL,
+  `bandar` varchar(10) DEFAULT NULL,
+  `negeri` varchar(10) DEFAULT NULL,
+  `negara` varchar(10) DEFAULT NULL,
+  `notel` varchar(20) DEFAULT NULL,
+  `nohp` varchar(20) DEFAULT NULL,
+  `emel` varchar(50) DEFAULT NULL,
+  `dt_daftar` date DEFAULT NULL,
+  `sesi_daftar` varchar(20) DEFAULT NULL,
+  `id_add` varchar(20) DEFAULT NULL,
+  `dt_add` date DEFAULT NULL,
+  `id_edit` varchar(20) DEFAULT NULL,
+  `dt_edit` date DEFAULT NULL,
+  PRIMARY KEY (`id`,`matrik`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of pelajar
+-- ----------------------------
+INSERT INTO `pelajar` VALUES ('1', 'DSY1', 'Student 1', '800101025555', '111234', 'A', '2012-12-03', 'M010701', '2', 'A09', '1230', '1', '1', 'Tmn Peruda', '', '05300', 'M010218', '02', 'M01', '0', '0', 'stud1@mail.com', '2012-12-13', '2013_1', '1', '2012-12-13', '1', '2012-12-16');
+INSERT INTO `pelajar` VALUES ('2', 'HEM001', 'Ahmad', '900101025556', '1113', 'A', '2012-12-03', 'M010701', '1', 'A12', '2022', '2', '1', 'Tmn Peruda', '', '05300', 'M010403', '04', 'M01', '0', '0', 'stud3@gmail.com', '2012-12-16', '2013_1', '1', '2012-12-16', '1', '2012-12-16');
+INSERT INTO `pelajar` VALUES ('4', 'HURRAH1', 'Student Tadi', '123456789009', '--', 'A', '1982-12-14', 'T036511', '3', 'C15', '2061', '1', '1', '1, Taman Mutiara', '', '08000', 'M011110', '11', 'M01', '', '0162052420', 'stud8@gmail.com', '2012-12-19', '2013_1', '1', '2012-12-19', null, null);
+INSERT INTO `pelajar` VALUES ('5', 'HURRAH2', 'Student 50', '900101025557', 'TIADA', 'A', '2012-12-24', 'M010232', '1', 'B05', '904', '1', '1', '2, Taman Mutiara', '', '08000', 'M010513', '05', 'M01', '', '0162052420', 'stud50@gmail.com', '2012-12-24', '2013_1', '1', '2012-12-24', null, null);
+INSERT INTO `pelajar` VALUES ('6', 'HURRAH3', 'Student 51', '800101025551', 'none', 'A', '2012-12-25', 'M010701', '1', 'B05', '1103', '1', '1', '1, Taman Mutiara', '', '05400', 'M010321', '03', 'M01', '', '0162052420', 'stud51@gmail.com', '2012-12-25', '2013_1', '1', '2012-12-25', null, null);
+INSERT INTO `pelajar` VALUES ('7', 'HURRAH4', 'Student 52', '123456789019', '123456789019', 'A', '2012-12-25', 'M010701', '1', 'A12', '2022', '1', '1', '1, Taman Mutiara', '', '08000', 'M011601', '16', 'M01', '', '0162052420', 'email52@email.com', '2012-12-25', '2013_1', '1', '2012-12-25', null, null);
 
 -- ----------------------------
 -- Table structure for `pel_akademik`
@@ -884,11 +954,169 @@ CREATE TABLE `pel_hadir` (
   `user_edit` varchar(20) DEFAULT NULL,
   `date_edit` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=159 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of pel_hadir
 -- ----------------------------
+INSERT INTO `pel_hadir` VALUES ('1', '1', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('2', '2', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('3', '3', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('4', '4', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('5', '5', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('6', '6', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('7', '7', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('8', '12', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('9', '13', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('10', '14', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('11', '15', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('12', '16', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('13', '17', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('14', '18', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('15', '19', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('16', '20', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('17', '21', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('18', '22', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('19', '23', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('20', '24', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('21', '25', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('22', '26', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('23', '27', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('24', '28', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('25', '29', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('26', '30', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('27', '31', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('28', '32', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('29', '33', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('30', '34', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('31', '35', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('32', '36', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('33', '37', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('34', '38', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('35', '39', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('36', '40', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('37', '41', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('38', '42', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('39', '43', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('40', '44', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('41', '45', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('42', '46', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('43', '47', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('44', '48', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('45', '49', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('46', '50', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('47', '51', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('48', '52', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('49', '53', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('50', '54', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('51', '55', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('52', '56', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('53', '57', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('54', '58', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('55', '59', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('56', '60', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('57', '61', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('58', '62', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('59', '63', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('60', '64', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('61', '65', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('62', '66', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('63', '67', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('64', '68', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('65', '71', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('66', '72', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('67', '73', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('68', '74', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('69', '75', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('70', '76', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('71', '77', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('72', '78', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('73', '79', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('74', '80', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('75', '81', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('76', '82', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('77', '83', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('78', '84', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('79', '85', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('80', '86', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('81', '87', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('82', '88', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('83', '89', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('84', '90', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('85', '91', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('86', '92', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('87', '93', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('88', '94', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('89', '95', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('90', '96', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('91', '97', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('92', '98', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('93', '99', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('94', '100', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('95', '101', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('96', '102', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('97', '103', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('98', '104', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('99', '105', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('100', '106', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('101', '107', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('102', '108', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('103', '109', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('104', '110', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('105', '111', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('106', '112', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('107', '113', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('108', '114', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('109', '115', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('110', '116', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('111', '117', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('112', '118', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('113', '119', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('114', '120', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('115', '121', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('116', '122', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('117', '123', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('118', '124', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('119', '125', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('120', '126', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('121', '127', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('122', '128', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('123', '129', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('124', '130', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('125', '131', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('126', '132', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('127', '133', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('128', '134', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('129', '135', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('130', '136', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('131', '137', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('132', '138', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('133', '139', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('134', '140', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('135', '141', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('136', '142', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('137', '143', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('138', '144', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('139', '145', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('140', '146', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('141', '147', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('142', '148', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('143', '149', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('144', '150', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('145', '151', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('146', '152', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('147', '153', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('148', '154', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('149', '155', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('150', '156', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('151', '157', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('152', '158', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('153', '159', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('154', '160', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('155', '161', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('156', '162', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('157', '163', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('158', '164', null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for `pel_hadir_harian`
@@ -1190,7 +1418,7 @@ CREATE TABLE `pel_subjek_gred` (
 -- ----------------------------
 -- Records of pel_subjek_gred
 -- ----------------------------
-INSERT INTO `pel_subjek_gred` VALUES ('1', 'HURRAH3', 'PS1501', '2013_1', '1.0', '0', '1', '2012-12-25 00:54:13', null, null, null, null, null, null, null, null, null);
+INSERT INTO `pel_subjek_gred` VALUES ('1', 'HURRAH3', 'PS1501', '2013_1', '1.0', '0', '1', '2012-12-25 00:54:13', null, null, null, null, 'A', null, '90.000', '0.000', '1');
 INSERT INTO `pel_subjek_gred` VALUES ('2', 'HURRAH3', 'WI1101', '2013_1', '1.0', '2', '1', '2012-12-25 00:54:13', null, null, null, null, null, null, null, null, null);
 INSERT INTO `pel_subjek_gred` VALUES ('3', 'HURRAH3', 'WI1104', '2013_1', '1.0', '2', '1', '2012-12-25 00:54:13', null, null, null, null, null, null, null, null, null);
 INSERT INTO `pel_subjek_gred` VALUES ('4', 'HURRAH3', 'US1201', '2013_1', '1.0', '3', '1', '2012-12-25 00:54:13', null, null, null, null, null, null, null, null, null);
@@ -1198,7 +1426,7 @@ INSERT INTO `pel_subjek_gred` VALUES ('5', 'HURRAH3', 'SY1206', '2013_1', '1.0',
 INSERT INTO `pel_subjek_gred` VALUES ('6', 'HURRAH3', 'MPW1113', '2013_1', '1.0', '3', '1', '2012-12-25 00:54:13', null, null, null, null, null, null, null, null, null);
 INSERT INTO `pel_subjek_gred` VALUES ('7', 'HURRAH3', 'MPW1123', '2013_1', '1.0', '3', '1', '2012-12-25 00:54:14', null, null, null, null, null, null, null, null, null);
 INSERT INTO `pel_subjek_gred` VALUES ('8', 'HURRAH3', 'US1211', '2013_1', '1.0', '3', '1', '2012-12-25 00:54:14', null, null, null, null, null, null, null, null, null);
-INSERT INTO `pel_subjek_gred` VALUES ('48', 'HURRAH4', 'PS1501', '2013_1', '1.0', '0', '1', '2012-12-25 01:11:39', null, null, null, null, 'B+', null, '78.000', '0.000', '1');
+INSERT INTO `pel_subjek_gred` VALUES ('48', 'HURRAH4', 'PS1501', '2013_1', '1.0', '0', '1', '2012-12-25 01:11:39', null, null, null, null, 'F', null, '19.400', '10.000', '0');
 INSERT INTO `pel_subjek_gred` VALUES ('49', 'HURRAH4', 'WI1101', '2013_1', '1.0', '2', '1', '2012-12-25 01:11:39', null, null, null, null, 'C-', null, '45.000', '0.000', '1');
 INSERT INTO `pel_subjek_gred` VALUES ('50', 'HURRAH4', 'WI1104', '2013_1', '1.0', '2', '1', '2012-12-25 01:11:39', null, null, null, null, 'D', null, '43.000', '0.000', '0');
 INSERT INTO `pel_subjek_gred` VALUES ('51', 'HURRAH4', 'US1201', '2013_1', '1.0', '3', '1', '2012-12-25 01:11:39', null, null, null, null, 'B+', null, '78.000', '0.000', '1');
@@ -1206,7 +1434,7 @@ INSERT INTO `pel_subjek_gred` VALUES ('52', 'HURRAH4', 'MPW1113', '2013_1', '1.0
 INSERT INTO `pel_subjek_gred` VALUES ('53', 'HURRAH4', 'US1211', '2013_1', '1.0', '3', '1', '2012-12-25 01:11:39', null, null, null, null, 'B+', null, '78.000', '0.000', '1');
 INSERT INTO `pel_subjek_gred` VALUES ('54', 'HURRAH4', 'SY1206', '2013_1', '1.0', '3', '1', '2012-12-25 01:11:39', null, null, null, null, 'B+', null, '78.000', '0.000', '1');
 INSERT INTO `pel_subjek_gred` VALUES ('55', 'HURRAH4', 'MPW1123', '2013_1', '1.0', '3', '1', '2012-12-25 01:11:39', null, null, null, null, 'B+', null, '78.000', '0.000', '1');
-INSERT INTO `pel_subjek_gred` VALUES ('56', 'HURRAH2', 'PS1501', '2013_1', '1.0', '0', '1', '2012-12-25 03:58:00', null, null, null, null, null, null, null, null, null);
+INSERT INTO `pel_subjek_gred` VALUES ('56', 'HURRAH2', 'PS1501', '2013_1', '1.0', '0', '1', '2012-12-25 03:58:00', null, null, null, null, '', null, null, null, null);
 INSERT INTO `pel_subjek_gred` VALUES ('57', 'HURRAH2', 'WI1101', '2013_1', '1.0', '2', '1', '2012-12-25 03:58:18', null, null, null, null, null, null, null, null, null);
 INSERT INTO `pel_subjek_gred` VALUES ('58', 'HURRAH2', 'MPW1123', '2013_1', '1.0', '3', '1', '2012-12-25 03:58:26', null, null, null, null, null, null, null, null, null);
 INSERT INTO `pel_subjek_gred` VALUES ('59', 'HURRAH2', 'SY1206', '2013_1', '1.0', '3', '1', '2012-12-25 03:58:34', null, null, null, null, null, null, null, null, null);
@@ -1282,50 +1510,27 @@ INSERT INTO `pel_waris` VALUES ('6', 'HURRAH3', 'Parent 51', 'H06', 'Qwe Asd', '
 INSERT INTO `pel_waris` VALUES ('7', 'HURRAH4', 'Parent 52', 'H01', 'Asd Asd', '', '05400', '0162052420');
 
 -- ----------------------------
--- Table structure for `pelajar`
+-- Table structure for `program`
 -- ----------------------------
-DROP TABLE IF EXISTS `pelajar`;
-CREATE TABLE `pelajar` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `matrik` varchar(20) NOT NULL,
-  `nama` varchar(100) DEFAULT NULL,
-  `ic` varchar(50) DEFAULT NULL,
-  `passport` varchar(50) DEFAULT NULL,
-  `status_pljr` varchar(10) DEFAULT NULL,
-  `dt_lahir` date DEFAULT NULL,
-  `tempat_lahir` varchar(100) DEFAULT NULL,
-  `status_warga` tinyint(1) DEFAULT NULL,
-  `warganegara` varchar(20) DEFAULT NULL,
-  `bangsa` varchar(5) DEFAULT NULL,
-  `jantina` varchar(1) DEFAULT NULL,
-  `status_kahwin` varchar(5) DEFAULT NULL,
-  `alamat1` varchar(100) DEFAULT NULL,
-  `alamat2` varchar(100) DEFAULT NULL,
-  `poskod` varchar(10) DEFAULT NULL,
-  `bandar` varchar(10) DEFAULT NULL,
-  `negeri` varchar(10) DEFAULT NULL,
-  `negara` varchar(10) DEFAULT NULL,
-  `notel` varchar(20) DEFAULT NULL,
-  `nohp` varchar(20) DEFAULT NULL,
-  `emel` varchar(50) DEFAULT NULL,
-  `dt_daftar` date DEFAULT NULL,
-  `sesi_daftar` varchar(20) DEFAULT NULL,
-  `id_add` varchar(20) DEFAULT NULL,
-  `dt_add` date DEFAULT NULL,
-  `id_edit` varchar(20) DEFAULT NULL,
-  `dt_edit` date DEFAULT NULL,
-  PRIMARY KEY (`id`,`matrik`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `program`;
+CREATE TABLE `program` (
+  `kod_prog` varchar(10) NOT NULL,
+  `namaprog_MY` varchar(50) NOT NULL,
+  `id_jabatan` int(11) DEFAULT NULL,
+  `kod_tahap` int(11) NOT NULL,
+  `tempoh` int(2) DEFAULT NULL,
+  PRIMARY KEY (`kod_prog`),
+  UNIQUE KEY `IDX1` (`kod_prog`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of pelajar
+-- Records of program
 -- ----------------------------
-INSERT INTO `pelajar` VALUES ('1', 'DSY1', 'Student 1', '800101025555', '111234', 'A', '2012-12-03', 'M010701', '2', 'A09', '1230', '1', '1', 'Tmn Peruda', '', '05300', 'M010218', '02', 'M01', '0', '0', 'stud1@mail.com', '2012-12-13', '2013_1', '1', '2012-12-13', '1', '2012-12-16');
-INSERT INTO `pelajar` VALUES ('2', 'HEM001', 'Ahmad', '900101025556', '1113', 'A', '2012-12-03', 'M010701', '1', 'A12', '2022', '2', '1', 'Tmn Peruda', '', '05300', 'M010403', '04', 'M01', '0', '0', 'stud3@gmail.com', '2012-12-16', '2013_1', '1', '2012-12-16', '1', '2012-12-16');
-INSERT INTO `pelajar` VALUES ('4', 'HURRAH1', 'Student Tadi', '123456789009', '--', 'A', '1982-12-14', 'T036511', '3', 'C15', '2061', '1', '1', '1, Taman Mutiara', '', '08000', 'M011110', '11', 'M01', '', '0162052420', 'stud8@gmail.com', '2012-12-19', '2013_1', '1', '2012-12-19', null, null);
-INSERT INTO `pelajar` VALUES ('5', 'HURRAH2', 'Student 50', '900101025557', 'TIADA', 'A', '2012-12-24', 'M010232', '1', 'B05', '904', '1', '1', '2, Taman Mutiara', '', '08000', 'M010513', '05', 'M01', '', '0162052420', 'stud50@gmail.com', '2012-12-24', '2013_1', '1', '2012-12-24', null, null);
-INSERT INTO `pelajar` VALUES ('6', 'HURRAH3', 'Student 51', '800101025551', 'none', 'A', '2012-12-25', 'M010701', '1', 'B05', '1103', '1', '1', '1, Taman Mutiara', '', '05400', 'M010321', '03', 'M01', '', '0162052420', 'stud51@gmail.com', '2012-12-25', '2013_1', '1', '2012-12-25', null, null);
-INSERT INTO `pelajar` VALUES ('7', 'HURRAH4', 'Student 52', '123456789019', '123456789019', 'A', '2012-12-25', 'M010701', '1', 'A12', '2022', '1', '1', '1, Taman Mutiara', '', '08000', 'M011601', '16', 'M01', '', '0162052420', 'email52@email.com', '2012-12-25', '2013_1', '1', '2012-12-25', null, null);
+INSERT INTO `program` VALUES ('DQH', 'DIPLOMA AL-QURAN & HADIS', '3', '3', '6');
+INSERT INTO `program` VALUES ('DSY', 'DIPLOMA SYARIAH', '2', '3', '6');
+INSERT INTO `program` VALUES ('DUS', 'DIPLOMA USULUDDIN', '2', '3', '6');
+INSERT INTO `program` VALUES ('PST', 'PRA-STAM', '6', '1', '2');
+INSERT INTO `program` VALUES ('ST', 'STAM', '5', '2', '2');
 
 -- ----------------------------
 -- Table structure for `prog_subjek`
@@ -1512,29 +1717,6 @@ INSERT INTO `prog_subjek` VALUES ('156', 'ST', 'S109', '1.0');
 INSERT INTO `prog_subjek` VALUES ('174', 'ST', 'S109', '2.0');
 INSERT INTO `prog_subjek` VALUES ('157', 'ST', 'S110', '1.0');
 INSERT INTO `prog_subjek` VALUES ('175', 'ST', 'S110', '2.0');
-
--- ----------------------------
--- Table structure for `program`
--- ----------------------------
-DROP TABLE IF EXISTS `program`;
-CREATE TABLE `program` (
-  `kod_prog` varchar(10) NOT NULL,
-  `namaprog_MY` varchar(50) NOT NULL,
-  `id_jabatan` int(11) DEFAULT NULL,
-  `kod_tahap` int(11) NOT NULL,
-  `tempoh` int(2) DEFAULT NULL,
-  PRIMARY KEY (`kod_prog`),
-  UNIQUE KEY `IDX1` (`kod_prog`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of program
--- ----------------------------
-INSERT INTO `program` VALUES ('DQH', 'DIPLOMA AL-QURAN & HADIS', '3', '3', '6');
-INSERT INTO `program` VALUES ('DSY', 'DIPLOMA SYARIAH', '2', '3', '6');
-INSERT INTO `program` VALUES ('DUS', 'DIPLOMA USULUDDIN', '2', '3', '6');
-INSERT INTO `program` VALUES ('PST', 'PRA-STAM', '6', '1', '2');
-INSERT INTO `program` VALUES ('ST', 'STAM', '5', '2', '2');
 
 -- ----------------------------
 -- Table structure for `ruj_intake`
@@ -4129,10 +4311,10 @@ INSERT INTO `sel_status` VALUES ('US', 'ULANG SEMESTER', 'REPEAT SEMESTER', '04'
 INSERT INTO `sel_status` VALUES ('X', 'GUGUR NAMA (BERHENTI)', 'WITHDRAWED', '06', '0', '0');
 
 -- ----------------------------
--- Table structure for `sel_statusDtl`
+-- Table structure for `sel_statusdtl`
 -- ----------------------------
-DROP TABLE IF EXISTS `sel_statusDtl`;
-CREATE TABLE `sel_statusDtl` (
+DROP TABLE IF EXISTS `sel_statusdtl`;
+CREATE TABLE `sel_statusdtl` (
   `kod_sem` varchar(5) DEFAULT NULL,
   `kod_detail` varchar(5) NOT NULL DEFAULT '',
   `keterangan` varchar(30) DEFAULT NULL,
@@ -4140,25 +4322,25 @@ CREATE TABLE `sel_statusDtl` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of sel_statusDtl
+-- Records of sel_statusdtl
 -- ----------------------------
-INSERT INTO `sel_statusDtl` VALUES ('-1', '-1', 'TIDAK DINYATAKAN');
-INSERT INTO `sel_statusDtl` VALUES ('01', '01', 'AKTIF');
-INSERT INTO `sel_statusDtl` VALUES ('02', '02', 'PASIF');
-INSERT INTO `sel_statusDtl` VALUES ('03', '0301', 'BERSALIN');
-INSERT INTO `sel_statusDtl` VALUES ('03', '0302', 'MASALAH PERIBADI');
-INSERT INTO `sel_statusDtl` VALUES ('03', '0303', 'GANTUNG (HUKUMAN TATATERTIB)');
-INSERT INTO `sel_statusDtl` VALUES ('03', '0305', 'MASALAH KEWANGAN');
-INSERT INTO `sel_statusDtl` VALUES ('04', '0401', 'MOHON BERHENTI');
-INSERT INTO `sel_statusDtl` VALUES ('04', '0402', 'MENINGGAL DUNIA');
-INSERT INTO `sel_statusDtl` VALUES ('05', '0501', 'GAGAL PEPERIKSAAN / AKADEMIK');
-INSERT INTO `sel_statusDtl` VALUES ('05', '0502', 'HUKUMAN TATATERTIB');
-INSERT INTO `sel_statusDtl` VALUES ('06', '06', 'GUGUR NAMA (BERHENTI)');
-INSERT INTO `sel_statusDtl` VALUES ('07', '0701', 'SIJIL (TAMAT)');
-INSERT INTO `sel_statusDtl` VALUES ('07', '0702', 'DIPLOMA (TAMAT)');
-INSERT INTO `sel_statusDtl` VALUES ('07', '0703', 'IJAZAH SARJANA MUDA (TAMAT)');
-INSERT INTO `sel_statusDtl` VALUES ('07', '0704', 'MASTER/SARJANA (TAMAT)');
-INSERT INTO `sel_statusDtl` VALUES ('07', '0705', 'PHD (TAMAT)');
+INSERT INTO `sel_statusdtl` VALUES ('-1', '-1', 'TIDAK DINYATAKAN');
+INSERT INTO `sel_statusdtl` VALUES ('01', '01', 'AKTIF');
+INSERT INTO `sel_statusdtl` VALUES ('02', '02', 'PASIF');
+INSERT INTO `sel_statusdtl` VALUES ('03', '0301', 'BERSALIN');
+INSERT INTO `sel_statusdtl` VALUES ('03', '0302', 'MASALAH PERIBADI');
+INSERT INTO `sel_statusdtl` VALUES ('03', '0303', 'GANTUNG (HUKUMAN TATATERTIB)');
+INSERT INTO `sel_statusdtl` VALUES ('03', '0305', 'MASALAH KEWANGAN');
+INSERT INTO `sel_statusdtl` VALUES ('04', '0401', 'MOHON BERHENTI');
+INSERT INTO `sel_statusdtl` VALUES ('04', '0402', 'MENINGGAL DUNIA');
+INSERT INTO `sel_statusdtl` VALUES ('05', '0501', 'GAGAL PEPERIKSAAN / AKADEMIK');
+INSERT INTO `sel_statusdtl` VALUES ('05', '0502', 'HUKUMAN TATATERTIB');
+INSERT INTO `sel_statusdtl` VALUES ('06', '06', 'GUGUR NAMA (BERHENTI)');
+INSERT INTO `sel_statusdtl` VALUES ('07', '0701', 'SIJIL (TAMAT)');
+INSERT INTO `sel_statusdtl` VALUES ('07', '0702', 'DIPLOMA (TAMAT)');
+INSERT INTO `sel_statusdtl` VALUES ('07', '0703', 'IJAZAH SARJANA MUDA (TAMAT)');
+INSERT INTO `sel_statusdtl` VALUES ('07', '0704', 'MASTER/SARJANA (TAMAT)');
+INSERT INTO `sel_statusdtl` VALUES ('07', '0705', 'PHD (TAMAT)');
 
 -- ----------------------------
 -- Table structure for `sel_statusmohon`
@@ -4608,7 +4790,8 @@ CREATE TABLE `sesi_intake` (
 -- ----------------------------
 -- Records of sesi_intake
 -- ----------------------------
-INSERT INTO `sesi_intake` VALUES ('2013_1', 'P131', '0014', '2012-06-01', '2012-12-31', '2012-12-31', '1');
+INSERT INTO `sesi_intake` VALUES ('2013_1', 'P131', '0014', '2012-06-01', '2012-12-31', '2012-12-31', '0');
+INSERT INTO `sesi_intake` VALUES ('2013_2', 'P132', '0001', '2013-01-01', '2013-06-30', '2013-06-01', '1');
 INSERT INTO `sesi_intake` VALUES ('2014_1', 'P141', '0001', '2013-06-01', '2013-12-31', '2013-12-31', '0');
 INSERT INTO `sesi_intake` VALUES ('2015_1', 'P151', '0001', '2014-06-01', '2014-12-31', '2015-01-05', '0');
 
@@ -4975,7 +5158,7 @@ CREATE TABLE `user_dept_func` (
   `active` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'weather its active for the user or not',
   PRIMARY KEY (`id`),
   KEY `unique` (`id_user_function`)
-) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user_dept_func
@@ -5050,6 +5233,24 @@ INSERT INTO `user_dept_func` VALUES ('73', '1', '2', '38', '1');
 INSERT INTO `user_dept_func` VALUES ('74', '1', '2', '39', '1');
 INSERT INTO `user_dept_func` VALUES ('75', '3', '2', '38', '0');
 INSERT INTO `user_dept_func` VALUES ('76', '3', '2', '39', '1');
+INSERT INTO `user_dept_func` VALUES ('77', '1', '2', '40', '1');
+INSERT INTO `user_dept_func` VALUES ('78', '3', '2', '40', '1');
+INSERT INTO `user_dept_func` VALUES ('79', '1', '2', '41', '1');
+INSERT INTO `user_dept_func` VALUES ('80', '1', '2', '42', '1');
+INSERT INTO `user_dept_func` VALUES ('81', '1', '2', '43', '1');
+INSERT INTO `user_dept_func` VALUES ('82', '1', '2', '44', '1');
+INSERT INTO `user_dept_func` VALUES ('83', '1', '5', '45', '1');
+INSERT INTO `user_dept_func` VALUES ('84', '1', '5', '46', '1');
+INSERT INTO `user_dept_func` VALUES ('85', '1', '5', '47', '1');
+INSERT INTO `user_dept_func` VALUES ('86', '1', '5', '48', '1');
+INSERT INTO `user_dept_func` VALUES ('87', '1', '5', '49', '1');
+INSERT INTO `user_dept_func` VALUES ('88', '1', '5', '13', '1');
+INSERT INTO `user_dept_func` VALUES ('89', '1', '5', '14', '1');
+INSERT INTO `user_dept_func` VALUES ('90', '1', '5', '15', '1');
+INSERT INTO `user_dept_func` VALUES ('91', '1', '5', '19', '1');
+INSERT INTO `user_dept_func` VALUES ('92', '1', '5', '50', '1');
+INSERT INTO `user_dept_func` VALUES ('93', '1', '5', '16', '1');
+INSERT INTO `user_dept_func` VALUES ('94', '1', '5', '51', '1');
 
 -- ----------------------------
 -- Table structure for `user_dept_jaw`
@@ -5083,7 +5284,7 @@ CREATE TABLE `user_function` (
   `posisi` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `Function` (`function`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user_function
@@ -5120,9 +5321,21 @@ INSERT INTO `user_function` VALUES ('33', 'status_pelajar', 'Carian Pelajar Untu
 INSERT INTO `user_function` VALUES ('34', 'urus_status', 'Mengemaskini Status Penangguhan Pelajar', 'Kemaskini Status', '0', '10');
 INSERT INTO `user_function` VALUES ('35', 'pembayaran', 'Pencarian Pelajar Untuk Pembayaran', 'Pembayaran', '1', '3');
 INSERT INTO `user_function` VALUES ('36', 'pmbyrn_resit', 'Pembayaran Resit', 'Pembayaran Resit', '0', '4');
-INSERT INTO `user_function` VALUES ('37', 'pensyarah', 'Penambahan Pensyarah / Assigning Lecturer', 'Penugasan Pensyarah', '1', '12');
-INSERT INTO `user_function` VALUES ('38', 'assign_lect', 'Proses Penugasan Untuk Dijadikan Sebagai Pensyarah', 'Kemaskini Pensyarah', '0', '13');
-INSERT INTO `user_function` VALUES ('39', 'pemarkahan', 'Hanya Untuk Pensyarah Yang Akan Memberi Markah Kepada Pelajar', 'Pemarkahan', '1', '11');
+INSERT INTO `user_function` VALUES ('37', 'pensyarah', 'Penambahan Pensyarah / Assigning Lecturer', 'Penugasan Pensyarah', '1', '17');
+INSERT INTO `user_function` VALUES ('38', 'assign_lect', 'Proses Penugasan Untuk Dijadikan Sebagai Pensyarah', 'Kemaskini Pensyarah', '0', '18');
+INSERT INTO `user_function` VALUES ('39', 'pemarkahan', 'Hanya Untuk Pensyarah Yang Akan Memberi Markah Kepada Pelajar', 'Pemarkahan', '1', '15');
+INSERT INTO `user_function` VALUES ('40', 'kemaskini_gred', 'Kemaskini Gred Untuk Subjek Tertentu Bagi Seseorang Pelajar', 'Kemaskini Gred', '0', '16');
+INSERT INTO `user_function` VALUES ('41', 'slip_exam', 'Memeriksa Dan Juga Mencetak Setiap Slip Peperiksaan Bagi Setiap Pelajar', 'Slip Peperiksaan', '1', '12');
+INSERT INTO `user_function` VALUES ('42', 'cetak_slip_exam', 'Cetak Slip Peperiksaan Bagi Pelajar Yang Tiada Masalah', 'Cetak Slip Peperiksaan', '0', '13');
+INSERT INTO `user_function` VALUES ('43', 'bypass_slip', 'Cetak Slip Peperiksaan Bagi Pelajar Yang Bermasalah', 'Bypass Cetak Slip Peperiksaan', '0', '14');
+INSERT INTO `user_function` VALUES ('44', 'kehadiran', 'Mencatat Kehadiran Pelajar Ke Kelas', 'Kehadiran', '1', '11');
+INSERT INTO `user_function` VALUES ('45', 'detail_pemohon', 'Papar Detail Pemohon', 'Detail Pemohon', '0', '12');
+INSERT INTO `user_function` VALUES ('46', 'edit_permohonan', 'Mengemaskini Butiran Pemohon', 'Kemaskini Permohonan', '0', '13');
+INSERT INTO `user_function` VALUES ('47', 'waris', 'Mengemaskini Butiran Waris Pemohon', 'Edit Waris', '0', '14');
+INSERT INTO `user_function` VALUES ('48', 'progmohon', 'Mengemaskini Butiran Permohonan Program', 'Memohon Program', '0', '15');
+INSERT INTO `user_function` VALUES ('49', 'akademik', 'Mengemaskini Butiran Akademik Pemohon', 'Akademik Pemohon', '0', '16');
+INSERT INTO `user_function` VALUES ('50', 'surat_tawar', 'Mencetak Surat Tawaran', 'Cetak Surat Tawaran', '0', '17');
+INSERT INTO `user_function` VALUES ('51', 'set_sesi', 'Mengaktifkan Sesi Kemasukan Yang Baru', 'Pengaktifan Sesi Kemasukan', '0', '18');
 
 -- ----------------------------
 -- Table structure for `user_jawatan`
@@ -5290,16 +5503,16 @@ DROP VIEW IF EXISTS `view_akaun`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_akaun` AS select `akaun`.`kod_akaun` AS `kod_akaun`,`akaun`.`keterangan_MY` AS `keterangan_MY`,`jenis_akaun`.`kod_jenis` AS `kod_jenis`,`jenis_akaun`.`nama_jenis` AS `nama_jenis` from (`akaun` join `jenis_akaun` on((`akaun`.`kod_jenis` = `jenis_akaun`.`kod_jenis`))) ;
 
 -- ----------------------------
--- View structure for `view_app_pelajar`
--- ----------------------------
-DROP VIEW IF EXISTS `view_app_pelajar`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_app_pelajar` AS select `app_pelajar`.`id` AS `id`,`app_pelajar`.`nama` AS `nama`,`sel_negara`.`namanegara` AS `namanegara`,`app_akademik`.`institusi` AS `institusi`,`app_akademik`.`tahun` AS `tahun`,`sel_level`.`tahap_MY` AS `tahap_MY`,`sel_subjek`.`subjek_MY` AS `subjek_MY`,`app_subjek_akademik`.`gred` AS `gred`,`program`.`namaprog_MY` AS `namaprog_MY`,`app_progmohon`.`pilihan` AS `pilihan`,`app_progmohon`.`catatan` AS `catatan`,`sel_statusmohon`.`status_MY` AS `status_MY` from ((((((((`app_pelajar` left join `app_akademik` on((`app_pelajar`.`id` = `app_akademik`.`id_mohon`))) left join `app_progmohon` on((`app_pelajar`.`id` = `app_progmohon`.`id_mohon`))) left join `app_subjek_akademik` on((`app_subjek_akademik`.`akademik_id` = `app_akademik`.`id`))) left join `sel_level` on((`sel_level`.`kodtahap` = `app_akademik`.`level`))) left join `sel_subjek` on((`sel_subjek`.`kodsubjek` = `app_subjek_akademik`.`subjek`))) left join `program` on(((`program`.`kod_prog` = `app_progmohon`.`kod_prog`) and (`app_pelajar`.`progTawar` = `program`.`kod_prog`)))) left join `sel_statusmohon` on(((`sel_statusmohon`.`kodstatus` = `app_progmohon`.`status_mohon`) and (`app_pelajar`.`status_mohon` = `sel_statusmohon`.`kodstatus`)))) join `sel_negara` on((`sel_negara`.`kodnegara` = `app_pelajar`.`warganegara`))) where (`app_progmohon`.`status_mohon` = 'DIP') ;
-
--- ----------------------------
 -- View structure for `view_apppelajar_pelresit`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_apppelajar_pelresit`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_apppelajar_pelresit` AS select `app_pelajar`.`nama` AS `nama`,`pel_resit`.`matrik` AS `matrik`,`pel_resit`.`jumlah` AS `jumlah` from (`pel_resit` join `app_pelajar` on((`app_pelajar`.`siri_mohon` = `pel_resit`.`matrik`))) ;
+
+-- ----------------------------
+-- View structure for `view_app_pelajar`
+-- ----------------------------
+DROP VIEW IF EXISTS `view_app_pelajar`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_app_pelajar` AS select `app_pelajar`.`id` AS `id`,`app_pelajar`.`nama` AS `nama`,`sel_negara`.`namanegara` AS `namanegara`,`app_akademik`.`institusi` AS `institusi`,`app_akademik`.`tahun` AS `tahun`,`sel_level`.`tahap_MY` AS `tahap_MY`,`sel_subjek`.`subjek_MY` AS `subjek_MY`,`app_subjek_akademik`.`gred` AS `gred`,`program`.`namaprog_MY` AS `namaprog_MY`,`app_progmohon`.`pilihan` AS `pilihan`,`app_progmohon`.`catatan` AS `catatan`,`sel_statusmohon`.`status_MY` AS `status_MY` from ((((((((`app_pelajar` left join `app_akademik` on((`app_pelajar`.`id` = `app_akademik`.`id_mohon`))) left join `app_progmohon` on((`app_pelajar`.`id` = `app_progmohon`.`id_mohon`))) left join `app_subjek_akademik` on((`app_subjek_akademik`.`akademik_id` = `app_akademik`.`id`))) left join `sel_level` on((`sel_level`.`kodtahap` = `app_akademik`.`level`))) left join `sel_subjek` on((`sel_subjek`.`kodsubjek` = `app_subjek_akademik`.`subjek`))) left join `program` on(((`program`.`kod_prog` = `app_progmohon`.`kod_prog`) and (`app_pelajar`.`progTawar` = `program`.`kod_prog`)))) left join `sel_statusmohon` on(((`sel_statusmohon`.`kodstatus` = `app_progmohon`.`status_mohon`) and (`app_pelajar`.`status_mohon` = `sel_statusmohon`.`kodstatus`)))) join `sel_negara` on((`sel_negara`.`kodnegara` = `app_pelajar`.`warganegara`))) where (`app_progmohon`.`status_mohon` = 'DIP') ;
 
 -- ----------------------------
 -- View structure for `view_department_function`
@@ -5341,7 +5554,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- View structure for `view_status`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_status`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_status` AS select `sel_status`.`kodstatus` AS `kodstatus`,`sel_status`.`status_MY` AS `status_MY`,`sel_status`.`stud` AS `stud`,`sel_status`.`grad` AS `grad`,`sel_statusDtl`.`kod_sem` AS `kod_sem`,`sel_statusDtl`.`kod_detail` AS `kod_detail`,`sel_statusDtl`.`keterangan` AS `keterangan` from (`sel_status` join `sel_statusDtl` on((`sel_status`.`kod_sem` = `sel_statusDtl`.`kod_sem`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_status` AS select `sel_status`.`kodstatus` AS `kodstatus`,`sel_status`.`status_MY` AS `status_MY`,`sel_status`.`stud` AS `stud`,`sel_status`.`grad` AS `grad`,`sel_statusdtl`.`kod_sem` AS `kod_sem`,`sel_statusdtl`.`kod_detail` AS `kod_detail`,`sel_statusdtl`.`keterangan` AS `keterangan` from (`sel_status` join `sel_statusdtl` on((`sel_status`.`kod_sem` = `sel_statusdtl`.`kod_sem`))) ;
 
 -- ----------------------------
 -- View structure for `view_taqwim`
