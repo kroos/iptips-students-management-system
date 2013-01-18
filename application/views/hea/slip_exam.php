@@ -50,7 +50,7 @@
 					<td>RM<?=($j1 - $h1)?></td>
 					<td>kehadiran</td>
 					<td>perpustakaan</td>
-					<td><?=(($j1 - $h1) < 0 ? anchor('hea/cetak_slip_exam', 'Cetak Slip', array('title' => 'Cetak Slip')) : anchor('hea/bypass_slip', 'Bypass Slip Exam', array('title' => 'Bypass Slip Exam')))?></td>
+					<td><?=(($j1 - $h1) < 0 ? anchor('hea/cetak_pdf/'.$e->matrik, 'Cetak Slip', array('title' => 'Cetak Slip', 'target'=>'_new')) : anchor('hea/bypass_slip', 'Bypass Slip Exam', array('title' => 'Bypass Slip Exam')))?></td>
 				</tr>
 			<?endforeach?>
 		</table>
