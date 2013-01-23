@@ -267,5 +267,23 @@ class View extends CI_Model
 											kredit ASC
 										");
 			}
+
+		function view_pel_daf_sub_hadir($matrik, $kodsubjek, $sem)
+			{
+				return $this->db->query("
+											SELECT
+											pel_daftarsubjek.matrik,
+											pel_daftarsubjek.kodsubjek,
+											pel_daftarsubjek.sem,
+											pel_hadir.id_daftarsubjek
+											FROM
+											pel_daftarsubjek
+											INNER JOIN pel_hadir ON pel_daftarsubjek.id = pel_hadir.id_daftarsubjek
+											WHERE
+											pel_daftarsubjek.matrik = '$matrik' AND
+											pel_daftarsubjek.kodsubjek = '$kodsubjek' AND
+											pel_daftarsubjek.sem = '$sem'
+										");
+			}
 	}
 ?>

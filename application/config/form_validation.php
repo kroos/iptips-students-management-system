@@ -1153,6 +1153,63 @@ $config = array	(
 								'rules' => 'trim|required|greater_than[-1]|less_than[101]|xss_clean'
 							)
 					),
+					'hea/slip_exam' => array
+					(
+						array
+							(
+								'field' => 'matrik',
+								'label' => 'Matrik',
+								'rules' => 'trim|xss_clean'
+							)
+					),
+					'hea/kehadiran' => array
+					(
+						array
+							(
+								'field' => 'jum_hari',
+								'label' => 'Jumlah Hari Kelas',
+								'rules' => 'trim|required|is_natural_no_zero|xss_clean'
+							),
+						array
+							(
+								'field' => 'id',
+								'label' => 'ID',
+								'rules' => 'trim|required|is_natural_no_zero|xss_clean'
+							),
+						array
+							(
+								'field' => 'peratus_wajib',
+								'label' => 'Peratus Wajib Hadir',
+								'rules' => 'trim|required|is_natural_no_zero|less_than[101]|xss_clean'
+							),
+						array
+							(
+								'field' => 'jum_hadir',
+								'label' => 'Jumlah Hadir',
+								'rules' => 'trim|required|is_natural_no_zero|xss_clean'
+							),
+					),
+					'hea/edit_hadir' => array
+					(
+						array
+							(
+								'field' => 'jum_hari',
+								'label' => 'Jumlah Hari Kelas',
+								'rules' => 'trim|required|is_natural_no_zero|xss_clean'
+							),
+						array
+							(
+								'field' => 'peratus_wajib',
+								'label' => 'Peratus Wajib Hadir',
+								'rules' => 'trim|required|is_natural_no_zero|less_than[101]|xss_clean'
+							),
+						array
+							(
+								'field' => 'jum_hadir',
+								'label' => 'Jumlah Hadir',
+								'rules' => 'trim|required|is_natural_no_zero|xss_clean'
+							),
+					),
 
 
 				);

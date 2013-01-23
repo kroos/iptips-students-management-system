@@ -444,7 +444,83 @@ class Hea extends CI_Controller
 
 		public function kehadiran()
 			{
-				
+				$lect = $this->session->userdata('id_user');
+				//cari sesi dulu...
+				$se = $this->sesi_akademik->GetWhere(array('aktif' => 1), NULL, NULL);
+				if ($se->num_rows() == 1)
+					{
+						$data['sesi'] = $se->row()->kodsesi;
+						$v = $this->lect_ajar->GetWhere(array('nostaf' => $lect, 'sesi' => $data['sesi'], 'aktif' => 1), NULL, NULL);
+						if($v->num_rows() > 0)
+							{
+								$data['set'] = 1;
+								$data['la'] = $v;
+								$data['ps'] = $this->pel_sem->GetWhere(array('sesi' => $data['sesi'], 'status_pel' => '01', 'aktif' => 1), NULL, NULL);
+								//$data['ph'] = $this->pel_hadir->GetAll(NULL, NULL);
+								$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+								if ($this->form_validation->run() == TRUE)
+									{
+										if($this->input->post('save', TRUE))
+											{
+												$id = $this->input->post('id', TRUE);
+												$jum_hari = $this->input->post('jum_hari', TRUE);
+												$peratus_wajib = $this->input->post('peratus_wajib', TRUE);
+												$jum_hadir = $this->input->post('jum_hadir', TRUE);
+												
+												$r = $this->pel_hadir->update(array('id' => $id), array('jum_hari' => $jum_hari, 'peratus_wajib' => $peratus_wajib, 'jum_hadir' => $jum_hadir, 'user_edit' => $lect, 'date_edit' => datetime_db(now())));
+												if($r)
+													{
+														$data['info'] = 'Data berjaya disimpan';
+													}
+													else
+													{
+														$data['info'] = 'Sila cuba sebentar lagi';
+													}
+											}
+									}
+							}
+							else
+							{
+								$data['info'] = 'Anda tidak berada didalam senarai pensyarah. Jika ini adalah kesilapan, sila rujuk Admin';
+								$data['set'] = 0;
+							}
+					}
+					else
+					{
+						$data['info'] = 'Tidak dapat menentukan sesi sekarang. Sila rujuk Admin';
+					}
+				$this->load->view('hea/kehadiran', $data);
+			}
+
+		public function edit_hadir()
+			{
+				$id = $this->uri->segment(3, 0);
+				$lect = $this->session->userdata('id_user');
+				if(is_numeric($id))
+					{
+						$data['info'] = '';
+						$data['t'] = $this->pel_hadir->GetWhere(array('id' => $id), NULL, NULL);
+								$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+								if ($this->form_validation->run() == TRUE)
+									{
+										if($this->input->post('check', TRUE))
+											{
+												$jum_hari = $this->input->post('jum_hari', TRUE);
+												$peratus_wajib = $this->input->post('peratus_wajib', TRUE);
+												$jum_hadir = $this->input->post('jum_hadir', TRUE);
+												$r = $this->pel_hadir->update(array('id' => $id), array('jum_hari' => $jum_hari, 'peratus_wajib' => $peratus_wajib, 'jum_hadir' => $jum_hadir, 'user_edit' => $lect, 'date_edit' => datetime_db(now())));
+												if($r)
+													{
+														redirect('hea/kehadiran', 'location');
+													}
+													else
+													{
+														$data['info'] = 'Sila cuba sebentar lagi';
+													}
+											}
+									}
+						$this->load->view('hea/edit_hadir', $data);
+					}
 			}
 
 		public function slip_exam()
@@ -454,14 +530,22 @@ class Hea extends CI_Controller
 				$sesi = $this->sesi_akademik->GetWhere(array('aktif' => 1), NULL, NULL)->row()->kodsesi;
 				$data['sel'] = $this->pel_sem->GetWhere(array('sesi' => $sesi, 'aktif' => 1, 'status_pel' => '01'), NULL, NULL);
 
-				
-
 				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
 				if ($this->form_validation->run() == TRUE)
 					{
 						if($this->input->post('cari', TRUE))
 							{
 								$matrik = $this->input->post('matrik', TRUE);
+								$data['sel'] = $this->pel_sem->GetWhere(array('matrik LIKE \'%'.$matrik.'%\'' => NULL, 'sesi' => $sesi, 'aktif' => 1, 'status_pel' => '01'), NULL, NULL);
+								//echo $this->db->last_query();
+								if($data['sel'])
+									{
+										$data['info'] = 'Carian berjaya';
+									}
+									else
+									{
+										$data['info'] = 'Sila cuba sebentar lagi';
+									}
 							}
 					}
 				$this->load->view('hea/slip_exam', $data);
@@ -598,8 +682,12 @@ class Hea extends CI_Controller
 											{
 												//insert
 												$this->db->trans_start();
+													//insert utk function pemarkahan
 													$this->user_dept_func->insertall(array('id_user_data' => $noStaff, 'id_user_department' => 2, 'id_user_function' => 39, 'active' => 1));
 													$this->user_dept_func->insertall(array('id_user_data' => $noStaff, 'id_user_department' => 2, 'id_user_function' => 40, 'active' => 1));
+													//insert utk kehadiran
+													$this->user_dept_func->insertall(array('id_user_data' => $noStaff, 'id_user_department' => 2, 'id_user_function' => 44, 'active' => 1));
+													$this->user_dept_func->insertall(array('id_user_data' => $noStaff, 'id_user_department' => 2, 'id_user_function' => 53, 'active' => 1));
 													$this->lect_ajar->insert(array('sesi' => $sesi, 'kodsubjek' => $kodsubjek, 'aktif' => 1, 'nostaf' => $noStaff));
 												$this->db->trans_complete();
 											}
@@ -609,6 +697,9 @@ class Hea extends CI_Controller
 												$this->db->trans_start();
 													$this->user_dept_func->updatewhere(array('id_user_data' => $noStaff, 'id_user_department' => 2, 'id_user_function' => 39), array('active' => 1));
 													$this->user_dept_func->updatewhere(array('id_user_data' => $noStaff, 'id_user_department' => 2, 'id_user_function' => 40), array('active' => 1));
+													//insert utk kehadiran
+													$this->user_dept_func->updatewhere(array('id_user_data' => $noStaff, 'id_user_department' => 2, 'id_user_function' => 44), array('active' => 1));
+													$this->user_dept_func->updatewhere(array('id_user_data' => $noStaff, 'id_user_department' => 2, 'id_user_function' => 53), array('active' => 1));
 													$this->lect_ajar->insert(array('sesi' => $sesi, 'kodsubjek' => $kodsubjek, 'aktif' => 1, 'nostaf' => $noStaff));
 												$this->db->trans_complete();
 											}
