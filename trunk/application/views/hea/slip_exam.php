@@ -48,9 +48,19 @@
 				<tr>
 					<td><?=$e->matrik?></td>
 					<td>RM<?=($j1 - $h1)?></td>
-					<td>kehadiran</td>
+					<td>
+						<table style="width:100%; border-spacing:0;">
+							<?$v = $this->pel_daftarsubjek->GetWhere(array('matrik' => $e->matrik, 'sem' => $e->sem), NULL, NULL)?>
+							<?foreach($v->result() AS $c):?>
+								<?$z = $this->pel_hadir->GetWhere(array('id_daftarsubjek' => $c->id), NULL, NULL)?>
+								<tr>
+									<td><?=$z->row()->jum_hari / ($z->row()->jum_hadir == NULL ? 1 : $z->row()->jum_hadir) * 100?></td>
+								</tr>
+							<?endforeach?>
+						</table>
+					</td>
 					<td>perpustakaan</td>
-					<td><?=(($j1 - $h1) < 0 ? anchor('hea/cetak_pdf/'.$e->matrik, 'Cetak Slip', array('title' => 'Cetak Slip', 'target'=>'_new')) : anchor('hea/bypass_slip', 'Bypass Slip Exam', array('title' => 'Bypass Slip Exam')))?></td>
+					<td><?=(($j1 - $h1) < 0 ? anchor('hea/cetak_slip_exam/'.$e->matrik, 'Cetak Slip', array('title' => 'Cetak Slip')) : anchor('hea/bypass_slip/'.$e->matrik, 'Bypass Slip', array('title' => 'Bypass Slip')))?></td>
 				</tr>
 			<?endforeach?>
 		</table>

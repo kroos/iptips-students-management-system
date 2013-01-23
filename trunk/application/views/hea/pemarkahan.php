@@ -18,7 +18,7 @@
 	<?else:?>
 		<ol>
 		<?foreach($la->result() AS $e):?>
-			<li><?=$this->subjek->GetWhere(array('kodsubjek' => $e->kodsubjek), NULL, NULL)->row()->namasubjek_MY?>
+			<li><?=$e->kodsubjek?>&nbsp;<?=$this->subjek->GetWhere(array('kodsubjek' => $e->kodsubjek), NULL, NULL)->row()->namasubjek_MY?>
 
 					<table style="width:100%; border-spacing:0;">
 						<tr>
