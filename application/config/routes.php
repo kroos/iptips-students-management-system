@@ -59,6 +59,7 @@ $route['hea/status_pelajar/(:num)'] = 'hea/status_pelajar';
 $route['hea/urus_status/(:any)'] = 'hea/urus_status';
 $route['hea/assign_lect/(:num)'] = 'hea/assign_lect';
 $route['hea/kemaskini_gred/(:num)'] = 'hea/kemaskini_gred';
+$route['hea/cetak_slip_exam/(:num)'] = 'hea/cetak_slip_exam';
 $route['hea/edit_hadir/(:num)'] = 'hea/edit_hadir';
 
 
