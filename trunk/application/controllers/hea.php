@@ -22,6 +22,7 @@ class Hea extends CI_Controller
 				$this->load->model('pel_invois');				//nak tau controller ni pakai model mana 1...
 				$this->load->model('pel_resit');				//nak tau controller ni pakai model mana 1...
 				$this->load->model('pel_hadir');				//nak tau controller ni pakai model mana 1...
+				$this->load->model('pel_lib');					//nak tau controller ni pakai model mana 1...
 
 				$this->lang->load('form_validation', 'melayu');
 
@@ -559,76 +560,72 @@ class Hea extends CI_Controller
 				$data['m'] = $this->pelajar->GetWhere(array('matrik' => $data['matrik']), NULL, NULL);
 				$pelsem = $this->pel_sem->GetWhere(array('matrik' => $data['matrik'], 'aktif' => 1), NULL, NULL);
 
-				
 				if($data['m']->num_rows() == 1)
 					{
 						$data['m'] = $this->pel_subjek_gred->GetWhere(array('matrik' => $data['matrik'], 'sesi' => $pelsem->row()->sesi, 'sem' => $pelsem->row()->sem, 'id_drop IS NULL' => NULL, 'id_ign IS NULL' => NULL), NULL, NULL);
 					}*/
-				
 				$this->load->view('hea/cetak_slip_exam', $data);
-	        	
 			}
+
 		public function cetak_pdf(){
 			$data['matrik'] = $this->uri->segment(3, 0);
 			/*$this->load->library('Pdf');
 				$pdf = new Pdf('P', 'px', 'A4', true, 'UTF-8', false);
-			
+
 				// set document information
 				$this->pdf->SetCreator(PDF_CREATOR);
 				$this->pdf->SetAuthor('Hishamudin Mohamad Azid');
 				//$pdf->SetTitle('Penyata Gaji');
 				$this->pdf->SetTitle('Slip Peperiksaan');
-				
+
 				// remove default header/footer
 				$this->pdf->setPrintHeader(false);
 				$this->pdf->setPrintFooter(false);
-	
+
 		        $y = $this->pdf->getY();
-		        
-		        
+
 		        // set some language dependent data:
 				$lg = Array();
 				$lg['a_meta_charset'] = 'UTF-8';
 				$lg['a_meta_dir'] = 'rtl';
 				$lg['a_meta_language'] = 'fa';
 				$lg['w_page'] = 'page';
-				
+
 				//set some language-dependent strings
 				$pdf->setLanguageArray($lg);
-		        
+
 		        // set font
 		        //$this->pdf->SetFont('times', '', 12);
-		        
+
 				// set LTR direction for english translation
 				$this->pdf->setRTL(false); 
-										
+
 				$this->pdf->SetFont('aealarabiya', '', 10);
 		        //$pdf->SetFont('aefurat', '', 10);	        
-							
+
 		        // add a page
 		        $this->pdf->AddPage();*/
-		        
+
 		        $data['title'] = 'Slip Peperiksaan';
 				$matrik = $this->uri->segment(3, 0);
 				$data['m'] = $this->pelajar->GetWhere(array('matrik' => $data['matrik']), NULL, NULL);
 				$pelsem = $this->pel_sem->GetWhere(array('matrik' => $data['matrik'], 'aktif' => 1), NULL, NULL);
 
-				
 				if($data['m']->num_rows() == 1)
 					{
 						//$data['m'] = $this->pel_subjek_gred->GetWhere(array('matrik' => $data['matrik'], 'sesi' => $pelsem->row()->sesi, 'sem' => $pelsem->row()->sem, 'id_drop IS NULL' => NULL, 'id_ign IS NULL' => NULL), NULL, NULL);
 					}
-				
+
 		        $this->load->library('parser');
 		        //$this->load->view('hea/cetak_slip_exam',$data);
 				$html = $this->parser->parse('hea/cetak_slip_exam',$matrik);
-				
+
 				/*$this->pdf->writeHTMLCell('auto', '', '', $y, $html, 0, 0, 0, true, 'J', true);
 				//$pdf->writeHTML($html, true, false, true, false, '');
-										
+
 				// reset pointer to the last page
 				$this->pdf->lastPage();
-				
+
 		        //Close and output PDF document
 		        $this->pdf->Output($matrik.'_slip_exam.pdf', 'I'); */
 		}

@@ -4,7 +4,11 @@
         <h2>Slip Peperiksaan</h2>
         <div id="accordion">
 	        <h3>Bantuan</h3>
-	        <p>Slip peperiksaan akan dicetak keluar mengikut beberapa filter.</p>
+	        <p>Slip peperiksaan akan dicetak keluar mengikut beberapa filter.<br />
+			1. Baki yuran yang merah menunjukkan bahawa pelajar masih lagi mempunyai baki tertunggak.<br />
+			2. Jika kehadiran bagi sesuatu subjek adalah 0% dan bewarna merah, maka pensyarah yang berkenaan masih lagi belum mencatat kehadiran atau pelajar tersebut tidak langsung menghadiri kelas.<br />
+			3. Kehadiran yang bewarna merah tetapi melebihi 0% menunjukkan pelajar tidak menghadiri kelas melebihi kehadiran minimum.
+			</p>
         </div>
 
         <div class="info"><?=@$info?></div>
@@ -46,16 +50,19 @@
 					}
 			?>
 				<tr>
+					<?$rm = $j1 - $h1?>
 					<td><?=$e->matrik?></td>
-					<td>RM<?=($j1 - $h1)?></td>
+					<td><?=($rm >= 0 ? '<font color="#FF0000">RM'.$rm.'</font>' : 'RM'.$rm)?></td>
 					<td>
 						<table style="width:100%; border-spacing:0;">
-							<?$v = $this->pel_daftarsubjek->GetWhere(array('matrik' => $e->matrik, 'sem' => $e->sem), NULL, NULL)?>
+							<?$v = $this->view->view_pel_daf_sub_hadir1($e->matrik, $e->sem)?>
 							<?foreach($v->result() AS $c):?>
-								<?$z = $this->pel_hadir->GetWhere(array('id_daftarsubjek' => $c->id), NULL, NULL)?>
-								<tr>
-									<td><?=$z->row()->jum_hari / ($z->row()->jum_hadir == NULL ? 1 : $z->row()->jum_hadir) * 100?></td>
-								</tr>
+								<?$cv = round($c->jum_hadir / ($c->jum_hari == NULL ? 1 : $c->jum_hari) * 100, 2)?>
+								<?if($cv <= $c->peratus_wajib):?>
+									<tr>
+										<td><?=$c->kodsubjek.'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.($cv <= $c->peratus_wajib ? '<font color="#FF0000">'.$cv.'%</font>' : $cv.'%')?></td>
+									</tr>
+								<?endif?>
 							<?endforeach?>
 						</table>
 					</td>

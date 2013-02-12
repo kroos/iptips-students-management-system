@@ -98,28 +98,35 @@ $sem = array(
 
 
 		<script>
-			$(document).ready(function() {
-	
-				$("#sem").change(function(){
-					subjek();
-				});
-				
-				function subjek(){
-					$.post('<?=base_url().'select_list/select_sem/'.$this->uri->segment(3, 0)?>',
-						{	
-							<?=$this->config->item('csrf_token_name'); ?>: $.cookies.get("<?=$this->config->item('csrf_cookie_name')?>"), //pass token cookie name klu x ajax xjln
-							sem: $("#sem").val(),
-							subjek: $('#subjek').val()
-						},
-						function(data){
-							$('#subjek').html(data);
-						}
-					);
-				}
-
-				setTimeout(function(){subjek()}, 0);
-
-		    });
+			$(document).ready
+			(
+				function()
+					{
+						$("#sem").change
+							(function()
+								{
+									subjek();
+								}
+							);
+						function subjek()
+							{
+								$.post
+								(
+									'<?=base_url().'select_list/select_sem/'.$this->uri->segment(3, 0)?>',
+										{	
+											<?=$this->config->item('csrf_token_name'); ?>: $.cookies.get("<?=$this->config->item('csrf_cookie_name')?>"), //pass token cookie name klu x ajax xjln
+											sem: $("#sem").val(),
+											subjek: $('#subjek').val()
+										},
+										function(data)
+										{
+											$('#subjek').html(data);
+										}
+								);
+							}
+						setTimeout(function(){subjek()}, 0);
+					}
+			);
 	    </script>
 	<?php endblock()?>
 
