@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : kroos.heliohost.org
-Source Server Version : 50527
-Source Host           : kroos.heliohost.org:3306
-Source Database       : kroos_iptip
+Source Server         : localhost
+Source Server Version : 50522
+Source Host           : localhost:3306
+Source Database       : iptip
 
 Target Server Type    : MYSQL
-Target Server Version : 50527
+Target Server Version : 50522
 File Encoding         : 65001
 
-Date: 2013-01-30 01:28:55
+Date: 2013-02-11 22:57:41
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -336,12 +336,14 @@ CREATE TABLE `ci_sessions` (
 -- ----------------------------
 -- Records of ci_sessions
 -- ----------------------------
+INSERT INTO `ci_sessions` VALUES ('017cb5be585af3fed01b34ae2ea2e0e5', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:21.0) Gecko/20130210 Firefox/21.0', '1360652082', '');
 INSERT INTO `ci_sessions` VALUES ('33ed65a037adbd473e040b7637947392', '175.141.99.227', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:21.0) Gecko/20130127 Firefox/21.0', '1359379439', '');
 INSERT INTO `ci_sessions` VALUES ('68a2dfc454fc6d04ed9eea43d1f783ed', '175.141.99.227', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:21.0) Gecko/20130127 Firefox/21.0', '1359379439', '');
 INSERT INTO `ci_sessions` VALUES ('8624630c0db979f6985a9f22acf740ac', '175.141.99.227', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:21.0) Gecko/20130127 Firefox/21.0', '1359379531', '');
 INSERT INTO `ci_sessions` VALUES ('9c40422ebae64e308f07f2077d870642', '175.141.99.227', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:21.0) Gecko/20130127 Firefox/21.0', '1359379558', '');
 INSERT INTO `ci_sessions` VALUES ('ac9cbc7c1126a928b56b3d3c723abfda', '175.141.99.227', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:21.0) Gecko/20130127 Firefox/21.0', '1359379560', '');
 INSERT INTO `ci_sessions` VALUES ('c52143b782dffabf0665fd243acc1abd', '175.141.99.227', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:21.0) Gecko/20130127 Firefox/21.0', '1359380110', '');
+INSERT INTO `ci_sessions` VALUES ('e4e295bb68d6d3fa3fb44c50c4917762', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:21.0) Gecko/20130129 Firefox/21.0', '1359584565', '');
 INSERT INTO `ci_sessions` VALUES ('eb88008a7b363f45eb323a2e4fbf9d3c', '175.141.99.227', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:21.0) Gecko/20130127 Firefox/21.0', '1359380104', '');
 INSERT INTO `ci_sessions` VALUES ('f4b17c15cc4afdf73fc379823ab69f04', '202.185.6.180', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:20.0) Gecko/20121201 Firefox/20.0', '1359255714', '');
 
@@ -518,26 +520,6 @@ INSERT INTO `gredmata` VALUES ('22', '-1', '-1', 'GHA', '0', 'GAGAL HADIR PEPERI
 INSERT INTO `gredmata` VALUES ('23', '-1', '-1', 'GHB', '0', 'GAGAL HADIR PENILAIAN BERTERUSAN', '2', '0');
 
 -- ----------------------------
--- Table structure for `host_bilik`
--- ----------------------------
-DROP TABLE IF EXISTS `host_bilik`;
-CREATE TABLE `host_bilik` (
-  `id` int(8) NOT NULL AUTO_INCREMENT,
-  `kodhostel` varchar(20) DEFAULT NULL,
-  `nobilik` varchar(20) DEFAULT NULL,
-  `harga_hari` double(8,2) DEFAULT NULL,
-  `harga_bulan` double(8,2) DEFAULT NULL,
-  `max_capacity` int(3) DEFAULT NULL,
-  `aktif` tinyint(1) DEFAULT '1',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `idx1` (`nobilik`,`kodhostel`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of host_bilik
--- ----------------------------
-
--- ----------------------------
 -- Table structure for `hostel`
 -- ----------------------------
 DROP TABLE IF EXISTS `hostel`;
@@ -556,6 +538,26 @@ CREATE TABLE `hostel` (
 
 -- ----------------------------
 -- Records of hostel
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `host_bilik`
+-- ----------------------------
+DROP TABLE IF EXISTS `host_bilik`;
+CREATE TABLE `host_bilik` (
+  `id` int(8) NOT NULL AUTO_INCREMENT,
+  `kodhostel` varchar(20) DEFAULT NULL,
+  `nobilik` varchar(20) DEFAULT NULL,
+  `harga_hari` double(8,2) DEFAULT NULL,
+  `harga_bulan` double(8,2) DEFAULT NULL,
+  `max_capacity` int(3) DEFAULT NULL,
+  `aktif` tinyint(1) DEFAULT '1',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx1` (`nobilik`,`kodhostel`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of host_bilik
 -- ----------------------------
 
 -- ----------------------------
@@ -648,6 +650,52 @@ INSERT INTO `lect_ajar` VALUES ('3', '4', 'WI1105', '2013_1', '1');
 INSERT INTO `lect_ajar` VALUES ('4', '3', 'SY1208', '2013_1', '1');
 INSERT INTO `lect_ajar` VALUES ('5', '3', 'S103', '2013_1', '1');
 INSERT INTO `lect_ajar` VALUES ('6', '4', 'US1304', '2013_1', '1');
+
+-- ----------------------------
+-- Table structure for `pelajar`
+-- ----------------------------
+DROP TABLE IF EXISTS `pelajar`;
+CREATE TABLE `pelajar` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `matrik` varchar(20) NOT NULL,
+  `nama` varchar(100) DEFAULT NULL,
+  `ic` varchar(50) DEFAULT NULL,
+  `passport` varchar(50) DEFAULT NULL,
+  `status_pljr` varchar(10) DEFAULT NULL,
+  `dt_lahir` date DEFAULT NULL,
+  `tempat_lahir` varchar(100) DEFAULT NULL,
+  `status_warga` tinyint(1) DEFAULT NULL,
+  `warganegara` varchar(20) DEFAULT NULL,
+  `bangsa` varchar(5) DEFAULT NULL,
+  `jantina` varchar(1) DEFAULT NULL,
+  `status_kahwin` varchar(5) DEFAULT NULL,
+  `alamat1` varchar(100) DEFAULT NULL,
+  `alamat2` varchar(100) DEFAULT NULL,
+  `poskod` varchar(10) DEFAULT NULL,
+  `bandar` varchar(10) DEFAULT NULL,
+  `negeri` varchar(10) DEFAULT NULL,
+  `negara` varchar(10) DEFAULT NULL,
+  `notel` varchar(20) DEFAULT NULL,
+  `nohp` varchar(20) DEFAULT NULL,
+  `emel` varchar(50) DEFAULT NULL,
+  `dt_daftar` date DEFAULT NULL,
+  `sesi_daftar` varchar(20) DEFAULT NULL,
+  `id_add` varchar(20) DEFAULT NULL,
+  `dt_add` date DEFAULT NULL,
+  `id_edit` varchar(20) DEFAULT NULL,
+  `dt_edit` date DEFAULT NULL,
+  PRIMARY KEY (`id`,`matrik`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of pelajar
+-- ----------------------------
+INSERT INTO `pelajar` VALUES ('1', 'DSY1', 'Student 1', '800101025555', '111234', 'A', '2012-12-03', 'M010701', '2', 'A09', '1230', '1', '1', 'Tmn Peruda', '', '05300', 'M010218', '02', 'M01', '0', '0', 'stud1@mail.com', '2012-12-13', '2013_1', '1', '2012-12-13', '1', '2012-12-16');
+INSERT INTO `pelajar` VALUES ('2', 'HEM001', 'Ahmad', '900101025556', '1113', 'A', '2012-12-03', 'M010701', '1', 'A12', '2022', '2', '1', 'Tmn Peruda', '', '05300', 'M010403', '04', 'M01', '0', '0', 'stud3@gmail.com', '2012-12-16', '2013_1', '1', '2012-12-16', '1', '2012-12-16');
+INSERT INTO `pelajar` VALUES ('4', 'HURRAH1', 'Student Tadi', '123456789009', '--', 'A', '1982-12-14', 'T036511', '3', 'C15', '2061', '1', '1', '1, Taman Mutiara', '', '08000', 'M011110', '11', 'M01', '', '0162052420', 'stud8@gmail.com', '2012-12-19', '2013_1', '1', '2012-12-19', null, null);
+INSERT INTO `pelajar` VALUES ('5', 'HURRAH2', 'Student 50', '900101025557', 'TIADA', 'A', '2012-12-24', 'M010232', '1', 'B05', '904', '1', '1', '2, Taman Mutiara', '', '08000', 'M010513', '05', 'M01', '', '0162052420', 'stud50@gmail.com', '2012-12-24', '2013_1', '1', '2012-12-24', null, null);
+INSERT INTO `pelajar` VALUES ('6', 'HURRAH3', 'Student 51', '800101025551', 'none', 'A', '2012-12-25', 'M010701', '1', 'B05', '1103', '1', '1', '1, Taman Mutiara', '', '05400', 'M010321', '03', 'M01', '', '0162052420', 'stud51@gmail.com', '2012-12-25', '2013_1', '1', '2012-12-25', null, null);
+INSERT INTO `pelajar` VALUES ('7', 'HURRAH4', 'Student 52', '123456789019', '123456789019', 'A', '2012-12-25', 'M010701', '1', 'A12', '2022', '1', '1', '1, Taman Mutiara', '', '08000', 'M011601', '16', 'M01', '', '0162052420', 'email52@email.com', '2012-12-25', '2013_1', '1', '2012-12-25', null, null);
 
 -- ----------------------------
 -- Table structure for `pel_akademik`
@@ -1474,50 +1522,27 @@ INSERT INTO `pel_waris` VALUES ('6', 'HURRAH3', 'Parent 51', 'H06', 'Qwe Asd', '
 INSERT INTO `pel_waris` VALUES ('7', 'HURRAH4', 'Parent 52', 'H01', 'Asd Asd', '', '05400', '0162052420');
 
 -- ----------------------------
--- Table structure for `pelajar`
+-- Table structure for `program`
 -- ----------------------------
-DROP TABLE IF EXISTS `pelajar`;
-CREATE TABLE `pelajar` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `matrik` varchar(20) NOT NULL,
-  `nama` varchar(100) DEFAULT NULL,
-  `ic` varchar(50) DEFAULT NULL,
-  `passport` varchar(50) DEFAULT NULL,
-  `status_pljr` varchar(10) DEFAULT NULL,
-  `dt_lahir` date DEFAULT NULL,
-  `tempat_lahir` varchar(100) DEFAULT NULL,
-  `status_warga` tinyint(1) DEFAULT NULL,
-  `warganegara` varchar(20) DEFAULT NULL,
-  `bangsa` varchar(5) DEFAULT NULL,
-  `jantina` varchar(1) DEFAULT NULL,
-  `status_kahwin` varchar(5) DEFAULT NULL,
-  `alamat1` varchar(100) DEFAULT NULL,
-  `alamat2` varchar(100) DEFAULT NULL,
-  `poskod` varchar(10) DEFAULT NULL,
-  `bandar` varchar(10) DEFAULT NULL,
-  `negeri` varchar(10) DEFAULT NULL,
-  `negara` varchar(10) DEFAULT NULL,
-  `notel` varchar(20) DEFAULT NULL,
-  `nohp` varchar(20) DEFAULT NULL,
-  `emel` varchar(50) DEFAULT NULL,
-  `dt_daftar` date DEFAULT NULL,
-  `sesi_daftar` varchar(20) DEFAULT NULL,
-  `id_add` varchar(20) DEFAULT NULL,
-  `dt_add` date DEFAULT NULL,
-  `id_edit` varchar(20) DEFAULT NULL,
-  `dt_edit` date DEFAULT NULL,
-  PRIMARY KEY (`id`,`matrik`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `program`;
+CREATE TABLE `program` (
+  `kod_prog` varchar(10) NOT NULL,
+  `namaprog_MY` varchar(50) NOT NULL,
+  `id_jabatan` int(11) DEFAULT NULL,
+  `kod_tahap` int(11) NOT NULL,
+  `tempoh` int(2) DEFAULT NULL,
+  PRIMARY KEY (`kod_prog`),
+  UNIQUE KEY `IDX1` (`kod_prog`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of pelajar
+-- Records of program
 -- ----------------------------
-INSERT INTO `pelajar` VALUES ('1', 'DSY1', 'Student 1', '800101025555', '111234', 'A', '2012-12-03', 'M010701', '2', 'A09', '1230', '1', '1', 'Tmn Peruda', '', '05300', 'M010218', '02', 'M01', '0', '0', 'stud1@mail.com', '2012-12-13', '2013_1', '1', '2012-12-13', '1', '2012-12-16');
-INSERT INTO `pelajar` VALUES ('2', 'HEM001', 'Ahmad', '900101025556', '1113', 'A', '2012-12-03', 'M010701', '1', 'A12', '2022', '2', '1', 'Tmn Peruda', '', '05300', 'M010403', '04', 'M01', '0', '0', 'stud3@gmail.com', '2012-12-16', '2013_1', '1', '2012-12-16', '1', '2012-12-16');
-INSERT INTO `pelajar` VALUES ('4', 'HURRAH1', 'Student Tadi', '123456789009', '--', 'A', '1982-12-14', 'T036511', '3', 'C15', '2061', '1', '1', '1, Taman Mutiara', '', '08000', 'M011110', '11', 'M01', '', '0162052420', 'stud8@gmail.com', '2012-12-19', '2013_1', '1', '2012-12-19', null, null);
-INSERT INTO `pelajar` VALUES ('5', 'HURRAH2', 'Student 50', '900101025557', 'TIADA', 'A', '2012-12-24', 'M010232', '1', 'B05', '904', '1', '1', '2, Taman Mutiara', '', '08000', 'M010513', '05', 'M01', '', '0162052420', 'stud50@gmail.com', '2012-12-24', '2013_1', '1', '2012-12-24', null, null);
-INSERT INTO `pelajar` VALUES ('6', 'HURRAH3', 'Student 51', '800101025551', 'none', 'A', '2012-12-25', 'M010701', '1', 'B05', '1103', '1', '1', '1, Taman Mutiara', '', '05400', 'M010321', '03', 'M01', '', '0162052420', 'stud51@gmail.com', '2012-12-25', '2013_1', '1', '2012-12-25', null, null);
-INSERT INTO `pelajar` VALUES ('7', 'HURRAH4', 'Student 52', '123456789019', '123456789019', 'A', '2012-12-25', 'M010701', '1', 'A12', '2022', '1', '1', '1, Taman Mutiara', '', '08000', 'M011601', '16', 'M01', '', '0162052420', 'email52@email.com', '2012-12-25', '2013_1', '1', '2012-12-25', null, null);
+INSERT INTO `program` VALUES ('DQH', 'DIPLOMA AL-QURAN & HADIS', '3', '3', '6');
+INSERT INTO `program` VALUES ('DSY', 'DIPLOMA SYARIAH', '2', '3', '6');
+INSERT INTO `program` VALUES ('DUS', 'DIPLOMA USULUDDIN', '2', '3', '6');
+INSERT INTO `program` VALUES ('PST', 'PRA-STAM', '6', '1', '2');
+INSERT INTO `program` VALUES ('ST', 'STAM', '5', '2', '2');
 
 -- ----------------------------
 -- Table structure for `prog_subjek`
@@ -1704,29 +1729,6 @@ INSERT INTO `prog_subjek` VALUES ('156', 'ST', 'S109', '1.0');
 INSERT INTO `prog_subjek` VALUES ('174', 'ST', 'S109', '2.0');
 INSERT INTO `prog_subjek` VALUES ('157', 'ST', 'S110', '1.0');
 INSERT INTO `prog_subjek` VALUES ('175', 'ST', 'S110', '2.0');
-
--- ----------------------------
--- Table structure for `program`
--- ----------------------------
-DROP TABLE IF EXISTS `program`;
-CREATE TABLE `program` (
-  `kod_prog` varchar(10) NOT NULL,
-  `namaprog_MY` varchar(50) NOT NULL,
-  `id_jabatan` int(11) DEFAULT NULL,
-  `kod_tahap` int(11) NOT NULL,
-  `tempoh` int(2) DEFAULT NULL,
-  PRIMARY KEY (`kod_prog`),
-  UNIQUE KEY `IDX1` (`kod_prog`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of program
--- ----------------------------
-INSERT INTO `program` VALUES ('DQH', 'DIPLOMA AL-QURAN & HADIS', '3', '3', '6');
-INSERT INTO `program` VALUES ('DSY', 'DIPLOMA SYARIAH', '2', '3', '6');
-INSERT INTO `program` VALUES ('DUS', 'DIPLOMA USULUDDIN', '2', '3', '6');
-INSERT INTO `program` VALUES ('PST', 'PRA-STAM', '6', '1', '2');
-INSERT INTO `program` VALUES ('ST', 'STAM', '5', '2', '2');
 
 -- ----------------------------
 -- Table structure for `ruj_intake`
@@ -5518,91 +5520,91 @@ INSERT INTO `yuran_prog` VALUES ('66', '20001', 'DAFTAR', 'ST', '50.00', '1');
 -- View structure for `view_akaun`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_akaun`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`kroos`@`%` SQL SECURITY DEFINER VIEW `view_akaun` AS select `akaun`.`kod_akaun` AS `kod_akaun`,`akaun`.`keterangan_MY` AS `keterangan_MY`,`jenis_akaun`.`kod_jenis` AS `kod_jenis`,`jenis_akaun`.`nama_jenis` AS `nama_jenis` from (`akaun` join `jenis_akaun` on((`akaun`.`kod_jenis` = `jenis_akaun`.`kod_jenis`))) ;
-
--- ----------------------------
--- View structure for `view_app_pelajar`
--- ----------------------------
-DROP VIEW IF EXISTS `view_app_pelajar`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`kroos`@`%` SQL SECURITY DEFINER VIEW `view_app_pelajar` AS select `app_pelajar`.`id` AS `id`,`app_pelajar`.`nama` AS `nama`,`sel_negara`.`namanegara` AS `namanegara`,`app_akademik`.`institusi` AS `institusi`,`app_akademik`.`tahun` AS `tahun`,`sel_level`.`tahap_MY` AS `tahap_MY`,`sel_subjek`.`subjek_MY` AS `subjek_MY`,`app_subjek_akademik`.`gred` AS `gred`,`program`.`namaprog_MY` AS `namaprog_MY`,`app_progmohon`.`pilihan` AS `pilihan`,`app_progmohon`.`catatan` AS `catatan`,`sel_statusmohon`.`status_MY` AS `status_MY` from ((((((((`app_pelajar` left join `app_akademik` on((`app_pelajar`.`id` = `app_akademik`.`id_mohon`))) left join `app_progmohon` on((`app_pelajar`.`id` = `app_progmohon`.`id_mohon`))) left join `app_subjek_akademik` on((`app_subjek_akademik`.`akademik_id` = `app_akademik`.`id`))) left join `sel_level` on((`sel_level`.`kodtahap` = `app_akademik`.`level`))) left join `sel_subjek` on((`sel_subjek`.`kodsubjek` = `app_subjek_akademik`.`subjek`))) left join `program` on(((`program`.`kod_prog` = `app_progmohon`.`kod_prog`) and (`app_pelajar`.`progTawar` = `program`.`kod_prog`)))) left join `sel_statusmohon` on(((`sel_statusmohon`.`kodstatus` = `app_progmohon`.`status_mohon`) and (`app_pelajar`.`status_mohon` = `sel_statusmohon`.`kodstatus`)))) join `sel_negara` on((`sel_negara`.`kodnegara` = `app_pelajar`.`warganegara`))) where (`app_progmohon`.`status_mohon` = 'DIP') ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`kroos`@`%` SQL SECURITY DEFINER VIEW `view_akaun` AS select `iptip`.`akaun`.`kod_akaun` AS `kod_akaun`,`iptip`.`akaun`.`keterangan_MY` AS `keterangan_MY`,`iptip`.`jenis_akaun`.`kod_jenis` AS `kod_jenis`,`iptip`.`jenis_akaun`.`nama_jenis` AS `nama_jenis` from (`akaun` join `jenis_akaun` on((`iptip`.`akaun`.`kod_jenis` = `iptip`.`jenis_akaun`.`kod_jenis`))) ;
 
 -- ----------------------------
 -- View structure for `view_apppelajar_pelresit`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_apppelajar_pelresit`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`kroos`@`%` SQL SECURITY DEFINER VIEW `view_apppelajar_pelresit` AS select `app_pelajar`.`nama` AS `nama`,`pel_resit`.`matrik` AS `matrik`,`pel_resit`.`jumlah` AS `jumlah` from (`pel_resit` join `app_pelajar` on((`app_pelajar`.`siri_mohon` = `pel_resit`.`matrik`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`kroos`@`%` SQL SECURITY DEFINER VIEW `view_apppelajar_pelresit` AS select `iptip`.`app_pelajar`.`nama` AS `nama`,`iptip`.`pel_resit`.`matrik` AS `matrik`,`iptip`.`pel_resit`.`jumlah` AS `jumlah` from (`pel_resit` join `app_pelajar` on((`iptip`.`app_pelajar`.`siri_mohon` = `iptip`.`pel_resit`.`matrik`))) ;
+
+-- ----------------------------
+-- View structure for `view_app_pelajar`
+-- ----------------------------
+DROP VIEW IF EXISTS `view_app_pelajar`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`kroos`@`%` SQL SECURITY DEFINER VIEW `view_app_pelajar` AS select `iptip`.`app_pelajar`.`id` AS `id`,`iptip`.`app_pelajar`.`nama` AS `nama`,`iptip`.`sel_negara`.`namanegara` AS `namanegara`,`iptip`.`app_akademik`.`institusi` AS `institusi`,`iptip`.`app_akademik`.`tahun` AS `tahun`,`iptip`.`sel_level`.`tahap_MY` AS `tahap_MY`,`iptip`.`sel_subjek`.`subjek_MY` AS `subjek_MY`,`iptip`.`app_subjek_akademik`.`gred` AS `gred`,`iptip`.`program`.`namaprog_MY` AS `namaprog_MY`,`iptip`.`app_progmohon`.`pilihan` AS `pilihan`,`iptip`.`app_progmohon`.`catatan` AS `catatan`,`iptip`.`sel_statusmohon`.`status_MY` AS `status_MY` from ((((((((`app_pelajar` left join `app_akademik` on((`iptip`.`app_pelajar`.`id` = `iptip`.`app_akademik`.`id_mohon`))) left join `app_progmohon` on((`iptip`.`app_pelajar`.`id` = `iptip`.`app_progmohon`.`id_mohon`))) left join `app_subjek_akademik` on((`iptip`.`app_subjek_akademik`.`akademik_id` = `iptip`.`app_akademik`.`id`))) left join `sel_level` on((`iptip`.`sel_level`.`kodtahap` = `iptip`.`app_akademik`.`level`))) left join `sel_subjek` on((`iptip`.`sel_subjek`.`kodsubjek` = `iptip`.`app_subjek_akademik`.`subjek`))) left join `program` on(((`iptip`.`program`.`kod_prog` = `iptip`.`app_progmohon`.`kod_prog`) and (`iptip`.`app_pelajar`.`progTawar` = `iptip`.`program`.`kod_prog`)))) left join `sel_statusmohon` on(((`iptip`.`sel_statusmohon`.`kodstatus` = `iptip`.`app_progmohon`.`status_mohon`) and (`iptip`.`app_pelajar`.`status_mohon` = `iptip`.`sel_statusmohon`.`kodstatus`)))) join `sel_negara` on((`iptip`.`sel_negara`.`kodnegara` = `iptip`.`app_pelajar`.`warganegara`))) where (`iptip`.`app_progmohon`.`status_mohon` = 'DIP') ;
 
 -- ----------------------------
 -- View structure for `view_department_function`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_department_function`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`kroos`@`%` SQL SECURITY DEFINER VIEW `view_department_function` AS select `dept_func`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept`,`dept_func`.`id_user_function` AS `id_user_function`,`user_function`.`function` AS `function`,`user_function`.`remarks` AS `remarks`,`user_function`.`menu` AS `menu`,`user_function`.`menu_display` AS `menu_display`,`user_function`.`posisi` AS `posisi` from ((`dept_func` join `user_department` on((`dept_func`.`id_user_department` = `user_department`.`id`))) join `user_function` on((`dept_func`.`id_user_function` = `user_function`.`id`))) order by `dept_func`.`id_user_department`,`user_function`.`posisi` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`kroos`@`%` SQL SECURITY DEFINER VIEW `view_department_function` AS select `iptip`.`dept_func`.`id_user_department` AS `id_user_department`,`iptip`.`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`iptip`.`user_department`.`dept` AS `dept`,`iptip`.`dept_func`.`id_user_function` AS `id_user_function`,`iptip`.`user_function`.`function` AS `function`,`iptip`.`user_function`.`remarks` AS `remarks`,`iptip`.`user_function`.`menu` AS `menu`,`iptip`.`user_function`.`menu_display` AS `menu_display`,`iptip`.`user_function`.`posisi` AS `posisi` from ((`dept_func` join `user_department` on((`iptip`.`dept_func`.`id_user_department` = `iptip`.`user_department`.`id`))) join `user_function` on((`iptip`.`dept_func`.`id_user_function` = `iptip`.`user_function`.`id`))) order by `iptip`.`dept_func`.`id_user_department`,`iptip`.`user_function`.`posisi` ;
 
 -- ----------------------------
 -- View structure for `view_department_jawatan`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_department_jawatan`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`kroos`@`%` SQL SECURITY DEFINER VIEW `view_department_jawatan` AS select `dept_jaw`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept`,`dept_jaw`.`id_jawatan` AS `id_jawatan`,`user_jawatan`.`jawatan` AS `jawatan` from ((`dept_jaw` join `user_jawatan` on((`dept_jaw`.`id_jawatan` = `user_jawatan`.`id`))) join `user_department` on((`user_department`.`id` = `dept_jaw`.`id_user_department`))) order by `dept_jaw`.`id_user_department`,`dept_jaw`.`id_jawatan` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`kroos`@`%` SQL SECURITY DEFINER VIEW `view_department_jawatan` AS select `iptip`.`dept_jaw`.`id_user_department` AS `id_user_department`,`iptip`.`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`iptip`.`user_department`.`dept` AS `dept`,`iptip`.`dept_jaw`.`id_jawatan` AS `id_jawatan`,`iptip`.`user_jawatan`.`jawatan` AS `jawatan` from ((`dept_jaw` join `user_jawatan` on((`iptip`.`dept_jaw`.`id_jawatan` = `iptip`.`user_jawatan`.`id`))) join `user_department` on((`iptip`.`user_department`.`id` = `iptip`.`dept_jaw`.`id_user_department`))) order by `iptip`.`dept_jaw`.`id_user_department`,`iptip`.`dept_jaw`.`id_jawatan` ;
 
 -- ----------------------------
 -- View structure for `view_pel_invois`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_pel_invois`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`kroos`@`%` SQL SECURITY DEFINER VIEW `view_pel_invois` AS select `pel_invois`.`no_inv` AS `no_inv`,`pel_invois`.`matrik` AS `matrik`,`pel_invois`.`ktr_invois` AS `ktr_invois`,`pel_invois`.`jumlah` AS `jumlah_penuh`,`akaun`.`keterangan_MY` AS `keterangan_MY`,`pel_item_invois`.`jumlah` AS `jumlah`,`pel_item_invois`.`aktif` AS `aktif` from ((`pel_invois` join `pel_item_invois` on((`pel_item_invois`.`no_inv` = `pel_invois`.`no_inv`))) join `akaun` on((`pel_item_invois`.`kod_akaun` = `akaun`.`kod_akaun`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`kroos`@`%` SQL SECURITY DEFINER VIEW `view_pel_invois` AS select `iptip`.`pel_invois`.`no_inv` AS `no_inv`,`iptip`.`pel_invois`.`matrik` AS `matrik`,`iptip`.`pel_invois`.`ktr_invois` AS `ktr_invois`,`iptip`.`pel_invois`.`jumlah` AS `jumlah_penuh`,`iptip`.`akaun`.`keterangan_MY` AS `keterangan_MY`,`iptip`.`pel_item_invois`.`jumlah` AS `jumlah`,`iptip`.`pel_item_invois`.`aktif` AS `aktif` from ((`pel_invois` join `pel_item_invois` on((`iptip`.`pel_item_invois`.`no_inv` = `iptip`.`pel_invois`.`no_inv`))) join `akaun` on((`iptip`.`pel_item_invois`.`kod_akaun` = `iptip`.`akaun`.`kod_akaun`))) ;
 
 -- ----------------------------
 -- View structure for `view_prog_subjek`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_prog_subjek`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`kroos`@`%` SQL SECURITY DEFINER VIEW `view_prog_subjek` AS select `subjek`.`namasubjek_MY` AS `namasubjek_MY`,`prog_subjek`.`kod_prog` AS `kod_prog`,`program`.`namaprog_MY` AS `namaprog_MY`,`prog_subjek`.`sem` AS `sem`,`prog_subjek`.`kodsubjek` AS `kodsubjek`,`subjek`.`kredit` AS `kredit` from ((`prog_subjek` join `program` on((`prog_subjek`.`kod_prog` = `program`.`kod_prog`))) join `subjek` on((`prog_subjek`.`kodsubjek` = `subjek`.`kodsubjek`))) order by `program`.`kod_prog`,`prog_subjek`.`sem` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`kroos`@`%` SQL SECURITY DEFINER VIEW `view_prog_subjek` AS select `iptip`.`subjek`.`namasubjek_MY` AS `namasubjek_MY`,`iptip`.`prog_subjek`.`kod_prog` AS `kod_prog`,`iptip`.`program`.`namaprog_MY` AS `namaprog_MY`,`iptip`.`prog_subjek`.`sem` AS `sem`,`iptip`.`prog_subjek`.`kodsubjek` AS `kodsubjek`,`iptip`.`subjek`.`kredit` AS `kredit` from ((`prog_subjek` join `program` on((`iptip`.`prog_subjek`.`kod_prog` = `iptip`.`program`.`kod_prog`))) join `subjek` on((`iptip`.`prog_subjek`.`kodsubjek` = `iptip`.`subjek`.`kodsubjek`))) order by `iptip`.`program`.`kod_prog`,`iptip`.`prog_subjek`.`sem` ;
 
 -- ----------------------------
 -- View structure for `view_sel_negara_negeri_bandar`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_sel_negara_negeri_bandar`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`kroos`@`%` SQL SECURITY DEFINER VIEW `view_sel_negara_negeri_bandar` AS select `sel_negeri`.`kodnegara` AS `kodnegara`,`sel_negara`.`namanegara` AS `namanegara`,`sel_negara`.`prefix` AS `prefix`,`sel_negeri`.`kodnegeri` AS `kodnegeri`,`sel_negeri`.`namanegeri` AS `namanegeri`,`sel_bandar`.`kodbandar` AS `kodbandar`,`sel_bandar`.`namabandar` AS `namabandar` from ((`sel_negara` join `sel_negeri` on((`sel_negara`.`kodnegara` = `sel_negeri`.`kodnegara`))) join `sel_bandar` on(((`sel_negeri`.`kodnegeri` = `sel_bandar`.`kodnegeri`) and (`sel_negara`.`kodnegara` = `sel_bandar`.`kodnegara`)))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`kroos`@`%` SQL SECURITY DEFINER VIEW `view_sel_negara_negeri_bandar` AS select `iptip`.`sel_negeri`.`kodnegara` AS `kodnegara`,`iptip`.`sel_negara`.`namanegara` AS `namanegara`,`iptip`.`sel_negara`.`prefix` AS `prefix`,`iptip`.`sel_negeri`.`kodnegeri` AS `kodnegeri`,`iptip`.`sel_negeri`.`namanegeri` AS `namanegeri`,`iptip`.`sel_bandar`.`kodbandar` AS `kodbandar`,`iptip`.`sel_bandar`.`namabandar` AS `namabandar` from ((`sel_negara` join `sel_negeri` on((`iptip`.`sel_negara`.`kodnegara` = `iptip`.`sel_negeri`.`kodnegara`))) join `sel_bandar` on(((`iptip`.`sel_negeri`.`kodnegeri` = `iptip`.`sel_bandar`.`kodnegeri`) and (`iptip`.`sel_negara`.`kodnegara` = `iptip`.`sel_bandar`.`kodnegara`)))) ;
 
 -- ----------------------------
 -- View structure for `view_sesi_taqwim`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_sesi_taqwim`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`kroos`@`%` SQL SECURITY DEFINER VIEW `view_sesi_taqwim` AS select `item_taqwim`.`kod_item` AS `kod_item`,`item_taqwim`.`item_MY` AS `item_MY`,`sesi_taqwim`.`sesi` AS `sesi`,`sesi_taqwim`.`tarikh_mula` AS `tarikh_mula`,`sesi_taqwim`.`tarikh_tamat` AS `tarikh_tamat`,`item_taqwim`.`posisi` AS `posisi` from (`item_taqwim` join `sesi_taqwim` on((`item_taqwim`.`kod_item` = `sesi_taqwim`.`kod_item`))) order by `item_taqwim`.`posisi`,`sesi_taqwim`.`sesi` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`kroos`@`%` SQL SECURITY DEFINER VIEW `view_sesi_taqwim` AS select `iptip`.`item_taqwim`.`kod_item` AS `kod_item`,`iptip`.`item_taqwim`.`item_MY` AS `item_MY`,`iptip`.`sesi_taqwim`.`sesi` AS `sesi`,`iptip`.`sesi_taqwim`.`tarikh_mula` AS `tarikh_mula`,`iptip`.`sesi_taqwim`.`tarikh_tamat` AS `tarikh_tamat`,`iptip`.`item_taqwim`.`posisi` AS `posisi` from (`item_taqwim` join `sesi_taqwim` on((`iptip`.`item_taqwim`.`kod_item` = `iptip`.`sesi_taqwim`.`kod_item`))) order by `iptip`.`item_taqwim`.`posisi`,`iptip`.`sesi_taqwim`.`sesi` ;
 
 -- ----------------------------
 -- View structure for `view_status`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_status`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`kroos`@`%` SQL SECURITY DEFINER VIEW `view_status` AS select `sel_status`.`kodstatus` AS `kodstatus`,`sel_status`.`status_MY` AS `status_MY`,`sel_status`.`stud` AS `stud`,`sel_status`.`grad` AS `grad`,`sel_statusdtl`.`kod_sem` AS `kod_sem`,`sel_statusdtl`.`kod_detail` AS `kod_detail`,`sel_statusdtl`.`keterangan` AS `keterangan` from (`sel_status` join `sel_statusdtl` on((`sel_status`.`kod_sem` = `sel_statusdtl`.`kod_sem`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`kroos`@`%` SQL SECURITY DEFINER VIEW `view_status` AS select `iptip`.`sel_status`.`kodstatus` AS `kodstatus`,`iptip`.`sel_status`.`status_MY` AS `status_MY`,`iptip`.`sel_status`.`stud` AS `stud`,`iptip`.`sel_status`.`grad` AS `grad`,`iptip`.`sel_statusdtl`.`kod_sem` AS `kod_sem`,`iptip`.`sel_statusdtl`.`kod_detail` AS `kod_detail`,`iptip`.`sel_statusdtl`.`keterangan` AS `keterangan` from (`sel_status` join `sel_statusdtl` on((`iptip`.`sel_status`.`kod_sem` = `iptip`.`sel_statusdtl`.`kod_sem`))) ;
 
 -- ----------------------------
 -- View structure for `view_taqwim`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_taqwim`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`kroos`@`%` SQL SECURITY DEFINER VIEW `view_taqwim` AS select ((to_days(`sesi_taqwim`.`tarikh_tamat`) - to_days(`sesi_taqwim`.`tarikh_mula`)) + 1) AS `tempoh`,`item_taqwim`.`item_MY` AS `item_MY`,`sesi_taqwim`.`tarikh_mula` AS `t_mula`,`sesi_taqwim`.`tarikh_tamat` AS `t_tamat`,`sesi_taqwim`.`sesi` AS `sesi`,`sesi_akademik`.`namasesi_MY` AS `namasesi_MY`,`sesi_akademik`.`tahun` AS `tahun`,`sesi_akademik`.`tarikh_mula` AS `tarikh_mula`,`sesi_akademik`.`tarikh_tamat` AS `tarikh_tamat` from ((`sesi_akademik` join `sesi_taqwim` on((`sesi_taqwim`.`sesi` = `sesi_akademik`.`kodsesi`))) join `item_taqwim` on((`sesi_taqwim`.`kod_item` = `item_taqwim`.`kod_item`))) order by `sesi_taqwim`.`tarikh_mula`,`item_taqwim`.`posisi` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`kroos`@`%` SQL SECURITY DEFINER VIEW `view_taqwim` AS select ((to_days(`iptip`.`sesi_taqwim`.`tarikh_tamat`) - to_days(`iptip`.`sesi_taqwim`.`tarikh_mula`)) + 1) AS `tempoh`,`iptip`.`item_taqwim`.`item_MY` AS `item_MY`,`iptip`.`sesi_taqwim`.`tarikh_mula` AS `t_mula`,`iptip`.`sesi_taqwim`.`tarikh_tamat` AS `t_tamat`,`iptip`.`sesi_taqwim`.`sesi` AS `sesi`,`iptip`.`sesi_akademik`.`namasesi_MY` AS `namasesi_MY`,`iptip`.`sesi_akademik`.`tahun` AS `tahun`,`iptip`.`sesi_akademik`.`tarikh_mula` AS `tarikh_mula`,`iptip`.`sesi_akademik`.`tarikh_tamat` AS `tarikh_tamat` from ((`sesi_akademik` join `sesi_taqwim` on((`iptip`.`sesi_taqwim`.`sesi` = `iptip`.`sesi_akademik`.`kodsesi`))) join `item_taqwim` on((`iptip`.`sesi_taqwim`.`kod_item` = `iptip`.`item_taqwim`.`kod_item`))) order by `iptip`.`sesi_taqwim`.`tarikh_mula`,`iptip`.`item_taqwim`.`posisi` ;
 
 -- ----------------------------
 -- View structure for `view_user_department`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_user_department`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`kroos`@`%` SQL SECURITY DEFINER VIEW `view_user_department` AS select `user_dept`.`id_user_data` AS `id_user_data`,`user_data`.`username` AS `username`,`user_data`.`password` AS `password`,`user_data`.`name` AS `name`,`user_dept`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept` from ((`user_data` join `user_dept` on((`user_dept`.`id_user_data` = `user_data`.`id`))) join `user_department` on((`user_dept`.`id_user_department` = `user_department`.`id`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`kroos`@`%` SQL SECURITY DEFINER VIEW `view_user_department` AS select `iptip`.`user_dept`.`id_user_data` AS `id_user_data`,`iptip`.`user_data`.`username` AS `username`,`iptip`.`user_data`.`password` AS `password`,`iptip`.`user_data`.`name` AS `name`,`iptip`.`user_dept`.`id_user_department` AS `id_user_department`,`iptip`.`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`iptip`.`user_department`.`dept` AS `dept` from ((`user_data` join `user_dept` on((`iptip`.`user_dept`.`id_user_data` = `iptip`.`user_data`.`id`))) join `user_department` on((`iptip`.`user_dept`.`id_user_department` = `iptip`.`user_department`.`id`))) ;
 
 -- ----------------------------
 -- View structure for `view_user_dept_func_level`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_user_dept_func_level`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`kroos`@`%` SQL SECURITY DEFINER VIEW `view_user_dept_func_level` AS select `user_dept_func`.`id` AS `id`,`user_dept_func`.`id_user_data` AS `id_user_data`,`user_data`.`name` AS `name`,`user_dept_func`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept`,`user_dept_func`.`id_user_function` AS `id_user_function`,`user_function`.`function` AS `function`,`user_function`.`remarks` AS `remarks`,`user_dept_func`.`active` AS `active` from (((`user_data` join `user_department`) join `user_dept_func` on(((`user_dept_func`.`id_user_data` = `user_data`.`id`) and (`user_dept_func`.`id_user_department` = `user_department`.`id`)))) join `user_function` on((`user_dept_func`.`id_user_function` = `user_function`.`id`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`kroos`@`%` SQL SECURITY DEFINER VIEW `view_user_dept_func_level` AS select `iptip`.`user_dept_func`.`id` AS `id`,`iptip`.`user_dept_func`.`id_user_data` AS `id_user_data`,`iptip`.`user_data`.`name` AS `name`,`iptip`.`user_dept_func`.`id_user_department` AS `id_user_department`,`iptip`.`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`iptip`.`user_department`.`dept` AS `dept`,`iptip`.`user_dept_func`.`id_user_function` AS `id_user_function`,`iptip`.`user_function`.`function` AS `function`,`iptip`.`user_function`.`remarks` AS `remarks`,`iptip`.`user_dept_func`.`active` AS `active` from (((`user_data` join `user_department`) join `user_dept_func` on(((`iptip`.`user_dept_func`.`id_user_data` = `iptip`.`user_data`.`id`) and (`iptip`.`user_dept_func`.`id_user_department` = `iptip`.`user_department`.`id`)))) join `user_function` on((`iptip`.`user_dept_func`.`id_user_function` = `iptip`.`user_function`.`id`))) ;
 
 -- ----------------------------
 -- View structure for `view_user_dept_jaw`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_user_dept_jaw`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`kroos`@`%` SQL SECURITY DEFINER VIEW `view_user_dept_jaw` AS select `user_dept_jaw`.`id` AS `id`,`user_dept_jaw`.`id_user_data` AS `id_user_data`,`user_data`.`name` AS `name`,`user_dept_jaw`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept`,`user_dept_jaw`.`id_user_jawatan` AS `id_user_jawatan`,`user_jawatan`.`jawatan` AS `jawatan`,`user_jawatan`.`remarks` AS `remarks` from (((`user_dept_jaw` join `user_data` on((`user_dept_jaw`.`id_user_data` = `user_data`.`id`))) join `user_department` on((`user_dept_jaw`.`id_user_department` = `user_department`.`id`))) join `user_jawatan` on((`user_dept_jaw`.`id_user_jawatan` = `user_jawatan`.`id`))) order by `user_data`.`name`,`user_dept_jaw`.`id_user_department`,`user_dept_jaw`.`id_user_jawatan` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`kroos`@`%` SQL SECURITY DEFINER VIEW `view_user_dept_jaw` AS select `iptip`.`user_dept_jaw`.`id` AS `id`,`iptip`.`user_dept_jaw`.`id_user_data` AS `id_user_data`,`iptip`.`user_data`.`name` AS `name`,`iptip`.`user_dept_jaw`.`id_user_department` AS `id_user_department`,`iptip`.`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`iptip`.`user_department`.`dept` AS `dept`,`iptip`.`user_dept_jaw`.`id_user_jawatan` AS `id_user_jawatan`,`iptip`.`user_jawatan`.`jawatan` AS `jawatan`,`iptip`.`user_jawatan`.`remarks` AS `remarks` from (((`user_dept_jaw` join `user_data` on((`iptip`.`user_dept_jaw`.`id_user_data` = `iptip`.`user_data`.`id`))) join `user_department` on((`iptip`.`user_dept_jaw`.`id_user_department` = `iptip`.`user_department`.`id`))) join `user_jawatan` on((`iptip`.`user_dept_jaw`.`id_user_jawatan` = `iptip`.`user_jawatan`.`id`))) order by `iptip`.`user_data`.`name`,`iptip`.`user_dept_jaw`.`id_user_department`,`iptip`.`user_dept_jaw`.`id_user_jawatan` ;
 
 -- ----------------------------
 -- View structure for `view_view_user_access`
 -- ----------------------------
 DROP VIEW IF EXISTS `view_view_user_access`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`kroos`@`%` SQL SECURITY DEFINER VIEW `view_view_user_access` AS select `user_dept_func`.`id` AS `id`,`user_dept_func`.`id_user_data` AS `id_user_data`,`user_data`.`name` AS `name`,`user_dept_func`.`id_user_department` AS `id_user_department`,`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`user_department`.`dept` AS `dept`,`user_dept_func`.`id_user_function` AS `id_user_function`,`user_function`.`function` AS `function`,`user_function`.`remarks` AS `remarks`,`user_dept_func`.`active` AS `active` from (((`user_data` join `user_department`) join `user_dept_func` on(((`user_dept_func`.`id_user_data` = `user_data`.`id`) and (`user_dept_func`.`id_user_department` = `user_department`.`id`)))) join `user_function` on((`user_dept_func`.`id_user_function` = `user_function`.`id`))) order by `user_dept_func`.`id_user_department`,`user_dept_func`.`id_user_function` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`kroos`@`%` SQL SECURITY DEFINER VIEW `view_view_user_access` AS select `iptip`.`user_dept_func`.`id` AS `id`,`iptip`.`user_dept_func`.`id_user_data` AS `id_user_data`,`iptip`.`user_data`.`name` AS `name`,`iptip`.`user_dept_func`.`id_user_department` AS `id_user_department`,`iptip`.`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`iptip`.`user_department`.`dept` AS `dept`,`iptip`.`user_dept_func`.`id_user_function` AS `id_user_function`,`iptip`.`user_function`.`function` AS `function`,`iptip`.`user_function`.`remarks` AS `remarks`,`iptip`.`user_dept_func`.`active` AS `active` from (((`user_data` join `user_department`) join `user_dept_func` on(((`iptip`.`user_dept_func`.`id_user_data` = `iptip`.`user_data`.`id`) and (`iptip`.`user_dept_func`.`id_user_department` = `iptip`.`user_department`.`id`)))) join `user_function` on((`iptip`.`user_dept_func`.`id_user_function` = `iptip`.`user_function`.`id`))) order by `iptip`.`user_dept_func`.`id_user_department`,`iptip`.`user_dept_func`.`id_user_function` ;
 
 -- ----------------------------
 -- View structure for `view_yuran_program`
