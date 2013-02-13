@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50522
 File Encoding         : 65001
 
-Date: 2013-02-11 22:57:41
+Date: 2013-02-13 11:57:20
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -336,16 +336,8 @@ CREATE TABLE `ci_sessions` (
 -- ----------------------------
 -- Records of ci_sessions
 -- ----------------------------
-INSERT INTO `ci_sessions` VALUES ('017cb5be585af3fed01b34ae2ea2e0e5', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:21.0) Gecko/20130210 Firefox/21.0', '1360652082', '');
-INSERT INTO `ci_sessions` VALUES ('33ed65a037adbd473e040b7637947392', '175.141.99.227', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:21.0) Gecko/20130127 Firefox/21.0', '1359379439', '');
-INSERT INTO `ci_sessions` VALUES ('68a2dfc454fc6d04ed9eea43d1f783ed', '175.141.99.227', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:21.0) Gecko/20130127 Firefox/21.0', '1359379439', '');
-INSERT INTO `ci_sessions` VALUES ('8624630c0db979f6985a9f22acf740ac', '175.141.99.227', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:21.0) Gecko/20130127 Firefox/21.0', '1359379531', '');
-INSERT INTO `ci_sessions` VALUES ('9c40422ebae64e308f07f2077d870642', '175.141.99.227', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:21.0) Gecko/20130127 Firefox/21.0', '1359379558', '');
-INSERT INTO `ci_sessions` VALUES ('ac9cbc7c1126a928b56b3d3c723abfda', '175.141.99.227', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:21.0) Gecko/20130127 Firefox/21.0', '1359379560', '');
-INSERT INTO `ci_sessions` VALUES ('c52143b782dffabf0665fd243acc1abd', '175.141.99.227', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:21.0) Gecko/20130127 Firefox/21.0', '1359380110', '');
-INSERT INTO `ci_sessions` VALUES ('e4e295bb68d6d3fa3fb44c50c4917762', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:21.0) Gecko/20130129 Firefox/21.0', '1359584565', '');
-INSERT INTO `ci_sessions` VALUES ('eb88008a7b363f45eb323a2e4fbf9d3c', '175.141.99.227', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:21.0) Gecko/20130127 Firefox/21.0', '1359380104', '');
-INSERT INTO `ci_sessions` VALUES ('f4b17c15cc4afdf73fc379823ab69f04', '202.185.6.180', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:20.0) Gecko/20121201 Firefox/20.0', '1359255714', '');
+INSERT INTO `ci_sessions` VALUES ('054e81514be23d1c6b39bd43d751f428', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:21.0) Gecko/20130211 Firefox/21.0', '1360785410', 'a:1:{s:9:\"user_data\";s:0:\"\";}');
+INSERT INTO `ci_sessions` VALUES ('74283220e9c7220cb38cea6b0c7dc92d', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:21.0) Gecko/20130210 Firefox/21.0', '1360719567', 'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"id_user\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:6:\"123123\";s:9:\"logged_in\";b:1;}');
 
 -- ----------------------------
 -- Table structure for `dept_func`
@@ -356,7 +348,7 @@ CREATE TABLE `dept_func` (
   `id_user_department` int(11) NOT NULL,
   `id_user_function` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of dept_func
@@ -415,6 +407,7 @@ INSERT INTO `dept_func` VALUES ('53', '5', '50');
 INSERT INTO `dept_func` VALUES ('54', '5', '51');
 INSERT INTO `dept_func` VALUES ('55', '5', '52');
 INSERT INTO `dept_func` VALUES ('56', '2', '53');
+INSERT INTO `dept_func` VALUES ('57', '6', '54');
 
 -- ----------------------------
 -- Table structure for `dept_jaw`
@@ -993,7 +986,7 @@ INSERT INTO `pel_hadir` VALUES ('19', '23', null, null, null, null, null);
 INSERT INTO `pel_hadir` VALUES ('20', '24', null, null, null, null, null);
 INSERT INTO `pel_hadir` VALUES ('21', '25', null, null, null, null, null);
 INSERT INTO `pel_hadir` VALUES ('22', '26', '234', '80', '234', '3', '2013-01-21 14:00:18');
-INSERT INTO `pel_hadir` VALUES ('23', '27', null, null, null, null, null);
+INSERT INTO `pel_hadir` VALUES ('23', '27', '234', '80', '200', '3', '2013-01-21 14:00:00');
 INSERT INTO `pel_hadir` VALUES ('24', '28', null, null, null, null, null);
 INSERT INTO `pel_hadir` VALUES ('25', '29', null, null, null, null, null);
 INSERT INTO `pel_hadir` VALUES ('26', '30', null, null, null, null, null);
@@ -1286,14 +1279,17 @@ CREATE TABLE `pel_lib` (
   `id` int(20) NOT NULL AUTO_INCREMENT,
   `matrik` varchar(20) DEFAULT NULL,
   `sesi` varchar(20) DEFAULT NULL,
+  `sem` int(11) DEFAULT NULL,
   `aktif` tinyint(1) DEFAULT NULL,
   `tarikh_clear` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of pel_lib
 -- ----------------------------
+INSERT INTO `pel_lib` VALUES ('1', 'Hurrah2', '2013_1', '1', '0', '2013-02-12');
+INSERT INTO `pel_lib` VALUES ('2', 'Hurrah1', '2013_1', '1', '1', null);
 
 -- ----------------------------
 -- Table structure for `pel_resit`
@@ -5109,7 +5105,7 @@ CREATE TABLE `user_data` (
 -- ----------------------------
 -- Records of user_data
 -- ----------------------------
-INSERT INTO `user_data` VALUES ('1', 'admin1', '123123', '760505026479', 'Admin', '1, Taman Mutiara', 'Sungai Petani', 'Kedah', '08000', '0162172420', '', 'dhiauddin@gmail.com', '2012-11-13 09:16:19');
+INSERT INTO `user_data` VALUES ('1', 'admin', '123123', '760505026479', 'Admin', '1, Taman Mutiara', 'Sungai Petani', 'Kedah', '08000', '0162172420', '', 'dhiauddin@gmail.com', '2012-11-13 09:16:19');
 INSERT INTO `user_data` VALUES ('3', 'Super', '123123', '123456789966', 'Super Staf', 'Kampung Ku,\r\nYang Permai,\r\nLagi Indah Dan Damai,', 'Badarku', 'Kedah', '05300', '0123456789', '041234567', 'Hishamudin.ma@gmail.com', '2012-12-27 01:54:38');
 INSERT INTO `user_data` VALUES ('4', 'Lecture', '123123', '123456789015', 'Sham Kamikaze', '1, Asd Asd', 'Pendang', 'Kedah', '05400', '0162052420', '044225488', 'krooitnot@gmail.com', '2012-12-29 03:29:56');
 
@@ -5170,7 +5166,7 @@ CREATE TABLE `user_dept_func` (
   `active` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'weather its active for the user or not',
   PRIMARY KEY (`id`),
   KEY `unique` (`id_user_function`)
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user_dept_func
@@ -5269,6 +5265,7 @@ INSERT INTO `user_dept_func` VALUES ('97', '4', '2', '44', '1');
 INSERT INTO `user_dept_func` VALUES ('98', '1', '2', '53', '1');
 INSERT INTO `user_dept_func` VALUES ('99', '3', '2', '53', '1');
 INSERT INTO `user_dept_func` VALUES ('100', '4', '2', '53', '1');
+INSERT INTO `user_dept_func` VALUES ('101', '1', '6', '54', '1');
 
 -- ----------------------------
 -- Table structure for `user_dept_jaw`
@@ -5302,7 +5299,7 @@ CREATE TABLE `user_function` (
   `posisi` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `Function` (`function`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user_function
@@ -5356,6 +5353,7 @@ INSERT INTO `user_function` VALUES ('50', 'surat_tawar', 'Mencetak Surat Tawaran
 INSERT INTO `user_function` VALUES ('51', 'set_sesi', 'Mengaktifkan Sesi Kemasukan Yang Baru', 'Pengaktifan Sesi Kemasukan', '0', '17');
 INSERT INTO `user_function` VALUES ('52', 'edit_template', 'Mengemaskini Template Surat Tawaran', 'Kemaskini Template', '0', '19');
 INSERT INTO `user_function` VALUES ('53', 'edit_hadir', 'Mengemaskini Kehadiran Pelajar Bagi Sesuatu Subjek', 'Kemaskini Kehadiran', '0', '12');
+INSERT INTO `user_function` VALUES ('54', 'pinjam', 'Merekodkan Pinjaman Dan Pemulangan Buku Ke Perpustakaan', 'Pinjaman', '1', '1');
 
 -- ----------------------------
 -- Table structure for `user_jawatan`
@@ -5545,6 +5543,12 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`kroos`@`%` SQL SECURITY DEFINER VIEW `view_d
 -- ----------------------------
 DROP VIEW IF EXISTS `view_department_jawatan`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`kroos`@`%` SQL SECURITY DEFINER VIEW `view_department_jawatan` AS select `iptip`.`dept_jaw`.`id_user_department` AS `id_user_department`,`iptip`.`user_department`.`dept_ctrlr` AS `dept_ctrlr`,`iptip`.`user_department`.`dept` AS `dept`,`iptip`.`dept_jaw`.`id_jawatan` AS `id_jawatan`,`iptip`.`user_jawatan`.`jawatan` AS `jawatan` from ((`dept_jaw` join `user_jawatan` on((`iptip`.`dept_jaw`.`id_jawatan` = `iptip`.`user_jawatan`.`id`))) join `user_department` on((`iptip`.`user_department`.`id` = `iptip`.`dept_jaw`.`id_user_department`))) order by `iptip`.`dept_jaw`.`id_user_department`,`iptip`.`dept_jaw`.`id_jawatan` ;
+
+-- ----------------------------
+-- View structure for `view_peldafsub_pelhadir`
+-- ----------------------------
+DROP VIEW IF EXISTS `view_peldafsub_pelhadir`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_peldafsub_pelhadir` AS select `pel_daftarsubjek`.`matrik` AS `matrik`,`pel_daftarsubjek`.`kodsubjek` AS `kodsubjek`,`pel_daftarsubjek`.`sesi` AS `sesi`,`pel_daftarsubjek`.`sem` AS `sem`,`pel_hadir`.`jum_hari` AS `jum_hari`,`pel_hadir`.`peratus_wajib` AS `peratus_wajib`,`pel_hadir`.`jum_hadir` AS `jum_hadir` from (`pel_daftarsubjek` join `pel_hadir` on((`pel_hadir`.`id_daftarsubjek` = `pel_daftarsubjek`.`id`))) where ((`pel_daftarsubjek`.`matrik` = 'hurrah2') and (`pel_daftarsubjek`.`sem` = 1) and isnull(`pel_hadir`.`jum_hadir`)) ;
 
 -- ----------------------------
 -- View structure for `view_pel_invois`
