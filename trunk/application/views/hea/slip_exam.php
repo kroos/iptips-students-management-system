@@ -66,7 +66,21 @@
 							<?endforeach?>
 						</table>
 					</td>
-					<td>perpustakaan</td>
+					<td>
+					
+					<?$o = $this->pel_lib->GetWhere(array('matrik' => $e->matrik, 'sem' => $e->sem, 'sesi' => $e->sesi), NULL, NULL)?>
+					<?//=$this->db->last_query()?>
+					<?if($o === FALSE):?>
+						Tiada Pinjaman Buku Dibuat
+					<?else:?>
+						<?if(@$o->row()->aktif == 1 && @$o->row()->tarikh_clear == NULL):?>
+							<font color="#FF0000">Buku Masih Belum Dipulangkan</font>
+						<?else:?>
+							<?=@$o->row()->aktif == 0 && @$o->row()->tarikh_clear != NULL ? 'Buku telah dipulangkan pada :<br />'.datetime_view($o->row()->tarikh_clear) : 'Tiada Pinjaman Buku Dibuat'?>
+						<?endif?>
+					<?endif?>
+					
+					</td>
 					<td><?=(($j1 - $h1) < 0 ? anchor('hea/cetak_slip_exam/'.$e->matrik, 'Cetak Slip', array('title' => 'Cetak Slip')) : anchor('hea/bypass_slip/'.$e->matrik, 'Bypass Slip', array('title' => 'Bypass Slip')))?></td>
 				</tr>
 			<?endforeach?>

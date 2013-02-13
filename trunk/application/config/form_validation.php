@@ -1210,6 +1210,21 @@ $config = array	(
 								'rules' => 'trim|required|is_natural_no_zero|xss_clean'
 							),
 					),
+					'perpustakaan/pinjam' => array
+					(
+						array
+							(
+								'field' => 'matrik',
+								'label' => 'No Matrik',
+								'rules' => 'trim|required|xss_clean'
+							),
+						array
+							(
+								'field' => 'tarikh_clear',
+								'label' => 'Tarikh Pemulangan',
+								'rules' => 'trim|xss_clean'
+							)
+					),
 
 
 				);
