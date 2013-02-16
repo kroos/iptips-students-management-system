@@ -108,7 +108,7 @@
 				});
 
 				//ucwords
-				$("input").keyup(function() {
+				$("input, textarea").keyup(function() {
 					toUpper(this);
 				});
 			});

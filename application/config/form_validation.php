@@ -1225,6 +1225,86 @@ $config = array	(
 								'rules' => 'trim|xss_clean'
 							)
 					),
+					'perpustakaan/edit_pinjaman' => array
+					(
+						array
+							(
+								'field' => 'matrik',
+								'label' => 'No Matrik',
+								'rules' => 'trim|xss_clean'
+							)
+					),
+					'perpustakaan/kemas_stud' => array
+					(
+						array
+							(
+								'field' => 'matrik',
+								'label' => 'No Matrik',
+								'rules' => 'trim|required|xss_clean'
+							),
+						array
+							(
+								'field' => 'tarikh_clear',
+								'label' => 'Tarikh Pemulangan',
+								'rules' => 'trim|xss_clean'
+							)
+					),
+					'hep/hostel_pelajar' => array
+					(
+						array
+							(
+								'field' => 'matrik',
+								'label' => 'No Matrik',
+								'rules' => 'trim|xss_clean'
+							)
+					),
+					'hep/konfigurasi_asrama' => array
+					(
+						array
+							(
+								'field' => 'kodhostel',
+								'label' => 'Kod Hostel',
+								'rules' => 'trim|required|is_unique[hostel.kodhostel]|alpha_dash|xss_clean'
+							),
+						array
+							(
+								'field' => 'namahostel',
+								'label' => 'Nama Hostel',
+								'rules' => 'trim|required|is_unique[hostel.namahostel]|xss_clean'
+							),
+						array
+							(
+								'field' => 'alamat1',
+								'label' => 'Alamat 1',
+								'rules' => 'trim|required|xss_clean'
+							),
+						array
+							(
+								'field' => 'alamat2',
+								'label' => 'Alamat 2',
+								'rules' => 'trim|xss_clean'
+							),
+						array
+							(
+								'field' => 'bandar',
+								'label' => 'Bandar',
+								'rules' => 'trim|required|xss_clean'
+							),
+						array
+							(
+								'field' => 'negeri',
+								'label' => 'Negeri',
+								'rules' => 'trim|required|xss_clean'
+							),
+						array
+							(
+								'field' => 'kat_jantina',
+								'label' => 'Kategori Jantina',
+								'rules' => 'trim|required|is_natural_no_zero|xss_clean'
+							),
+					),
+
+
 
 
 				);

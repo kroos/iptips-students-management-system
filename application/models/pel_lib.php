@@ -23,10 +23,17 @@ class Pel_lib extends CI_Model
 			{
 				return $this->db->insert('pel_lib', $insert);
 			}
+
 //UPDATE
 		function update($where, $update)
 			{
 				return $this->db->update('pel_lib', $update, $where);
+			}
+
+//DELETE
+		function delete($where)
+			{
+				return $this->db->delete('pel_lib', $where);
 			}
 
 #############################################################################################################################

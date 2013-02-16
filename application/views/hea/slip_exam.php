@@ -14,7 +14,7 @@
         <div class="info"><?=@$info?></div>
 
 		<?=form_open()?>
-        <div class="form_settings">
+		<div class="form_settings">
 			<p><span><?=form_label('No Matrik', 'matrik')?></span>
 			<?=form_input(array('name' => 'matrik', 'value' => set_value('matrik'), 'id' => 'matrik'))?>
 			<br /><?=form_error('matrik')?></p>
@@ -23,6 +23,7 @@
 		</div>
 		<?=form_close()?>
 
+		<?if($this->form_validation->run() == TRUE):?>
 		<div class="demo">
 		<table style="width:100%; border-spacing:0;">
 			<tr>
@@ -86,6 +87,7 @@
 			<?endforeach?>
 		</table>
 		</div>
+		<?endif?>
 
 	<?php endblock()?>
 
