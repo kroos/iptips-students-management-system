@@ -87,7 +87,16 @@ class Hep extends CI_Controller
 							{
 								$ho = $this->input->post(NULL, TRUE);
 								unset($ho['simpan']);
-								print_r($ho);
+								//print_r($ho);
+								$k = $this->hostel->insert($ho);
+								if($k)
+									{
+										$data['info'] = 'Data disimpan';
+									}
+									else
+									{
+										$data['info'] = 'Sila cuba sebentar lagi';
+									}
 							}
 					}
 				$data['ps'] = $this->hostel->GetAll(NULL, NULL);
