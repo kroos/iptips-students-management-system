@@ -15,11 +15,11 @@
 		<?=form_open()?>
         <div class="form_settings">
 			<p><span><?=form_label('No Matrik', 'matrik')?></span>
-			<?=form_input(array('name' => 'matrik', 'value' => set_value('matrik'), 'id' => 'matrik'))?>
+			<?=form_input(array('name' => 'matrik', 'value' => $s->row()->matrik, 'id' => 'matrik'))?>
 			<br /><?=form_error('matrik')?></p>
 
 			<p><span><?=form_label('Tarikh Pemulangan', 'datepicker1')?></span>
-			<?=form_input(array('name' => 'tarikh_clear', 'value' => set_value('tarikh_clear'), 'id' => 'datepicker1'))?>
+			<?=form_input(array('name' => 'tarikh_clear', 'value' => ($s->row()->tarikh_clear != NULL ? $s->row()->tarikh_clear : NULL), 'id' => 'datepicker1'))?>
 			<br /><?=form_error('tarikh_clear')?></p>
 
 			<p><span>&nbsp;</span><?=form_submit('save', 'Simpan','class="submit"')?></p>
