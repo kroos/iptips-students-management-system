@@ -23,7 +23,7 @@
 			<br /><?=form_error('namahostel')?></p>
 
 			<p><span><?=form_label('Alamat 1', 'alamat1')?></span>
-			<?=form_textarea(array('name' => 'alamat1', 'alamat1' => set_value('alamat1'), 'id' => 'alamat1'))?>
+			<?=form_textarea(array('name' => 'alamat1', 'value' => set_value('alamat1'), 'id' => 'alamat1'))?>
 			<br /><?=form_error('alamat1')?></p>
 
 			<p><span><?=form_label('Alamat 2', 'alamat2')?></span>
@@ -65,7 +65,11 @@
 								<td><?=$n->alamat1?><br /><?=$n->alamat2?></td>
 								<td><?=$n->bandar?></td>
 								<td><?=$n->negeri?></td>
-								<td><?=$n->kat_jantina?></td>
+								<?foreach($this->config->item('kat_jantina') AS $g => $h):?>
+									<?if($g == $n->kat_jantina):?>
+										<td><?=$h?></td>
+									<?endif?>
+								<?endforeach?>
 								<td><?=$n->aktif == 1 ? 'Ya' : 'Tidak'?></td>
 							</tr>
 						<?endforeach?>
