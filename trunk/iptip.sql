@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50522
 File Encoding         : 65001
 
-Date: 2013-02-13 11:57:20
+Date: 2013-02-17 15:26:00
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -336,8 +336,7 @@ CREATE TABLE `ci_sessions` (
 -- ----------------------------
 -- Records of ci_sessions
 -- ----------------------------
-INSERT INTO `ci_sessions` VALUES ('054e81514be23d1c6b39bd43d751f428', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:21.0) Gecko/20130211 Firefox/21.0', '1360785410', 'a:1:{s:9:\"user_data\";s:0:\"\";}');
-INSERT INTO `ci_sessions` VALUES ('74283220e9c7220cb38cea6b0c7dc92d', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:21.0) Gecko/20130210 Firefox/21.0', '1360719567', 'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"id_user\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:6:\"123123\";s:9:\"logged_in\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('7317135e872621e6b006f420c1f70f5a', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:21.0) Gecko/20130215 Firefox/21.0', '1361143434', 'a:5:{s:9:\"user_data\";s:0:\"\";s:7:\"id_user\";s:1:\"1\";s:8:\"username\";s:5:\"admin\";s:8:\"password\";s:6:\"123123\";s:9:\"logged_in\";b:1;}');
 
 -- ----------------------------
 -- Table structure for `dept_func`
@@ -348,7 +347,7 @@ CREATE TABLE `dept_func` (
   `id_user_department` int(11) NOT NULL,
   `id_user_function` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of dept_func
@@ -408,6 +407,16 @@ INSERT INTO `dept_func` VALUES ('54', '5', '51');
 INSERT INTO `dept_func` VALUES ('55', '5', '52');
 INSERT INTO `dept_func` VALUES ('56', '2', '53');
 INSERT INTO `dept_func` VALUES ('57', '6', '54');
+INSERT INTO `dept_func` VALUES ('59', '6', '56');
+INSERT INTO `dept_func` VALUES ('60', '6', '57');
+INSERT INTO `dept_func` VALUES ('61', '6', '58');
+INSERT INTO `dept_func` VALUES ('62', '3', '59');
+INSERT INTO `dept_func` VALUES ('63', '3', '60');
+INSERT INTO `dept_func` VALUES ('64', '3', '61');
+INSERT INTO `dept_func` VALUES ('65', '3', '62');
+INSERT INTO `dept_func` VALUES ('66', '3', '63');
+INSERT INTO `dept_func` VALUES ('67', '3', '64');
+INSERT INTO `dept_func` VALUES ('68', '3', '65');
 
 -- ----------------------------
 -- Table structure for `dept_jaw`
@@ -532,6 +541,9 @@ CREATE TABLE `hostel` (
 -- ----------------------------
 -- Records of hostel
 -- ----------------------------
+INSERT INTO `hostel` VALUES ('1', 'ASRAMA A', 'Kat situ laa', null, 'Kangar', 'Perlis', 'Malaysia', '3', '0');
+INSERT INTO `hostel` VALUES ('2', 'ASRAMA B', 'kAT SITU JUGAK LAA KOT', null, 'kANGAR', 'pERLIS', 'Malaysia', '2', '1');
+INSERT INTO `hostel` VALUES ('Qwe', 'Asd Sadf', 'Asd Aasd', 'Asd', 'Tyjtyuermn Ety', 'Etyryt', null, '3', '1');
 
 -- ----------------------------
 -- Table structure for `host_bilik`
@@ -547,11 +559,13 @@ CREATE TABLE `host_bilik` (
   `aktif` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx1` (`nobilik`,`kodhostel`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of host_bilik
 -- ----------------------------
+INSERT INTO `host_bilik` VALUES ('1', '1', '1a', '2.00', '60.00', '12', '0');
+INSERT INTO `host_bilik` VALUES ('2', 'Qwe', 'Qwe-fgh', '5.00', '2.00', '12', '1');
 
 -- ----------------------------
 -- Table structure for `item_taqwim`
@@ -1283,13 +1297,13 @@ CREATE TABLE `pel_lib` (
   `aktif` tinyint(1) DEFAULT NULL,
   `tarikh_clear` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of pel_lib
 -- ----------------------------
-INSERT INTO `pel_lib` VALUES ('1', 'Hurrah2', '2013_1', '1', '0', '2013-02-12');
-INSERT INTO `pel_lib` VALUES ('2', 'Hurrah1', '2013_1', '1', '1', null);
+INSERT INTO `pel_lib` VALUES ('2', 'HURRAH1', '2013_1', '1', '1', null);
+INSERT INTO `pel_lib` VALUES ('3', 'HURRAH2', '2013_1', '1', '1', null);
 
 -- ----------------------------
 -- Table structure for `pel_resit`
@@ -5166,7 +5180,7 @@ CREATE TABLE `user_dept_func` (
   `active` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'weather its active for the user or not',
   PRIMARY KEY (`id`),
   KEY `unique` (`id_user_function`)
-) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user_dept_func
@@ -5266,6 +5280,16 @@ INSERT INTO `user_dept_func` VALUES ('98', '1', '2', '53', '1');
 INSERT INTO `user_dept_func` VALUES ('99', '3', '2', '53', '1');
 INSERT INTO `user_dept_func` VALUES ('100', '4', '2', '53', '1');
 INSERT INTO `user_dept_func` VALUES ('101', '1', '6', '54', '1');
+INSERT INTO `user_dept_func` VALUES ('103', '1', '6', '56', '1');
+INSERT INTO `user_dept_func` VALUES ('104', '1', '6', '57', '1');
+INSERT INTO `user_dept_func` VALUES ('105', '1', '6', '58', '1');
+INSERT INTO `user_dept_func` VALUES ('106', '1', '3', '59', '1');
+INSERT INTO `user_dept_func` VALUES ('107', '1', '3', '60', '1');
+INSERT INTO `user_dept_func` VALUES ('108', '1', '3', '61', '1');
+INSERT INTO `user_dept_func` VALUES ('109', '1', '3', '62', '1');
+INSERT INTO `user_dept_func` VALUES ('110', '1', '3', '63', '1');
+INSERT INTO `user_dept_func` VALUES ('111', '1', '3', '64', '1');
+INSERT INTO `user_dept_func` VALUES ('112', '1', '3', '65', '1');
 
 -- ----------------------------
 -- Table structure for `user_dept_jaw`
@@ -5299,7 +5323,7 @@ CREATE TABLE `user_function` (
   `posisi` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `Function` (`function`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user_function
@@ -5354,6 +5378,16 @@ INSERT INTO `user_function` VALUES ('51', 'set_sesi', 'Mengaktifkan Sesi Kemasuk
 INSERT INTO `user_function` VALUES ('52', 'edit_template', 'Mengemaskini Template Surat Tawaran', 'Kemaskini Template', '0', '19');
 INSERT INTO `user_function` VALUES ('53', 'edit_hadir', 'Mengemaskini Kehadiran Pelajar Bagi Sesuatu Subjek', 'Kemaskini Kehadiran', '0', '12');
 INSERT INTO `user_function` VALUES ('54', 'pinjam', 'Merekodkan Pinjaman Dan Pemulangan Buku Ke Perpustakaan', 'Pinjaman', '1', '1');
+INSERT INTO `user_function` VALUES ('56', 'edit_pinjaman', 'Mengemaskini Pinjaman Buku Pelajar', 'Kemaskini Pinjaman', '1', '2');
+INSERT INTO `user_function` VALUES ('57', 'kemas_stud', 'Mengemaskini Pemulangan Dan Pinjaman Buku Pelajar', 'Mengemaskini Pemulangan Dan Pinjaman Buku Pelajar', '0', '3');
+INSERT INTO `user_function` VALUES ('58', 'del_rek', 'Memadam Rekod Pinjaman Atau Pemulangan Buku Dari Perpustakaan Bagi Pelajar', 'Padam Rekod Perpustakaan', '0', '4');
+INSERT INTO `user_function` VALUES ('59', 'hostel_pelajar', 'Pendaftaran Kemasukan Pelajar Ke Kediaman', 'Kemasukan Asrama', '1', '1');
+INSERT INTO `user_function` VALUES ('60', 'daftar_pelajar', 'Mendaftar Pelajar Masuk Ke Asrama', 'Daftar Asrama', '0', '2');
+INSERT INTO `user_function` VALUES ('61', 'konfigurasi_asrama', 'Penambahan Dan Kemaskini Asrama Bg Penginapan Pelajar', 'Konfigurasi Asrama', '1', '3');
+INSERT INTO `user_function` VALUES ('62', 'bilik_asrama', 'Konfigurasi Bilik Untuk Asrama Kediaman', 'Konfigurasi Bilik Asrama', '0', '4');
+INSERT INTO `user_function` VALUES ('63', 'toggle_bilik_asrama', 'Pengaktifan Dan Juga Menyahaktif Sesebuah Bilik Asrama Kediaman', 'Pengaktifan Bilik Asrama', '0', '5');
+INSERT INTO `user_function` VALUES ('64', 'toggle_konf_asrama', 'Mengaktif Dan Menyahaktif Asrama', 'Pengaktifan Asrama', '0', '6');
+INSERT INTO `user_function` VALUES ('65', 'edit_bilik_asrama', 'Kemaskini Bilik Asrama Kediaman', 'Kemaskini Bilik Asrama', '0', '7');
 
 -- ----------------------------
 -- Table structure for `user_jawatan`

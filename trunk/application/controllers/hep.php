@@ -12,6 +12,7 @@ class Hep extends CI_Controller
 				$this->load->model('pelajar');						//nak tau controller ni pakai model mana 1...
 				$this->load->model('program');						//nak tau controller ni pakai model mana 1...
 				$this->load->model('hostel');						//nak tau controller ni pakai model mana 1...
+				$this->load->model('host_bilik');						//nak tau controller ni pakai model mana 1...
 
 				//mesti ikut peraturan ni..
 				//user mesti log on kalau tidak redirect to index
@@ -103,14 +104,147 @@ class Hep extends CI_Controller
 				$this->load->view('hep/asrama', @$data);
 			}
 
+		public function bilik_asrama()
+			{
+				$id = $this->uri->segment(3, 0);
+				$r = $this->hostel->GetWhere(array('kodhostel' => $id), NULL, NULL);
+				if($r->num_rows() == 1)
+					{
+						$id1 = $r->row()->kodhostel;
+						$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+						if ($this->form_validation->run() == TRUE)
+							{
+								if($this->input->post('simpan', TRUE))
+									{
+										$bi = $this->input->post(NULL, TRUE);
+										unset($bi['simpan']);
+										$l = array('kodhostel' => $id1, 'aktif' => 1);
+										$res = array_merge($bi, $l);
+										$m = $this->host_bilik->insert($res);
+										if($m)
+											{
+												$data['info'] = 'Data disimpan';
+											}
+											else
+											{
+												$data['info'] = 'Sila cuba sebentar lagi';
+											}
+									}
+							}
+					}
+				$data['ps'] = $this->host_bilik->GetWhere(array('kodhostel' => $id1), NULL, NULL);
+				$this->load->view('hep/bilik_asrama', $data);
+			}
 
+		public function toggle_bilik_asrama()
+			{
+				$id = $this->uri->segment(3, 0);
+				$tog = $this->uri->segment(4, 0);
+				$g = $this->host_bilik->GetWhere(array('id' => $id), NULL, NULL);
+				if($g->num_rows() == 1)
+					{
+						if($tog == 1 || $tog == 0)
+							{
+								//patut kena check dulu samada ada ahli atau dak...
+								$r = $this->host_bilik->update(array('id' => $id), array('aktif' => $tog));
+								if($r)
+									{
+										redirect('hep/bilik_asrama/'.$g->row()->kodhostel, 'location');
+									}
+									else
+									{
+										redirect('hep/bilik_asrama/'.$g->row()->kodhostel, 'location');
+									}
+							}
+					}
+			}
 
+		public function toggle_konf_asrama()
+			{
+				$id = $this->uri->segment(3, 0);
+				$tog = $this->uri->segment(4, 0);
+				$s = $this->hostel->GetWhere(array('kodhostel' => $id), NULL, NULL);
+				if($s->num_rows() == 1)
+					{
+						//check ada bilik yg aktif dak?
+						$t = $this->host_bilik->GetWhere(array('kodhostel' => $id, 'aktif' => 1), NULL, NULL);
+						if ($t->num_rows() > 0)
+							{
+								redirect ('hep/konfigurasi_asrama', 'location');
+							}
+							else
+							{
+								$v = $this->hostel->update(array('kodhostel' => $id), array('aktif' => $tog));
+								if($v)
+									{
+										redirect ('hep/konfigurasi_asrama', 'location');
+									}
+									else
+									{
+										redirect ('hep/konfigurasi_asrama', 'location');
+									}
+							}
+					}
+			}
 
+		public function edit_bilik_asrama()
+			{
+				$id = $this->uri->segment(3, 0);
+				$j = $this->host_bilik->GetWhere(array('id' => $id), NULL, NULL);
+				if($j->num_rows() == 1)
+					{
+						$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+						if ($this->form_validation->run() == TRUE)
+							{
+								if($this->input->post('simpan', TRUE))
+									{
+										$gi = $this->input->post(NULL, TRUE);
+										unset($gi['simpan']);
+										$l = $this->host_bilik->update(array('id' => $id), $gi);
+										if($l)
+											{
+												redirect('hep/bilik_asrama', 'location');
+											}
+											else
+											{
+												$data['info'] = 'Sila cuba sebentar lagi';
+											}
+									}
+							}
+						$data['ps'] = $j;
+					}
+				$this->load->view('hep/edit_bilik_asrama', $data);
+			}
 
-
-
-
-
+		public function kemaskini_asrama()
+			{
+				$id = $this->uri->segment(3, 0);
+				$o = $this->hostel->GetWhere(array('kodhostel' => $id), NULL, NULL);
+				if($o->num_rows() == 1)
+					{
+						$data['p'] = $o;
+						$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+						if ($this->form_validation->run() == TRUE)
+							{
+								if($this->input->post('simpan', TRUE))
+									{
+										$ho = $this->input->post(NULL, TRUE);
+										unset($ho['simpan']);
+										//print_r($ho);
+										$k = $this->hostel->insert($ho);
+										if($k)
+											{
+												$data['info'] = 'Data disimpan';
+											}
+											else
+											{
+												$data['info'] = 'Sila cuba sebentar lagi';
+											}
+									}
+							}
+					}
+				$this->load->view('hep/kemaskini_asrama', $data);
+			}
 
 
 
