@@ -1,11 +1,14 @@
 <?php extend('base_template_user') ?>
     
     <?php startblock('content') ?>
-        <h2>Pendaftaran Kemasukan Pelajar ke Asrama Kediaman</h2>
+        <h2>Konfigurasi Asrama Kediaman</h2>
         <div id="accordion">
 	        <h3>Bantuan</h3>
 	        <p>Penambahan asrama kediaman boleh dilakukan disini.<br />
-			Kategori Jantina adalah untuk mengenal pasti asrama kediaman berikut adalah dikhaskan untuk lelaki, perempuan atau campur<br />
+			1.&nbsp;&nbsp;&nbsp;Kategori Jantina adalah untuk mengenal pasti asrama kediaman berikut adalah dikhaskan untuk lelaki, perempuan atau campur<br />
+			2.&nbsp;&nbsp;&nbsp;Jika sekiranya anda cuba untuk menyahaktifkan sesebuah asrama, sila pastikan bilik-bilik yang telah dibuat di nyahaktifkan terlebih dahulu<br />
+			3.&nbsp;&nbsp;&nbsp;Klik Kod Hostel untuk konfigurasi bilik<br />
+			4.&nbsp;&nbsp;&nbsp;Klik Nama untuk kemaskini asrama kediaman
 			</p>
         </div>
 
@@ -60,8 +63,8 @@
 						</tr>
 						<?foreach($ps->result() AS $n):?>
 							<tr>
-								<td><?=anchor('hep/bilik_asrama/'.$n->kodhostel, $n->kodhostel, 'title="Pilih '.$n->kodhostel.'"')?></td>
-								<td><?=$n->namahostel?></td>
+								<td><?=$n->aktif == 1 ? anchor('hep/bilik_asrama/'.$n->kodhostel, $n->kodhostel, 'title="Pilih '.$n->kodhostel.'"') : $n->kodhostel?></td>
+								<td><?=$n->aktif == 1 ? anchor('hep/kemaskini_asrama/'.$n->kodhostel, $n->namahostel) : $n->namahostel ?></td>
 								<td><?=$n->alamat1?><br /><?=$n->alamat2?></td>
 								<td><?=$n->bandar?></td>
 								<td><?=$n->negeri?></td>
@@ -70,7 +73,7 @@
 										<td><?=$h?></td>
 									<?endif?>
 								<?endforeach?>
-								<td><?=$n->aktif == 1 ? 'Ya' : 'Tidak'?></td>
+								<td><?=$n->aktif == 1 ? anchor('hep/toggle_konf_asrama/'.$n->kodhostel.'/0', 'AKTIF') : anchor('hep/toggle_konf_asrama/'.$n->kodhostel.'/1', ' TIDAK AKTIF')?></td>
 							</tr>
 						<?endforeach?>
 					</table>

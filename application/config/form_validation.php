@@ -1303,7 +1303,105 @@ $config = array	(
 								'rules' => 'trim|required|is_natural_no_zero|xss_clean'
 							),
 					),
-
+					'hep/bilik_asrama' => array
+					(
+						array
+							(
+								'field' => 'nobilik',
+								'label' => 'No Bilik',
+								'rules' => 'trim|required|is_unique[host_bilik.nobilik]|alpha_dash|xss_clean'
+							),
+						array
+							(
+								'field' => 'harga_hari',
+								'label' => 'Harga Hari',
+								'rules' => 'trim|required|greater_than[-1]|xss_clean'
+							),
+						array
+							(
+								'field' => 'harga_bulan',
+								'label' => 'Harga Bulan',
+								'rules' => 'trim|required|greater_than[-1]|xss_clean'
+							),
+						array
+							(
+								'field' => 'max_capacity',
+								'label' => 'Max Capacity',
+								'rules' => 'trim|required|greater_than[0]|xss_clean'
+							)
+					),
+					'hep/edit_bilik_asrama' => array
+					(
+						array
+							(
+								'field' => 'nobilik',
+								'label' => 'No Bilik',
+								'rules' => 'trim|required|alpha_dash|xss_clean'
+							),
+						array
+							(
+								'field' => 'harga_hari',
+								'label' => 'Harga Hari',
+								'rules' => 'trim|required|greater_than[-1]|xss_clean'
+							),
+						array
+							(
+								'field' => 'harga_bulan',
+								'label' => 'Harga Bulan',
+								'rules' => 'trim|required|greater_than[-1]|xss_clean'
+							),
+						array
+							(
+								'field' => 'max_capacity',
+								'label' => 'Max Capacity',
+								'rules' => 'trim|required|greater_than[0]|xss_clean'
+							)
+					),
+					'hep/kemaskini_asrama' => array
+					(
+						array
+							(
+								'field' => 'kodhostel',
+								'label' => 'Kod Hostel',
+								'rules' => 'trim|required|alpha_dash|xss_clean'
+							),
+						array
+							(
+								'field' => 'namahostel',
+								'label' => 'Nama Hostel',
+								'rules' => 'trim|required|xss_clean'
+							),
+						array
+							(
+								'field' => 'alamat1',
+								'label' => 'Alamat 1',
+								'rules' => 'trim|required|xss_clean'
+							),
+						array
+							(
+								'field' => 'alamat2',
+								'label' => 'Alamat 2',
+								'rules' => 'trim|xss_clean'
+							),
+						array
+							(
+								'field' => 'bandar',
+								'label' => 'Bandar',
+								'rules' => 'trim|required|xss_clean'
+							),
+						array
+							(
+								'field' => 'negeri',
+								'label' => 'Negeri',
+								'rules' => 'trim|required|xss_clean'
+							),
+						array
+							(
+								'field' => 'kat_jantina',
+								'label' => 'Kategori Jantina',
+								'rules' => 'trim|required|is_natural_no_zero|xss_clean'
+							),
+					),
 
 
 
