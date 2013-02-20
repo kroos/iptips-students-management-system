@@ -13,10 +13,6 @@
 		<?=form_open()?>
 		<div class="form_settings">
 
-			<p><span><?=form_label('Kod Hostel', 'kodhostel')?></span>
-			<?=form_input(array('name' => 'kodhostel', 'value' => $p->row()->kodhostel, 'id' => 'kodhostel'))?>
-			<br /><?=form_error('kodhostel')?></p>
-
 			<p><span><?=form_label('Nama Hostel', 'namahostel')?></span>
 			<?=form_input(array('name' => 'namahostel', 'value' => $p->row()->namahostel, 'id' => 'namahostel'))?>
 			<br /><?=form_error('namahostel')?></p>

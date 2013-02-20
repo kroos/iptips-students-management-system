@@ -4,7 +4,8 @@
         <h2>Pendaftaran Kemasukan Pelajar ke Asrama Kediaman</h2>
         <div id="accordion">
 	        <h3>Bantuan</h3>
-	        <p>Cari pelajar melalui nombor matrik</p>
+	        <p>Cari pelajar melalui nombor matrik<br />
+			Klik Cari untuk pencarian semua pelajar</p>
         </div>
 
         <div class="info"><?=@$info?></div>
