@@ -1361,12 +1361,6 @@ $config = array	(
 					(
 						array
 							(
-								'field' => 'kodhostel',
-								'label' => 'Kod Hostel',
-								'rules' => 'trim|required|alpha_dash|xss_clean'
-							),
-						array
-							(
 								'field' => 'namahostel',
 								'label' => 'Nama Hostel',
 								'rules' => 'trim|required|xss_clean'

@@ -64,6 +64,7 @@ $route['hea/edit_hadir/(:num)'] = 'hea/edit_hadir';
 $route['perpustakaan/kemas_stud/(:num)'] = 'perpustakaan/kemas_stud';
 $route['hep/bilik_asrama/(:any)'] = 'hep/bilik_asrama';
 $route['hep/edit_bilik_asrama/(:num)'] = 'hep/edit_bilik_asrama';
+$route['hep/kemaskini_asrama/(:any)'] = 'hep/kemaskini_asrama';
 
 
 

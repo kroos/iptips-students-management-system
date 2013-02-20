@@ -72,11 +72,25 @@ class Hep extends CI_Controller
 		public function daftar_pelajar()
 			{
 				$id = $this->uri->segment(3, 0);
-				if(is_numeric($id))
+				$se = $this->sesi_akademik->GetWhere(array('aktif' => 1), NULL, NULL);
+				if ($se->num_rows() == 1)
 					{
-						
+						$es = $se->row()->kodsesi;
+						$c = $this->pel_sem->GetWhere(array('sesi' => $es, 'status_pel' => '01', 'aktif' => 1, 'id' => $id), NULL, NULL);
+						if ($c->num_rows() == 1)
+							{
+								$data['ps'] = $c;
+
+								//check availability of the hostel => check dulu jantina pelajar
+								echo $c->row()->matrik;
+								$h = $this->pelajar->GetWhere(array('matrik' => $c->row()->matrik), NULL, NULL);
+								
+								
+								
+								
+								$this->load->view('hep/daftar_pelajar', $data);
+							}
 					}
-				$this->load->view('hep/daftar_pelajar', @$data);
 			}
 
 		public function konfigurasi_asrama()
@@ -222,7 +236,6 @@ class Hep extends CI_Controller
 				$o = $this->hostel->GetWhere(array('kodhostel' => $id), NULL, NULL);
 				if($o->num_rows() == 1)
 					{
-						$data['p'] = $o;
 						$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
 						if ($this->form_validation->run() == TRUE)
 							{
@@ -230,11 +243,10 @@ class Hep extends CI_Controller
 									{
 										$ho = $this->input->post(NULL, TRUE);
 										unset($ho['simpan']);
-										//print_r($ho);
-										$k = $this->hostel->insert($ho);
+										$k = $this->hostel->update(array('kodhostel' => $o->row()->kodhostel), $ho);
 										if($k)
 											{
-												$data['info'] = 'Data disimpan';
+												redirect ('hep/konfigurasi_asrama', 'location');
 											}
 											else
 											{
@@ -242,6 +254,7 @@ class Hep extends CI_Controller
 											}
 									}
 							}
+						$data['p'] = $o;
 					}
 				$this->load->view('hep/kemaskini_asrama', $data);
 			}
