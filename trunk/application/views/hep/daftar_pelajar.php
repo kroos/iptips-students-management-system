@@ -20,29 +20,62 @@
 		</div>
 		<?=form_close()?>
 
-			<?if($ps->num_rows() > 0):?>
+			<?if($host->num_rows() > 0):?>
 				<div class="demo">
 					<table style="width:100%; border-spacing:0;">
 						<tr>
-							<th></th>
-							<th></th>
-							<th></th>
-							<th></th>
-							<th></th>
-							<th></th>
+							<th>Kod<br />Asrama</th>
+							<th>Nama Asrama</th>
+							<th>&nbsp;</th>
+							<th>Kategori Jantina</th>
+							<th>Aktif</th>
 						</tr>
-						<?foreach($ps->result() AS $n):?>
+						<?foreach($host->result() AS $n):?>
+						<?$hb = $this->host_bilik->GetWhere(array('kodhostel' => $n->kodhostel), NULL, NULL)?>
 							<tr>
-								<td><??></td>
-								<td><??></td>
-								<td><??></td>
-								<td><??></td>
-								<td><??></td>
-								<td><??></td>
+								<td><?=$n->kodhostel?></td>
+								<td><?=$n->namahostel?></td>
+								<td>
+									<?if($hb->num_rows() > 0):?>
+										<table style="width:100%; border-spacing:0;">
+											<tr>
+												<th>No Bilik</th>
+												<th>Kapasiti</th>
+												<th>Aktif</th>
+											</tr>
+										<?foreach($hb->result() AS $w):?>
+											<tr>
+												<td><?=$w->nobilik?></td>
+												<td>
+													<??>
+														<?=$w->max_capacity?>
+												</td>
+												<td><?=$w->aktif == 1 ? 'Aktif' : 'Tidak Aktif'?></td>
+											</tr>
+										<?endforeach?>
+										</table>
+									<?else:?>
+										Bilik asrama ini belum lagi di konfigurasi
+									<?endif?>
+								</td>
+								<td>
+									<?php
+									foreach ($this->config->item('kat_jantina') as $f=>$j)
+										{
+											if($n->kat_jantina == $f)
+												{
+													echo $j;
+												}
+										}
+									?>
+								</td>
+								<td><?=$n->aktif == 1 ? 'Aktif' : 'Tidak Aktif'?></td>
 							</tr>
 						<?endforeach?>
 					</table>
 				</div>
+			<?else:?>
+				<p>No hostel has been setup yet</p>
 			<?endif?>
 	<?php endblock()?>
 

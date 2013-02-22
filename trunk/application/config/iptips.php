@@ -23,10 +23,10 @@ $config['SMTP_Secure'] = 'ssl';
 
 //email account from sender associated to the pop3 n smtp server settings.
 $config['username'] = 'a3outlaw@gmail.com';				//gmail username
-$config['password'] = '0162172420';				//gmail password
-$config['addreplyto_email'] = 'admin@isms.com';					//this might probably differ from $config['username']. Example, admin@domain.com
+$config['password'] = '0162172420';						//gmail password
+$config['addreplyto_email'] = 'admin@isms.com';			//this might probably differ from $config['username']. Example, admin@domain.com
 $config['addreplyto_name'] = 'Admin';					//example, [GM]Cabal
-$config['from'] = 'admin@isms.com';								//this might probably differ from $config['username']. Example, admin@domain.com
+$config['from'] = 'admin@isms.com';						//this might probably differ from $config['username']. Example, admin@domain.com
 $config['from_name'] = 'Admin';							//example [GM]Cabal
 
 #############################################################################################
