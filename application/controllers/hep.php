@@ -13,6 +13,7 @@ class Hep extends CI_Controller
 				$this->load->model('program');						//nak tau controller ni pakai model mana 1...
 				$this->load->model('hostel');						//nak tau controller ni pakai model mana 1...
 				$this->load->model('host_bilik');						//nak tau controller ni pakai model mana 1...
+				$this->load->model('pel_dafhostel');						//nak tau controller ni pakai model mana 1...
 
 				//mesti ikut peraturan ni..
 				//user mesti log on kalau tidak redirect to index
@@ -82,8 +83,10 @@ class Hep extends CI_Controller
 								$data['ps'] = $c;
 
 								//check availability of the hostel => check dulu jantina pelajar
-								echo $c->row()->matrik;
+								//echo $c->row()->matrik;
 								$h = $this->pelajar->GetWhere(array('matrik' => $c->row()->matrik), NULL, NULL);
+								$data['host'] = $this->hostel->GetWhere(array('aktif' => 1), NULL, NULL);
+
 								
 								
 								
