@@ -41,8 +41,8 @@ class Hep extends CI_Controller
 				$se = $this->sesi_akademik->GetWhere(array('aktif' => 1), NULL, NULL);
 				if ($se->num_rows() == 1)
 					{
-						$es = $se->row()->kodsesi;
-						$data['ps'] = $this->pel_sem->GetWhere(array('sesi' => $es, 'status_pel' => '01', 'aktif' => 1), NULL, NULL);
+						$data['es'] = $se->row()->kodsesi;
+						//$data['ps'] = $this->pel_sem->GetWhere(array('sesi' => $data['es'], 'status_pel' => '01', 'aktif' => 1), NULL, NULL);
 						$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
 						if ($this->form_validation->run() == TRUE)
 							{
@@ -50,7 +50,7 @@ class Hep extends CI_Controller
 									{
 										$matrik = strtoupper(strtolower($this->input->post('matrik', TRUE)));
 
-										$data['ps'] = $this->pel_sem->GetWhere(array('matrik LIKE ' => '%'.$matrik.'%', 'sesi' => $es, 'status_pel' => '01', 'aktif' => 1), NULL, NULL);
+										$data['ps'] = $this->pel_sem->GetWhere(array('matrik LIKE ' => '%'.$matrik.'%', 'sesi' => $data['es'], 'status_pel' => '01', 'aktif' => 1), NULL, NULL);
 										//echo $this->db->last_query();
 										if($data['ps'])
 											{
@@ -85,13 +85,81 @@ class Hep extends CI_Controller
 								//check availability of the hostel => check dulu jantina pelajar
 								//echo $c->row()->matrik;
 								$h = $this->pelajar->GetWhere(array('matrik' => $c->row()->matrik), NULL, NULL);
-								$data['host'] = $this->hostel->GetWhere(array('aktif' => 1), NULL, NULL);
+								//echo $h->row()->jantina;
+								if($h->row()->jantina == 1)
+									{
+										$data['host'] = $this->hostel->GetWhere(array('aktif' => 1, 'kat_jantina = 1 OR kat_jantina = 3' => NULL), NULL, NULL);
+										//echo $this->db->last_query();
+									}
+									else
+									{
+										$data['host'] = $this->hostel->GetWhere(array('aktif' => 1, 'kat_jantina = 2 OR kat_jantina = 3' => NULL), NULL, NULL);
+										//echo $this->db->last_query();
+									}
 
-								
-								
-								
-								
 								$this->load->view('hep/daftar_pelajar', $data);
+							}
+					}
+			}
+
+		public function conf_daftar_pelajar()
+			{
+				$idp = $this->uri->segment(3, 0);
+				$idb = $this->uri->segment(4, 0);
+
+				if(is_numeric($idp) && is_numeric($idb))
+					{
+						//cari pelajar
+						$se = $this->sesi_akademik->GetWhere(array('aktif' => 1), NULL, NULL);
+						if ($se->num_rows() == 1)
+							{
+								$es = $se->row()->kodsesi;
+								$c = $this->pel_sem->GetWhere(array('sesi' => $es, 'status_pel' => '01', 'aktif' => 1, 'id' => $idp), NULL, NULL);
+								if ($c->num_rows() == 1)
+									{
+										$h = $this->pelajar->GetWhere(array('matrik' => $c->row()->matrik), NULL, NULL);
+										$z = $this->host_bilik->GetWhere(array('id' => $idb, 'aktif' => 1), NULL, NULL);
+										if($z->num_rows() == 1)
+											{
+												$data['p'] = $h;
+												$data['b'] = $z;
+											}
+									}
+							}
+						$this->load->view('hep/conf_daftar_pelajar', @$data);
+					}
+			}
+
+		public function registered()
+			{
+				$idp = $this->uri->segment(3, 0);
+				$idb = $this->uri->segment(4, 0);
+
+				if(is_numeric($idp) && is_numeric($idb))
+					{
+						//cari pelajar
+						$se = $this->sesi_akademik->GetWhere(array('aktif' => 1), NULL, NULL);
+						if ($se->num_rows() == 1)
+							{
+								$es = $se->row()->kodsesi;
+								$c = $this->pel_sem->GetWhere(array('sesi' => $es, 'status_pel' => '01', 'aktif' => 1, 'id' => $idp), NULL, NULL);
+								if ($c->num_rows() == 1)
+									{
+										$h = $this->pelajar->GetWhere(array('matrik' => $c->row()->matrik), NULL, NULL);
+										$z = $this->host_bilik->GetWhere(array('id' => $idb, 'aktif' => 1), NULL, NULL);
+										if($z->num_rows() == 1)
+											{
+												$l = $this->pel_dafhostel->insert(array('matrik' => $h->row()->matrik, 'idbilik' => $z->row()->id, 'tarikh_masuk' => date_db(now()), 'sesi' => $c->row()->sesi, 'id_add' => $this->session->userdata('id_user'), 'dt_add' => date_db(now())));
+												if($l)
+													{
+														redirect('hep/hostel_pelajar', 'location');
+													}
+													else
+													{
+													
+													}
+											}
+									}
 							}
 					}
 			}

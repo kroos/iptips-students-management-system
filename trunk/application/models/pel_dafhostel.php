@@ -30,5 +30,16 @@ class Pel_dafhostel extends CI_Model
 				return $this->db->update('pel_dafhostel', $update, $where);
 			}
 
+//DELETE
+		function delete($delete)
+			{
+				return $this->db->delete('pel_dafhostel', $delete);
+			}
+
+//TRUNCATE
+		function truncate()
+			{
+				return $this->db->truncate('pel_dafhostel');
+			}
 	}
 ?>
