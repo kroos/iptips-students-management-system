@@ -608,6 +608,7 @@ class Isms extends CI_Controller
 								$r[] = $this->pel_daftarsubjek->truncate();
 								$r[] = $this->pel_invois->truncate();
 								$r[] = $this->pelajar->truncate();
+								$r[] = $this->pel_dafhostel->truncate();
 								$r[] = $this->pel_subjek_gred->truncate(); */
 								if($r)
 									{

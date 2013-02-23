@@ -32,15 +32,20 @@
 							<th>Semester</th>
 						</tr>
 						<?foreach($ps->result() AS $n):?>
-						<?$g = $this->pelajar->GetWhere(array('matrik' => $n->matrik), NULL, NULL)?>
-						<?$a = $this->program->GetWhere(array('kod_prog' => $n->kod_prog), NULL, NULL)?>
-							<tr>
-								<td><?=anchor('hep/daftar_pelajar/'.$n->id, $n->matrik, 'title="Pilih '.$g->row()->nama.'"')?></td>
-								<td><?=$g->row()->nama?></td>
-								<td><?=$a->row()->namaprog_MY?></td>
-								<td><?=$n->sesi?></td>
-								<td><?=$n->sem?></td>
-							</tr>
+							<?$v = $this->pel_dafhostel->GetWhere(array('matrik' => $n->matrik, 'sesi' => $es, 'tarikh_keluar IS NULL' => NULL), NULL, NULL)?>
+							<?//=$this->db->last_query().' = query<br />'?>
+							<?//=$v->num_rows().' = num_rows<br />'?>
+							<?if($v->num_rows() < 1):?>
+							<?$g = $this->pelajar->GetWhere(array('matrik' => $n->matrik), NULL, NULL)?>
+							<?$a = $this->program->GetWhere(array('kod_prog' => $n->kod_prog), NULL, NULL)?>
+								<tr>
+									<td><?=anchor('hep/daftar_pelajar/'.$n->id, $n->matrik, 'title="Pilih '.$g->row()->nama.'"')?></td>
+									<td><?=$g->row()->nama?></td>
+									<td><?=$a->row()->namaprog_MY?></td>
+									<td><?=$n->sesi?></td>
+									<td><?=$n->sem?></td>
+								</tr>
+							<?endif?>
 						<?endforeach?>
 					</table>
 				</div>

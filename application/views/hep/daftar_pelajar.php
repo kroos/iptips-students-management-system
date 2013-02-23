@@ -9,7 +9,7 @@
 
         <div class="info"><?=@$info?></div>
 
-		<?=form_open()?>
+<?/*?> 		<?=form_open()?>
 		<div class="form_settings">
 
 			<p><span><?=form_label('Kod Hostel', 'kodhostel')?></span>
@@ -19,7 +19,7 @@
 			<p><span>&nbsp;</span><?=form_submit('simpan', 'Simpan','class="submit"')?></p>
 		</div>
 		<?=form_close()?>
-
+ <?//*/?>
 			<?if($host->num_rows() > 0):?>
 				<div class="demo">
 					<table style="width:100%; border-spacing:0;">
@@ -45,10 +45,11 @@
 											</tr>
 										<?foreach($hb->result() AS $w):?>
 											<tr>
-												<td><?=$w->nobilik?></td>
+												<td><?=$w->aktif == 1 ? anchor('/hep/conf_daftar_pelajar/'.$this->uri->segment(3, 0).'/'.$w->id, $w->nobilik, 'title="Pilih Bilik '.$w->nobilik.'"') : $w->nobilik ?></td>
 												<td>
-													<??>
-														<?=$w->max_capacity?>
+													<?$x = $this->pel_dafhostel->GetWhere(array('idbilik' => $w->id), NULL, NULL)?>
+													<?$e = $w->max_capacity - $x->num_rows()?>
+													<?=$e == 0 ? 'Penuh' : $e ?>
 												</td>
 												<td><?=$w->aktif == 1 ? 'Aktif' : 'Tidak Aktif'?></td>
 											</tr>
