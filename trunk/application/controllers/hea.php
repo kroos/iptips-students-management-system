@@ -561,10 +561,16 @@ class Hea extends CI_Controller
 				if(!$data['matrik']){
 					$data['matrik'] = $matrik;
 				}
+				$html = '<!doctype html>
+					<head>
+						<title>Slip Peperiksaan</title>
+						<link href="'.base_url().'css/surat.css" rel="stylesheet" />
+					</head>
+					<body>';
 				$data['pelajar'] = $this->pelajar->GetWhere(array('matrik' => $data['matrik']), NULL, NULL);
 				$pelajar = $data['pelajar']->row();
 				$pelsem = $this->pel_sem->GetWhere(array('matrik' => $data['matrik'], 'aktif' => 1), NULL, NULL);
-				//$pelsem = $pelsem->row();
+				$data['pelsem'] = $pelsem;//$pelsem = $pelsem->row();
 				
 				if($data['pelajar']->num_rows() == 1)
 					{
@@ -572,58 +578,58 @@ class Hea extends CI_Controller
 						if(empty($pelajar->ic)){
 							$nokp = $pelajar->passport;
 						}
-						$html = '<table>
-							<tr><td>Nama>
+						$html .= '<table>
+							<tr><td>Nama</td>
 								<td>'.$pelajar->nama.'</td></tr>
 							<tr><td>Nombor Kad Pelajar</td>
-								<td>'.$pelajar->matrik.'</td></tr>
+								<td>'.$pelajar->matrik.'</td>
+							</tr>
 							<tr><td>Nombor Kad Pengenalan/Paspot</td>
-								<td>'.$nokp.'</td></tr>
+								<td>'.$nokp.'</td>
+							</tr>
+							<tr><td>Program</td>
+								<td>'.$pelsem->row()->kod_prog.' : '.$this->program->GetWhere(array('kod_prog'=>$pelsem->row()->kod_prog))->row()->namaprog_MY.'</td>
+							</tr>
 							<tr><td>Semester</td>
-								<td>'.$pelsem->row()->sem.'</td></tr>
+								<td>'.$pelsem->row()->sem.'</td>
+							</tr>
 							<tr><td>Sesi</td>
-								<td>'.$pelsem->row()->sesi.'</td></tr></table>';
+								<td>'.$pelsem->row()->sesi.'</td>
+							</tr></table>';
 						
 						$data['subjek'] = $this->pel_subjek_gred->GetWhere(array('matrik' => $data['matrik'], 'sesi' => $pelsem->row()->sesi, 'sem' => $pelsem->row()->sem, 'id_drop IS NULL' => NULL, 'id_ign IS NULL' => NULL), NULL, NULL);
+						//$data['subjek']->db->join('subjek','subjek.kodsubjek = pel_subjek_gred.kodsubjek');
 						$subjek = $data['subjek']->result();
-						
+						$html1 = '';
 						$html .= '<table>
-							<thead><tr><th>Kod Subjek</th>
-								<th>Nama Subjek</th>
-								<th>Jam Kredit</th></tr><thead>
-							<tbody>';
+							<tr><td>Kod Subjek</td>
+								<td>Nama Subjek</td>
+								<td>Jam Kredit</td>
+							</tr>
+							';
 						foreach($subjek as $subjeks){
 							$html .= '<tr><td>'.$subjeks->kodsubjek.'</td>
-								<td>'.$subjeks->namasubjek_MY.'</td>
+								<td>'.$this->subjek->GetWhere(array('kodsubjek'=>$subjeks->kodsubjek))->row()->namasubjek_MY.'</td>
 								<td>'.$subjeks->kredit.'</td></tr>';
 						}
 						
-						$html .= '</tbody></table>';
+						$html .= '</table>';
 					}
-					echo $html;
+				$html .= '</body></html>';
+				$data['html'] = $html;
+				//echo $html;
+				
+				$this->cetak_pdf($html);
 				//$this->load->view('hea/cetak_slip_exam', $data);
 			}
 
-		public function cetak_slip_exam()
-			{
-				// sham... tolong buat pdf kat sini...hahahhaha
-				/*$data['title'] = 'Slip Peperiksaan';
-				//$matrik = $this->uri->segment(3, 0);
-				$data['m'] = $this->pelajar->GetWhere(array('matrik' => $data['matrik']), NULL, NULL);
-				$pelsem = $this->pel_sem->GetWhere(array('matrik' => $data['matrik'], 'aktif' => 1), NULL, NULL);
-
-				if($data['m']->num_rows() == 1)
-					{
-						$data['m'] = $this->pel_subjek_gred->GetWhere(array('matrik' => $data['matrik'], 'sesi' => $pelsem->row()->sesi, 'sem' => $pelsem->row()->sem, 'id_drop IS NULL' => NULL, 'id_ign IS NULL' => NULL), NULL, NULL);
-					}*/
-				$this->load->view('hea/cetak_slip_exam', $data);
-			}
-
-		public function cetak_pdf(){
+		public function cetak_pdf($html){
 			$data['matrik'] = $this->uri->segment(3, 0);
-			/*$this->load->library('Pdf');
+			$this->load->library('Pdf');
 				$pdf = new Pdf('P', 'px', 'A4', true, 'UTF-8', false);
-
+			// create new PDF document
+			$pdf = new Pdf(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+			
 				// set document information
 				$this->pdf->SetCreator(PDF_CREATOR);
 				$this->pdf->SetAuthor('Hishamudin Mohamad Azid');
@@ -656,30 +662,17 @@ class Hea extends CI_Controller
 		        //$pdf->SetFont('aefurat', '', 10);	        
 
 		        // add a page
-		        $this->pdf->AddPage();*/
-
-		        $data['title'] = 'Slip Peperiksaan';
-				$matrik = $this->uri->segment(3, 0);
-				$data['m'] = $this->pelajar->GetWhere(array('matrik' => $data['matrik']), NULL, NULL);
-				$pelsem = $this->pel_sem->GetWhere(array('matrik' => $data['matrik'], 'aktif' => 1), NULL, NULL);
-
-				if($data['m']->num_rows() == 1)
-					{
-						//$data['m'] = $this->pel_subjek_gred->GetWhere(array('matrik' => $data['matrik'], 'sesi' => $pelsem->row()->sesi, 'sem' => $pelsem->row()->sem, 'id_drop IS NULL' => NULL, 'id_ign IS NULL' => NULL), NULL, NULL);
-					}
-
-		        $this->load->library('parser');
-		        //$this->load->view('hea/cetak_slip_exam',$data);
-				$html = $this->parser->parse('hea/cetak_slip_exam',$matrik);
-
-				/*$this->pdf->writeHTMLCell('auto', '', '', $y, $html, 0, 0, 0, true, 'J', true);
-				//$pdf->writeHTML($html, true, false, true, false, '');
+		        $this->pdf->AddPage();
+				//echo $html;
+				//$html = '<table><tr><td>oi</td></tr></table>';
+		        //$this->pdf->writeHTMLCell('auto', '', '', $y, $html, 0, 0, 0, true, 'J', true);
+				$this->pdf->writeHTML($html, true, false, true, false, '');
 
 				// reset pointer to the last page
 				$this->pdf->lastPage();
 
 		        //Close and output PDF document
-		        $this->pdf->Output($matrik.'_slip_exam.pdf', 'I'); */
+		        $this->pdf->Output('slip_exam.pdf', 'I');
 		}
 
 		public function pensyarah()
