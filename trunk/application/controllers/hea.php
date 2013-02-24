@@ -549,7 +549,59 @@ class Hea extends CI_Controller
 									}
 							}
 					}
+				//$this->load->view('hea/slip_exam', $data);
 				$this->load->view('hea/slip_exam', $data);
+			}
+
+		public function cetak_slip_exam()
+			{
+				// sham... tolong buat pdf kat sini...hahahhaha
+				$data['title'] = 'Slip Peperiksaan';
+				$data['matrik'] = $this->uri->segment(3, 0);
+				if(!$data['matrik']){
+					$data['matrik'] = $matrik;
+				}
+				$data['pelajar'] = $this->pelajar->GetWhere(array('matrik' => $data['matrik']), NULL, NULL);
+				$pelajar = $data['pelajar']->row();
+				$pelsem = $this->pel_sem->GetWhere(array('matrik' => $data['matrik'], 'aktif' => 1), NULL, NULL);
+				//$pelsem = $pelsem->row();
+				
+				if($data['pelajar']->num_rows() == 1)
+					{
+						$nokp = $pelajar->ic;
+						if(empty($pelajar->ic)){
+							$nokp = $pelajar->passport;
+						}
+						$html = '<table>
+							<tr><td>Nama>
+								<td>'.$pelajar->nama.'</td></tr>
+							<tr><td>Nombor Kad Pelajar</td>
+								<td>'.$pelajar->matrik.'</td></tr>
+							<tr><td>Nombor Kad Pengenalan/Paspot</td>
+								<td>'.$nokp.'</td></tr>
+							<tr><td>Semester</td>
+								<td>'.$pelsem->row()->sem.'</td></tr>
+							<tr><td>Sesi</td>
+								<td>'.$pelsem->row()->sesi.'</td></tr></table>';
+						
+						$data['subjek'] = $this->pel_subjek_gred->GetWhere(array('matrik' => $data['matrik'], 'sesi' => $pelsem->row()->sesi, 'sem' => $pelsem->row()->sem, 'id_drop IS NULL' => NULL, 'id_ign IS NULL' => NULL), NULL, NULL);
+						$subjek = $data['subjek']->result();
+						
+						$html .= '<table>
+							<thead><tr><th>Kod Subjek</th>
+								<th>Nama Subjek</th>
+								<th>Jam Kredit</th></tr><thead>
+							<tbody>';
+						foreach($subjek as $subjeks){
+							$html .= '<tr><td>'.$subjeks->kodsubjek.'</td>
+								<td>'.$subjeks->namasubjek_MY.'</td>
+								<td>'.$subjeks->kredit.'</td></tr>';
+						}
+						
+						$html .= '</tbody></table>';
+					}
+					echo $html;
+				//$this->load->view('hea/cetak_slip_exam', $data);
 			}
 
 		public function cetak_slip_exam()
