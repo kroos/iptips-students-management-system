@@ -879,6 +879,15 @@ class Kemasukan extends CI_Controller
 			//set some language-dependent strings
 			$pdf->setLanguageArray($lg);
 	        
+	        //images
+	        
+	        $img_file = base_url().'/images/IPTIPs_logo.png';
+	        
+			$background_text = str_repeat('TCPDF test PNG Alpha Channel ', 50);
+	        //$this->pdf->Image($img_file, 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
+        	$this->pdf->Image('$img_file', 50, 50, 100, '', '', '', '', false, 300);
+        	$this->pdf->setPageMark();
+        	
 	        // set font
 	        //$this->pdf->SetFont('times', '', 12);
 	        
@@ -895,7 +904,7 @@ class Kemasukan extends CI_Controller
 	        
 	        
 	        //$html = $p->parse($html1);
-			$html = $this->parser->parse('kemasukan/surat_tawar', $data);;
+			$html = $this->parser->parse('kemasukan/surat_tawar', $data);
 	        
 			$this->pdf->writeHTMLCell('auto', '', '', $y, $html, 0, 0, 0, true, 'J', true);
 			//$pdf->writeHTML($html, true, false, true, false, '');
