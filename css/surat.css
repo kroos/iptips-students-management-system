@@ -17,7 +17,7 @@
 		font-family: arial;
 		font-size: 12;
 		color: #000000;
-		background: #FFFFFF url("../images/iptip.png") no-repeat center;		
+		background: #FFFFFF url(../images/IPTIPs_logo.png) no-repeat center;		
 	}
 	
 	#content{
@@ -31,7 +31,23 @@
 		}
 		
 	.surat{
-		background: url("../images/iptip.png") no-repeat center;
+		background: url(../images/IPTIPs_logo.png) no-repeat center;
 		}
+		
+	.slip td, .slip th{
+		padding: 5px;
+		border-collapse: collapse;
+	}
+	.slip_sub{
+		border: 1px #000000 solid;
+		border-collapse: collapse;
+	}
+	.slip_sub thead, .slip_sub  th, .slip_sub thead  tr{
+		background-color: #808080;
+	}
+	.slip_sub thead, .slip_sub td{
+		border: 1px #C0C0C0 solid;
+	}
+	
 }
                  
