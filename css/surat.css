@@ -31,7 +31,7 @@
 		}
 		
 	.surat{
-		background: url(../images/IPTIPs_logo.png) no-repeat center;
+		background: url(images/IPTIPs_logo.png) no-repeat center;
 		}
 		
 	.slip td, .slip th{
@@ -47,6 +47,19 @@
 	}
 	.slip_sub thead, .slip_sub td{
 		border: 1px #C0C0C0 solid;
+	}
+	#logo{
+		display: block;
+		width: 10px;
+		height: 10px;
+		position:relative;
+	}
+	#header_text{
+		display: block;
+		width: 100px;
+		height: 100px;
+		position:relative;
+		border-bottom: 1px #000000 solid;
 	}
 	
 }

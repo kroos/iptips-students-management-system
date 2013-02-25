@@ -564,21 +564,27 @@ class Hea extends CI_Controller
 				$html = '<!doctype html>
 					<head>
 						<title>Slip Peperiksaan</title>
-						<link href="'.base_url().'css/surat.css" rel="stylesheet" />
+						<style>'.file_get_contents(base_url()."css/surat.css").'</style>
 					</head>
-					<body>';
+					<body>
+					<table><tr><td width="10px"><div id="logo"><image src="images/IPTIPs_logo.png" width="100px" height="100px" /></div></td>
+						<td><div id="header_text"><h1>Institusi Pengajian Tinggi Perlis</h1>
+						<h2>Islamic Institute of Higher Education Perlis</h3>
+						<p><i>(Milik PenuhYayasan Islam Perlis)</i></p></div></td></tr></table>';
+					
 				$data['pelajar'] = $this->pelajar->GetWhere(array('matrik' => $data['matrik']), NULL, NULL);
 				$pelajar = $data['pelajar']->row();
 				$pelsem = $this->pel_sem->GetWhere(array('matrik' => $data['matrik'], 'aktif' => 1), NULL, NULL);
 				$data['pelsem'] = $pelsem;//$pelsem = $pelsem->row();
 				
+				$html .= '<h2>Slip Peperiksaan Bagi Sesi '.$pelsem->row()->sem.'</h2>';
 				if($data['pelajar']->num_rows() == 1)
 					{
 						$nokp = $pelajar->ic;
 						if(empty($pelajar->ic)){
 							$nokp = $pelajar->passport;
 						}
-						$html .= '<table>
+						$html .= '<table class="slip">
 							<tr><td>Nama</td>
 								<td>'.$pelajar->nama.'</td></tr>
 							<tr><td>Nombor Kad Pelajar</td>
@@ -595,25 +601,25 @@ class Hea extends CI_Controller
 							</tr>
 							<tr><td>Sesi</td>
 								<td>'.$pelsem->row()->sesi.'</td>
-							</tr></table>';
+							</tr></table><p><br></p>';
 						
 						$data['subjek'] = $this->pel_subjek_gred->GetWhere(array('matrik' => $data['matrik'], 'sesi' => $pelsem->row()->sesi, 'sem' => $pelsem->row()->sem, 'id_drop IS NULL' => NULL, 'id_ign IS NULL' => NULL), NULL, NULL);
 						//$data['subjek']->db->join('subjek','subjek.kodsubjek = pel_subjek_gred.kodsubjek');
 						$subjek = $data['subjek']->result();
 						$html1 = '';
-						$html .= '<table>
-							<tr><td>Kod Subjek</td>
-								<td>Nama Subjek</td>
-								<td>Jam Kredit</td>
+						$html .= '<table class="slip slip_sub">
+							<thead><tr><th>Kod Subjek</th>
+								<th>Nama Subjek</th>
+								<th>Jam Kredit</th>
 							</tr>
-							';
+							</thead><tbody>';
 						foreach($subjek as $subjeks){
 							$html .= '<tr><td>'.$subjeks->kodsubjek.'</td>
 								<td>'.$this->subjek->GetWhere(array('kodsubjek'=>$subjeks->kodsubjek))->row()->namasubjek_MY.'</td>
 								<td>'.$subjeks->kredit.'</td></tr>';
 						}
 						
-						$html .= '</table>';
+						$html .= '</tbody></table>';
 					}
 				$html .= '</body></html>';
 				$data['html'] = $html;
@@ -628,7 +634,7 @@ class Hea extends CI_Controller
 			$this->load->library('Pdf');
 				$pdf = new Pdf('P', 'px', 'A4', true, 'UTF-8', false);
 			// create new PDF document
-			$pdf = new Pdf(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+			//$pdf = new Pdf(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 			
 				// set document information
 				$this->pdf->SetCreator(PDF_CREATOR);

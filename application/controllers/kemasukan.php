@@ -883,10 +883,10 @@ class Kemasukan extends CI_Controller
 	        
 	        $img_file = base_url().'/images/IPTIPs_logo.png';
 	        
-			$background_text = str_repeat('TCPDF test PNG Alpha Channel ', 50);
+			//$background_text = str_repeat('TCPDF test PNG Alpha Channel ', 50);
 	        //$this->pdf->Image($img_file, 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
-        	$this->pdf->Image('$img_file', 50, 50, 100, '', '', '', '', false, 300);
-        	$this->pdf->setPageMark();
+        	//$this->pdf->Image('$img_file', 50, 50, 100, '', '', '', '', false, 300);
+        	//$this->pdf->setPageMark();
         	
 	        // set font
 	        //$this->pdf->SetFont('times', '', 12);

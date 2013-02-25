@@ -53,8 +53,7 @@
 					<?php //echo $CKEditor->editor('header', @$baru->row()->header ? @$baru->row()->header : set_value('header'));
 					echo form_textarea(array('name'=>'header', 'value'=> @$baru->row()->header ? @$baru->row()->header : set_value('header'), 'id'=>'header', 'class'=>'editor'));
 					//echo nic_display($nicedit);?>
-		<!--<?$this->ckeditor5->basePath = base_url().'js/ckeditor/'?>
-		$this->ckeditor5->editor('editor', set_value('editor'));
+		<!-- <?$this->ckeditor5->basePath = base_url().'js/ckeditor/'?> //-->
 				<p><span><?php echo form_label('Alamat', 'address')?></span>
 					<?php echo $this->ckeditor5->editor('address', @$baru->row()->address ? @$baru->row()->address:set_value('address'));
 					//form_textarea(array('name'=>'address', 'value'=> @$baru->row()->address ? @$baru->row()->address:set_value('address'), 'id'=>'addres', 'class'=>'ck'));?></p>
@@ -76,7 +75,7 @@
 					
 				<p><span><?php echo form_label('Nota Kaki', 'footer')?></span>
 					<?php echo form_textarea(array('name'=>'footer', 'value'=> @$baru->row()->footer ? @$baru->row()->footer : set_value('footer'), 'id'=>'footer', 'class'=>'ck'));?></p>
-				//-->	
+					
 				<p class="form_settings"><?php echo form_submit('simpan', $btnSubmit, 'id="submit" class="submit"')?></p>
 				
 			<?php echo form_close();?>
