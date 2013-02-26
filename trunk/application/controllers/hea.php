@@ -566,11 +566,11 @@ class Hea extends CI_Controller
 						<title>Slip Peperiksaan</title>
 						<style>'.file_get_contents(base_url()."css/surat.css").'</style>
 					</head>
-					<body>
-					<table><tr><td id="logo_surat"><image src="images/IPTIPs_logo.png" width="100px" height="100px" /></td>
-						<td id="header_text"><h1>Institusi Pengajian Tinggi Perlis</h1>
-						<h2>Islamic Institute of Higher Education Perlis</h3>
-						<p class="kecik senget"><i>(Milik PenuhYayasan Islam Perlis)</i></p></td></tr></table>';
+					<body id="slip">
+					<div id="logo_surat" class="head"><image src="'.base_url().'/images/IPTIPs_logo.png" width="100px" height="100px" /></div>
+					<div id="header_text" class="head"><h1 align="center">Institusi Pengajian Tinggi Perlis</h1>
+						<h2 align="center">Islamic Institute of Higher Education Perlis</h2>
+						<p class="kecik senget"><i>(Milik PenuhYayasan Islam Perlis)</i></p></div>';
 					
 				$data['pelajar'] = $this->pelajar->GetWhere(array('matrik' => $data['matrik']), NULL, NULL);
 				$pelajar = $data['pelajar']->row();
@@ -625,6 +625,7 @@ class Hea extends CI_Controller
 				$data['html'] = $html;
 				//echo $html;
 				
+				/*print pdf*/
 				$this->cetak_pdf($html);
 				//$this->load->view('hea/cetak_slip_exam', $data);
 			}
@@ -642,6 +643,10 @@ class Hea extends CI_Controller
 				//$pdf->SetTitle('Penyata Gaji');
 				$this->pdf->SetTitle('Slip Peperiksaan');
 
+				//load image logo
+				$image_file = 'images/IPTIPs_logo.png';
+				$this->pdf->Image('@'.$image_file, 10, 10, 15, '', 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+		
 				// remove default header/footer
 				$this->pdf->setPrintHeader(false);
 				$this->pdf->setPrintFooter(false);

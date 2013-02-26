@@ -20,9 +20,17 @@
 	}
 	
 	
-	body{
+	body.surat{
 		font:"Times New Roman", Times, serif;
 		/*font-family: arial;*/
+		font-size: 14px;
+		color: #000000;
+		background: #FFFFFF url(images/IPTIPs_logo.png) no-repeat center;		
+	}
+	
+	body.slip{
+		/*font:"Times New Roman", Times, serif;*/
+		font-family: arial;
 		font-size: 14px;
 		color: #000000;
 		background: #FFFFFF url(images/IPTIPs_logo.png) no-repeat center;		
@@ -37,8 +45,8 @@
 	
 	body{
 		font:"Times New Roman", Times, serif;
-		/*font-family: arial;*/
-		font-size: 12px;
+		/*font-family: arial;
+		font-size: 12px;*/
 		color: #000000;
 		background: #FFFFFF url(images/IPTIPs_logo.png) no-repeat center;		
 	}
@@ -71,12 +79,15 @@
 	.slip_sub thead, .slip_sub td{
 		border: 1px #C0C0C0 solid;
 	}
+	.head{
+		display:inline-block;
+	}
 	#logo_surat{
 		display: block;
 		top:0px;
 		float:left;
-		width: 100px;
-		height: 100px;
+		width: 10px;
+		height: 10px;
 		position:relative;
 		vertical-align:top;
 		text-align:center;
@@ -88,21 +99,23 @@
 		font:"Times New Roman", Times, serif;
 		top:0px;
 		display: block;
-		position:relative;
+		position:inherit;
 		height: 100px;
 		vertical-align:top;
 		text-align:center;
-		float:inherit;
+		float:left;
 	}
 	
 	#header_text h2{
-		text-align:center;
+		margin:auto;
+		text-align:center !important;
 		font-size:18px;
 		font-weight:bold;
 	}
 	
 	#header_text h3{
-		text-align:center;
+		margin:auto;
+		text-align:center !important;
 		font-size:14px;
 		font-weight:bold;
 	}
@@ -111,6 +124,7 @@
 	}
 	.senget{
 		font-style:italic;
+		text-align:center !important;
 	}
 	.kaler{
 		vertical-align:middle;
