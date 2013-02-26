@@ -82,7 +82,7 @@
 					<?endif?>
 					
 					</td>
-					<td><?=(($j1 - $h1) < 0 ? anchor('hea/cetak_slip_exam/'.$e->matrik, 'Cetak Slip', array('title' => 'Cetak Slip')) : anchor('hea/bypass_slip/'.$e->matrik, 'Bypass Slip', array('title' => 'Bypass Slip')))?></td>
+					<td><?=(($j1 - $h1) < 0 ? anchor('hea/cetak_slip_exam/'.$e->matrik, 'Cetak Slip', array('title' => 'Cetak Slip', 'target'=>'_new')) : anchor('hea/bypass_slip/'.$e->matrik, 'Bypass Slip', array('title' => 'Bypass Slip')))?></td>
 				</tr>
 			<?endforeach?>
 		</table>

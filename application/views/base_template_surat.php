@@ -20,7 +20,7 @@
 
 </head>
 
-<body>
+<body id="surat">
 	<div id="content">
 	
 	<? start_block_marker('content') ?>
