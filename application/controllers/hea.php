@@ -567,10 +567,10 @@ class Hea extends CI_Controller
 						<style>'.file_get_contents(base_url()."css/surat.css").'</style>
 					</head>
 					<body>
-					<table><tr><td width="10px"><div id="logo"><image src="images/IPTIPs_logo.png" width="100px" height="100px" /></div></td>
-						<td><div id="header_text"><h1>Institusi Pengajian Tinggi Perlis</h1>
+					<table><tr><td id="logo_surat"><image src="images/IPTIPs_logo.png" width="100px" height="100px" /></td>
+						<td id="header_text"><h1>Institusi Pengajian Tinggi Perlis</h1>
 						<h2>Islamic Institute of Higher Education Perlis</h3>
-						<p><i>(Milik PenuhYayasan Islam Perlis)</i></p></div></td></tr></table>';
+						<p class="kecik senget"><i>(Milik PenuhYayasan Islam Perlis)</i></p></td></tr></table>';
 					
 				$data['pelajar'] = $this->pelajar->GetWhere(array('matrik' => $data['matrik']), NULL, NULL);
 				$pelajar = $data['pelajar']->row();

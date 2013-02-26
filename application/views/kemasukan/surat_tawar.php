@@ -23,7 +23,7 @@
 		<?php echo eval($content2 = "echo '$content2';");?>
 		<?php echo eval($content3 = "echo '$content3';");?>
 		<?php echo eval($signiture = "echo '$signiture';");?>
-		<?php echo eval($footer = "echo '$footer';");?>
+		<div id="footer"><?php echo eval($footer = "echo '$footer';");?></div>
 		
 	<?php endblock()?>
 	

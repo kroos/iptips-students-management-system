@@ -771,7 +771,7 @@ class Kemasukan extends CI_Controller
 			$data['nama_pemohon'] = $pelajar->row()->nama;
 			$data['ic_pemohon'] = $pelajar->row()->ic;
 			$data['alamat1_pemohon'] = $pelajar->row()->alamat1;	
-			$data['alamat2_pemohon'] = $pelajar->row()->alamat2;
+			($pelajar->row()->alamat2) ? $data['alamat2_pemohon'] = $pelajar->row()->alamat2.'<br>' : $data['alamat2_pemohon'] = '';
 			$data['poskod']			= $pelajar->row()->poskod;
 			$data['bandar']			= $pelajar->row()->namabandar;
 			$data['negeri'] 		= $pelajar->row()->namanegeri;
@@ -838,7 +838,8 @@ class Kemasukan extends CI_Controller
 					//button 
 					$data['pdf'] = '';
 					$data['print'] = '';
-					
+					$data['header'] = '<br><br><br><br><br>';
+					$data['footer'] = FALSE;
 					$this->surat_pdf($data);
 				}
 				
@@ -863,8 +864,8 @@ class Kemasukan extends CI_Controller
 			$this->pdf->SetTitle($data['title']);
 			
 			// remove default header/footer
-			$this->pdf->setPrintHeader(false);
-			$this->pdf->setPrintFooter(false);
+			$this->pdf->setPrintHeader(true);
+			$this->pdf->setPrintFooter(true);
 
 	        $y = $this->pdf->getY();
 	        
@@ -881,15 +882,18 @@ class Kemasukan extends CI_Controller
 	        
 	        //images
 	        
-	        $img_file = base_url().'/images/IPTIPs_logo.png';
+	        $img_file = 'images/IPTIPs_logo.png';
 	        
 			//$background_text = str_repeat('TCPDF test PNG Alpha Channel ', 50);
-	        //$this->pdf->Image($img_file, 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
+	        $this->pdf->Image('@'.$img_file, 10, 10, 15, '', 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false);
         	//$this->pdf->Image('$img_file', 50, 50, 100, '', '', '', '', false, 300);
         	//$this->pdf->setPageMark();
         	
+			//set image scale factor
+			$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+			
 	        // set font
-	        //$this->pdf->SetFont('times', '', 12);
+	        $this->pdf->SetFont('times', '', 12);
 	        
 			// set LTR direction for english translation
 			$this->pdf->setRTL(false); 
@@ -906,8 +910,8 @@ class Kemasukan extends CI_Controller
 	        //$html = $p->parse($html1);
 			$html = $this->parser->parse('kemasukan/surat_tawar', $data);
 	        
-			$this->pdf->writeHTMLCell('auto', '', '', $y, $html, 0, 0, 0, true, 'J', true);
-			//$pdf->writeHTML($html, true, false, true, false, '');
+			//$this->pdf->writeHTMLCell('auto', '', '', $y, $html, 0, 0, 0, true, 'J', true);
+			$this->pdf->writeHTML($html, true, false, true, false, '');
 									
 			// reset pointer to the last page
 			$this->pdf->lastPage();
