@@ -1,23 +1,46 @@
 @CHARSET "ISO-8859-1";
 @media print {
 	@page {
-		margin: 0.5in;
+		margin-left: 0.5in;
+		margin-right: 0.5in;
+		margin-top:0px;
+		margin-bottom:0px;
 		size: A4 landscape;
+		font-size:10px;
 		counter-increment: page;
 	}
+		
+		@top-left-corner,@top-left,@top-center,@top-right,@top-right-corner{
+			display:none;
+			visibility:collapse;
+		}
 
 	html{
 		margin:0;
+	}
+	
+	
+	body{
+		font:"Times New Roman", Times, serif;
+		/*font-family: arial;*/
+		font-size: 14px;
+		color: #000000;
+		background: #FFFFFF url(images/IPTIPs_logo.png) no-repeat center;		
 	}
 }
 
 
 @media all{
+	html{
+		margin:0;
+	}
+	
 	body{
-		font-family: arial;
-		font-size: 12;
+		font:"Times New Roman", Times, serif;
+		/*font-family: arial;*/
+		font-size: 12px;
 		color: #000000;
-		background: #FFFFFF url(../images/IPTIPs_logo.png) no-repeat center;		
+		background: #FFFFFF url(images/IPTIPs_logo.png) no-repeat center;		
 	}
 	
 	#content{
@@ -31,7 +54,7 @@
 		}
 		
 	.surat{
-		background: url(images/IPTIPs_logo.png) no-repeat center;
+		background: url(../images/IPTIPs_logo.png) no-repeat center;
 		}
 		
 	.slip td, .slip th{
@@ -48,18 +71,60 @@
 	.slip_sub thead, .slip_sub td{
 		border: 1px #C0C0C0 solid;
 	}
-	#logo{
+	#logo_surat{
 		display: block;
-		width: 10px;
-		height: 10px;
-		position:relative;
-	}
-	#header_text{
-		display: block;
+		top:0px;
+		float:left;
 		width: 100px;
 		height: 100px;
 		position:relative;
-		border-bottom: 1px #000000 solid;
+		vertical-align:top;
+		text-align:center;
+		background:url(../images/IPTIPs_logo.png);
+		background-size:100px 100px;
+		background-repeat:no-repeat;
+	}
+	#header_text{
+		font:"Times New Roman", Times, serif;
+		top:0px;
+		display: block;
+		position:relative;
+		height: 100px;
+		vertical-align:top;
+		text-align:center;
+		float:inherit;
+	}
+	
+	#header_text h2{
+		text-align:center;
+		font-size:18px;
+		font-weight:bold;
+	}
+	
+	#header_text h3{
+		text-align:center;
+		font-size:14px;
+		font-weight:bold;
+	}
+	.kecik{
+		font-size:11px;
+	}
+	.senget{
+		font-style:italic;
+	}
+	.kaler{
+		vertical-align:middle;
+		background-color:#69F !important;
+	}
+	
+	#rujukan, #rujukan pre{
+		font:"Times New Roman", Times, serif;
+		min-width:600px;
+		display:block;
+	}
+	
+	#footer{
+		bottom:0;
 	}
 	
 }
