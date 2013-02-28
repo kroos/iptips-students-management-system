@@ -6,8 +6,9 @@
 <?php start_block_marker('head') ?>
 
 <?php end_block_marker() ?>
-
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="stylesheet" type="text/css" href="<?=base_url()?>css/CSS3_four.css" />
+	<link rel="stylesheet" type="text/css" href="<?=base_url()?>css/responsive.css" />
 	<link rel="stylesheet" type="text/css" href="<?=base_url()?>css/jquery/jquery-ui-1.9.1.custom.css" />
 	<!-- modernizr enables HTML5 elements and feature detects -->
 	<script type="text/javascript" src="<?=base_url()?>js/modernizr-1.5.min.js"></script>
@@ -37,7 +38,8 @@
 <?php end_block_marker() ?>
 
 			</ul>
-		</div>
+        	<a href="javascript:" id="pull">Menu</a>
+		</div>        
 		</nav>
 	</header>
 	<div id="site_content">
@@ -91,6 +93,23 @@
 		$('ul.sf-menu').sooperfish();
 		$('.top').click(function() {$('html, body').animate({scrollTop:0}, 'fast'); return false;});
 	});
+	$(function() {
+			var pull 		= $('#pull');
+				menu 		= $('#nav');
+				menuHeight	= menu.height();
+
+			$(pull).on('click', function(e) {
+				e.preventDefault();
+				menu.slideToggle();
+			});
+
+			$(window).resize(function(){
+        		var w = $(window).width();
+        		if(w > 320 && menu.is(':hidden')) {
+        			menu.removeAttr('style');
+        		}
+    		});
+		});
 	</script>
 
 <?php start_block_marker('jscript') ?>
