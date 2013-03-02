@@ -3,20 +3,17 @@
 
 <head>
 
-<?php start_block_marker('head') ?>
-
-<?php end_block_marker() ?>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<? start_block_marker('head') ?>
+	
+<? end_block_marker() ?>
+	
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="stylesheet" type="text/css" href="<?=base_url()?>css/CSS3_four.css" />
 	<link rel="stylesheet" type="text/css" href="<?=base_url()?>css/responsive.css" />
 	<link rel="stylesheet" type="text/css" href="<?=base_url()?>css/jquery/jquery-ui-1.9.1.custom.css" />
 	<!-- modernizr enables HTML5 elements and feature detects -->
 	<script type="text/javascript" src="<?=base_url()?>js/modernizr-1.5.min.js"></script>
-	<title>
-		<?php start_block_marker('title')?>
-		IPTIP
-		<?php end_block_marker()?>
-	</title>
 </head>
 
 <body>
@@ -33,9 +30,9 @@
 		<div id="menu_container">
 			<ul class="sf-menu" id="nav">
 			
-<?php start_block_marker('top_nav') ?>
+<? start_block_marker('top_nav') ?>
 
-<?php end_block_marker() ?>
+<? end_block_marker() ?>
 
 			</ul>
         	<a href="javascript:" id="pull">Menu</a>
@@ -46,32 +43,32 @@
 		<div id="sidebar_container">
 		<div class="sidebar">
 
-<?php start_block_marker('top_sidebar') ?>
+<? start_block_marker('top_sidebar') ?>
 
-<?php end_block_marker() ?>
-
-		</div>
-		<div class="sidebar">
-
-<?php start_block_marker('mid_sidebar') ?>
-
-<?php end_block_marker() ?>
+<? end_block_marker() ?>
 
 		</div>
 		<div class="sidebar">
 
-<?php start_block_marker('bot_sidebar') ?>
+<? start_block_marker('mid_sidebar') ?>
 
-<?php end_block_marker() ?>
+<? end_block_marker() ?>
+
+		</div>
+		<div class="sidebar">
+
+<? start_block_marker('bot_sidebar') ?>
+
+<? end_block_marker() ?>
 
 		</div>
 		</div>
 		<div id="content">
 
 <h1>Selamat Datang ke Sistem Pengurusan Pelajar <?=$this->config->item('instl')?></h1>
-<?php start_block_marker('content') ?>
+<? start_block_marker('content') ?>
 
-<?php end_block_marker() ?>
+<? end_block_marker() ?>
 
 		</div>
 	</div>
@@ -85,6 +82,17 @@
 	</div>
 
 	<!-- javascript at the bottom for fast page loading -->
+	<script language="javascript" type="text/javascript">
+		 function lanfTrans(lan)
+		 {
+		   switch(lan)
+		   {
+			   case 'en': document.getElementById('dlang').value='en';document.langForm.submit(); break;
+			   case 'ms': document.getElementById('dlang').value='ms'; document.langForm.submit(); break;
+			   case 'ar': document.getElementById('dlang').value='ar'; document.langForm.submit(); break;
+		   } 
+		 }
+	</script>
 	<script type="text/javascript" src="<?=base_url()?>js/jquery.js"></script>
 	<script type="text/javascript" src="<?=base_url()?>js/jquery.easing-sooper.js"></script>
 	<script type="text/javascript" src="<?=base_url()?>js/jquery.sooperfish.js"></script>
@@ -112,9 +120,9 @@
 		});
 	</script>
 
-<?php start_block_marker('jscript') ?>
+<? start_block_marker('jscript') ?>
 
-<?php end_block_marker() ?>
+<? end_block_marker() ?>
 
 </body>
 </html>
