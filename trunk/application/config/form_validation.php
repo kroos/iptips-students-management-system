@@ -1396,6 +1396,27 @@ $config = array	(
 								'rules' => 'trim|required|is_natural_no_zero|xss_clean'
 							),
 					),
+					'hep/laporan_asrama' => array
+					(
+						array
+							(
+								'field' => 'namahostel',
+								'label' => 'Nama Hostel',
+								'rules' => 'trim|required|xss_clean'
+							),
+						array
+							(
+								'field' => 'alamat1',
+								'label' => 'Alamat 1',
+								'rules' => 'trim|required|xss_clean'
+							),
+						array
+							(
+								'field' => 'alamat2',
+								'label' => 'Alamat 2',
+								'rules' => 'trim|xss_clean'
+							),
+					)
 
 
 
