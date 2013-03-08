@@ -44,11 +44,11 @@
 												<th>Aktif</th>
 											</tr>
 										<?foreach($hb->result() AS $w):?>
-											<tr>
-												<td><?=$w->aktif == 1 ? anchor('/hep/conf_daftar_pelajar/'.$this->uri->segment(3, 0).'/'.$w->id, $w->nobilik, 'title="Pilih Bilik '.$w->nobilik.'"') : $w->nobilik ?></td>
-												<td>
 													<?$x = $this->pel_dafhostel->GetWhere(array('idbilik' => $w->id), NULL, NULL)?>
 													<?$e = $w->max_capacity - $x->num_rows()?>
+											<tr>
+												<td><?=$w->aktif == 1 ? ($e == 0 ? $w->nobilik : anchor('/hep/conf_daftar_pelajar/'.$this->uri->segment(3, 0).'/'.$w->id, $w->nobilik, 'title="Pilih Bilik '.$w->nobilik.'"')) : $w->nobilik ?></td>
+												<td>
 													<?=$e == 0 ? 'Penuh' : $e ?>
 												</td>
 												<td><?=$w->aktif == 1 ? 'Aktif' : 'Tidak Aktif'?></td>
