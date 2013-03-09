@@ -1416,8 +1416,16 @@ $config = array	(
 								'label' => 'Alamat 2',
 								'rules' => 'trim|xss_clean'
 							),
-					)
-
+					),
+					'hep/checkout_asrama' => array
+					(
+						array
+							(
+								'field' => 'matrik',
+								'label' => 'No Matrik',
+								'rules' => 'trim|xss_clean'
+							)
+					),
 
 
 				);
