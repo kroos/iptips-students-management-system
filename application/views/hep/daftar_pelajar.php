@@ -44,7 +44,7 @@
 												<th>Aktif</th>
 											</tr>
 										<?foreach($hb->result() AS $w):?>
-													<?$x = $this->pel_dafhostel->GetWhere(array('idbilik' => $w->id), NULL, NULL)?>
+													<?$x = $this->pel_dafhostel->GetWhere(array('idbilik' => $w->id, 'tarikh_keluar IS NOT NULL' => NULL, 'sesi' => $this->sesi_akademik->GetWhere(array('aktif' => 1), NULL, NULL)->row()->kodsesi), NULL, NULL)?>
 													<?$e = $w->max_capacity - $x->num_rows()?>
 											<tr>
 												<td><?=$w->aktif == 1 ? ($e == 0 ? $w->nobilik : anchor('/hep/conf_daftar_pelajar/'.$this->uri->segment(3, 0).'/'.$w->id, $w->nobilik, 'title="Pilih Bilik '.$w->nobilik.'"')) : $w->nobilik ?></td>

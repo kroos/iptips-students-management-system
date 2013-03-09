@@ -14,6 +14,7 @@ class Hep extends CI_Controller
 				$this->load->model('hostel');						//nak tau controller ni pakai model mana 1...
 				$this->load->model('host_bilik');						//nak tau controller ni pakai model mana 1...
 				$this->load->model('pel_dafhostel');						//nak tau controller ni pakai model mana 1...
+				$this->load->model('view');						//nak tau controller ni pakai model mana 1...
 
 				//mesti ikut peraturan ni..
 				//user mesti log on kalau tidak redirect to index
@@ -96,7 +97,6 @@ class Hep extends CI_Controller
 										$data['host'] = $this->hostel->GetWhere(array('aktif' => 1, 'kat_jantina = 2 OR kat_jantina = 3' => NULL), NULL, NULL);
 										//echo $this->db->last_query();
 									}
-
 								$this->load->view('hep/daftar_pelajar', $data);
 							}
 					}
@@ -161,6 +161,83 @@ class Hep extends CI_Controller
 											}
 									}
 							}
+					}
+			}
+
+		public function checkout_asrama()
+			{
+				$se = $this->sesi_akademik->GetWhere(array('aktif' => 1), NULL, NULL);
+				if ($se->num_rows() == 1)
+					{
+						$sesi = $se->row()->kodsesi;
+
+						$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+						if ($this->form_validation->run() == TRUE)
+							{
+								if($this->input->post('cari', TRUE))
+									{
+										$matrik = strtoupper(strtolower($this->input->post('matrik', TRUE)));
+
+										$data['ps'] = $this->view->view_peldafhost($matrik, $sesi);
+										//echo $this->db->last_query();
+										if($data['ps'])
+											{
+												$data['info'] = 'Carian berjaya';
+											}
+											else
+											{
+												$data['info'] = 'Sila cuba sebentar lagi';
+											}
+									}
+							}
+					}
+					else
+					{
+						$data['info'] = 'Tidak dapat menentukan sesi akademik. Sila hubungi Admin';
+					}
+				$this->load->view('hep/checkout_asrama', @$data);
+			}
+
+		public function conf_check_out()
+			{
+				$id = $this->uri->segment(3, 0);
+				if(is_numeric($id))
+					{
+						$r = $this->pel_dafhostel->GetWhere(array('id' => $id), NULL, NULL);
+						if($r->num_rows() == 1)
+							{
+								$data['p'] = $r;
+							}
+							else
+							{
+								$data['info'] = 'Better dont talk too much......';
+							}
+					}
+				$this->load->view('hep/conf_check_out', @$data);
+			}
+
+		public function check_out()
+			{
+				$id = $this->uri->segment(3, 0);
+				if (is_numeric($id))
+					{
+						$t = $this->pel_dafhostel->GetWhere(array('id' => $id), NULL, NULL);
+						if ($t->num_rows() == 1)
+							{
+								$a = $this->pel_dafhostel->update(array('id' => $id), array('tarikh_keluar' => date_db(now()), 'id_edit' => $this->session->userdata('id_user'), 'dt_edit' => date_db(now())));
+								if($a)
+									{
+										redirect ('hep/checkout_asrama', 'location');
+									}
+									else
+									{
+										redirect ('hep/checkout_asrama', 'location');
+									}
+							}
+					}
+					else
+					{
+						redirect ('hep/checkout_asrama', 'location');
 					}
 			}
 

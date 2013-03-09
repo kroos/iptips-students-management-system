@@ -306,5 +306,34 @@ class View extends CI_Model
 										");
 			}
 
+		function view_peldafhost($matrik, $sesi)
+			{
+				return $this->db->query(
+										"
+											SELECT
+											hostel.kodhostel,
+											hostel.namahostel,
+											hostel.kat_jantina,
+											host_bilik.nobilik,
+											host_bilik.harga_hari,
+											host_bilik.harga_bulan,
+											host_bilik.max_capacity,
+											pel_dafhostel.matrik,
+											pel_dafhostel.tarikh_masuk,
+											pel_dafhostel.tarikh_keluar,
+											pel_dafhostel.sesi,
+											host_bilik.id,
+											pel_dafhostel.id AS ID_dafhostel
+											FROM
+											hostel
+											INNER JOIN host_bilik ON host_bilik.kodhostel = hostel.kodhostel
+											INNER JOIN pel_dafhostel ON pel_dafhostel.idbilik = host_bilik.id
+											WHERE
+											pel_dafhostel.matrik LIKE '%$matrik%' AND
+											pel_dafhostel.tarikh_keluar IS NULL AND
+											pel_dafhostel.sesi = '$sesi'
+										"
+										);
+			}
 	}
 ?>
