@@ -292,7 +292,6 @@ class Hea extends CI_Controller
 				//papar student, program dan subjek? kendian boleh edit?
 				//mbik terus dari pel_sem?
 
-				$data['info'] = '';
 				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
 				if ($this->form_validation->run() == TRUE)
 					{
@@ -311,7 +310,7 @@ class Hea extends CI_Controller
 									}
 							}
 					}
-				$this->load->view('hea/daftar_subjek', $data);
+				$this->load->view('hea/daftar_subjek', @$data);
 			}
 
 		public function urus_subjek()
@@ -401,18 +400,17 @@ class Hea extends CI_Controller
 
 		public function status_pelajar()
 			{
-				$data['info'] = '';
 				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
 				if ($this->form_validation->run() == TRUE)
 					{
 						if($this->input->post('cari', TRUE))
 							{
 								$matrik = $this->input->post('ic', TRUE);
-								$d = $this->pelajar->GetWhere(array('matrik LIKE \'%'.$matrik.'%\'' => NULL, 'status_pljr' => 'A'), NULL, NULL);
+								$d = $this->pelajar->GetWhere(array('matrik LIKE \'%'.$matrik.'%\'' => NULL), NULL, NULL);
 								if ($d)
 									{
 										$data['info'] = 'Carian berjaya dilakukan';
-										$data['all'] = $this->pelajar->GetWhere(array('matrik LIKE \'%'.$matrik.'%\'' => NULL, 'status_pljr' => 'A'), NULL, NULL);
+										$data['all'] = $this->pelajar->GetWhere(array('matrik LIKE \'%'.$matrik.'%\'' => NULL), NULL, NULL);
 									}
 									else
 									{
@@ -420,13 +418,15 @@ class Hea extends CI_Controller
 									}
 							}
 					}
-				$this->load->view('hea/status_pelajar', $data);
+				$this->load->view('hea/status_pelajar', @$data);
 			}
 
 		public function urus_status()
 			{
 				$matrik = $this->uri->segment(3, 0);
-				$data['st'] = $this->sel_status->GetWhere(array('kodstatus = "T" OR kodstatus = "US"' => NULL), NULL, NULL);
+				//$data['st'] = $this->sel_status->GetWhere(array('kodstatus <> "G" AND `kodstatus` <> "A" AND `kodstatus` <> "P"' => NULL), NULL, NULL);
+				$data['st'] = $this->sel_status->GetWhere(array('kodstatus <> "G"' => NULL), NULL, NULL);
+				//echo $this->db->last_query();
 				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
 				if ($this->form_validation->run() == TRUE)
 					{
@@ -434,10 +434,34 @@ class Hea extends CI_Controller
 							{
 								$st = $this->input->post('stat', TRUE);
 								$std = $this->input->post('statDtl', TRUE);
-								echo $st.$std;
+								//echo $st.' = status<br />'.$std.' = status detail<br />';
 
 								//byk benda kena check..
 								//pelajr, pel_sem, pel_lib, pel_invoice, pel_subjek_gred, pel_dafhostel, 
+								//11/03/2013 <-- untuk apa nak benda kat atas tu?
+								//pariappp semua seklai laa
+								//update dulu pel_sem dgn pelajar
+								//cari sesi duluuuu...
+								$se = $this->sesi_akademik->GetWhere(array('aktif' => 1), NULL, NULL);
+								//check dulu di pel_sem...salin balik...
+								$r = $this->pel_sem->GetWhere(array('matrik' => $matrik, 'aktif' => 1, 'terkini' => 1), NULL, NULL);
+
+								$this->db->trans_start();
+								$this->pelajar->update(array('matrik' => $matrik), array('status_pljr' => $st));
+								//update all active and terkini to 0
+								$this->pel_sem->update(array('matrik' => $matrik, 'sesi' => $se->row()->kodsesi), array('aktif' => 0, 'terkini' => 0));
+								//inserting the new row
+								$this->pel_sem->insert(array('matrik' => $matrik, 'sesi' => $se->row()->kodsesi, 'sem' => $r->row()->sem, 'status_pel' => $std, 'kod_prog' => $r->row()->kod_prog, 'terkini' => 1, 'aktif' => 1));
+								$this->db->trans_complete();
+
+								if ($this->db->trans_status() === TRUE)
+									{
+										$data['info'] = 'Success changing the status of the student';
+									}
+									else
+									{
+										$data['info'] = 'Please try again later';
+									}
 							}
 					}
 				$this->load->view('hea/urus_status', $data);
@@ -689,7 +713,6 @@ class Hea extends CI_Controller
 		public function pensyarah()
 			{
 				//tambah pensyarah
-				$data['info'] = '';
 				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
 				if ($this->form_validation->run() == TRUE)
 					{
@@ -708,7 +731,7 @@ class Hea extends CI_Controller
 									}
 							}
 					}
-				$this->load->view('hea/pensyarah', $data);
+				$this->load->view('hea/pensyarah', @$data);
 			}
 
 		public function assign_lect()
@@ -859,9 +882,34 @@ class Hea extends CI_Controller
 					}
 			}
 
+		public function mohon_graduat()
+			{
+				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
+				if ($this->form_validation->run() == TRUE)
+					{
+						if($this->input->post('cari', TRUE))
+							{
+								$matrik = $this->input->post('ic', TRUE);
+								$d = $this->pelajar->GetWhere(array('matrik LIKE \'%'.$matrik.'%\'' => NULL), NULL, NULL);
+								if ($d)
+									{
+										$data['info'] = 'Carian berjaya dilakukan';
+										$data['all'] = $this->pelajar->GetWhere(array('matrik LIKE \'%'.$matrik.'%\'' => NULL), NULL, NULL);
+									}
+									else
+									{
+										$data['info'] = 'Sila cuba sebentar lagi';
+									}
+							}
+					}
+				$this->load->view('hea/mohon_graduat', @$data);
+			}
 
-
-
+		public function sah_graduat()
+			{
+				
+				$this->load->view('hea/sah_graduat', @$data);
+			}
 
 
 

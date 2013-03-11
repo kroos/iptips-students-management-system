@@ -145,17 +145,39 @@ class Hep extends CI_Controller
 								$c = $this->pel_sem->GetWhere(array('sesi' => $es, 'status_pel' => '01', 'aktif' => 1, 'id' => $idp), NULL, NULL);
 								if ($c->num_rows() == 1)
 									{
-										$h = $this->pelajar->GetWhere(array('matrik' => $c->row()->matrik), NULL, NULL);
 										$z = $this->host_bilik->GetWhere(array('id' => $idb, 'aktif' => 1), NULL, NULL);
 										if($z->num_rows() == 1)
 											{
-												$l = $this->pel_dafhostel->insert(array('matrik' => $h->row()->matrik, 'idbilik' => $z->row()->id, 'tarikh_masuk' => date_db(now()), 'sesi' => $c->row()->sesi, 'id_add' => $this->session->userdata('id_user'), 'dt_add' => date_db(now())));
-												if($l)
+												//buat perbezaan antara sem 1 dan sem atas sebab ada sangkut paut dengan kewangan...
+												//dan juga utk tukar bilik... ada 2 kes kat sini...
+												if($c->row()->sem == 1)
 													{
-														redirect('hep/hostel_pelajar', 'location');
+														$l = $this->pel_dafhostel->insert(array('matrik' => $c->row()->matrik, 'idbilik' => $z->row()->id, 'tarikh_masuk' => date_db(now()), 'sesi' => $c->row()->sesi, 'id_add' => $this->session->userdata('id_user'), 'dt_add' => date_db(now())));
+														if($l)
+															{
+																redirect('hep/hostel_pelajar', 'location');
+															}
+															else
+															{
+																redirect('hep/hostel_pelajar', 'location');
+															}
 													}
 													else
 													{
+														$this->db->trans_start();
+														$this->pel_dafhostel->insert(array('matrik' => $c->row()->matrik, 'idbilik' => $z->row()->id, 'tarikh_masuk' => date_db(now()), 'sesi' => $c->row()->sesi, 'id_add' => $this->session->userdata('id_user'), 'dt_add' => date_db(now())));
+														//query utk insert yuran asrama
+														
+														$this->db->trans_complete();
+
+														if($this->db->trans_status() === FALSE)
+															{
+																// generate an error... or use the log_message() function to log your error
+															}
+															else
+															{
+																redirect('hep/hostel_pelajar', 'location');
+															}
 													
 													}
 											}

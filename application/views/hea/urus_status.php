@@ -8,8 +8,8 @@
         <div id="accordion">
 	        <h3>Bantuan</h3>
 	        <p>Penukaran status dari AKTIF ke Penangguhan atau Ulang Semester bagi pelajar :<br />
-			<?=$l->row()->nama?><br />
-			<?=$h->row()->namaprog_MY?>
+			<b><?=$l->row()->nama?></b><br />
+			<b><?=$h->row()->namaprog_MY?></b>
 			</p>
         </div>
 
