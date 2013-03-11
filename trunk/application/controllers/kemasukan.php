@@ -1154,6 +1154,7 @@ class Kemasukan extends CI_Controller
 											{
 												$jumlah1 += $yp->jumlah;
 											}
+
 										$inv = array
 													(
 														'no_inv' => $no_inv,

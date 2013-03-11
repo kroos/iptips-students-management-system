@@ -4,7 +4,8 @@
         <h2>Pendaftaran Pelajar ke Asrama Kediaman</h2>
         <div id="accordion">
 	        <h3>Bantuan</h3>
-	        <p>sat laa</p>
+	        <p>Sila click pada no bilik yang berkenaan<br />
+			Senarai asrama yang disediakan adalah mengikut jantina pelajar.</p>
         </div>
 
         <div class="info"><?=@$info?></div>

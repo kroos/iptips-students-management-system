@@ -1426,6 +1426,15 @@ $config = array	(
 								'rules' => 'trim|xss_clean'
 							)
 					),
+					'hea/mohon_graduat' => array
+					(
+						array
+							(
+								'field' => 'matrik',
+								'label' => 'No Matrik',
+								'rules' => 'trim|xss_clean'
+							)
+					),
 
 
 				);
