@@ -802,7 +802,7 @@ class Hea extends CI_Controller
 				if ($se->num_rows() == 1)
 					{
 						$data['sesi'] = $se->row()->kodsesi;
-						$v = $this->lect_ajar->GetWhere(array('nostaf' => $lect, 'sesi' => $data['sesi'], 'aktif' => 1), NULL, NULL);
+						$v = $this->lect_ajar->GetWhere(array('nostaf' => $lect, 'sesi' => $data['sesi'], 'aktif' => 1, 'confirm_gred IS NULL' => NULL), NULL, NULL);
 						if($v->num_rows() > 0)
 							{
 								$data['set'] = 1;
@@ -836,8 +836,17 @@ class Hea extends CI_Controller
 							}
 							else
 							{
-								$data['info'] = 'Anda tidak berada didalam senarai pensyarah. Jika ini adalah kesilapan, sila rujuk Admin';
-								$data['set'] = 0;
+								$v = $this->lect_ajar->GetWhere(array('nostaf' => $lect, 'sesi' => $data['sesi'], 'aktif' => 1, 'confirm_gred IS NOT NULL' => NULL), NULL, NULL);
+								if($v->num_rows() > 0)
+									{
+										$data['info'] = 'Terima kasih. Anda sudahpun membuat pengesahan untuk subjek anda';
+										$data['set'] = 0;
+									}
+									else
+									{
+										$data['info'] = 'Anda tidak berada didalam senarai pensyarah. Jika ini adalah kesilapan, sila rujuk Admin';
+										$data['set'] = 0;
+									}
 							}
 					}
 					else
@@ -882,6 +891,16 @@ class Hea extends CI_Controller
 					}
 			}
 
+		public function pengesahan_pemarkahan()
+			{
+				$kodsubjek = $this->uri->segment(3, 0);
+				$e = $this->lect_ajar->update(array('nostaf' => $this->session->userdata('id_user'), 'kodsubjek' => $kodsubjek), array('confirm_gred' => datetime_db(now())));
+				if($e)
+					{
+						redirect('hea/pemarkahan', 'location');
+					}
+			}
+
 		public function mohon_graduat()
 			{
 				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
@@ -911,7 +930,11 @@ class Hea extends CI_Controller
 				$this->load->view('hea/sah_graduat', @$data);
 			}
 
-
+		public function unit_exam()
+			{
+			
+				$this->load->view('hea/unit_exam', @$data);
+			}
 
 
 
