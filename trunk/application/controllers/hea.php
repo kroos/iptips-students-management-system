@@ -1,4 +1,5 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Hea extends CI_Controller
 	{
@@ -712,6 +713,8 @@ class Hea extends CI_Controller
 
 		public function pensyarah()
 			{
+				$data['se'] = $this->sesi_akademik->GetWhere(array('aktif' => 1), NULL, NULL);
+				$data['pens'] = $this->view->view_asubjeksesi($data['se']->row()->kodsesi);
 				//tambah pensyarah
 				$this->form_validation->set_error_delimiters('<font color="#FF0000">', '</font>');
 				if ($this->form_validation->run() == TRUE)
@@ -893,11 +896,24 @@ class Hea extends CI_Controller
 
 		public function pengesahan_pemarkahan()
 			{
+				//kena check dulu samada semua pemarkahan dah diisi atau belum..... pel_subjek_gred
 				$kodsubjek = $this->uri->segment(3, 0);
-				$e = $this->lect_ajar->update(array('nostaf' => $this->session->userdata('id_user'), 'kodsubjek' => $kodsubjek), array('confirm_gred' => datetime_db(now())));
-				if($e)
+				$c = $this->pel_subjek_gred->GetWhere(array('kodsubjek' => $kodsubjek, 'id_drop IS NULL' => NULL, 'dt_drop IS NULL' => NULL, 'jum_mark IS NULL' => NULL, 'jum_pemutihan' => NULL), NULL, NULL);
+				if($c->num_rows() > 0)
 					{
 						redirect('hea/pemarkahan', 'location');
+						//echo $c->num_rows();
+						//echo 'TRY AGAIN';
+					}
+					else
+					{
+						$e = $this->lect_ajar->update(array('nostaf' => $this->session->userdata('id_user'), 'kodsubjek' => $kodsubjek), array('confirm_gred' => datetime_db(now())));
+						if($e)
+							{
+								redirect('hea/pemarkahan', 'location');
+							}
+						//echo $c->num_rows();
+						//echo 'SUCCESS';
 					}
 			}
 
@@ -932,7 +948,26 @@ class Hea extends CI_Controller
 
 		public function unit_exam()
 			{
-			
+				//cari sesi dulu
+				$se = $this->sesi_akademik->GetWhere(array('aktif' => 1), NULL, NULL);
+				//mula2 cari sapa yang belum buat pemarkahan
+				//$l = $this->pel_subjek_gred->GetWhere(array('sesi' => $se->row()->kodsesi, 'id_drop IS NULL' => NULL, 'dt_drop IS NULL' => NULL, 'gred IS NULL' => NULL, 'jum_mark IS NULL' => NULL), NULL, NULL);
+				$l = $this->db->query("
+										SELECT *
+										FROM `pel_subjek_gred`
+										WHERE
+										pel_subjek_gred.sesi = '".$se->row()->kodsesi."' AND
+										pel_subjek_gred.id_drop IS NULL AND
+										pel_subjek_gred.jum_mark IS NULL
+										GROUP BY
+										pel_subjek_gred.kodsubjek
+									");
+				//$l1 = $l->group_by('kodsubjek');
+				echo $this->db->last_query().' = last query<br />';
+				echo $l->num_rows().' = num rows<br />';
+				
+				
+
 				$this->load->view('hea/unit_exam', @$data);
 			}
 

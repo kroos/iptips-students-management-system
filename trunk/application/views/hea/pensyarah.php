@@ -9,6 +9,30 @@
 
         <div class="info"><?=@$info?></div>
 
+		<?if($pens->num_rows() < 0):?>
+		<?else:?>
+			<p>Senarai subjek yang masih belum mempunyai pensyarah</p>
+		<table style="width:100%; border-spacing:0;">
+			<tr>
+				<th>Bil</th>
+				<th>Subjek</th>
+				<th>Sesi</th>
+			</tr>
+			<?$b = 1?>
+				<?foreach($pens->result() AS $p):?>
+				<?$j = $this->view->view_xpensyarah($se->row()->kodsesi, $p->kodsubjek)?>
+						<?if(@$j->row()->kodsubjek == $p->kodsubjek):?>
+						<?else:?>
+							<tr>
+								<td><?=$b++?></td>
+								<td><?=$p->kodsubjek?></td>
+								<td><?=$p->sesi?></td>
+							</tr>
+						<?endif?>
+				<?endforeach?>
+		</table>
+		<?endif?>
+
         <div class="form_settings">
             <?=form_open()?>
 

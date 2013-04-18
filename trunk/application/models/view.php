@@ -335,5 +335,41 @@ class View extends CI_Model
 										"
 										);
 			}
+
+		function view_xpensyarah($sesi, $kodsubjek)
+			{
+				return $this->db->query("
+											SELECT
+											lect_ajar.nostaf,
+											pel_subjek_gred.kodsubjek,
+											lect_ajar.aktif
+											FROM
+											lect_ajar
+											LEFT JOIN pel_subjek_gred ON lect_ajar.kodsubjek = pel_subjek_gred.kodsubjek AND lect_ajar.sesi = pel_subjek_gred.sesi
+											WHERE
+											pel_subjek_gred.sesi = '$sesi' AND
+											lect_ajar.aktif = '1' AND
+											pel_subjek_gred.id_drop IS NULL AND
+											lect_ajar.kodsubjek = '$kodsubjek'
+											GROUP BY
+											pel_subjek_gred.kodsubjek
+										");
+			}
+
+		function view_asubjeksesi($sesi)
+			{
+				return $this->db->query("
+											SELECT
+											pel_subjek_gred.kodsubjek,
+											pel_subjek_gred.sesi,
+											pel_subjek_gred.sem
+											FROM `pel_subjek_gred`
+											WHERE
+											pel_subjek_gred.sesi = '".$sesi."' AND
+											pel_subjek_gred.id_drop IS NULL
+											GROUP BY
+											pel_subjek_gred.kodsubjek
+										");
+			}
 	}
 ?>
