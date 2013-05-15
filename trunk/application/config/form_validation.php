@@ -5,7 +5,7 @@
 //format
 /*
 $config = array	(
-					'controller/function' => array
+					'controller/method' => array
 					( 
 						array
 							(
