@@ -261,7 +261,7 @@ class Kemasukan extends CI_Controller
 				if(is_numeric($id))
 					{
 						$data['z'] = $this->app_pelajar->get_app_pelajar($id);
-					}
+						}
 				$data['title'] = 'Proses Permohonan';
 				$data['v'] = $this->sel_negara->get();
 				$data['vq'] = $this->sel_gender->get();
@@ -897,22 +897,21 @@ class Kemasukan extends CI_Controller
 	        
 			// set LTR direction for english translation
 			$this->pdf->setRTL(false); 
-									
+
 			$this->pdf->SetFont('aealarabiya', '', 10);
 	        //$pdf->SetFont('aefurat', '', 10);	        
-						
+
 	        // add a page
 	        $this->pdf->AddPage();
 	        
 	        $this->load->library('parser');
-	        
-	        
+
 	        //$html = $p->parse($html1);
 			$html = $this->parser->parse('kemasukan/surat_tawar', $data);
 	        
 			//$this->pdf->writeHTMLCell('auto', '', '', $y, $html, 0, 0, 0, true, 'J', true);
 			$this->pdf->writeHTML($html, true, false, true, false, '');
-									
+
 			// reset pointer to the last page
 			$this->pdf->lastPage();
 			
